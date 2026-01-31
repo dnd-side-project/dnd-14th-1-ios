@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F47ED22F2DD155006FBD2A /* AppConfig.swift */; };
 		00F480182F2DD2DE006FBD2A /* Config-Prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 00F480172F2DD2DE006FBD2A /* Config-Prod.xcconfig */; };
+		00F480252F2DD48D006FBD2A /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00F480212F2DD48D006FBD2A /* Pretendard-Regular.otf */; };
+		00F480262F2DD48D006FBD2A /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00F4801E2F2DD48D006FBD2A /* Pretendard-ExtraLight.otf */; };
+		00F480272F2DD48D006FBD2A /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00F480232F2DD48D006FBD2A /* Pretendard-Thin.otf */; };
+		00F480282F2DD48D006FBD2A /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00F4801B2F2DD48D006FBD2A /* Pretendard-Black.otf */; };
+		00F480292F2DD48D006FBD2A /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00F4801D2F2DD48D006FBD2A /* Pretendard-ExtraBold.otf */; };
+		00F4802A2F2DD48D006FBD2A /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00F4801F2F2DD48D006FBD2A /* Pretendard-Light.otf */; };
+		00F4802B2F2DD48D006FBD2A /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00F4801C2F2DD48D006FBD2A /* Pretendard-Bold.otf */; };
+		00F4802C2F2DD48D006FBD2A /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00F480202F2DD48D006FBD2A /* Pretendard-Medium.otf */; };
+		00F4802D2F2DD48D006FBD2A /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00F480222F2DD48D006FBD2A /* Pretendard-SemiBold.otf */; };
+		00F481722F2DD574006FBD2A /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F481712F2DD571006FBD2A /* UIFont+.swift */; };
 		7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */; };
 		7C61D2FF2F210AAC005FAC3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F92F210AAC005FAC3A /* SceneDelegate.swift */; };
 		7C61D3002F210AAC005FAC3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2FA2F210AAC005FAC3A /* ViewController.swift */; };
@@ -19,6 +29,16 @@
 		00F47E022F2DD0D3006FBD2A /* Config-Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Dev.xcconfig"; sourceTree = "<group>"; };
 		00F47ED22F2DD155006FBD2A /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		00F480172F2DD2DE006FBD2A /* Config-Prod.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Prod.xcconfig"; sourceTree = "<group>"; };
+		00F4801B2F2DD48D006FBD2A /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
+		00F4801C2F2DD48D006FBD2A /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		00F4801D2F2DD48D006FBD2A /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
+		00F4801E2F2DD48D006FBD2A /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
+		00F4801F2F2DD48D006FBD2A /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		00F480202F2DD48D006FBD2A /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		00F480212F2DD48D006FBD2A /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		00F480222F2DD48D006FBD2A /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		00F480232F2DD48D006FBD2A /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
+		00F481712F2DD571006FBD2A /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		7C61D2C72F2109B3005FAC3A /* dnd-14th-1-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dnd-14th-1-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C61D2F62F210AAC005FAC3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,6 +58,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00F480192F2DD436006FBD2A /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				00F4801A2F2DD43D006FBD2A /* Extension */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		00F4801A2F2DD43D006FBD2A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				00F481712F2DD571006FBD2A /* UIFont+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		00F480242F2DD48D006FBD2A /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				00F4801B2F2DD48D006FBD2A /* Pretendard-Black.otf */,
+				00F4801C2F2DD48D006FBD2A /* Pretendard-Bold.otf */,
+				00F4801D2F2DD48D006FBD2A /* Pretendard-ExtraBold.otf */,
+				00F4801E2F2DD48D006FBD2A /* Pretendard-ExtraLight.otf */,
+				00F4801F2F2DD48D006FBD2A /* Pretendard-Light.otf */,
+				00F480202F2DD48D006FBD2A /* Pretendard-Medium.otf */,
+				00F480212F2DD48D006FBD2A /* Pretendard-Regular.otf */,
+				00F480222F2DD48D006FBD2A /* Pretendard-SemiBold.otf */,
+				00F480232F2DD48D006FBD2A /* Pretendard-Thin.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		7C61D2BE2F2109B3005FAC3A = {
 			isa = PBXGroup;
 			children = (
@@ -57,6 +109,7 @@
 		7C61D2FB2F210AAC005FAC3A /* dnd-14th-1-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				00F480192F2DD436006FBD2A /* Global */,
 				00F47ED22F2DD155006FBD2A /* AppConfig.swift */,
 				7C61D2F82F210AAC005FAC3A /* Info.plist */,
 				7C61D3062F210B81005FAC3A /* Domain */,
@@ -144,6 +197,7 @@
 		7C61D30F2F210C29005FAC3A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00F480242F2DD48D006FBD2A /* Font */,
 				7C61D2F62F210AAC005FAC3A /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -227,6 +281,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C61D3012F210AAC005FAC3A /* Assets.xcassets in Resources */,
+				00F480252F2DD48D006FBD2A /* Pretendard-Regular.otf in Resources */,
+				00F480262F2DD48D006FBD2A /* Pretendard-ExtraLight.otf in Resources */,
+				00F480272F2DD48D006FBD2A /* Pretendard-Thin.otf in Resources */,
+				00F480282F2DD48D006FBD2A /* Pretendard-Black.otf in Resources */,
+				00F480292F2DD48D006FBD2A /* Pretendard-ExtraBold.otf in Resources */,
+				00F4802A2F2DD48D006FBD2A /* Pretendard-Light.otf in Resources */,
+				00F4802B2F2DD48D006FBD2A /* Pretendard-Bold.otf in Resources */,
+				00F4802C2F2DD48D006FBD2A /* Pretendard-Medium.otf in Resources */,
+				00F4802D2F2DD48D006FBD2A /* Pretendard-SemiBold.otf in Resources */,
 				00F480182F2DD2DE006FBD2A /* Config-Prod.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +303,7 @@
 			files = (
 				7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */,
 				00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */,
+				00F481722F2DD574006FBD2A /* UIFont+.swift in Sources */,
 				7C61D2FF2F210AAC005FAC3A /* SceneDelegate.swift in Sources */,
 				7C61D3002F210AAC005FAC3A /* ViewController.swift in Sources */,
 			);
