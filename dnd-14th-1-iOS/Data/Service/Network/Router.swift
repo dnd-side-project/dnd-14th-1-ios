@@ -14,7 +14,7 @@ protocol Router: URLRequestConvertible {
     var method: HTTPMethod { get }
     var headers: [String: String] { get }
     var parameters: Parameters? { get }
-    var encoding: ParameterEncoding { get }
+    var encoding: ParameterEncoding? { get }
 }
 
 extension Router {
@@ -25,7 +25,7 @@ extension Router {
         urlRequest.method = method
         urlRequest.headers = HTTPHeaders(headers)
 
-        if let parameters {
+        if let parameters, let encoding {
             urlRequest = try encoding.encode(urlRequest, with: parameters)
         }
 
