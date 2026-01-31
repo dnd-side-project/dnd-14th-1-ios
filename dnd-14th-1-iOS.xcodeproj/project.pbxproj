@@ -12,8 +12,11 @@
 		7C61D3002F210AAC005FAC3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2FA2F210AAC005FAC3A /* ViewController.swift */; };
 		7C61D3012F210AAC005FAC3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C61D2F62F210AAC005FAC3A /* Assets.xcassets */; };
 		7CCB1E3C2F29B09C00472669 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7CCB1E3B2F29B09C00472669 /* Alamofire */; };
+		7CCB1E412F29B5ED00472669 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB1E402F29B5ED00472669 /* Router.swift */; };
 		7CCB1E5D2F2DB19600472669 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 7CCB1E5C2F2DB19600472669 /* Then */; };
 		7CCB1E602F2DB2C900472669 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7CCB1E5F2F2DB2C900472669 /* SnapKit */; };
+		7CCB1E622F2DB56600472669 /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB1E612F2DB56600472669 /* MockAPI.swift */; };
+		7CCB1E672F2DB72A00472669 /* MockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB1E662F2DB72A00472669 /* MockRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		7C61D2F82F210AAC005FAC3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C61D2F92F210AAC005FAC3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7C61D2FA2F210AAC005FAC3A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7CCB1E402F29B5ED00472669 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		7CCB1E612F2DB56600472669 /* MockAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPI.swift; sourceTree = "<group>"; };
+		7CCB1E662F2DB72A00472669 /* MockRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +127,8 @@
 		7C61D30C2F210BEE005FAC3A /* DTOs */ = {
 			isa = PBXGroup;
 			children = (
+				7CCB1E642F2DB6A200472669 /* Decodable */,
+				7CCB1E652F2DB6A200472669 /* Encodable */,
 			);
 			path = DTOs;
 			sourceTree = "<group>";
@@ -128,6 +136,7 @@
 		7C61D30D2F210BF4005FAC3A /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				7CCB1E3F2F29B5E200472669 /* Network */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -161,6 +170,38 @@
 				7C61D2F92F210AAC005FAC3A /* SceneDelegate.swift */,
 			);
 			path = Apps;
+			sourceTree = "<group>";
+		};
+		7CCB1E3E2F29B5E200472669 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				7CCB1E612F2DB56600472669 /* MockAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		7CCB1E3F2F29B5E200472669 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7CCB1E3E2F29B5E200472669 /* API */,
+				7CCB1E402F29B5ED00472669 /* Router.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		7CCB1E642F2DB6A200472669 /* Decodable */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Decodable;
+			sourceTree = "<group>";
+		};
+		7CCB1E652F2DB6A200472669 /* Encodable */ = {
+			isa = PBXGroup;
+			children = (
+				7CCB1E662F2DB72A00472669 /* MockRequest.swift */,
+			);
+			path = Encodable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,9 +284,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CCB1E412F29B5ED00472669 /* Router.swift in Sources */,
 				7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */,
 				7C61D2FF2F210AAC005FAC3A /* SceneDelegate.swift in Sources */,
+				7CCB1E622F2DB56600472669 /* MockAPI.swift in Sources */,
 				7C61D3002F210AAC005FAC3A /* ViewController.swift in Sources */,
+				7CCB1E672F2DB72A00472669 /* MockRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
