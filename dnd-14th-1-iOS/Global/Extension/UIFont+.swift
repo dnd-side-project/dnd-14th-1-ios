@@ -28,31 +28,36 @@ extension UIFont {
         return customFont
     }
     
-    @nonobjc class var head1: UIFont {
-        return UIFont.font(.pretendardBold, ofSize: 25)
+    // Display 1
+    @nonobjc class var display1_b: UIFont {
+        return UIFont.font(.pretendardBold, ofSize: 40)
+    }
+    @nonobjc class var display1_m: UIFont {
+        return UIFont.font(.pretendardMedium, ofSize: 40)
+    }
+    @nonobjc class var display1_r: UIFont {
+        return UIFont.font(.pretendardRegular, ofSize: 40)
     }
     
-    @nonobjc class var subhead1: UIFont {
-        return UIFont.font(.pretendardBold, ofSize: 18)
+    // Display 2
+    @nonobjc class var display2_b: UIFont {
+        return UIFont.font(.pretendardBold, ofSize: 32)
+    }
+    @nonobjc class var display2_m: UIFont {
+        return UIFont.font(.pretendardMedium, ofSize: 32)
+    }
+    @nonobjc class var display2_r: UIFont {
+        return UIFont.font(.pretendardRegular, ofSize: 32)
     }
     
-    @nonobjc class var subhead2: UIFont {
-        return UIFont.font(.pretendardRegular, ofSize: 16)
+    // Headline1
+    @nonobjc class var headline1_b: UIFont {
+        return UIFont.font(.pretendardBold, ofSize: 32)
     }
-    
-    @nonobjc class var subhead3: UIFont {
-        return UIFont.font(.pretendardBold, ofSize: 15)
+    @nonobjc class var headline1_m: UIFont {
+        return UIFont.font(.pretendardMedium, ofSize: 32)
     }
-    
-    @nonobjc class var subhead4: UIFont {
-        return UIFont.font(.pretendardBold, ofSize: 14)
-    }
-    
-    @nonobjc class var subhead5: UIFont {
-        return UIFont.font(.pretendardRegular, ofSize: 14)
-    }
-    
-    @nonobjc class var info12: UIFont {
-        return UIFont.font(.pretendardRegular, ofSize: 12)
+    @nonobjc class var headline1_r: UIFont {
+        return UIFont.font(.pretendardRegular, ofSize: 32)
     }
 }

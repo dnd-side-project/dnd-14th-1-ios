@@ -142,7 +142,6 @@
 				7C61D3072F210B8B005FAC3A /* Data */,
 				7C61D3082F210B8E005FAC3A /* Presentation */,
 				7C61D30F2F210C29005FAC3A /* Resources */,
-				7C61D3102F210C38005FAC3A /* Core */,
 				7C61D3112F210C40005FAC3A /* Apps */,
 				00F47E022F2DD0D3006FBD2A /* Config-Dev.xcconfig */,
 				00F480172F2DD2DE006FBD2A /* Config-Prod.xcconfig */,
@@ -227,13 +226,6 @@
 				7C61D2F62F210AAC005FAC3A /* Assets.xcassets */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		7C61D3102F210C38005FAC3A /* Core */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Core;
 			sourceTree = "<group>";
 		};
 		7C61D3112F210C40005FAC3A /* Apps */ = {
