@@ -7,12 +7,24 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        print(AppConfig.BASE_URL)
+        
+    }
+    
+    override func addSubview() {
+        print(#function)
+    }
+    
+    override func setLayout() {
+        print(#function)
+    }
+    
+    override func setDelegate() {
+        print(#function)
     }
 }
 

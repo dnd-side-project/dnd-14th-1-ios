@@ -23,6 +23,7 @@
 		00F482452F2DDC20006FBD2A /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F482442F2DDC1C006FBD2A /* UILabel+.swift */; };
 		00F482472F2DDC4F006FBD2A /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F482462F2DDC48006FBD2A /* UIStackView+.swift */; };
 		00F482492F2DDC69006FBD2A /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F482482F2DDC66006FBD2A /* UIView+.swift */; };
+		00F4824C2F2DDCE2006FBD2A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F4824B2F2DDCD9006FBD2A /* BaseViewController.swift */; };
 		7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */; };
 		7C61D2FF2F210AAC005FAC3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F92F210AAC005FAC3A /* SceneDelegate.swift */; };
 		7C61D3002F210AAC005FAC3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2FA2F210AAC005FAC3A /* ViewController.swift */; };
@@ -47,6 +48,7 @@
 		00F482442F2DDC1C006FBD2A /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		00F482462F2DDC48006FBD2A /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		00F482482F2DDC66006FBD2A /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		00F4824B2F2DDCD9006FBD2A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7C61D2C72F2109B3005FAC3A /* dnd-14th-1-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dnd-14th-1-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C61D2F62F210AAC005FAC3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 		00F480192F2DD436006FBD2A /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				00F4824A2F2DDCD5006FBD2A /* Base */,
 				00F4801A2F2DD43D006FBD2A /* Extension */,
 			);
 			path = Global;
@@ -100,6 +103,14 @@
 				00F480232F2DD48D006FBD2A /* Pretendard-Thin.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		00F4824A2F2DDCD5006FBD2A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				00F4824B2F2DDCD9006FBD2A /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		7C61D2BE2F2109B3005FAC3A = {
@@ -318,6 +329,7 @@
 				00F481722F2DD574006FBD2A /* UIFont+.swift in Sources */,
 				00F482432F2DDBA1006FBD2A /* UITextField+.swift in Sources */,
 				00F482452F2DDC20006FBD2A /* UILabel+.swift in Sources */,
+				00F4824C2F2DDCE2006FBD2A /* BaseViewController.swift in Sources */,
 				7C61D2FF2F210AAC005FAC3A /* SceneDelegate.swift in Sources */,
 				00F482492F2DDC69006FBD2A /* UIView+.swift in Sources */,
 				7C61D3002F210AAC005FAC3A /* ViewController.swift in Sources */,
