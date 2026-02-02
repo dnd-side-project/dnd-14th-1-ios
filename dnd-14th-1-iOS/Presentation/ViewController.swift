@@ -16,7 +16,7 @@ class ViewController: BaseViewController {
     }
     
     override func addSubview() {
-        print(#function)
+        print(#function)        
     }
     
     override func setLayout() {
