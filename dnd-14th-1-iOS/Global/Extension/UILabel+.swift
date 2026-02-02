@@ -38,11 +38,7 @@ extension UILabel {
                 .baselineOffset: (lineHeight - font.lineHeight) / 2
             ]
             
-            var mutableAttrString = NSMutableAttributedString(string: text)
-                        
-            if let attrString = self.attributedText {
-                mutableAttrString = NSMutableAttributedString(attributedString: attrString)
-            }
+            let mutableAttrString = NSMutableAttributedString(string: text)
             
             mutableAttrString.addAttributes(attributes, range: range)
 

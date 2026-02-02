@@ -8,5 +8,10 @@
 import Foundation
 
 struct AppConfig {
-    static let BASE_URL = Bundle.main.infoDictionary?["BASE_URL"] as? String ?? ""
+    static let baseURL: String = {
+        guard let url = Bundle.main.infoDictionary?["BASE_URL"] as? String, !url.isEmpty else {
+            fatalError("BASE_URL must be set in the Info.plist and cannot be empty.")
+        }
+        return url
+    }()
 }
