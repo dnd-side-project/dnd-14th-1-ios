@@ -22,6 +22,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        
+        KeychainWorker.create(key: .access, value: "access")
+        print(KeychainWorker.read(key: .access))
+        KeychainWorker.delete(key: .access)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

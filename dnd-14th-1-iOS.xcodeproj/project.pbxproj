@@ -17,6 +17,7 @@
 		7CCB1E602F2DB2C900472669 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7CCB1E5F2F2DB2C900472669 /* SnapKit */; };
 		7CCB1E622F2DB56600472669 /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB1E612F2DB56600472669 /* MockAPI.swift */; };
 		7CCB1E672F2DB72A00472669 /* MockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB1E662F2DB72A00472669 /* MockRequest.swift */; };
+		7CCB1E722F2DD20300472669 /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB1E712F2DD20300472669 /* KeychainWorker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		7CCB1E402F29B5ED00472669 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		7CCB1E612F2DB56600472669 /* MockAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPI.swift; sourceTree = "<group>"; };
 		7CCB1E662F2DB72A00472669 /* MockRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequest.swift; sourceTree = "<group>"; };
+		7CCB1E712F2DD20300472669 /* KeychainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWorker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 		7C61D3102F210C38005FAC3A /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				7CCB1E702F2DD1FA00472669 /* Workers */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -202,6 +205,14 @@
 				7CCB1E662F2DB72A00472669 /* MockRequest.swift */,
 			);
 			path = Encodable;
+			sourceTree = "<group>";
+		};
+		7CCB1E702F2DD1FA00472669 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				7CCB1E712F2DD20300472669 /* KeychainWorker.swift */,
+			);
+			path = Workers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +301,7 @@
 				7CCB1E622F2DB56600472669 /* MockAPI.swift in Sources */,
 				7C61D3002F210AAC005FAC3A /* ViewController.swift in Sources */,
 				7CCB1E672F2DB72A00472669 /* MockRequest.swift in Sources */,
+				7CCB1E722F2DD20300472669 /* KeychainWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
