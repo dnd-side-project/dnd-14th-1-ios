@@ -9,7 +9,7 @@ import UIKit
 import Then
 import SnapKit
 
-final class OnboardingViewController: UIViewController {
+final class OnboardingViewController: BaseViewController {
     
     let button = UIButton().then {
         $0.setTitle("home", for: .normal)
