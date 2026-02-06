@@ -27,8 +27,11 @@
 		00F4824E2F2DDE0C006FBD2A /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F4824D2F2DDE09006FBD2A /* CALayer+.swift */; };
 		7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */; };
 		7C61D2FF2F210AAC005FAC3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F92F210AAC005FAC3A /* SceneDelegate.swift */; };
-		7C61D3002F210AAC005FAC3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2FA2F210AAC005FAC3A /* ViewController.swift */; };
 		7C61D3012F210AAC005FAC3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C61D2F62F210AAC005FAC3A /* Assets.xcassets */; };
+		7C9582A42F3561DC004F8523 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */; };
+		7C9582A62F3561F5004F8523 /* HomeTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A52F3561F5004F8523 /* HomeTabbarController.swift */; };
+		7C9582A92F3562D0004F8523 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A82F3562D0004F8523 /* LoginViewController.swift */; };
+		7C9582AE2F356608004F8523 /* CheckLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */; };
 		7CCB1E3C2F29B09C00472669 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7CCB1E3B2F29B09C00472669 /* Alamofire */; };
 		7CCB1E412F29B5ED00472669 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB1E402F29B5ED00472669 /* Router.swift */; };
 		7CCB1E5D2F2DB19600472669 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 7CCB1E5C2F2DB19600472669 /* Then */; };
@@ -63,7 +66,10 @@
 		7C61D2F62F210AAC005FAC3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C61D2F82F210AAC005FAC3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C61D2F92F210AAC005FAC3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7C61D2FA2F210AAC005FAC3A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		7C9582A52F3561F5004F8523 /* HomeTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabbarController.swift; sourceTree = "<group>"; };
+		7C9582A82F3562D0004F8523 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginUseCase.swift; sourceTree = "<group>"; };
 		7CCB1E402F29B5ED00472669 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		7CCB1E612F2DB56600472669 /* MockAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPI.swift; sourceTree = "<group>"; };
 		7CCB1E662F2DB72A00472669 /* MockRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequest.swift; sourceTree = "<group>"; };
@@ -187,7 +193,9 @@
 		7C61D3082F210B8E005FAC3A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				7C61D2FA2F210AAC005FAC3A /* ViewController.swift */,
+				7C9582A72F3562C7004F8523 /* Login */,
+				7C9582A12F356147004F8523 /* Onboarding */,
+				7C9582A22F356153004F8523 /* Home */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -202,6 +210,7 @@
 		7C61D30A2F210BC5005FAC3A /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				7C9582AC2F356601004F8523 /* User */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -261,6 +270,38 @@
 				7CCB1E712F2DD20300472669 /* KeychainWorker.swift */,
 			);
 			path = Workers;
+            sourceTree = "<group>";
+        };
+		7C9582A12F356147004F8523 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		7C9582A22F356153004F8523 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7C9582A52F3561F5004F8523 /* HomeTabbarController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		7C9582A72F3562C7004F8523 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7C9582A82F3562D0004F8523 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		7C9582AC2F356601004F8523 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		7CCB1E3E2F29B5E200472669 /* API */ = {
@@ -385,6 +426,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C9582A92F3562D0004F8523 /* LoginViewController.swift in Sources */,
 				7CCB1E412F29B5ED00472669 /* Router.swift in Sources */,
 				7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */,
 				00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */,
@@ -393,9 +435,11 @@
 				00F482452F2DDC20006FBD2A /* UILabel+.swift in Sources */,
 				00F4824C2F2DDCE2006FBD2A /* BaseViewController.swift in Sources */,
 				7C61D2FF2F210AAC005FAC3A /* SceneDelegate.swift in Sources */,
+				7C9582A42F3561DC004F8523 /* OnboardingViewController.swift in Sources */,
 				7CCB1E622F2DB56600472669 /* MockAPI.swift in Sources */,
-				7C61D3002F210AAC005FAC3A /* ViewController.swift in Sources */,
+				7C9582A62F3561F5004F8523 /* HomeTabbarController.swift in Sources */,
 				7CCB1E672F2DB72A00472669 /* MockRequest.swift in Sources */,
+				7C9582AE2F356608004F8523 /* CheckLoginUseCase.swift in Sources */,
 				7CCB1E722F2DD20300472669 /* KeychainWorker.swift in Sources */,
 				00F482492F2DDC69006FBD2A /* UIView+.swift in Sources */,
 				7C61D3002F210AAC005FAC3A /* ViewController.swift in Sources */,
