@@ -21,6 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
         MockCheckLoginUseCase().execute()
             .receive(on: DispatchQueue.main)
+            .catch { error -> Just<Bool> in
+                return Just(false)
+            }
             .sink(
                 receiveCompletion: { _ in},
                 receiveValue: { [weak self] isLoggedIn in
