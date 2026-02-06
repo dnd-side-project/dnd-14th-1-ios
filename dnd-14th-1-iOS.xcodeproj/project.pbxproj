@@ -442,7 +442,6 @@
 				7C9582AE2F356608004F8523 /* CheckLoginUseCase.swift in Sources */,
 				7CCB1E722F2DD20300472669 /* KeychainWorker.swift in Sources */,
 				00F482492F2DDC69006FBD2A /* UIView+.swift in Sources */,
-				7C61D3002F210AAC005FAC3A /* ViewController.swift in Sources */,
 				00F482472F2DDC4F006FBD2A /* UIStackView+.swift in Sources */,
 				00F4824E2F2DDE0C006FBD2A /* CALayer+.swift in Sources */,
 			);
