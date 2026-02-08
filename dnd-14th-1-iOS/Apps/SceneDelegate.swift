@@ -6,26 +6,35 @@
 //
 
 import UIKit
+import Combine
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    private var subscriptions: Set<AnyCancellable> = []
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        
-        let rootViewController = ViewController()
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
-        
-        KeychainWorker.create(key: .access, value: "access")
-        print(KeychainWorker.read(key: .access))
-        KeychainWorker.delete(key: .access)
+    
+        MockCheckLoginUseCase().execute()
+            .receive(on: DispatchQueue.main)
+            .catch { error -> Just<Bool> in
+                return Just(false)
+            }
+            .sink(
+                receiveCompletion: { _ in},
+                receiveValue: { [weak self] isLoggedIn in
+                    guard let self else { return }
+                    let rootViewController = isLoggedIn ? HomeTabbarController() : LoginViewController()
+                    let navigationController = UINavigationController(rootViewController: rootViewController)
+                    window?.rootViewController = navigationController
+                    window?.makeKeyAndVisible()
+                }
+            )
+            .store(in: &subscriptions)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
