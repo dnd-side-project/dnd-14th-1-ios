@@ -19,9 +19,10 @@ final class AppButton: UIButton {
         case medium = 40
     }
     
-    // MARK: - Properteis
-    let style: Style
-    let size: Size
+    // MARK: - Properties
+    private let imageSize = CGSize(width: 20, height: 20)
+    private let style: Style
+    private let size: Size
     
     // MARK: - Initializer
     init(style: Style = .primary, size: Size, title: String, image: UIImage?) {
@@ -45,7 +46,7 @@ extension AppButton {
         
         // Image
         if let image {
-            configuration.image = image.resize(to: CGSize(width: 20, height: 20))
+            configuration.image = image.resized(to: imageSize)
             configuration.imagePadding = 4
             configuration.imagePlacement = .leading
         }
@@ -61,11 +62,12 @@ extension AppButton {
     private func updateConfiguration(_ button: UIButton) {
         guard let appButton = button as? AppButton,
               var configuration = appButton.configuration,
-              let title = configuration.title,
-              let foregroundColor = foregroundColor(),
-              let backgroundColor = backgroundColor() else {
+              let title = configuration.title else {
             return
         }
+        
+        let foregroundColor = foregroundColor()
+        let backgroundColor = backgroundColor()
         
         // Image
         if let image = configuration.image {
@@ -89,35 +91,31 @@ extension AppButton {
         return CGSize(width: super.intrinsicContentSize.width, height: size.rawValue)
     }
     
-    func foregroundColor() -> UIColor? {
-        switch self.state {
-        case .normal:
-            switch style {
-            case .primary : return UIColor.white
-            case .secondary : return UIColor.gray700
-            }
-        case .disabled:
+    private func foregroundColor() -> UIColor {
+        if state.contains(.disabled) {
             return UIColor.gray500
-        case .highlighted:
+        }
+        if state.contains(.highlighted) {
             return UIColor.white
-        default:
-            return nil
+        }
+        
+        switch style {
+        case .primary : return UIColor.white
+        case .secondary : return UIColor.gray700
         }
     }
     
-    func backgroundColor() -> UIColor? {
-        switch self.state {
-        case .normal:
-            switch style {
-            case .primary : return UIColor.primary900
-            case .secondary : return UIColor.gray200
-            }
-        case .disabled:
+    private func backgroundColor() -> UIColor {
+        if state.contains(.disabled) {
             return UIColor.gray300
-        case .highlighted:
+        }
+        if state.contains(.highlighted) {
             return UIColor.primary800
-        default:
-            return nil
+        }
+        
+        switch style {
+        case .primary : return UIColor.primary900
+        case .secondary : return UIColor.gray200
         }
     }
 }
