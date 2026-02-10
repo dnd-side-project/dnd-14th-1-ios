@@ -25,6 +25,7 @@
 		00F482492F2DDC69006FBD2A /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F482482F2DDC66006FBD2A /* UIView+.swift */; };
 		00F4824C2F2DDCE2006FBD2A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F4824B2F2DDCD9006FBD2A /* BaseViewController.swift */; };
 		00F4824E2F2DDE0C006FBD2A /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F4824D2F2DDE09006FBD2A /* CALayer+.swift */; };
+		7C16AA0F2F3ADBC30071ABE6 /* AppChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C16AA0E2F3ADBC30071ABE6 /* AppChipButton.swift */; };
 		7C16AA112F3ADED50071ABE6 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C16AA102F3ADED50071ABE6 /* UIColor+.swift */; };
 		7C2A3F102F38ACCB00D102EE /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A3F0F2F38ACCB00D102EE /* AppButton.swift */; };
 		7C2E31FC2F38DDA6006F08FE /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E31FB2F38DDA6006F08FE /* UIImage+.swift */; };
@@ -64,6 +65,7 @@
 		00F482482F2DDC66006FBD2A /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		00F4824B2F2DDCD9006FBD2A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		00F4824D2F2DDE09006FBD2A /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
+		7C16AA0E2F3ADBC30071ABE6 /* AppChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppChipButton.swift; sourceTree = "<group>"; };
 		7C16AA102F3ADED50071ABE6 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		7C2A3F0F2F38ACCB00D102EE /* AppButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
 		7C2E31FB2F38DDA6006F08FE /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				7C2A3F0F2F38ACCB00D102EE /* AppButton.swift */,
+				7C16AA0E2F3ADBC30071ABE6 /* AppChipButton.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				7CCB1E412F29B5ED00472669 /* Router.swift in Sources */,
 				7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */,
 				00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */,
+				7C16AA0F2F3ADBC30071ABE6 /* AppChipButton.swift in Sources */,
 				00F481722F2DD574006FBD2A /* UIFont+.swift in Sources */,
 				00F482432F2DDBA1006FBD2A /* UITextField+.swift in Sources */,
 				7C2A3F102F38ACCB00D102EE /* AppButton.swift in Sources */,
