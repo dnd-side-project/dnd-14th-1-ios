@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00D1E81A2F3B85DF00D86F23 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D1E8192F3B85D700D86F23 /* TabBarItem.swift */; };
 		00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F47ED22F2DD155006FBD2A /* AppConfig.swift */; };
 		00F480182F2DD2DE006FBD2A /* Config-Prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 00F480172F2DD2DE006FBD2A /* Config-Prod.xcconfig */; };
 		00F480252F2DD48D006FBD2A /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00F480212F2DD48D006FBD2A /* Pretendard-Regular.otf */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00D1E8192F3B85D700D86F23 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		00F47E022F2DD0D3006FBD2A /* Config-Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Dev.xcconfig"; sourceTree = "<group>"; };
 		00F47ED22F2DD155006FBD2A /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		00F480172F2DD2DE006FBD2A /* Config-Prod.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Prod.xcconfig"; sourceTree = "<group>"; };
@@ -209,7 +211,7 @@
 			children = (
 				7C9582A72F3562C7004F8523 /* Login */,
 				7C9582A12F356147004F8523 /* Onboarding */,
-				7C9582A22F356153004F8523 /* Home */,
+				7C9582A22F356153004F8523 /* TabBar */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -286,12 +288,13 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		7C9582A22F356153004F8523 /* Home */ = {
+		7C9582A22F356153004F8523 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				00D1E8192F3B85D700D86F23 /* TabBarItem.swift */,
 				7C9582A52F3561F5004F8523 /* HomeTabbarController.swift */,
 			);
-			path = Home;
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		7C9582A72F3562C7004F8523 /* Login */ = {
@@ -458,6 +461,7 @@
 				7C9582AE2F356608004F8523 /* CheckLoginUseCase.swift in Sources */,
 				7CCB1E722F2DD20300472669 /* KeychainWorker.swift in Sources */,
 				00F482492F2DDC69006FBD2A /* UIView+.swift in Sources */,
+				00D1E81A2F3B85DF00D86F23 /* TabBarItem.swift in Sources */,
 				00F482472F2DDC4F006FBD2A /* UIStackView+.swift in Sources */,
 				00F4824E2F2DDE0C006FBD2A /* CALayer+.swift in Sources */,
 			);
