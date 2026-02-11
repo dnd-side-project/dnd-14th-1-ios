@@ -68,7 +68,10 @@ final class LoginViewController: BaseViewController {
     
     private let agreementLabel = UILabel().then {
         let text = "로그인하면 서비스 이용약관과 개인정보 처리방침에\n동의한 것으로 간주됩니다"
-        $0.setTextWithLineHeight(text: text, lineHeight: 17.0)
+        
+        $0.font = UIFont.font(.pretendardRegular, ofSize: 10)
+        $0.setTextWithLineHeight(text: text, lineHeight: 10 * 1.50)
+        
         let mutableAttributedString = $0.attributedText?.mutableCopy() as? NSMutableAttributedString
         mutableAttributedString?.addAttributes(
             [
@@ -125,7 +128,7 @@ final class LoginViewController: BaseViewController {
     override func setLayout() {
         
         agreementLabel.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-8)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             $0.centerX.equalToSuperview()
         }
         appleLoginButton.snp.makeConstraints {
@@ -183,6 +186,6 @@ extension LoginViewController {
     
     private func navigateToOnboarding() {
         let viewController = OnboardingViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+        navigationController?.setViewControllers([viewController], animated: true)
     }
 }
