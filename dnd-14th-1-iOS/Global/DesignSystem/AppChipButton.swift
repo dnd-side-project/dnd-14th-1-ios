@@ -18,7 +18,9 @@ final class AppChipButton: UIButton {
     init(title: String) {
         super.init(frame: .zero)
         setConfiguration(title)
-        configurationUpdateHandler = updateConfiguration(_:)
+        configurationUpdateHandler = { [weak self] button in
+            self?.updateConfiguration(button)
+        }
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -44,8 +46,8 @@ extension AppChipButton {
             return
         }
         
-        let foregroundColor = foregroundColor()
-        let backgroundColor = backgroundColor()
+        let foregroundColor = appChipButton.foregroundColor()
+        let backgroundColor = appChipButton.backgroundColor()
         
         // title
         configuration.attributedTitle = AttributedString(title, attributes: AttributeContainer([
@@ -55,7 +57,7 @@ extension AppChipButton {
         // background
         configuration.background.backgroundColor = backgroundColor
         
-        self.configuration = configuration
+        appChipButton.configuration = configuration
     }
 }
 
