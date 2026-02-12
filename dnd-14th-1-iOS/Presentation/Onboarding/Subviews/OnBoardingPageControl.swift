@@ -1,5 +1,5 @@
 //
-//  OnBoardingPageControl.swift
+//  OnboardingPageControl.swift
 //  dnd-14th-1-iOS
 //
 //  Created by 홍기정 on 2/10/26.
@@ -13,7 +13,7 @@ import SnapKit
 final class OnboardingPageControl: UIView {
     
     // MARK: - Properties
-    let lastPagePublihser = PassthroughSubject<Bool, Never>()
+    let lastPagePublisher = PassthroughSubject<Bool, Never>()
     
     private let currentIndicatorSize = CGSize(width: 20, height: 8)
     private let indicatorSize = CGSize(width: 8, height: 8)
@@ -34,11 +34,13 @@ final class OnboardingPageControl: UIView {
             addSubview()
             setLayout()
             
-            indicators[0].backgroundColor = currentIndicatorColor
-            indicators[0].snp.updateConstraints {
-                $0.size.equalTo(currentIndicatorSize)
+            if 0 < numberOfPages {
+                indicators[0].backgroundColor = currentIndicatorColor
+                indicators[0].snp.updateConstraints {
+                    $0.size.equalTo(currentIndicatorSize)
+                }
+                self.layoutIfNeeded()
             }
-            self.layoutIfNeeded()
         }
     }
     var currentPage: Int = 0 {
@@ -56,7 +58,7 @@ final class OnboardingPageControl: UIView {
             }
             setUpCurrentIndicator(indicators[currentPage])
             
-            lastPagePublihser.send(currentPage == numberOfPages - 1)
+            lastPagePublisher.send(currentPage == numberOfPages - 1)
         }
     }
     
@@ -108,7 +110,10 @@ extension OnboardingPageControl {
         indicators.forEach {
             stackView.addArrangedSubviews($0)
         }
-        addSubview(stackView)
+        
+        if stackView.superview == nil {
+            addSubview(stackView)
+        }
     }
     
     func setLayout() {

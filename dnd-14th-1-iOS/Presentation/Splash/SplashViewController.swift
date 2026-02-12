@@ -12,6 +12,10 @@ import SnapKit
 final class SplashViewController: BaseViewController {
     
     // MARK: - UI Components
+    let gradientLayer = CAGradientLayer().then {
+        $0.isHidden = true
+    }
+    
     private let subtitleLabel = UILabel().then {
         $0.attributedText = NSAttributedString(
             string: "가벼운 프롬프트, 단단해지는 빙하",
@@ -25,13 +29,14 @@ final class SplashViewController: BaseViewController {
     private let logoImageView = UIImageView(image: UIImage.logotype1)
     
     // MARK: - Life Cycle
-    override func viewDidLoad() {
-        setUpGradientBackground()
-        super.viewDidLoad()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if gradientLayer.isHidden {
+            setUpGradientBackground()
+        }
     }
     
     private func setUpGradientBackground() {
-        let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [
             UIColor.primary500.cgColor,
@@ -39,7 +44,9 @@ final class SplashViewController: BaseViewController {
         ]
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
         gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
-        view.layer.addSublayer(gradientLayer)
+        view.layer.insertSublayer(gradientLayer, at: 0)
+        
+        gradientLayer.isHidden = false
     }
     
     override func addSubview() {

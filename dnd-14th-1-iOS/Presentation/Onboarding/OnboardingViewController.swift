@@ -43,20 +43,17 @@ final class OnboardingViewController: BaseViewController {
     
     private lazy var onboardingCollectionView = OnboardingCollectionView(
         frame: .zero,
-        collectionViewLayout: UICollectionViewFlowLayout().then {
-            $0.itemSize = CGSize(width: view.frame.width, height: view.safeAreaLayoutGuide.layoutFrame.height - 88 - 56)
-            $0.minimumLineSpacing = 0
-            $0.scrollDirection = .horizontal
-        }
+        collectionViewLayout: UICollectionViewLayout()
     ).then {
         $0.isPagingEnabled = true
         $0.showsHorizontalScrollIndicator = false
+        $0.isHidden = true
     }
     
     private let nextButton = UIButton().then {
         $0.setTitle("다음", for: .normal)
         $0.titleLabel?.font = UIFont.title1_b
-        $0.titleLabel?.textColor = UIColor.white
+        $0.setTitleColor(UIColor.white, for: .normal)
         $0.backgroundColor = UIColor.primary900
     }
     
@@ -73,6 +70,18 @@ final class OnboardingViewController: BaseViewController {
         onboardingPageControl.numberOfPages = items.count
         bind()
         setAddTarget()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if onboardingCollectionView.isHidden {
+            onboardingCollectionView.collectionViewLayout = UICollectionViewFlowLayout().then {
+                $0.itemSize = CGSize(width: view.frame.width, height: view.safeAreaLayoutGuide.layoutFrame.height - 88 - 56)
+                $0.minimumLineSpacing = 0
+                $0.scrollDirection = .horizontal
+            }
+            onboardingCollectionView.isHidden = false
+        }
     }
     
     // MARK: - Base
@@ -113,7 +122,7 @@ extension OnboardingViewController {
             self?.onboardingPageControl.currentPage = page
         }.store(in: &subscriptions)
         
-        onboardingPageControl.lastPagePublihser.sink { [weak self] isLast in
+        onboardingPageControl.lastPagePublisher.sink { [weak self] isLast in
             self?.nextButton.setTitle(isLast ? "시작하기" : "다음", for: .normal)
         }.store(in: &subscriptions)
     }
@@ -123,17 +132,18 @@ extension OnboardingViewController {
     }
     
     @objc private func nextButtonTapped(_ sender: UIButton) {
-        if sender.titleLabel?.text == "다음" {
-            let indexPath = IndexPath(item: onboardingPageControl.currentPage + 1, section: 0)
-            
-            onboardingCollectionView.scrollToItem(
-                at: indexPath,
-                at: .centeredHorizontally,
-                animated: true
-            )
-        } else {
+        
+        if onboardingPageControl.currentPage == onboardingPageControl.numberOfPages - 1 {
             let viewController = HomeTabbarController()
             navigationController?.setViewControllers([viewController], animated: true)
+            return
         }
+        
+        let indexPath = IndexPath(item: onboardingPageControl.currentPage + 1, section: 0)
+        onboardingCollectionView.scrollToItem(
+            at: indexPath,
+            at: .centeredHorizontally,
+            animated: true
+        )
     }
 }

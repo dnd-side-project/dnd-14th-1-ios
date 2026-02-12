@@ -10,6 +10,6 @@ import UIKit
 extension UICollectionViewCell {
     
     static var identifier: String {
-        String(describing: type(of: self))
+        String(describing: self)
     }
 }

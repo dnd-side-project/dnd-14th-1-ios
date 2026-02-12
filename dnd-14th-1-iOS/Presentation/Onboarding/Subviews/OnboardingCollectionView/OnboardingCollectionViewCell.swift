@@ -33,19 +33,19 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
     func configure(_ item: OnboardingItem) {
         titleLabel.text = item.title
         
-        descriptionLabel.font = UIFont.body1_r
-        descriptionLabel.setTextWithLineHeight(text: item.description, lineHeight: 16 * 1.50)
-        let mutableAttributedString = descriptionLabel.attributedText?.mutableCopy() as? NSMutableAttributedString
-        mutableAttributedString?.addAttributes(
-            [
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.5
+        paragraphStyle.alignment = .center
+        
+        descriptionLabel.attributedText = NSAttributedString(
+            string: item.description,
+            attributes: [
                 .font : UIFont.body1_r,
-                .foregroundColor : UIColor.gray500
-            ],
-            range: NSRange(location: 0, length: item.description.count)
+                .foregroundColor : UIColor.gray500,
+                .paragraphStyle : paragraphStyle
+            ]
         )
-        descriptionLabel.attributedText = mutableAttributedString
         descriptionLabel.numberOfLines = 2
-        descriptionLabel.textAlignment = .center
         
         onboardingImageView.image = item.image
         

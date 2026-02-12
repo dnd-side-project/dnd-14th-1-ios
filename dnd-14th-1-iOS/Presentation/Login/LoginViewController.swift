@@ -67,22 +67,19 @@ final class LoginViewController: BaseViewController {
     }
     
     private let agreementLabel = UILabel().then {
-        let text = "로그인하면 서비스 이용약관과 개인정보 처리방침에\n동의한 것으로 간주됩니다"
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.5
+        paragraphStyle.alignment = .center
         
-        $0.font = UIFont.font(.pretendardRegular, ofSize: 10)
-        $0.setTextWithLineHeight(text: text, lineHeight: 10 * 1.50)
-        
-        let mutableAttributedString = $0.attributedText?.mutableCopy() as? NSMutableAttributedString
-        mutableAttributedString?.addAttributes(
-            [
+        $0.attributedText = NSAttributedString(
+            string: "로그인하면 서비스 이용약관과 개인정보 처리방침에\n동의한 것으로 간주됩니다",
+            attributes: [
                 .font : UIFont.font(.pretendardRegular, ofSize: 10),
-                .foregroundColor : UIColor.gray600
-            ],
-            range: NSRange(location: 0, length: text.count)
-        )
-        $0.attributedText = mutableAttributedString
+                .foregroundColor : UIColor.gray600,
+                .paragraphStyle : paragraphStyle
+            ])
+        
         $0.numberOfLines = 2
-        $0.textAlignment = .center
     }
     
     // MARK: - Life Cycle

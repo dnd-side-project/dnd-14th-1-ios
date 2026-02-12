@@ -57,6 +57,8 @@ extension OnboardingCollectionView: UICollectionViewDelegate {
         let width = frame.width
         let page = Int((contentOffset.x + width/2)/width)
         
-        pageChangedPublisher.send(page)
+        if 0 <= page, page <= items.count - 1 {
+            pageChangedPublisher.send(page)
+        }
     }
 }
