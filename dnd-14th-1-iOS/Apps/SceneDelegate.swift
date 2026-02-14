@@ -27,9 +27,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .sink(
                 receiveCompletion: { _ in},
                 receiveValue: { [weak self] isLoggedIn in
-                    guard let self else { return }                    
-                    let rootViewController = isLoggedIn ? HomeTabbarController() : LoginViewController()
-                    let navigationController = UINavigationController(rootViewController: rootViewController)
+                    guard let self else { return }
+                    let navigationController = UINavigationController()
+                    let appCoordinator = AppCoordinator(navigationController: navigationController, isLoggedIn: isLoggedIn)
+                    
+                    appCoordinator.start()
                     window?.rootViewController = navigationController
                     window?.makeKeyAndVisible()
                 }
