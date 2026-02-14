@@ -5,7 +5,7 @@
 //  Created by a on 2/11/26.
 //
 
-enum TabBarItem {
+enum TabBarItem: CaseIterable {
     case eco
     case diagnosis
     case settings
@@ -28,7 +28,18 @@ enum TabBarItem {
         case .diagnosis:
             "chat"
         case .settings:
-            "setting"
+            "settings"
+        }
+    }
+    
+    var pageIndex: Int {
+        switch self {
+        case .eco:
+            0
+        case .diagnosis:
+            1
+        case .settings:
+            2
         }
     }
 }
