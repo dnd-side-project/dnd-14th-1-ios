@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol DiagnosisViewControllerDelegate: AnyObject {
+    func didTapPromptButton()
+}
+
 final class DiagnosisCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     
@@ -18,6 +22,14 @@ final class DiagnosisCoordinator: Coordinator {
     
     func start() {
         let diagnosisViewController = DiagnosisViewController()
+        diagnosisViewController.delegate = self
         navigationController.pushViewController(diagnosisViewController, animated: true)
+    }
+}
+
+extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
+    func didTapPromptButton() {
+        let promptDiagnosisViewController = PromptDiagnosisViewController()
+        navigationController.pushViewController(promptDiagnosisViewController, animated: true)
     }
 }

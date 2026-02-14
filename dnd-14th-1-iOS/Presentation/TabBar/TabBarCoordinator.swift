@@ -18,7 +18,7 @@ final class TabBarCoordinator: Coordinator {
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         setupTabBarStyle()
-    }
+    }        
     
     func start() {
         // 탭별 navigationController 생성
