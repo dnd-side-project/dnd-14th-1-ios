@@ -23,8 +23,8 @@ final class OnboardingViewController: BaseViewController {
     }
     
     @objc private func buttonTapped() {
-        let homeTabbarController = TabBarController()
-        navigationController?.setViewControllers([homeTabbarController], animated: true)
+        
+//        navigationController?.setViewControllers([homeTabbarController], animated: true)
     }
     
     private func configureView() {

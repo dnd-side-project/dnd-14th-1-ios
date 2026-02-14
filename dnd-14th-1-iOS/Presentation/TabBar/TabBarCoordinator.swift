@@ -13,6 +13,7 @@ final class TabBarCoordinator: Coordinator {
     private let tabBarController: UITabBarController = UITabBarController()
     
     private let navigationController: UINavigationController
+    private let tabBarView = TabBarView()
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -42,8 +43,9 @@ final class TabBarCoordinator: Coordinator {
         settingCoordinator.start()
         
         tabBarController.setViewControllers(
-            [   myEcoNavigationController,
+            [
                 diagnosisNavigationController,
+                myEcoNavigationController,
                 settingNavigationController
             ],
             animated: false
@@ -53,20 +55,27 @@ final class TabBarCoordinator: Coordinator {
     }
     
     private func setupTabBarStyle() {
-        let appearance = UITabBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .white
-        tabBarController.tabBar.standardAppearance = appearance
+        UITabBar.appearance().backgroundColor = .white
+        UITabBar.appearance().selectedImageTintColor = .primary550
+        UITabBar.appearance().unselectedItemTintColor = .gray300
+        
+        tabBarController.setValue(tabBarView, forKey: "tabBar")
+        tabBarController.tabBar.itemPositioning = .centered
+        tabBarController.tabBar.itemSpacing = 48
+        tabBarController.tabBar.itemWidth = 52
     }
     
     private func makeNavigationController(tab: TabBarItem) -> UINavigationController {
         let navigationController = UINavigationController()
-        
-        navigationController.tabBarItem = UITabBarItem(
+        let item = UITabBarItem(
             title: tab.title,
             image: UIImage(named: tab.iconName),
-            tag: tab.pageIndex
-        )
+            tag: tab.pageIndex)
+        
+        let attributes = [NSAttributedString.Key.font:UIFont.label2_b]
+        item.setTitleTextAttributes(attributes, for: .normal)
+        item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -10)
+        navigationController.tabBarItem = item
         
         return navigationController
     }
