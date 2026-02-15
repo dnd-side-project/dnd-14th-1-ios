@@ -11,6 +11,8 @@
 		0027D9E62F4055E7000DE576 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0027D9E42F4055DE000DE576 /* TabBarCoordinator.swift */; };
 		0027D9E92F405700000DE576 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0027D9E72F4056FD000DE576 /* LoginCoordinator.swift */; };
 		0027D9F62F408E7C000DE576 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0027D9F52F408E79000DE576 /* TabBarView.swift */; };
+		004F57C82F41AB9B00A6ADA1 /* Hakgyoansim Dunggeunmiso OTF B.otf in Resources */ = {isa = PBXBuildFile; fileRef = 004F57C32F41AB9B00A6ADA1 /* Hakgyoansim Dunggeunmiso OTF B.otf */; };
+		004F57C92F41AB9B00A6ADA1 /* Hakgyoansim Dunggeunmiso OTF R.otf in Resources */ = {isa = PBXBuildFile; fileRef = 004F57C42F41AB9B00A6ADA1 /* Hakgyoansim Dunggeunmiso OTF R.otf */; };
 		00D1E81A2F3B85DF00D86F23 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D1E8192F3B85D700D86F23 /* TabBarItem.swift */; };
 		00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F47ED22F2DD155006FBD2A /* AppConfig.swift */; };
 		00F480182F2DD2DE006FBD2A /* Config-Prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 00F480172F2DD2DE006FBD2A /* Config-Prod.xcconfig */; };
@@ -52,6 +54,8 @@
 		0027D9E42F4055DE000DE576 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		0027D9E72F4056FD000DE576 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		0027D9F52F408E79000DE576 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		004F57C32F41AB9B00A6ADA1 /* Hakgyoansim Dunggeunmiso OTF B.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hakgyoansim Dunggeunmiso OTF B.otf"; sourceTree = "<group>"; };
+		004F57C42F41AB9B00A6ADA1 /* Hakgyoansim Dunggeunmiso OTF R.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hakgyoansim Dunggeunmiso OTF R.otf"; sourceTree = "<group>"; };
 		00D1E8192F3B85D700D86F23 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		00F47E022F2DD0D3006FBD2A /* Config-Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Dev.xcconfig"; sourceTree = "<group>"; };
 		00F47ED22F2DD155006FBD2A /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 				00F480212F2DD48D006FBD2A /* Pretendard-Regular.otf */,
 				00F480222F2DD48D006FBD2A /* Pretendard-SemiBold.otf */,
 				00F480232F2DD48D006FBD2A /* Pretendard-Thin.otf */,
+				004F57C32F41AB9B00A6ADA1 /* Hakgyoansim Dunggeunmiso OTF B.otf */,
+				004F57C42F41AB9B00A6ADA1 /* Hakgyoansim Dunggeunmiso OTF R.otf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -464,6 +470,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				004F57C82F41AB9B00A6ADA1 /* Hakgyoansim Dunggeunmiso OTF B.otf in Resources */,
+				004F57C92F41AB9B00A6ADA1 /* Hakgyoansim Dunggeunmiso OTF R.otf in Resources */,
 				7C61D3012F210AAC005FAC3A /* Assets.xcassets in Resources */,
 				00F480252F2DD48D006FBD2A /* Pretendard-Regular.otf in Resources */,
 				00F480262F2DD48D006FBD2A /* Pretendard-ExtraLight.otf in Resources */,
