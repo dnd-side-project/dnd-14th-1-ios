@@ -98,6 +98,11 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		004F57D02F41B73900A6ADA1 /* Protocol */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		00D1E8222F3B880900D86F23 /* Eco */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Eco;
@@ -132,6 +137,7 @@
 		00F480192F2DD436006FBD2A /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				004F57D02F41B73900A6ADA1 /* Protocol */,
 				0027D9DD2F40546C000DE576 /* Coordinator */,
 				7C2A3F0E2F38AC9700D102EE /* DesignSystem */,
 				00F4824A2F2DDCD5006FBD2A /* Base */,
@@ -412,6 +418,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				0027D9DD2F40546C000DE576 /* Coordinator */,
+				004F57D02F41B73900A6ADA1 /* Protocol */,
 				00D1E8222F3B880900D86F23 /* Eco */,
 				00D1E8232F3B881100D86F23 /* Diagnosis */,
 				00D1E8242F3B881D00D86F23 /* Setting */,

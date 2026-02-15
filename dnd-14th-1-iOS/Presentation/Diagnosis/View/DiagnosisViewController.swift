@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 import SnapKit
 import Then
@@ -13,6 +14,8 @@ import Then
 final class DiagnosisViewController: BaseViewController {
     
     // MARK: - Properties
+    
+    // UI
     private let promptTitle = UILabel()
     private let promptSubTitle = UILabel()
     private let savedGlacierAmountLabel = UILabel()
@@ -21,12 +24,72 @@ final class DiagnosisViewController: BaseViewController {
     private let glacierImageView = UIImageView()
     private let promptButton = AppButton(style: .primary, size: .large, title: "프롬프트 진단받기", image: nil)
     
+    private let viewModel: DiagnosisViewModel
+    private let inputSubject = PassthroughSubject<DiagnosisViewModel.Input, Never>()
+    
+    private var subscriptions: Set<AnyCancellable> = []
+    
     weak var delegate: DiagnosisViewControllerDelegate?
+    
+    init(viewModel: DiagnosisViewModel) {
+        self.viewModel = viewModel
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        bind()
+    }
+    
+    private func bind() {
+        let outputSubject = viewModel.transform(with: inputSubject.eraseToAnyPublisher())
+        
+        outputSubject.receive(on: DispatchQueue.main).sink { [weak self] output in
+            guard let self else { return }
+            switch output {
+            case .presentPromptSheet:
+                showPromptSheet()
+            case let .isPromptSheetPresented(isPresented):
+                UIView.transition(
+                    with: promptTitle,
+                    duration: 0.25,
+                    options: .transitionCrossDissolve,
+                    animations: {
+                        self.promptTitle.text = isPresented
+                        ? "프롬프트 내용을 입력하시면\n진단을 도와드릴게요!"
+                        : "지금 프롬프트를 진단하고\n최적화된 한 줄을 만들어요"
+                    }
+                )
+            }
+        }.store(in: &subscriptions)
+    }
+    
+    private func showPromptSheet() {
+        let viewController = PromprtInputViewController()
+        
+        viewController.modalPresentationStyle = .pageSheet        
+        
+        if let sheet = viewController.sheetPresentationController {
+            let customIdentifier = UISheetPresentationController.Detent.Identifier("CustomIdentifier")
+            sheet.detents = [.custom(identifier: customIdentifier) {_ in
+                return UIScreen.main.bounds.height - self.savedGlacierAmountLabel.frame.minY
+            }]
+            sheet.preferredCornerRadius = 56
+            sheet.prefersEdgeAttachedInCompactHeight = true
+            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+            sheet.largestUndimmedDetentIdentifier = customIdentifier
+        }
+        
+        viewController.onDismiss = { [weak self] in
+            self?.inputSubject.send(.promptSheetDismissed)
+        }
+        
+        present(viewController, animated: true)
     }
     
     // MARK: - Set Layout
@@ -81,6 +144,8 @@ final class DiagnosisViewController: BaseViewController {
     }
     
     override func setStyle() {
+        view.backgroundColor = .white
+        
         promptTitle.do {
             $0.text = "지금 프롬프트를 진단하고\n최적화된 한 줄을 만들어요"
             $0.numberOfLines = 2
@@ -126,6 +191,6 @@ final class DiagnosisViewController: BaseViewController {
 
 extension DiagnosisViewController {
     @objc private func promptButtonTapped() {
-        delegate?.didTapPromptButton()
+        inputSubject.send(.promptButtonTapped)
     }
 }
