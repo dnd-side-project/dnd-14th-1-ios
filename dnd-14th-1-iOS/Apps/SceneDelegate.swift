@@ -18,7 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-    
+        window?.rootViewController = SplashViewController()
+        window?.makeKeyAndVisible()
+        
         MockCheckLoginUseCase().execute()
             .receive(on: DispatchQueue.main)
             .catch { error -> Just<Bool> in
@@ -35,7 +37,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     
                     appCoordinator.start()
                     window?.rootViewController = navigationController
-                    window?.makeKeyAndVisible()
                 }
             )
             .store(in: &subscriptions)
