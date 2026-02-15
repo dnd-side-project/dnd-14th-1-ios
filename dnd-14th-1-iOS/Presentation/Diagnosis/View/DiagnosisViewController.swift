@@ -70,26 +70,19 @@ final class DiagnosisViewController: BaseViewController {
     }
     
     private func showPromptSheet() {
-        let viewController = PromprtInputViewController()
+        let sheetHeight = UIScreen.main.bounds.height - promptSubTitle.frame.minY
+        let bottomSheetPresenter = BottomSheetPresenter()
+        let promptInputView = PromptInputView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: sheetHeight))
         
-        viewController.modalPresentationStyle = .pageSheet        
-        
-        if let sheet = viewController.sheetPresentationController {
-            let customIdentifier = UISheetPresentationController.Detent.Identifier("CustomIdentifier")
-            sheet.detents = [.custom(identifier: customIdentifier) {_ in
-                return UIScreen.main.bounds.height - self.savedGlacierAmountLabel.frame.minY
-            }]
-            sheet.preferredCornerRadius = 56
-            sheet.prefersEdgeAttachedInCompactHeight = true
-            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
-            sheet.largestUndimmedDetentIdentifier = customIdentifier
+        bottomSheetPresenter.onDissmiss = {
+            self.inputSubject.send(.promptSheetDismissed)
         }
         
-        viewController.onDismiss = { [weak self] in
-            self?.inputSubject.send(.promptSheetDismissed)
-        }
-        
-        present(viewController, animated: true)
+        bottomSheetPresenter.present(
+            on: self,
+            contentView: promptInputView,
+            height: sheetHeight
+        )
     }
     
     // MARK: - Set Layout
