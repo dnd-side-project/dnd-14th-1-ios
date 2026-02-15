@@ -24,6 +24,7 @@ class BaseViewController: UIViewController {
         addSubview()
         setLayout()
         setDelegate()
+        setStyle()
     }
     
     // addSubview
@@ -32,4 +33,6 @@ class BaseViewController: UIViewController {
     func setLayout() {}
     // set Delegate
     func setDelegate() {}
+    // set style
+    func setStyle() {}
 }
