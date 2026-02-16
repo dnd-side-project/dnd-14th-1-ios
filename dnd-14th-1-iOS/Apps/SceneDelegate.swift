@@ -31,6 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 receiveValue: { [weak self] isLoggedIn in
                     guard let self else { return }
                     let navigationController = UINavigationController()
+                    navigationController.isNavigationBarHidden = true
                     let appCoordinator = AppCoordinator(navigationController: navigationController, isLoggedIn: isLoggedIn)
                     self.coordinator = appCoordinator
                     

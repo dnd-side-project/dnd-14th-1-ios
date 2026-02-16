@@ -17,6 +17,8 @@ enum FontName: String {
     case pretendardRegular = "Pretendard-Regular"
     case pretendardSemiBold = "Pretendard-SemiBold"
     case pretendardThin = "Pretendard-Thin"
+    case hakgyoansimDunggeunmisoBold = "Hakgyoansim Dunggeunmiso OTF B"
+    case hakgyoansimDunggeunmisoRegular = "Hakgyoansim Dunggeunmiso OTF R"
 }
 
 extension UIFont {
@@ -169,5 +171,13 @@ extension UIFont {
     }
     @nonobjc class var label2_r: UIFont {
         return UIFont.font(.pretendardRegular, ofSize: 12)
+    }
+    
+    @nonobjc class var hakgyoansimDunggeunmisoBold: UIFont {
+        return UIFont.font(.hakgyoansimDunggeunmisoBold, ofSize: 40)
+    }
+    
+    @nonobjc class var hakgyoansimDunggeunmisoRegular: UIFont {
+        return UIFont.font(.hakgyoansimDunggeunmisoRegular, ofSize: 32)
     }
 }

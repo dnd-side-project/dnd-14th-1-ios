@@ -1,0 +1,72 @@
+//
+//  PromprtLoadingViewController.swift
+//  dnd-14th-1-iOS
+//
+//  Created by a on 2/15/26.
+//
+
+import UIKit
+
+import SnapKit
+import Then
+
+final class PromprtLoadingViewController: BaseViewController {
+    
+    private let loadingView = UIImageView()
+    private let loadingText = UILabel()
+    private let loadingSubText = UILabel()
+    
+    weak var delegate: PromptLoadingViewControllerDelegate?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        startPromptDiagnosis()
+    }
+    
+    private func startPromptDiagnosis() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { [weak self] in
+            self?.delegate?.didCompleteDiagnosis()
+        }
+    }
+    
+    override func addSubview() {
+        view.addSubviews(loadingView, loadingText, loadingSubText)
+    }
+    
+    override func setStyle() {
+        view.backgroundColor = .gray50
+        
+        loadingView.do {
+            $0.image = UIImage(resource: .loading)
+        }
+        
+        loadingText.do {
+            $0.text = "작성하신 프롬프트를 진단하고 있어요..."
+            $0.font = .title1_b
+            $0.textColor = .gray800
+        }
+        
+        loadingSubText.do {
+            $0.text = "진단 결과에 따라 빙하의 운명이 결정돼요!"
+            $0.font = .title3_r
+            $0.textColor = .gray500
+        }
+    }
+    
+    override func setLayout() {
+        loadingView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().offset(237)
+        }
+        
+        loadingText.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(loadingView.snp.bottom).offset(24)
+        }
+        
+        loadingSubText.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(loadingText.snp.bottom).offset(12)
+        }
+    }
+}

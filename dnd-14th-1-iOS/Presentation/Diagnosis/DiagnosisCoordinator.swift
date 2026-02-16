@@ -11,6 +11,10 @@ protocol DiagnosisViewControllerDelegate: AnyObject {
     func didTapPromptButton()
 }
 
+protocol PromptLoadingViewControllerDelegate: AnyObject {
+    func didCompleteDiagnosis()
+}
+
 final class DiagnosisCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     
@@ -21,7 +25,7 @@ final class DiagnosisCoordinator: Coordinator {
     }
     
     func start() {
-        let diagnosisViewController = DiagnosisViewController()
+        let diagnosisViewController = DiagnosisViewController(viewModel: DiagnosisViewModel())
         diagnosisViewController.delegate = self
         navigationController.pushViewController(diagnosisViewController, animated: true)
     }
@@ -29,7 +33,17 @@ final class DiagnosisCoordinator: Coordinator {
 
 extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
     func didTapPromptButton() {
-        let promptDiagnosisViewController = PromptDiagnosisViewController()
-        navigationController.pushViewController(promptDiagnosisViewController, animated: true)
+        let promptLoadingViewController = PromprtLoadingViewController()
+        promptLoadingViewController.hidesBottomBarWhenPushed = true
+        promptLoadingViewController.delegate = self
+        navigationController.pushViewController(promptLoadingViewController, animated: true)
+    }
+}
+
+extension DiagnosisCoordinator: PromptLoadingViewControllerDelegate {
+    func didCompleteDiagnosis() {
+        let promprtResultViewController = PromptDiagnosisViewController()
+        promprtResultViewController.hidesBottomBarWhenPushed = true
+        navigationController.pushViewController(promprtResultViewController, animated: true)
     }
 }

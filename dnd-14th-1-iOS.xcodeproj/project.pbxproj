@@ -15,6 +15,10 @@
 		00113F1A2F43007200D4CC37 /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00113F192F43007200D4CC37 /* UICollectionViewCell+.swift */; };
 		00113F1D2F43008C00D4CC37 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00113F1B2F43008C00D4CC37 /* SplashViewController.swift */; };
 		00113F2F2F43012700D4CC37 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00113F2E2F43012200D4CC37 /* OnboardingCoordinator.swift */; };
+		00113F7B2F430A0700D4CC37 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00113F792F430A0700D4CC37 /* ViewModelType.swift */; };
+		00113F7D2F430A1400D4CC37 /* AppChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00113F7C2F430A1400D4CC37 /* AppChipButton.swift */; };
+		00113F802F430A3E00D4CC37 /* Hakgyoansim Dunggeunmiso OTF R.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00113F7F2F430A3E00D4CC37 /* Hakgyoansim Dunggeunmiso OTF R.otf */; };
+		00113F812F430A3E00D4CC37 /* Hakgyoansim Dunggeunmiso OTF B.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00113F7E2F430A3E00D4CC37 /* Hakgyoansim Dunggeunmiso OTF B.otf */; };
 		0027D9E32F4054B5000DE576 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0027D9E12F4054B2000DE576 /* AppCoordinator.swift */; };
 		0027D9E62F4055E7000DE576 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0027D9E42F4055DE000DE576 /* TabBarCoordinator.swift */; };
 		0027D9E92F405700000DE576 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0027D9E72F4056FD000DE576 /* LoginCoordinator.swift */; };
@@ -64,6 +68,10 @@
 		00113F192F43007200D4CC37 /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
 		00113F1B2F43008C00D4CC37 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		00113F2E2F43012200D4CC37 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		00113F792F430A0700D4CC37 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		00113F7C2F430A1400D4CC37 /* AppChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppChipButton.swift; sourceTree = "<group>"; };
+		00113F7E2F430A3E00D4CC37 /* Hakgyoansim Dunggeunmiso OTF B.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hakgyoansim Dunggeunmiso OTF B.otf"; sourceTree = "<group>"; };
+		00113F7F2F430A3E00D4CC37 /* Hakgyoansim Dunggeunmiso OTF R.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hakgyoansim Dunggeunmiso OTF R.otf"; sourceTree = "<group>"; };
 		0027D9E12F4054B2000DE576 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		0027D9E42F4055DE000DE576 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		0027D9E72F4056FD000DE576 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
@@ -175,9 +183,18 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
+		00113F7A2F430A0700D4CC37 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				00113F792F430A0700D4CC37 /* ViewModelType.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		00F480192F2DD436006FBD2A /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				00113F7A2F430A0700D4CC37 /* Protocol */,
 				0027D9DD2F40546C000DE576 /* Coordinator */,
 				7C2A3F0E2F38AC9700D102EE /* DesignSystem */,
 				00F4824A2F2DDCD5006FBD2A /* Base */,
@@ -210,6 +227,8 @@
 				00F4801C2F2DD48D006FBD2A /* Pretendard-Bold.otf */,
 				00F4801D2F2DD48D006FBD2A /* Pretendard-ExtraBold.otf */,
 				00F4801E2F2DD48D006FBD2A /* Pretendard-ExtraLight.otf */,
+				00113F7E2F430A3E00D4CC37 /* Hakgyoansim Dunggeunmiso OTF B.otf */,
+				00113F7F2F430A3E00D4CC37 /* Hakgyoansim Dunggeunmiso OTF R.otf */,
 				00F4801F2F2DD48D006FBD2A /* Pretendard-Light.otf */,
 				00F480202F2DD48D006FBD2A /* Pretendard-Medium.otf */,
 				00F480212F2DD48D006FBD2A /* Pretendard-Regular.otf */,
@@ -230,6 +249,7 @@
 		7C2A3F0E2F38AC9700D102EE /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				00113F7C2F430A1400D4CC37 /* AppChipButton.swift */,
 				7C2A3F0F2F38ACCB00D102EE /* AppButton.swift */,
 			);
 			path = DesignSystem;
@@ -524,6 +544,8 @@
 				00F480252F2DD48D006FBD2A /* Pretendard-Regular.otf in Resources */,
 				00F480262F2DD48D006FBD2A /* Pretendard-ExtraLight.otf in Resources */,
 				00F480272F2DD48D006FBD2A /* Pretendard-Thin.otf in Resources */,
+				00113F802F430A3E00D4CC37 /* Hakgyoansim Dunggeunmiso OTF R.otf in Resources */,
+				00113F812F430A3E00D4CC37 /* Hakgyoansim Dunggeunmiso OTF B.otf in Resources */,
 				00F480282F2DD48D006FBD2A /* Pretendard-Black.otf in Resources */,
 				00F480292F2DD48D006FBD2A /* Pretendard-ExtraBold.otf in Resources */,
 				00F4802A2F2DD48D006FBD2A /* Pretendard-Light.otf in Resources */,
@@ -544,7 +566,9 @@
 				7C9582A92F3562D0004F8523 /* LoginViewController.swift in Sources */,
 				00113F182F43005300D4CC37 /* OnboardingItem.swift in Sources */,
 				00113F1A2F43007200D4CC37 /* UICollectionViewCell+.swift in Sources */,
+				00113F7B2F430A0700D4CC37 /* ViewModelType.swift in Sources */,
 				0027D9E92F405700000DE576 /* LoginCoordinator.swift in Sources */,
+				00113F7D2F430A1400D4CC37 /* AppChipButton.swift in Sources */,
 				0027D9E32F4054B5000DE576 /* AppCoordinator.swift in Sources */,
 				7CCB1E412F29B5ED00472669 /* Router.swift in Sources */,
 				00113F1D2F43008C00D4CC37 /* SplashViewController.swift in Sources */,
