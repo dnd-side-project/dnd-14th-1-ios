@@ -6,24 +6,269 @@
 //
 
 import UIKit
+import Combine
+import Then
+import SnapKit
+import Kingfisher
 
-class SettingViewController: UIViewController {
+class SettingViewController: BaseViewController {
+    
+    // MARK: - Properties
+    private let inputSubject = PassthroughSubject<SettingViewModel.Input, Never>()
+    private var subscriptions: Set<AnyCancellable> = []
+    private let viewModel: SettingViewModel
+    
+    // MARK: - UI Components
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+    
+    private let titleLabel = UILabel()
+    private let badgeImageBackgroundView = UIView()
+    private let badgeImageView = UIImageView()
+    private let changeBadgeButton = UIButton()
+    
+    private let nicknameStackView = UIStackView()
+    private let nicknameLabel = UILabel()
+    private let domainImageView = UIImageView()
+    private let emailLabel = UILabel()
+    
+    private let separatorView = UIView()
+    private let termsOfUseButton = UIButton()
+    private let privacyPolicyButton = UIButton()
+    private let logoutButton = UIButton()
+    
+    // MARK: - Initializer
+    init(viewModel: SettingViewModel) {
+        self.viewModel = viewModel
+        super.init()
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
-        // Do any additional setup after loading the view.
+        bind()
+        inputSubject.send(.viewDidLoad)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
     }
-    */
+    
+    override func addSubview() {
+        [nicknameLabel, domainImageView].forEach {
+            nicknameStackView.addArrangedSubview($0)
+        }
+        
+        [titleLabel, badgeImageBackgroundView, badgeImageView, changeBadgeButton, nicknameStackView, emailLabel,
+         separatorView, termsOfUseButton, privacyPolicyButton, logoutButton].forEach {
+            contentView.addSubview($0)
+        }
+        
+        [contentView].forEach {
+            scrollView.addSubview($0)
+        }
+        
+        [scrollView].forEach {
+            view.addSubview($0)
+        }
+    }
+    
+    override func setLayout() {
+        scrollView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView)
+            $0.width.equalTo(scrollView)
+            $0.height.greaterThanOrEqualTo(scrollView)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(contentView).offset(24)
+            $0.leading.equalTo(contentView).offset(20)
+            $0.height.equalTo(32)
+        }
+        
+        badgeImageBackgroundView.snp.makeConstraints {
+            $0.size.equalTo(168)
+            $0.centerX.equalTo(contentView)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(24)
+        }
+        
+        badgeImageView.snp.makeConstraints {
+            $0.size.equalTo(120)
+            $0.center.equalTo(badgeImageBackgroundView)
+        }
+        
+        changeBadgeButton.snp.makeConstraints {
+            $0.size.equalTo(32)
+            $0.trailing.equalTo(badgeImageBackgroundView).offset(-10.5)
+            $0.bottom.equalTo(badgeImageBackgroundView).offset(-11)
+        }
+        
+        nicknameStackView.snp.makeConstraints {
+            $0.height.equalTo(16)
+            $0.top.equalTo(badgeImageBackgroundView.snp.bottom).offset(12)
+            $0.centerX.equalTo(contentView)
+        }
+        
+        emailLabel.snp.makeConstraints {
+            $0.height.equalTo(21)
+            $0.top.equalTo(nicknameStackView.snp.bottom).offset(8)
+            $0.centerX.equalTo(contentView)
+        }
+        
+        separatorView.snp.makeConstraints {
+            $0.height.equalTo(4)
+            $0.top.equalTo(emailLabel.snp.bottom).offset(20)
+            $0.leading.trailing.equalTo(contentView)
+        }
+        
+        termsOfUseButton.snp.makeConstraints {
+            $0.height.equalTo(40)
+            $0.top.equalTo(separatorView.snp.bottom).offset(20)
+            $0.leading.trailing.equalTo(contentView).inset(20)
+        }
+        
+        privacyPolicyButton.snp.makeConstraints {
+            $0.height.equalTo(40)
+            $0.top.equalTo(termsOfUseButton.snp.bottom)
+            $0.leading.trailing.equalTo(contentView).inset(20)
+        }
+        
+        logoutButton.snp.makeConstraints {
+            $0.height.equalTo(40)
+            $0.centerX.equalTo(contentView)
+            $0.bottom.equalTo(contentView.snp.bottom).offset(-8)
+        }
+    }
+    
+    override func setStyle() {
+        
+        view.backgroundColor = UIColor(hexCode: "FAFAFA")
+        
+        scrollView.do {
+            $0.contentInsetAdjustmentBehavior = .never
+        }
+        
+        titleLabel.do {
+            $0.attributedText = NSAttributedString(
+                string: "설정",
+                attributes: [
+                    .font : UIFont.display2_b,
+                    .foregroundColor : UIColor.gray900
+                ])
+        }
+        
+        badgeImageBackgroundView.do {
+            $0.backgroundColor = UIColor.primary100
+            $0.layer.cornerRadius = 84
+            $0.clipsToBounds = true
+        }
+        
+        badgeImageView.do {
+            $0.contentMode = .scaleAspectFit
+        }
+        
+        changeBadgeButton.do {
+            $0.setImage(UIImage.changeBadgeButton, for: .normal)
+        }
+        
+        nicknameStackView.do {
+            $0.axis = .horizontal
+            $0.spacing = 8
+        }
+        
+        nicknameLabel.do {
+            $0.font = UIFont.title3_b
+            $0.textColor = UIColor.gray800
+        }
+        
+        emailLabel.do {
+            $0.textColor = UIColor.gray600
+            $0.font = UIFont.body2_r
+        }
+        
+        separatorView.do {
+            $0.backgroundColor = UIColor.gray100
+        }
+        
+        termsOfUseButton.do {
+            var configuration = UIButton.Configuration.plain()
+            configuration.attributedTitle = AttributedString("이용약관", attributes: AttributeContainer([
+                    .font : UIFont.title3_m,
+                    .foregroundColor : UIColor.gray900
+                ])
+            )
+            configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 0)
+            
+            $0.configuration = configuration
+            $0.contentHorizontalAlignment = .leading
+        }
+        
+        privacyPolicyButton.do {
+            var configuration = UIButton.Configuration.plain()
+            configuration.attributedTitle = AttributedString("개인정보 처리방침", attributes: AttributeContainer([
+                    .font : UIFont.title3_m,
+                    .foregroundColor : UIColor.gray900
+                ])
+            )
+            configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 0)
+            
+            $0.configuration = configuration
+            $0.contentHorizontalAlignment = .leading
+        }
+        
+        logoutButton.do {
+            var configuration = UIButton.Configuration.plain()
+            configuration.attributedTitle = AttributedString("로그아웃", attributes: AttributeContainer([
+                .font : UIFont.label1_b,
+                .foregroundColor : UIColor.negative
+                ])
+            )
+            configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+            
+            $0.configuration = configuration
+        }
+    }
+}
 
+extension SettingViewController {
+    
+    private func bind() {
+        viewModel.transform(with: inputSubject.eraseToAnyPublisher()).sink { [weak self] output in
+            guard let self else { return }
+            switch output {
+            case let .updateUserProfile(userProfile):
+                updateUserProfile(userProfile)
+            }
+        }.store(in: &subscriptions)
+    }
+}
+
+extension SettingViewController {
+    
+    private func updateUserProfile(_ userProfile: UserProfile) {
+        
+        badgeImageView.setImage(url: userProfile.imageUrl)
+        nicknameLabel.text = userProfile.nickname
+        emailLabel.text = userProfile.email
+        
+        let domainImage: UIImage
+        switch userProfile.domain {
+        case .apple:
+            domainImage = UIImage.apple.withTintColor(.black)
+        case .google:
+            domainImage = UIImage.google
+        }
+        domainImageView.do {
+            $0.image = domainImage
+        }
+    }
 }
