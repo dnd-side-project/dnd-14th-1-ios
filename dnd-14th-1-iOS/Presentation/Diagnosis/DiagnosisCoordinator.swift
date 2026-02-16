@@ -42,7 +42,7 @@ extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
 
 extension DiagnosisCoordinator: PromptLoadingViewControllerDelegate {
     func didCompleteDiagnosis() {
-        let promprtResultViewController = PromptDiagnosisViewController()
+        let promprtResultViewController = DiagnosisResultViewController()
         promprtResultViewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(promprtResultViewController, animated: true)
     }
