@@ -13,6 +13,8 @@ import SnapKit
 final class OnboardingViewController: BaseViewController {
     
     // MARK: - Properties
+    weak var delegate: OnboardingViewControllerDelegate?
+    
     private var subscriptions: Set<AnyCancellable> = []
     
     private let items: [OnboardingItem] = [
@@ -134,8 +136,7 @@ extension OnboardingViewController {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         
         if onboardingPageControl.currentPage == onboardingPageControl.numberOfPages - 1 {
-//            let viewController = HomeTabbarController()
-//            navigationController?.setViewControllers([viewController], animated: true)
+            delegate?.startButtonTapped()
             return
         }
         

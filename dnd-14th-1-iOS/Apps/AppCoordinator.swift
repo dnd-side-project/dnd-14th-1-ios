@@ -34,7 +34,15 @@ final class AppCoordinator: Coordinator {
     
     private func showLoginCoordinator() {
         let loginCoordinator = LoginCoordinator(navigationController: navigationController)
+        loginCoordinator.delegate = self
         childCoordinators.append(loginCoordinator)
         loginCoordinator.start()
+    }
+}
+
+extension AppCoordinator: LoginCoordinatorDelegate {
+    func didCompleteLogin(_ coordinator: Coordinator) {
+        childCoordinators = childCoordinators.filter { $0 !== coordinator }
+        showTabBarCoordinator()
     }
 }

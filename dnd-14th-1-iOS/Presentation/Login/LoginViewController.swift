@@ -12,6 +12,8 @@ import SnapKit
 final class LoginViewController: BaseViewController {
     
     // MARK: - UI Components
+    weak var delegate: LoginViewControllerDelegate?
+    
     private let contentWrapperViewLayoutGuide = UILayoutGuide()
     
     private let contentWrapperView = UIView()
@@ -180,9 +182,7 @@ extension LoginViewController {
 }
 
 extension LoginViewController {
-    
     private func navigateToOnboarding() {
-        let viewController = OnboardingViewController()
-        navigationController?.setViewControllers([viewController], animated: true)
+        delegate?.loginButtonTapped()
     }
 }
