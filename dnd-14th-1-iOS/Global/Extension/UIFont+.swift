@@ -177,7 +177,19 @@ extension UIFont {
         return UIFont.font(.hakgyoansimDunggeunmisoBold, ofSize: 40)
     }
     
+    @nonobjc class var hakgyoansimDunggeunmisoBold_24: UIFont {
+        return UIFont.font(.hakgyoansimDunggeunmisoBold, ofSize: 24)
+    }
+    
+    @nonobjc class var hakgyoansimDunggeunmisoBold_32: UIFont {
+        return UIFont.font(.hakgyoansimDunggeunmisoBold, ofSize: 32)
+    }
+    
     @nonobjc class var hakgyoansimDunggeunmisoRegular: UIFont {
         return UIFont.font(.hakgyoansimDunggeunmisoRegular, ofSize: 32)
+    }
+    
+    @nonobjc class var hakgyoansimDunggeunmisoRegular_24: UIFont {
+        return UIFont.font(.hakgyoansimDunggeunmisoRegular, ofSize: 24)
     }
 }
