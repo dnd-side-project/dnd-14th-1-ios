@@ -82,6 +82,7 @@ class PromptInputView: UIView {
             $0.font = .body1_m
             $0.textColor = .gray200
             $0.text = placeholderText
+            $0.backgroundColor = .white
         }
         
         topIndicator.do {
