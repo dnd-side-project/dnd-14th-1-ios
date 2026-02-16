@@ -5,7 +5,7 @@
 //  Created by a on 2/14/26.
 //
 
-protocol Coordinator {
+protocol Coordinator: AnyObject {
     var childCoordinators: [Coordinator] { get set }
     func start()
 }
