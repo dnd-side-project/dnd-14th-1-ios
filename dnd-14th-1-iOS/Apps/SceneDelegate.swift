@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     private var subscriptions: Set<AnyCancellable> = []
-
+    var coordinator: Coordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -30,8 +30,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 receiveCompletion: { _ in},
                 receiveValue: { [weak self] isLoggedIn in
                     guard let self else { return }
-                    let rootViewController = isLoggedIn ? HomeTabbarController() : LoginViewController()
-                    let navigationController = UINavigationController(rootViewController: rootViewController)
+                    let navigationController = UINavigationController()
+                    let appCoordinator = AppCoordinator(navigationController: navigationController, isLoggedIn: isLoggedIn)
+                    self.coordinator = appCoordinator
+                    
+                    appCoordinator.start()
                     window?.rootViewController = navigationController
                 }
             )
