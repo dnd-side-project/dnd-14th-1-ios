@@ -95,7 +95,7 @@ final class LoginViewController: BaseViewController {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [
             UIColor.primary500.cgColor,
-            UIColor(hexCode: "6FB0FF").cgColor
+            UIColor(hexCode: "6FB0FF").cgColor            
         ]
         gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)

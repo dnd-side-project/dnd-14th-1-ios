@@ -134,8 +134,8 @@ extension OnboardingViewController {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         
         if onboardingPageControl.currentPage == onboardingPageControl.numberOfPages - 1 {
-            let viewController = HomeTabbarController()
-            navigationController?.setViewControllers([viewController], animated: true)
+//            let viewController = HomeTabbarController()
+//            navigationController?.setViewControllers([viewController], animated: true)
             return
         }
         
