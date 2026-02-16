@@ -44,6 +44,7 @@ class PromptView: UIView {
             $0.backgroundColor = .white
             $0.font = .body1_r
             $0.textColor = .gray900
+            $0.isUserInteractionEnabled = false
         }
     }
     
