@@ -14,6 +14,8 @@ class DiagnosisResultViewController: BaseViewController {
     
     // MARK: - Properties
     
+    weak var delegate: DiagnosisResultViewControllerDelegate?
+    
     private let backgroundView = UIImageView()
     private let containerScrollView = UIScrollView()
     private let promptEfficiencyLabel = UILabel()
@@ -86,6 +88,10 @@ class DiagnosisResultViewController: BaseViewController {
         
         homeButton.do {
             $0.setImage(UIImage(resource: .homeButton), for: .normal)
+        }
+        
+        promptEditButton.do {
+            $0.addTarget(self, action: #selector(promptEditButtonTapped), for: .touchUpInside)
         }
     }
     
@@ -196,5 +202,9 @@ class DiagnosisResultViewController: BaseViewController {
             glacierImageView,
             promptView
         )
+    }
+    
+    @objc private func promptEditButtonTapped() {
+        delegate?.promptEditButtonTapped()
     }
 }

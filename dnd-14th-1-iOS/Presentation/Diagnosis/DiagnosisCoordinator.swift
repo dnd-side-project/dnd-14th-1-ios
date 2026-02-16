@@ -12,7 +12,11 @@ protocol DiagnosisViewControllerDelegate: AnyObject {
 }
 
 protocol PromptLoadingViewControllerDelegate: AnyObject {
-    func didCompleteDiagnosis()
+    func didCompleteLoading(_ loadingType: PromprtLoadingViewController.PromptLoadingType)
+}
+
+protocol DiagnosisResultViewControllerDelegate: AnyObject {
+    func promptEditButtonTapped()
 }
 
 final class DiagnosisCoordinator: Coordinator {
@@ -33,7 +37,11 @@ final class DiagnosisCoordinator: Coordinator {
 
 extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
     func didTapPromptButton() {
-        let promptLoadingViewController = PromprtLoadingViewController()
+        let promptLoadingViewController = PromprtLoadingViewController(
+            title: "작성하신 프롬프트를 진단하고 있어요...",
+            description: "진단 결과에 따라 빙하의 운명이 결정돼요!",
+            loadingType: .diagnose
+        )
         promptLoadingViewController.hidesBottomBarWhenPushed = true
         promptLoadingViewController.delegate = self
         navigationController.pushViewController(promptLoadingViewController, animated: true)
@@ -41,9 +49,30 @@ extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
 }
 
 extension DiagnosisCoordinator: PromptLoadingViewControllerDelegate {
-    func didCompleteDiagnosis() {
-        let promprtResultViewController = DiagnosisResultViewController()
-        promprtResultViewController.hidesBottomBarWhenPushed = true
-        navigationController.pushViewController(promprtResultViewController, animated: true)
+    func didCompleteLoading(_ loadingType: PromprtLoadingViewController.PromptLoadingType) {
+        switch loadingType {
+        case .diagnose:
+            let promprtResultViewController = DiagnosisResultViewController()
+            promprtResultViewController.delegate = self
+            promprtResultViewController.hidesBottomBarWhenPushed = true
+            navigationController.pushViewController(promprtResultViewController, animated: true)
+        case .imporve:
+            let promptImproveViewController = PromptImprovedViewController()
+            promptImproveViewController.hidesBottomBarWhenPushed = true
+            navigationController.pushViewController(promptImproveViewController, animated: true)
+        }
+    }
+}
+
+extension DiagnosisCoordinator: DiagnosisResultViewControllerDelegate {
+    func promptEditButtonTapped() {
+        let promptLoadingViewController = PromprtLoadingViewController(
+            title: "북극곰의 발판을 더 단단하게 다듬는 중...",
+            description: "문장을 수정하여 최적화된 프롬프트를 만들어요!",
+            loadingType: .imporve
+        )
+        promptLoadingViewController.hidesBottomBarWhenPushed = true
+        promptLoadingViewController.delegate = self
+        navigationController.pushViewController(promptLoadingViewController, animated: true)
     }
 }
