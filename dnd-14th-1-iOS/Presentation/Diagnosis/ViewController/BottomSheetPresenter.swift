@@ -29,6 +29,16 @@ class BottomSheetPresenter: UIViewController {
         view.addGestureRecognizer(panGesture)
     }
     
+    func presentOnTop(contentView: UIView, height: CGFloat) {
+        guard let windowScene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
+              let window = windowScene.windows.first(where: { $0.isKeyWindow }),
+              let topViewController = window.rootViewController else {
+            return
+        }
+        
+        self.present(on: topViewController, contentView: contentView, height: height)
+    }
+    
     func present(on parent: UIViewController, contentView: UIView, height: CGFloat) {
         parent.addChild(self)
         parent.view.addSubview(view)
@@ -87,7 +97,7 @@ class BottomSheetPresenter: UIViewController {
         }
     }
     
-    private func dismissSheet() {
+    func dismissSheet() {
         UIView.animate(withDuration: 0.3) {
             self.view.frame.origin.y = self.parentHeight
         }
