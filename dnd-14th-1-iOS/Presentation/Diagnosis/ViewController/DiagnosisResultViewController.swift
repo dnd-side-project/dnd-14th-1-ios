@@ -29,6 +29,7 @@ class DiagnosisResultViewController: BaseViewController {
     private let buttonStackView = UIStackView()
     private let promptEditButton = AppButton(size: .large, title: "프롬프트 수정하기", image: UIImage(resource: .pencilSimpleLine))
     private let homeButton = UIButton()
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
