@@ -15,9 +15,12 @@ final class KeychainWorker {
         case fcm
     }
     
-    private static let serviceIdentifier = Bundle.main.bundleIdentifier ?? "ac.dnd.dnd-14th-1-iOS"
+    private let serviceIdentifier = Bundle.main.bundleIdentifier ?? "ac.dnd.dnd-14th-1-iOS"
     
-    static func create(key: TokenType, value: String) {
+    static let shared = KeychainWorker()
+    private init() {}
+    
+    func create(key: TokenType, value: String) {
         // 이미 존재하는 키체인 삭제
         var query: NSDictionary = [
             kSecClass: kSecClassGenericPassword,
@@ -40,7 +43,7 @@ final class KeychainWorker {
         }
     }
     
-    static func read(key: TokenType) -> String? {
+    func read(key: TokenType) -> String? {
         let query: NSDictionary = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService as String: serviceIdentifier,
@@ -69,7 +72,7 @@ final class KeychainWorker {
         }
     }
     
-    static func delete(key: TokenType) {
+    func delete(key: TokenType) {
         let query: NSDictionary = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService as String: serviceIdentifier,
