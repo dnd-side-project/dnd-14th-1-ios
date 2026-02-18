@@ -265,6 +265,7 @@ extension SettingViewController {
         changeBadgeButton.addTarget(self, action: #selector(changeBadgeButtonTapped), for: .touchUpInside)
         termsOfUseButton.addTarget(self, action: #selector(termsOfUseButtonTapped), for: .touchUpInside)
         privacyPolicyButton.addTarget(self, action: #selector(privacyPolicyButtonTapped), for: .touchUpInside)
+        logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
     }
     
     @objc private func changeBadgeButtonTapped() {
@@ -276,8 +277,21 @@ extension SettingViewController {
     @objc private func termsOfUseButtonTapped() {
         coordinator?.navigateToTermsOfUse()
     }
+    
     @objc private func privacyPolicyButtonTapped() {
         coordinator?.navigateToPrivacyPolicy()
+    }
+    
+    @objc private func logoutButtonTapped() {
+        let alert = UIAlertController(title: "로그아웃 하시겠습니까?", message: nil, preferredStyle: .alert)
+        let close = UIAlertAction(title: "닫기", style: .default)
+        let confirm = UIAlertAction(title: "확인", style: .destructive) { [weak self] _ in
+            self?.inputSubject.send(.handleLogout)
+        }
+        [close, confirm].forEach {
+            alert.addAction($0)
+        }
+        present(alert, animated: true)
     }
     
     private func showChangeBadgeSheet() {

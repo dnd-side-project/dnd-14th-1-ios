@@ -12,6 +12,7 @@ final class SettingViewModel: ViewModelType {
     enum Input {
         case viewDidLoad
         case fetchBadgeList
+        case handleLogout
     }
     
     enum Output {
@@ -22,15 +23,18 @@ final class SettingViewModel: ViewModelType {
     // MARK: - Properties
     private let fetchUserProfileUseCase: FetchUserProfileUseCase
     private let fetchBadgeListUseCase: FetchBadgeListUseCase
+    private let logoutUseCase: LogoutUseCase
     
     private let outputSubject = PassthroughSubject<Output, Never>()
     private var subscriptions: Set<AnyCancellable> = []
     
     // MARK: - Initializer
     init(fetchUserProfileUseCase: FetchUserProfileUseCase,
-         fetchBadgeListUseCase: FetchBadgeListUseCase) {
+         fetchBadgeListUseCase: FetchBadgeListUseCase,
+         logoutUseCase: LogoutUseCase) {
         self.fetchUserProfileUseCase = fetchUserProfileUseCase
         self.fetchBadgeListUseCase = fetchBadgeListUseCase
+        self.logoutUseCase = logoutUseCase
     }
     
     // MARK: - Transform
@@ -42,6 +46,8 @@ final class SettingViewModel: ViewModelType {
                 fetchUserProfile()
             case .fetchBadgeList:
                 fetchBadgeList()
+            case .handleLogout:
+                handleLogout()
             }
         }.store(in: &subscriptions)
         
@@ -71,5 +77,9 @@ extension SettingViewModel {
                 self?.outputSubject.send(.updateBadgeList(badges))
             }
         ).store(in: &subscriptions)
+    }
+    
+    private func handleLogout() {
+        logoutUseCase.execte()
     }
 }

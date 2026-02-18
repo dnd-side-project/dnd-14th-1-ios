@@ -57,6 +57,7 @@
 		7C01074A2F45FB5B0005AC1D /* CustomUIVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107492F45FB5B0005AC1D /* CustomUIVisualEffect.swift */; };
 		7C01074D2F45FE3F0005AC1D /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C01074C2F45FE3F0005AC1D /* TermsOfUseViewController.swift */; };
 		7C01074F2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C01074E2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift */; };
+		7C0107512F46060B0005AC1D /* LogoutUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107502F46060B0005AC1D /* LogoutUseCase.swift */; };
 		7C2A3F102F38ACCB00D102EE /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A3F0F2F38ACCB00D102EE /* AppButton.swift */; };
 		7C2E31FC2F38DDA6006F08FE /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E31FB2F38DDA6006F08FE /* UIImage+.swift */; };
 		7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */; };
@@ -125,6 +126,7 @@
 		7C0107492F45FB5B0005AC1D /* CustomUIVisualEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIVisualEffect.swift; sourceTree = "<group>"; };
 		7C01074C2F45FE3F0005AC1D /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
 		7C01074E2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		7C0107502F46060B0005AC1D /* LogoutUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUseCase.swift; sourceTree = "<group>"; };
 		7C2A3F0F2F38ACCB00D102EE /* AppButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
 		7C2E31FB2F38DDA6006F08FE /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		7C61D2C72F2109B3005FAC3A /* dnd-14th-1-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dnd-14th-1-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -467,8 +469,8 @@
 		7C9582A12F356147004F8523 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				00113F2E2F43012200D4CC37 /* OnboardingCoordinator.swift */,
 				00113F122F42FFFD00D4CC37 /* Subviews */,
+				00113F2E2F43012200D4CC37 /* OnboardingCoordinator.swift */,
 				7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */,
 			);
 			path = Onboarding;
@@ -499,6 +501,7 @@
 				7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */,
 				7C0107302F439E800005AC1D /* FetchUserProfileUseCase.swift */,
 				7C0107472F44D3EE0005AC1D /* FetchBadgeListUseCase.swift */,
+				7C0107502F46060B0005AC1D /* LogoutUseCase.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				7CCB1E622F2DB56600472669 /* MockAPI.swift in Sources */,
 				0027D9F62F408E7C000DE576 /* TabBarView.swift in Sources */,
 				00113F132F42FFFD00D4CC37 /* OnboardingCollectionView.swift in Sources */,
+				7C0107512F46060B0005AC1D /* LogoutUseCase.swift in Sources */,
 				00113F142F42FFFD00D4CC37 /* OnBoardingPageControl.swift in Sources */,
 				00113F152F42FFFD00D4CC37 /* OnboardingCollectionViewCell.swift in Sources */,
 				7CCB1E672F2DB72A00472669 /* MockRequest.swift in Sources */,

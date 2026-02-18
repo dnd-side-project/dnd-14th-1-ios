@@ -19,7 +19,8 @@ final class SettingCoordinator: Coordinator {
     func start() {
         let mockFetchUserProfileUseCase = MockFetchUserProfileUseCase()
         let mockFetchBadgeListUseCase = MockFetchBadgeListUseCase()
-        let settingViewModel = SettingViewModel(fetchUserProfileUseCase: mockFetchUserProfileUseCase, fetchBadgeListUseCase: mockFetchBadgeListUseCase)
+        let defualtLogoutUseCase = DefaultLogoutUseCase()
+        let settingViewModel = SettingViewModel(fetchUserProfileUseCase: mockFetchUserProfileUseCase, fetchBadgeListUseCase: mockFetchBadgeListUseCase, logoutUseCase: defualtLogoutUseCase)
         let settingViewController = SettingViewController(viewModel: settingViewModel)
         settingViewController.coordinator = self
         navigationController.pushViewController(settingViewController, animated: true)
