@@ -80,6 +80,6 @@ extension SettingViewModel {
     }
     
     private func handleLogout() {
-        logoutUseCase.execte()
+        logoutUseCase.execute()
     }
 }

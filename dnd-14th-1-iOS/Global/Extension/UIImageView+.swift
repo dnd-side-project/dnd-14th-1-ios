@@ -13,10 +13,10 @@ extension UIImageView {
     enum CacheOption {
         case none
         case memoryOnly
-        case BothMemoryAndDisk
+        case bothMemoryAndDisk
     }
     
-    func setImage(url: String, _ cacheOption: CacheOption = .BothMemoryAndDisk) {
+    func setImage(url: String, _ cacheOption: CacheOption = .bothMemoryAndDisk) {
         
         guard let url = URL(string: url) else {
             return
@@ -29,7 +29,7 @@ extension UIImageView {
             break
         case .memoryOnly:
             options.append(.cacheMemoryOnly)
-        case .BothMemoryAndDisk:
+        case .bothMemoryAndDisk:
             options.append(.cacheOriginalImage)
         }
         

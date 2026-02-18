@@ -50,7 +50,7 @@
 		7C0107372F43A92B0005AC1D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7C0107362F43A92B0005AC1D /* Kingfisher */; };
 		7C0107392F43A9B40005AC1D /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107382F43A9B40005AC1D /* UIImageView+.swift */; };
 		7C01073D2F43B4C30005AC1D /* ChangeBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C01073C2F43B4C30005AC1D /* ChangeBadgeView.swift */; };
-		7C01073F2F43B6870005AC1D /* ChangeBagdeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C01073E2F43B6870005AC1D /* ChangeBagdeCollectionView.swift */; };
+		7C01073F2F43B6870005AC1D /* ChangeBadgeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C01073E2F43B6870005AC1D /* ChangeBadgeCollectionView.swift */; };
 		7C0107422F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107412F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift */; };
 		7C0107462F43B6F80005AC1D /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107452F43B6F80005AC1D /* Badge.swift */; };
 		7C0107482F44D3EE0005AC1D /* FetchBadgeListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107472F44D3EE0005AC1D /* FetchBadgeListUseCase.swift */; };
@@ -119,7 +119,7 @@
 		7C0107332F439E9A0005AC1D /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		7C0107382F43A9B40005AC1D /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		7C01073C2F43B4C30005AC1D /* ChangeBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBadgeView.swift; sourceTree = "<group>"; };
-		7C01073E2F43B6870005AC1D /* ChangeBagdeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBagdeCollectionView.swift; sourceTree = "<group>"; };
+		7C01073E2F43B6870005AC1D /* ChangeBadgeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBadgeCollectionView.swift; sourceTree = "<group>"; };
 		7C0107412F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBadgeCollectionViewCell.swift; sourceTree = "<group>"; };
 		7C0107452F43B6F80005AC1D /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		7C0107472F44D3EE0005AC1D /* FetchBadgeListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchBadgeListUseCase.swift; sourceTree = "<group>"; };
@@ -309,7 +309,7 @@
 		7C0107402F43B68B0005AC1D /* ChangeBagdeCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				7C01073E2F43B6870005AC1D /* ChangeBagdeCollectionView.swift */,
+				7C01073E2F43B6870005AC1D /* ChangeBadgeCollectionView.swift */,
 				7C0107412F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift */,
 			);
 			path = ChangeBagdeCollectionView;
@@ -692,7 +692,7 @@
 				00F482492F2DDC69006FBD2A /* UIView+.swift in Sources */,
 				00D1E81A2F3B85DF00D86F23 /* TabBarItem.swift in Sources */,
 				00F482472F2DDC4F006FBD2A /* UIStackView+.swift in Sources */,
-				7C01073F2F43B6870005AC1D /* ChangeBagdeCollectionView.swift in Sources */,
+				7C01073F2F43B6870005AC1D /* ChangeBadgeCollectionView.swift in Sources */,
 				00F4824E2F2DDE0C006FBD2A /* CALayer+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

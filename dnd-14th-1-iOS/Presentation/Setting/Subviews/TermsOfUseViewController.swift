@@ -12,12 +12,14 @@ import SnapKit
 final class TermsOfUseViewController: BaseViewController {
     
     // MARK: - Properties
-    private let termsOfUse = """
+    private let appName = "saving(세이빙)"
+    
+    private lazy var termsOfUse = """
         제1조 (목적)
-        본 약관은 [앱 이름](이하 "서비스")이 제공하는 관련 제반 서비스의 이용과 관련하여 "서비스"와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.
+        본 약관은 \(appName)(이하 "서비스")이 제공하는 관련 제반 서비스의 이용과 관련하여 "서비스"와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.
 
         제2조 (용어의 정의)
-        1. "서비스"라 함은 [앱 이름] 앱을 통해 이용자에게 제공되는 기능을 의미합니다.
+        1. "서비스"라 함은 \(appName) 앱을 통해 이용자에게 제공되는 기능을 의미합니다.
         2. "이용자"란 "서비스"에 접속하여 본 약관에 따라 서비스를 이용하는 자를 말합니다.
 
         제3조 (서비스의 제공 및 변경)

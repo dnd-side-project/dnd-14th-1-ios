@@ -9,12 +9,12 @@ import Foundation
 import Combine
 
 protocol LogoutUseCase {
-    func execte()
+    func execute()
 }
 
 final class DefaultLogoutUseCase: LogoutUseCase {
     
-    func execte() {
+    func execute() {
         KeychainWorker.shared.delete(key: .access)
         KeychainWorker.shared.delete(key: .refresh)
         NotificationCenter.default.post(name: NSNotification.Name("DidLogout"), object: nil)

@@ -12,10 +12,12 @@ import SnapKit
 final class PrivacyPolicyViewController: BaseViewController {
     
     // MARK: - Properties
-    private let privacyPolicy = """
-        개인정보 처리방침
-
-        [앱 이름](이하 "서비스")은 이용자의 개인정보를 중요시하며, "개인정보보호법" 및 "정보통신망 이용촉진 및 정보보호 등에 관한 법률"을 준수하고 있습니다.
+    private let appName = "saving(세이빙)"
+    private let name = "이름"
+    private let email = "exmaple@domain.com"
+    
+    private lazy var privacyPolicy = """
+        \(appName)(이하 "서비스")은 이용자의 개인정보를 중요시하며, "개인정보보호법" 및 "정보통신망 이용촉진 및 정보보호 등에 관한 법률"을 준수하고 있습니다.
 
         1. 수집하는 개인정보 항목
         "서비스"는 별도의 회원가입 절차 없이 이용 가능한 경우 정보를 수집하지 않으나, 기능 제공을 위해 아래 정보를 수집할 수 있습니다.
@@ -41,8 +43,8 @@ final class PrivacyPolicyViewController: BaseViewController {
 
         7. 개인정보 보호책임자
         서비스 이용 중 발생하는 모든 개인정보 보호 관련 민원은 아래의 책임자에게 문의하실 수 있습니다.
-        - 성명/닉네임: [본인 이름 또는 개발팀 명칭]
-        - 이메일: [연락 가능한 이메일 주소]
+        - 성명/닉네임: \(name)
+        - 이메일: \(email)
 
         공고일자: 2026년 2월 15일
         시행일자: 2026년 2월 15일

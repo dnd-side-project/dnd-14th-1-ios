@@ -20,6 +20,8 @@ final class AppCoordinator: Coordinator {
     }
     
     @objc func start() {
+        childCoordinators = []
+        
         if isLoggedIn {
             showTabBarCoordinator()
         } else {
