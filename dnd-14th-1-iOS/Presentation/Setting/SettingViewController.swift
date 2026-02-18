@@ -37,6 +37,10 @@ class SettingViewController: BaseViewController {
     private let privacyPolicyButton = UIButton()
     private let logoutButton = UIButton()
     
+    private let blurredBackgroundView = CustomUIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark), intensity: 0.2)
+    private let bottomSheetPresenter = BottomSheetPresenter()
+    private var changeBadgeView = ChangeBadgeView()
+    
     // MARK: - Initializer
     init(viewModel: SettingViewModel) {
         self.viewModel = viewModel
@@ -50,6 +54,8 @@ class SettingViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setAddTarget()
+        setGesture()
         bind()
         inputSubject.send(.viewDidLoad)
     }
@@ -73,12 +79,16 @@ class SettingViewController: BaseViewController {
             scrollView.addSubview($0)
         }
         
-        [scrollView].forEach {
+        [scrollView, blurredBackgroundView].forEach {
             view.addSubview($0)
         }
     }
     
     override func setLayout() {
+        blurredBackgroundView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         scrollView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
@@ -236,6 +246,64 @@ class SettingViewController: BaseViewController {
             
             $0.configuration = configuration
         }
+        
+        blurredBackgroundView.do {
+            $0.layer.opacity = 0
+        }
+    }
+}
+
+extension SettingViewController {
+    
+    private func setAddTarget() {
+        changeBadgeButton.addTarget(self, action: #selector(changeBadgeButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func changeBadgeButtonTapped() {
+        showBlurredBackgroundView()
+        showChangeBadgeSheet()
+        inputSubject.send(.fetchBadgeList)
+    }
+    
+    private func showChangeBadgeSheet() {
+        
+        let sheetHeight = view.frame.height * 0.75
+        changeBadgeView = ChangeBadgeView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: sheetHeight))
+        
+        changeBadgeView.onChangeBadgeButtonTapped = { [weak self] selectedBadgeId in
+            print(selectedBadgeId) // TODO: ViewModel에 알리기
+            self?.bottomSheetPresenter.dismissSheet()
+        }
+        
+        bottomSheetPresenter.onDissmiss = hideBlurredBackgroundView
+        
+        bottomSheetPresenter.presentOnTop(
+            contentView: changeBadgeView,
+            height: sheetHeight
+        )
+    }
+    
+    private func setGesture() {
+        blurredBackgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissBottomSheet)))
+    }
+    
+    @objc private func dismissBottomSheet() {
+        hideBlurredBackgroundView()
+        bottomSheetPresenter.dismissSheet()
+    }
+    
+    private func showBlurredBackgroundView() {
+        UIView.transition(with: blurredBackgroundView,
+                          duration: 0.2) { [weak self] in
+            self?.blurredBackgroundView.layer.opacity = 1
+        }
+    }
+    
+    private func hideBlurredBackgroundView() {
+        UIView.transition(with: blurredBackgroundView,
+                          duration: 0.2) { [weak self] in
+            self?.blurredBackgroundView.layer.opacity = 0
+        }
     }
 }
 
@@ -247,6 +315,8 @@ extension SettingViewController {
             switch output {
             case let .updateUserProfile(userProfile):
                 updateUserProfile(userProfile)
+            case let .updateBadgeList(badgeList):
+                updateBadgeList(badgeList)
             }
         }.store(in: &subscriptions)
     }
@@ -255,7 +325,7 @@ extension SettingViewController {
 extension SettingViewController {
     
     private func updateUserProfile(_ userProfile: UserProfile) {
-        
+
         badgeImageView.setImage(url: userProfile.imageUrl)
         nicknameLabel.text = userProfile.nickname
         emailLabel.text = userProfile.email
@@ -271,4 +341,9 @@ extension SettingViewController {
             $0.image = domainImage
         }
     }
+    
+    private func updateBadgeList(_ badges: [Badge]) {
+        changeBadgeView.configure(badges)
+    }
+    
 }

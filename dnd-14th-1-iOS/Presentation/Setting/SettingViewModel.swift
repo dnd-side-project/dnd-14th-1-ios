@@ -11,21 +11,26 @@ import Combine
 final class SettingViewModel: ViewModelType {
     enum Input {
         case viewDidLoad
+        case fetchBadgeList
     }
     
     enum Output {
         case updateUserProfile(UserProfile)
+        case updateBadgeList([Badge])
     }
     
     // MARK: - Properties
-    private let fetchUserProfileUseCase: MockFetchUserProfileUseCase
+    private let fetchUserProfileUseCase: FetchUserProfileUseCase
+    private let fetchBadgeListUseCase: FetchBadgeListUseCase
     
     private let outputSubject = PassthroughSubject<Output, Never>()
     private var subscriptions: Set<AnyCancellable> = []
     
     // MARK: - Initializer
-    init(fetchUserProfileUseCase: MockFetchUserProfileUseCase) {
+    init(fetchUserProfileUseCase: FetchUserProfileUseCase,
+         fetchBadgeListUseCase: FetchBadgeListUseCase) {
         self.fetchUserProfileUseCase = fetchUserProfileUseCase
+        self.fetchBadgeListUseCase = fetchBadgeListUseCase
     }
     
     // MARK: - Transform
@@ -35,6 +40,8 @@ final class SettingViewModel: ViewModelType {
             switch input {
             case .viewDidLoad:
                 fetchUserProfile()
+            case .fetchBadgeList:
+                fetchBadgeList()
             }
         }.store(in: &subscriptions)
         
@@ -46,13 +53,22 @@ extension SettingViewModel {
     
     private func fetchUserProfile() {
         fetchUserProfileUseCase.execute().sink(
-            receiveCompletion: { completion in
-                if case .failure(let failure) = completion {
-                    // TODO: 토스트 띄우기
-                }
+            receiveCompletion: { _ in
+                // TODO: 토스트 띄우기
             },
             receiveValue: { [weak self] userProfile in
                 self?.outputSubject.send(.updateUserProfile(userProfile))
+            }
+        ).store(in: &subscriptions)
+    }
+    
+    private func fetchBadgeList() {
+        fetchBadgeListUseCase.execute().sink(
+            receiveCompletion: { _ in
+                // TODO: 토스트 띄우기
+            },
+            receiveValue: { [weak self] badges in
+                self?.outputSubject.send(.updateBadgeList(badges))
             }
         ).store(in: &subscriptions)
     }
