@@ -43,7 +43,7 @@ class SettingViewController: BaseViewController {
     private let privacyPolicyButton = UIButton()
     private let logoutButton = UIButton()
     
-    private let blurredBackgroundView = CustomUIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark), intensity: 0.2)
+    private let blurredBackgroundView = CustomVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark), intensity: 0.2)
     private let bottomSheetPresenter = BottomSheetPresenter()
     private var changeBadgeView = ChangeBadgeView()
     

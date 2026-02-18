@@ -54,7 +54,7 @@
 		7C0107422F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107412F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift */; };
 		7C0107462F43B6F80005AC1D /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107452F43B6F80005AC1D /* Badge.swift */; };
 		7C0107482F44D3EE0005AC1D /* FetchBadgeListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107472F44D3EE0005AC1D /* FetchBadgeListUseCase.swift */; };
-		7C01074A2F45FB5B0005AC1D /* CustomUIVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107492F45FB5B0005AC1D /* CustomUIVisualEffect.swift */; };
+		7C01074A2F45FB5B0005AC1D /* CustomVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107492F45FB5B0005AC1D /* CustomVisualEffectView.swift */; };
 		7C01074D2F45FE3F0005AC1D /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C01074C2F45FE3F0005AC1D /* TermsOfUseViewController.swift */; };
 		7C01074F2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C01074E2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift */; };
 		7C0107512F46060B0005AC1D /* LogoutUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107502F46060B0005AC1D /* LogoutUseCase.swift */; };
@@ -123,7 +123,7 @@
 		7C0107412F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBadgeCollectionViewCell.swift; sourceTree = "<group>"; };
 		7C0107452F43B6F80005AC1D /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		7C0107472F44D3EE0005AC1D /* FetchBadgeListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchBadgeListUseCase.swift; sourceTree = "<group>"; };
-		7C0107492F45FB5B0005AC1D /* CustomUIVisualEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIVisualEffect.swift; sourceTree = "<group>"; };
+		7C0107492F45FB5B0005AC1D /* CustomVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVisualEffectView.swift; sourceTree = "<group>"; };
 		7C01074C2F45FE3F0005AC1D /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
 		7C01074E2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		7C0107502F46060B0005AC1D /* LogoutUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUseCase.swift; sourceTree = "<group>"; };
@@ -318,7 +318,7 @@
 		7C01074B2F45FB990005AC1D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7C0107492F45FB5B0005AC1D /* CustomUIVisualEffect.swift */,
+				7C0107492F45FB5B0005AC1D /* CustomVisualEffectView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -647,7 +647,7 @@
 			files = (
 				7C9582A92F3562D0004F8523 /* LoginViewController.swift in Sources */,
 				00113F182F43005300D4CC37 /* OnboardingItem.swift in Sources */,
-				7C01074A2F45FB5B0005AC1D /* CustomUIVisualEffect.swift in Sources */,
+				7C01074A2F45FB5B0005AC1D /* CustomVisualEffectView.swift in Sources */,
 				7C0107342F439E9A0005AC1D /* UserProfile.swift in Sources */,
 				00113F1A2F43007200D4CC37 /* UICollectionViewCell+.swift in Sources */,
 				00113F7B2F430A0700D4CC37 /* ViewModelType.swift in Sources */,

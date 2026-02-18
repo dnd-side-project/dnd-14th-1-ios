@@ -1,5 +1,5 @@
 //
-//  UIVisualEffect+.swift
+//  CustomVisualEffectView.swift
 //  dnd-14th-1-iOS
 //
 //  Created by 홍기정 on 2/18/26.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CustomUIVisualEffectView: UIVisualEffectView {
+final class CustomVisualEffectView: UIVisualEffectView {
     private var animator: UIViewPropertyAnimator?
     
     init(effect: UIVisualEffect?, intensity: CGFloat) {
