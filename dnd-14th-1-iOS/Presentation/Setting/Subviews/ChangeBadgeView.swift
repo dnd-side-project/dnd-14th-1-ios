@@ -114,5 +114,9 @@ extension ChangeBadgeView {
             $0.font = UIFont.title1_b
             $0.textColor = UIColor.gray800
         }
+        
+        changeBadgeCollectionView.do {
+            $0.backgroundColor = .white
+        }
     }
 }

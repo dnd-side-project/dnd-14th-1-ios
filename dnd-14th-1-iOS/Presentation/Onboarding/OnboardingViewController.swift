@@ -50,6 +50,7 @@ final class OnboardingViewController: BaseViewController {
         $0.isPagingEnabled = true
         $0.showsHorizontalScrollIndicator = false
         $0.isHidden = true
+        $0.backgroundColor = .white
     }
     
     private let nextButton = UIButton().then {
