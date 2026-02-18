@@ -14,6 +14,7 @@ import Kingfisher
 class SettingViewController: BaseViewController {
     
     // MARK: - Properties
+    weak var coordinator: SettingCoordinator?
     private let inputSubject = PassthroughSubject<SettingViewModel.Input, Never>()
     private var subscriptions: Set<AnyCancellable> = []
     private let viewModel: SettingViewModel
@@ -63,6 +64,11 @@ class SettingViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
     }
     
     override func addSubview() {
@@ -257,12 +263,21 @@ extension SettingViewController {
     
     private func setAddTarget() {
         changeBadgeButton.addTarget(self, action: #selector(changeBadgeButtonTapped), for: .touchUpInside)
+        termsOfUseButton.addTarget(self, action: #selector(termsOfUseButtonTapped), for: .touchUpInside)
+        privacyPolicyButton.addTarget(self, action: #selector(privacyPolicyButtonTapped), for: .touchUpInside)
     }
     
     @objc private func changeBadgeButtonTapped() {
         showBlurredBackgroundView()
         showChangeBadgeSheet()
         inputSubject.send(.fetchBadgeList)
+    }
+    
+    @objc private func termsOfUseButtonTapped() {
+        coordinator?.navigateToTermsOfUse()
+    }
+    @objc private func privacyPolicyButtonTapped() {
+        coordinator?.navigateToPrivacyPolicy()
     }
     
     private func showChangeBadgeSheet() {

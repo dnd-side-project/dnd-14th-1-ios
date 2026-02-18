@@ -21,6 +21,17 @@ final class SettingCoordinator: Coordinator {
         let mockFetchBadgeListUseCase = MockFetchBadgeListUseCase()
         let settingViewModel = SettingViewModel(fetchUserProfileUseCase: mockFetchUserProfileUseCase, fetchBadgeListUseCase: mockFetchBadgeListUseCase)
         let settingViewController = SettingViewController(viewModel: settingViewModel)
+        settingViewController.coordinator = self
         navigationController.pushViewController(settingViewController, animated: true)
+    }
+    
+    func navigateToTermsOfUse() {
+        let termsOfUseViewController = TermsOfUseViewController()
+        navigationController.pushViewController(termsOfUseViewController, animated: true)
+    }
+    
+    func navigateToPrivacyPolicy() {
+        let privacyPolicyViewController = PrivacyPolicyViewController()
+        navigationController.pushViewController(privacyPolicyViewController, animated: true)
     }
 }
