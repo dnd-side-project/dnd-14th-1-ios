@@ -12,6 +12,7 @@ import SnapKit
 final class ChangeBadgeCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Components
+    private let currentBackgroundCircleView = UIView(frame: CGRect(x: 0, y: 0, width: 90, height: 90))
     private let selectedBackgroundCircleView = UIView(frame: CGRect(x: 0, y: 0, width: 90, height: 90))
     
     private let badgeImageView = UIImageView()
@@ -31,6 +32,7 @@ final class ChangeBadgeCollectionViewCell: UICollectionViewCell {
     // MARK: - Configure
     func configure(badge: Badge) {
         badgeImageView.setImage(url: badge.imageUrl)
+        currentBackgroundCircleView.isHidden = !badge.isCurrent
     }
     
     // MARK: - PrepareForReuse
@@ -43,7 +45,7 @@ final class ChangeBadgeCollectionViewCell: UICollectionViewCell {
 extension ChangeBadgeCollectionViewCell {
     
     private func addSubview() {
-        [badgeImageView].forEach {
+        [currentBackgroundCircleView, badgeImageView].forEach {
             contentView.addSubview($0)
         }
     }
@@ -55,8 +57,16 @@ extension ChangeBadgeCollectionViewCell {
     }
     
     private func setStyle() {
-        selectedBackgroundCircleView.do {
+        currentBackgroundCircleView.do {
             $0.backgroundColor = UIColor(hexCode: "EDEDED")
+            $0.layer.cornerRadius = 45
+            $0.clipsToBounds = true
+        }
+        
+        selectedBackgroundCircleView.do {
+            $0.backgroundColor = UIColor(hexCode: "ECF8FF")
+            $0.layer.borderWidth = 1
+            $0.layer.borderColor = UIColor.primary500.cgColor
             $0.layer.cornerRadius = 45
             $0.clipsToBounds = true
         }

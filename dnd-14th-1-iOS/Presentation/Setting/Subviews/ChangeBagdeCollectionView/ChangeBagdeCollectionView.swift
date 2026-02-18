@@ -44,10 +44,6 @@ final class ChangeBadgeCollectionView: UICollectionView {
     func configure(badges: [Badge]) {
         self.badges = badges
         reloadData()
-        if let row = badges.firstIndex(where: { $0.isCurrent }) {
-            let currnetIndexPath = IndexPath(row: row, section: 0)
-            selectItem(at: currnetIndexPath, animated: false, scrollPosition: .top)
-        }
     }
 }
     
