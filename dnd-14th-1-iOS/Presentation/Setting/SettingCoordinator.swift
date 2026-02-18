@@ -22,9 +22,12 @@ final class SettingCoordinator: Coordinator {
         let defualtLogoutUseCase = DefaultLogoutUseCase()
         let settingViewModel = SettingViewModel(fetchUserProfileUseCase: mockFetchUserProfileUseCase, fetchBadgeListUseCase: mockFetchBadgeListUseCase, logoutUseCase: defualtLogoutUseCase)
         let settingViewController = SettingViewController(viewModel: settingViewModel)
-        settingViewController.coordinator = self
+        settingViewController.delegate = self
         navigationController.pushViewController(settingViewController, animated: true)
     }
+}
+
+extension SettingCoordinator: SettingViewControllerDelegate {
     
     func navigateToTermsOfUse() {
         let termsOfUseViewController = TermsOfUseViewController()

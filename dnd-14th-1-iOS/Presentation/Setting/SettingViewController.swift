@@ -11,10 +11,15 @@ import Then
 import SnapKit
 import Kingfisher
 
+protocol SettingViewControllerDelegate: AnyObject {
+    func navigateToTermsOfUse()
+    func navigateToPrivacyPolicy()
+}
+
 class SettingViewController: BaseViewController {
     
     // MARK: - Properties
-    weak var coordinator: SettingCoordinator?
+    weak var delegate: SettingViewControllerDelegate?
     private let inputSubject = PassthroughSubject<SettingViewModel.Input, Never>()
     private var subscriptions: Set<AnyCancellable> = []
     private let viewModel: SettingViewModel
@@ -275,11 +280,11 @@ extension SettingViewController {
     }
     
     @objc private func termsOfUseButtonTapped() {
-        coordinator?.navigateToTermsOfUse()
+        delegate?.navigateToTermsOfUse()
     }
     
     @objc private func privacyPolicyButtonTapped() {
-        coordinator?.navigateToPrivacyPolicy()
+        delegate?.navigateToPrivacyPolicy()
     }
     
     @objc private func logoutButtonTapped() {
