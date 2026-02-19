@@ -56,7 +56,7 @@ extension DiagnosisCoordinator: PromptLoadingViewControllerDelegate {
             promprtResultViewController.delegate = self
             promprtResultViewController.hidesBottomBarWhenPushed = true
             navigationController.pushViewController(promprtResultViewController, animated: true)
-        case .imporve:
+        case .improve:
             let promptImproveViewController = PromptImprovedViewController()
             promptImproveViewController.hidesBottomBarWhenPushed = true
             navigationController.pushViewController(promptImproveViewController, animated: true)
@@ -69,7 +69,7 @@ extension DiagnosisCoordinator: DiagnosisResultViewControllerDelegate {
         let promptLoadingViewController = PromptLoadingViewController(
             title: "북극곰의 발판을 더 단단하게 다듬는 중...",
             description: "문장을 수정하여 최적화된 프롬프트를 만들어요!",
-            loadingType: .imporve
+            loadingType: .improve
         )
         promptLoadingViewController.hidesBottomBarWhenPushed = true
         promptLoadingViewController.delegate = self

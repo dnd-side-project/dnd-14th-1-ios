@@ -14,7 +14,7 @@ final class PromptLoadingViewController: BaseViewController {
     
     enum PromptLoadingType {
         case diagnose
-        case imporve
+        case improve
     }
     
     private let loadingType: PromptLoadingType
@@ -46,8 +46,8 @@ final class PromptLoadingViewController: BaseViewController {
             switch loadingType {
             case .diagnose:
                 delegate?.didCompleteLoading(.diagnose)
-            case .imporve:
-                delegate?.didCompleteLoading(.imporve)
+            case .improve:
+                delegate?.didCompleteLoading(.improve)
             }
         }
     }
