@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - ViewController Delegate
+
 protocol DiagnosisViewControllerDelegate: AnyObject {
     func didTapPromptButton()
 }
@@ -17,6 +19,11 @@ protocol PromptLoadingViewControllerDelegate: AnyObject {
 
 protocol DiagnosisResultViewControllerDelegate: AnyObject {
     func promptEditButtonTapped()
+    func homeButtonTapped()
+}
+
+protocol PromptImprovedViewControllerDelegate: AnyObject {
+    func promptHomeButtonTapped()
 }
 
 final class DiagnosisCoordinator: Coordinator {
@@ -50,6 +57,8 @@ extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
 
 extension DiagnosisCoordinator: PromptLoadingViewControllerDelegate {
     func didCompleteLoading(_ loadingType: PromptLoadingViewController.PromptLoadingType) {
+        navigationController.popViewController(animated: false)
+        
         switch loadingType {
         case .diagnose:
             let promprtResultViewController = DiagnosisResultViewController()
@@ -58,6 +67,7 @@ extension DiagnosisCoordinator: PromptLoadingViewControllerDelegate {
             navigationController.pushViewController(promprtResultViewController, animated: true)
         case .improve:
             let promptImproveViewController = PromptImprovedViewController()
+            promptImproveViewController.delegate = self
             promptImproveViewController.hidesBottomBarWhenPushed = true
             navigationController.pushViewController(promptImproveViewController, animated: true)
         }
@@ -74,5 +84,15 @@ extension DiagnosisCoordinator: DiagnosisResultViewControllerDelegate {
         promptLoadingViewController.hidesBottomBarWhenPushed = true
         promptLoadingViewController.delegate = self
         navigationController.pushViewController(promptLoadingViewController, animated: true)
+    }
+    
+    func homeButtonTapped() {
+        navigationController.popToRootViewController(animated: true)
+    }
+}
+
+extension DiagnosisCoordinator: PromptImprovedViewControllerDelegate {
+    func promptHomeButtonTapped() {
+        navigationController.popToRootViewController(animated: true)
     }
 }
