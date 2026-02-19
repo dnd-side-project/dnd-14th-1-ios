@@ -94,6 +94,7 @@ class DiagnosisResultViewController: BaseViewController {
         
         homeButton.do {
             $0.setImage(UIImage(resource: .homeButton), for: .normal)
+            $0.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
         }
         
         promptEditButton.do {
@@ -212,5 +213,9 @@ class DiagnosisResultViewController: BaseViewController {
     
     @objc private func promptEditButtonTapped() {
         delegate?.promptEditButtonTapped()
+    }
+    
+    @objc private func homeButtonTapped() {
+        delegate?.homeButtonTapped()
     }
 }

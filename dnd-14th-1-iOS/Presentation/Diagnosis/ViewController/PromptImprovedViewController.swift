@@ -17,6 +17,8 @@ class PromptImprovedViewController: BaseViewController {
         static let itemSpacing = 12
     }
     
+    weak var delegate: PromptImprovedViewControllerDelegate?
+    
     private let imageView = UIImageView()
     private let bubbleImageView = UIImageView()
     private let savedTokenLabel = UILabel()
@@ -69,6 +71,7 @@ class PromptImprovedViewController: BaseViewController {
         
         homeButton.do {
             $0.setImage(UIImage(resource: .homeButton), for: .normal)
+            $0.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
         }
         
         promptCopyButton.do {
@@ -192,6 +195,10 @@ class PromptImprovedViewController: BaseViewController {
 
 extension PromptImprovedViewController {
     @objc private func promptCopyButtonTapped() {}
+    
+    @objc private func homeButtonTapped() {
+        delegate?.promptHomeButtonTapped()
+    }
 }
 
 
