@@ -45,10 +45,12 @@ class TokenStatView: UIVisualEffectView {
         
         titleLabel.do {
             $0.font = .title3_b
+            $0.textColor = .commonWhite
         }
         
         amountLabel.do {
             $0.font = .hakgyoansimDunggeunmisoBold_24
+            $0.textColor = .commonWhite
         }
     }
     
