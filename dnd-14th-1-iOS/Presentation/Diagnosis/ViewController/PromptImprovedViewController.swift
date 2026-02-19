@@ -185,9 +185,7 @@ class PromptImprovedViewController: BaseViewController {
         homeButton.snp.makeConstraints {
             $0.width.equalTo(68)
             $0.height.equalTo(60)
-        }
-        
-        collectionView.backgroundColor = .red
+        }                
     }
 }
 
