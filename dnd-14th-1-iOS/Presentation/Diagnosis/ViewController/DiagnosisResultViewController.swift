@@ -70,6 +70,7 @@ class DiagnosisResultViewController: BaseViewController {
             $0.alwaysBounceHorizontal = true
             $0.alwaysBounceVertical = false
             $0.showsHorizontalScrollIndicator = false
+            $0.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         }
         
         tokenUsageStackView.do {
@@ -125,8 +126,7 @@ class DiagnosisResultViewController: BaseViewController {
         }
         
         tokenUsageScrollView.snp.makeConstraints {
-            $0.leading.equalTo(view).offset(20)
-            $0.trailing.equalTo(view)
+            $0.horizontalEdges.equalToSuperview()
             $0.top.equalTo(meltedGlacierAmountLabel.snp.bottom).offset(28)
             $0.height.equalTo(92)
         }
