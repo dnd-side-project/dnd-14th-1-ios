@@ -170,6 +170,7 @@ class DiagnosisResultViewController: BaseViewController {
         )
         
         // 토큰사용량 스택뷰에 서브뷰 추가
+        
         tokenUsageStackView.addArrangedSubviews(
             TokenStatView(
                 image: UIImage(resource: .tokenUsage),
@@ -178,8 +179,8 @@ class DiagnosisResultViewController: BaseViewController {
             ),
             TokenStatView(
                 image: UIImage(resource: .costUsage),
-                title: "예상 손실",
-                value: "-"
+                title: "예상 손실 비용 ₩ / 회",
+                value: "-₩150"
             ),
         )
         

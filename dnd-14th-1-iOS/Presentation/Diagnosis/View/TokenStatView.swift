@@ -16,11 +16,6 @@ class TokenStatView: UIVisualEffectView {
     private let titleLabel = UILabel()
     private let amountLabel = UILabel()
     
-    
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: 209, height: 92)
-    }
-    
     init(image: UIImage, title: String, value: String) {
         let blurEffect = UIBlurEffect(style: .light)
         super.init(effect: blurEffect)
@@ -55,6 +50,10 @@ class TokenStatView: UIVisualEffectView {
     }
     
     private func setLayout() {
+        snp.makeConstraints {
+            $0.height.equalTo(92)
+        }
+        
         imageView.snp.makeConstraints {
             $0.leading.top.equalToSuperview().inset(20)
             $0.size.equalTo(48)
@@ -63,11 +62,13 @@ class TokenStatView: UIVisualEffectView {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(imageView.snp.top)
             $0.leading.equalTo(imageView.snp.trailing).offset(16)
+            $0.trailing.equalToSuperview().offset(-20)
         }
         
         amountLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.trailing.equalTo(titleLabel.snp.trailing)
+            $0.bottom.equalToSuperview().offset(-20)
         }
     }
     
