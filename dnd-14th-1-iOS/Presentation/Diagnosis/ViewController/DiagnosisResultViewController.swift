@@ -36,8 +36,12 @@ class DiagnosisResultViewController: BaseViewController {
     }
     
     override func setStyle() {
+        let window = UIApplication.shared.keyWindow
+        let bottomPadding = (window?.safeAreaInsets.bottom ?? 0) + 60
+        
         containerScrollView.do {
             $0.showsVerticalScrollIndicator = false
+            $0.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bottomPadding, right: 0)
         }
         
         backgroundView.do {
