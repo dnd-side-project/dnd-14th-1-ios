@@ -1,5 +1,5 @@
 //
-//  PromprtLoadingViewController.swift
+//  PromptLoadingViewController.swift
 //  dnd-14th-1-iOS
 //
 //  Created by a on 2/15/26.
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class PromprtLoadingViewController: BaseViewController {
+final class PromptLoadingViewController: BaseViewController {
     
     enum PromptLoadingType {
         case diagnose

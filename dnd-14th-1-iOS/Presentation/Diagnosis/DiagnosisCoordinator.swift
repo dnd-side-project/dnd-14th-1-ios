@@ -12,7 +12,7 @@ protocol DiagnosisViewControllerDelegate: AnyObject {
 }
 
 protocol PromptLoadingViewControllerDelegate: AnyObject {
-    func didCompleteLoading(_ loadingType: PromprtLoadingViewController.PromptLoadingType)
+    func didCompleteLoading(_ loadingType: PromptLoadingViewController.PromptLoadingType)
 }
 
 protocol DiagnosisResultViewControllerDelegate: AnyObject {
@@ -37,7 +37,7 @@ final class DiagnosisCoordinator: Coordinator {
 
 extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
     func didTapPromptButton() {
-        let promptLoadingViewController = PromprtLoadingViewController(
+        let promptLoadingViewController = PromptLoadingViewController(
             title: "작성하신 프롬프트를 진단하고 있어요...",
             description: "진단 결과에 따라 빙하의 운명이 결정돼요!",
             loadingType: .diagnose
@@ -49,7 +49,7 @@ extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
 }
 
 extension DiagnosisCoordinator: PromptLoadingViewControllerDelegate {
-    func didCompleteLoading(_ loadingType: PromprtLoadingViewController.PromptLoadingType) {
+    func didCompleteLoading(_ loadingType: PromptLoadingViewController.PromptLoadingType) {
         switch loadingType {
         case .diagnose:
             let promprtResultViewController = DiagnosisResultViewController()
@@ -66,7 +66,7 @@ extension DiagnosisCoordinator: PromptLoadingViewControllerDelegate {
 
 extension DiagnosisCoordinator: DiagnosisResultViewControllerDelegate {
     func promptEditButtonTapped() {
-        let promptLoadingViewController = PromprtLoadingViewController(
+        let promptLoadingViewController = PromptLoadingViewController(
             title: "북극곰의 발판을 더 단단하게 다듬는 중...",
             description: "문장을 수정하여 최적화된 프롬프트를 만들어요!",
             loadingType: .imporve
