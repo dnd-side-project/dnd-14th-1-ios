@@ -18,7 +18,7 @@ class BottomSheetPresenter: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setGesture()        
+        setGesture()
     }
     
     private func setGesture() {

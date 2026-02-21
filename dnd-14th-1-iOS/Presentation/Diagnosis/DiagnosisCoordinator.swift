@@ -57,19 +57,23 @@ extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
 
 extension DiagnosisCoordinator: PromptLoadingViewControllerDelegate {
     func didCompleteLoading(_ loadingType: PromptLoadingViewController.PromptLoadingType) {
-        navigationController.popViewController(animated: false)
+        var viewControllers = navigationController.viewControllers
+        viewControllers.removeLast()
         
         switch loadingType {
         case .diagnose:
             let promprtResultViewController = DiagnosisResultViewController()
             promprtResultViewController.delegate = self
             promprtResultViewController.hidesBottomBarWhenPushed = true
-            navigationController.pushViewController(promprtResultViewController, animated: true)
+            
+            viewControllers.append(promprtResultViewController)
+            navigationController.setViewControllers(viewControllers, animated: true)
         case .improve:
             let promptImproveViewController = PromptImprovedViewController()
             promptImproveViewController.delegate = self
             promptImproveViewController.hidesBottomBarWhenPushed = true
-            navigationController.pushViewController(promptImproveViewController, animated: true)
+            viewControllers.append(promptImproveViewController)
+            navigationController.setViewControllers(viewControllers, animated: true)
         }
     }
 }
