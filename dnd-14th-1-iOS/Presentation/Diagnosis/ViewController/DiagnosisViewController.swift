@@ -44,6 +44,7 @@ final class DiagnosisViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        dismissKeyboardWhenTapAround()
     }
     
     private func bind() {
