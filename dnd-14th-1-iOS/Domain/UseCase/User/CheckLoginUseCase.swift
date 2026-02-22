@@ -15,7 +15,7 @@ protocol CheckLoginUseCase {
 final class MockCheckLoginUseCase: CheckLoginUseCase {
     
     func execute() -> AnyPublisher<Bool, Error> {
-        return Just(true)
+        return Just(false)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
