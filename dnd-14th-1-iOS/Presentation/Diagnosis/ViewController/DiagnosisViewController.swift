@@ -23,6 +23,8 @@ final class DiagnosisViewController: BaseViewController {
     private let savedGlacierUnitLabel = UILabel()
     private let glacierImageView = UIImageView()
     private let promptButton = AppButton(style: .primary, size: .large, title: "프롬프트 진단받기", image: nil)
+    private let appleIntelligenceButton = UIButton()
+    private let errorLabel = UILabel()
     
     private let viewModel: DiagnosisViewModel
     private let inputSubject = PassthroughSubject<DiagnosisViewModel.Input, Never>()
@@ -44,6 +46,12 @@ final class DiagnosisViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        addTargets()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        inputSubject.send(.viewDidAppear)
     }
     
     private func bind() {
@@ -55,16 +63,9 @@ final class DiagnosisViewController: BaseViewController {
             case .presentPromptSheet:
                 showPromptSheet()
             case let .isPromptSheetPresented(isPresented):
-                UIView.transition(
-                    with: promptTitle,
-                    duration: 0.25,
-                    options: .transitionCrossDissolve,
-                    animations: {
-                        self.promptTitle.text = isPresented
-                        ? "프롬프트 내용을 입력하시면\n진단을 도와드릴게요!"
-                        : "지금 프롬프트를 진단하고\n최적화된 한 줄을 만들어요"
-                    }
-                )
+                updatePromptTitle(isPresented)
+            case let .appleIntelligenceAuthorized(isGranted):
+                checkAppleIntelligence(isGranted)
             }
         }.store(in: &subscriptions)
     }
@@ -99,7 +100,9 @@ final class DiagnosisViewController: BaseViewController {
             savedGlacierAmount,
             savedGlacierUnitLabel,
             glacierImageView,
-            promptButton
+            promptButton,
+            appleIntelligenceButton,
+            errorLabel
         )
     }
     
@@ -109,9 +112,13 @@ final class DiagnosisViewController: BaseViewController {
             $0.horizontalEdges.equalToSuperview().inset(20)
         }
         
+        appleIntelligenceButton.snp.makeConstraints {
+            $0.edges.equalTo(promptButton)
+        }
+        
         glacierImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(promptButton.snp.top).offset(-24)
+            $0.bottom.equalTo(promptButton.snp.top).offset(-40)
         }
         
         promptTitle.snp.makeConstraints {
@@ -137,6 +144,11 @@ final class DiagnosisViewController: BaseViewController {
         savedGlacierAmount.snp.makeConstraints {
             $0.trailing.equalTo(savedGlacierUnitLabel.snp.leading).offset(-4)
             $0.centerY.equalTo(savedGlacierAmountLabel.snp.centerY)
+        }
+        
+        errorLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(appleIntelligenceButton.snp.top).offset(-8)
         }
     }
     
@@ -174,13 +186,26 @@ final class DiagnosisViewController: BaseViewController {
             $0.textColor = .gray700
         }
         
-        glacierImageView.do {
-            $0.image = UIImage(resource: .glacier5).resized(to: CGSize(width: 301, height: 342))
+        promptButton.do {
+            $0.isHidden = true
         }
         
-        promptButton.do {
-            $0.addTarget(self, action: #selector(promptButtonTapped), for: .touchUpInside)
+        appleIntelligenceButton.do {
+            $0.isHidden = true
+            $0.setImage(UIImage(resource: .appleIntelligenceButton), for: .normal)
         }
+        
+        errorLabel.do {
+            $0.isHidden = true
+            $0.text = "Apple Intelligence가 비활성화로 서비스 이용이 불가합니다"
+            $0.font = .label2_m
+            $0.textColor = .negative
+        }
+    }
+    
+    private func addTargets() {
+        promptButton.addTarget(self, action: #selector(promptButtonTapped), for: .touchUpInside)
+        appleIntelligenceButton.addTarget(self, action: #selector(intelligenceButtonTapped), for: .touchUpInside)
     }
 }
 
@@ -189,5 +214,39 @@ final class DiagnosisViewController: BaseViewController {
 extension DiagnosisViewController {
     @objc private func promptButtonTapped() {
         inputSubject.send(.promptButtonTapped)
+    }
+    
+    @objc private func intelligenceButtonTapped() {
+        
+    }
+}
+
+// MARK: - Update View
+
+extension DiagnosisViewController {
+    private func updatePromptTitle(_ isPresented: Bool) {
+        UIView.transition(
+            with: promptTitle,
+            duration: 0.25,
+            options: .transitionCrossDissolve,
+            animations: {
+                self.promptTitle.text = isPresented
+                ? "프롬프트 내용을 입력하시면\n진단을 도와드릴게요!"
+                : "지금 프롬프트를 진단하고\n최적화된 한 줄을 만들어요"
+            }
+        )
+    }
+    
+    private func checkAppleIntelligence(_ isGranted: Bool) {
+        glacierImageView.image = isGranted ? .glacier5 : .glacierUnavailable
+        if isGranted {
+            promptButton.isHidden = false
+            appleIntelligenceButton.isHidden = true
+            errorLabel.isHidden = true
+        } else {
+            promptButton.isHidden = true
+            appleIntelligenceButton.isHidden = false
+            errorLabel.isHidden = false
+        }
     }
 }
