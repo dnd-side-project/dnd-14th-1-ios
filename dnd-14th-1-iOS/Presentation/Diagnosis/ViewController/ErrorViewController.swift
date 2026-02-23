@@ -18,6 +18,8 @@ final class ErrorViewController: BaseViewController {
     private let errorSubText = UILabel()
     private let retryButton = AppButton(size: .large, title: "다시 입력하기", image: nil)
     
+    var onRetry: (() -> Void)?
+    
     init(title: String, description: String) {
         errorText.text = title
         errorSubText.text = description
@@ -81,5 +83,13 @@ final class ErrorViewController: BaseViewController {
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
+    }
+    
+    private func addTargets() {
+        retryButton.addTarget(self, action: #selector(retryButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func retryButtonTapped() {
+        onRetry?()
     }
 }
