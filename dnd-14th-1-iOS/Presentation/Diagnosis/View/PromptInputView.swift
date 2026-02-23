@@ -133,6 +133,7 @@ class PromptInputView: UIView {
         
         submitButton.do {
             $0.setImage(UIImage(resource: .button), for: .normal)
+            $0.isEnabled = false
         }
         
         textInputButton.do {
