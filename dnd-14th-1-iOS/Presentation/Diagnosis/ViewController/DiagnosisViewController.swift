@@ -44,6 +44,7 @@ final class DiagnosisViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        addTargets()
         dismissKeyboardWhenTapAround()
     }
     
@@ -82,7 +83,7 @@ final class DiagnosisViewController: BaseViewController {
         bottomSheetPresenter.onDissmiss = {
             self.inputSubject.send(.promptSheetDismissed)
         }
-        
+
         bottomSheetPresenter.present(
             on: self,
             contentView: promptInputView,
@@ -178,10 +179,10 @@ final class DiagnosisViewController: BaseViewController {
         glacierImageView.do {
             $0.image = UIImage(resource: .glacier5).resized(to: CGSize(width: 301, height: 342))
         }
-        
-        promptButton.do {
-            $0.addTarget(self, action: #selector(promptButtonTapped), for: .touchUpInside)
-        }
+    }
+    
+    private func addTargets() {
+        promptButton.addTarget(self, action: #selector(promptButtonTapped), for: .touchUpInside)
     }
 }
 
