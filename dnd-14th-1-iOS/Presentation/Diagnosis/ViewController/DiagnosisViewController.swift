@@ -217,7 +217,24 @@ extension DiagnosisViewController {
     }
     
     @objc private func intelligenceButtonTapped() {
+        let settingAppleIntelligenceView = SettingAppleIntelligenceView()
+        let bottomSheetViewController = UIViewController()
+        bottomSheetViewController.view = settingAppleIntelligenceView
         
+        settingAppleIntelligenceView.onDismiss = { [weak self] in
+            self?.dismiss(animated: true)
+        }
+        
+        settingAppleIntelligenceView.onSetting = { [weak self] in
+            self?.openAppSetting()
+        }
+        
+        if let sheet = bottomSheetViewController.sheetPresentationController {
+            sheet.detents = [.custom { _ in 470 }]
+            sheet.preferredCornerRadius = 56
+        }
+        
+        present(bottomSheetViewController, animated: true)
     }
 }
 
@@ -247,6 +264,22 @@ extension DiagnosisViewController {
             promptButton.isHidden = true
             appleIntelligenceButton.isHidden = false
             errorLabel.isHidden = false
+        }
+    }
+}
+
+// MARK: - Hepler
+
+extension DiagnosisViewController {
+    func openAppSetting() {
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                
+            })
         }
     }
 }
