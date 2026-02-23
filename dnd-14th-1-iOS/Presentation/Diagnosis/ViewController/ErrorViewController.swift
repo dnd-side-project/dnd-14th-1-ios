@@ -1,8 +1,8 @@
 //
-//  PromptLoadingViewController.swift
+//  ErrorViewController.swift
 //  dnd-14th-1-iOS
 //
-//  Created by a on 2/15/26.
+//  Created by a on 2/23/26.
 //
 
 import UIKit
@@ -11,24 +11,16 @@ import SnapKit
 import Then
 import Lottie
 
-final class PromptLoadingViewController: BaseViewController {
+final class ErrorViewController: BaseViewController {
+        
+    private let animationView = LottieAnimationView(name: "lottie_failerror")
+    private let errorText = UILabel()
+    private let errorSubText = UILabel()
+    private let retryButton = AppButton(size: .large, title: "다시 입력하기", image: nil)
     
-    enum PromptLoadingType {
-        case diagnose
-        case improve
-    }
-    
-    private let loadingType: PromptLoadingType
-    private let animationView = LottieAnimationView(name: "loadinganimat")
-    private let loadingText = UILabel()
-    private let loadingSubText = UILabel()
-    
-    weak var delegate: PromptLoadingViewControllerDelegate?
-    
-    init(title: String, description: String, loadingType: PromptLoadingType) {
-        loadingText.text = title
-        loadingSubText.text = description
-        self.loadingType = loadingType
+    init(title: String, description: String) {
+        errorText.text = title
+        errorSubText.text = description
         super.init()
     }
     
@@ -38,43 +30,31 @@ final class PromptLoadingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startTask()
     }
     
-    private func startTask() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { [weak self] in
-            guard let self else { return }
-            switch loadingType {
-            case .diagnose:
-                delegate?.didCompleteLoading(.diagnose)
-            case .improve:
-                delegate?.didCompleteLoading(.improve)
-            }
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animationView.play()
     }
     
     override func addSubview() {
         view.addSubviews(
             animationView,
-            loadingText,
-            loadingSubText
+            errorText,
+            errorSubText,
+            retryButton
         )
     }
     
     override func setStyle() {
         view.backgroundColor = .gray50
         
-        animationView.do {
-            $0.loopMode = .loop
-            $0.play()
-        }
-        
-        loadingText.do {
+        errorText.do {
             $0.font = .title1_b
             $0.textColor = .gray800
         }
         
-        loadingSubText.do {
+        errorSubText.do {
             $0.font = .title3_r
             $0.textColor = .gray500
         }
@@ -86,14 +66,20 @@ final class PromptLoadingViewController: BaseViewController {
             $0.top.equalToSuperview().offset(237)
         }
         
-        loadingText.snp.makeConstraints {
+        errorText.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(animationView.snp.bottom).offset(24)
         }
         
-        loadingSubText.snp.makeConstraints {
+        errorSubText.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(loadingText.snp.bottom).offset(12)
+            $0.top.equalTo(errorText.snp.bottom).offset(12)
+        }
+        
+        retryButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }

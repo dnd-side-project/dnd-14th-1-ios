@@ -25,7 +25,7 @@ class DiagnosisResultViewController: BaseViewController {
     private let meltedGlacierUnitLabel = UILabel()
     private let tokenUsageScrollView = UIScrollView()
     private let tokenUsageStackView = UIStackView()
-    private let glacierView = LottieAnimationView(name: "glacier2")
+    private let glacierView = LottieAnimationView(name: "glacier5")
     private let promptView = PromptView()
     private let buttonStackView = UIStackView()
     private let promptEditButton = AppButton(size: .large, title: "프롬프트 수정하기", image: UIImage(resource: .pencilSimpleLine))
@@ -142,7 +142,7 @@ class DiagnosisResultViewController: BaseViewController {
         
         glacierView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(tokenUsageScrollView.snp.bottom).offset(22)
+            $0.top.equalTo(tokenUsageScrollView.snp.bottom).offset(22)            
         }
         
         // contentLayoutGuide를 설정해야 ScrollView가 스크롤할 영역을 알수있음
