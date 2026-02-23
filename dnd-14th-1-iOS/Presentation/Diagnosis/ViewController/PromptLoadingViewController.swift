@@ -1,5 +1,5 @@
 //
-//  PromprtLoadingViewController.swift
+//  PromptLoadingViewController.swift
 //  dnd-14th-1-iOS
 //
 //  Created by a on 2/15/26.
@@ -10,22 +10,45 @@ import UIKit
 import SnapKit
 import Then
 
-final class PromprtLoadingViewController: BaseViewController {
+final class PromptLoadingViewController: BaseViewController {
     
+    enum PromptLoadingType {
+        case diagnose
+        case improve
+    }
+    
+    private let loadingType: PromptLoadingType
     private let loadingView = UIImageView()
     private let loadingText = UILabel()
     private let loadingSubText = UILabel()
     
     weak var delegate: PromptLoadingViewControllerDelegate?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        startPromptDiagnosis()
+    init(title: String, description: String, loadingType: PromptLoadingType) {
+        loadingText.text = title
+        loadingSubText.text = description
+        self.loadingType = loadingType
+        super.init()
     }
     
-    private func startPromptDiagnosis() {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        startTask()
+    }
+    
+    private func startTask() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { [weak self] in
-            self?.delegate?.didCompleteDiagnosis()
+            guard let self else { return }
+            switch loadingType {
+            case .diagnose:
+                delegate?.didCompleteLoading(.diagnose)
+            case .improve:
+                delegate?.didCompleteLoading(.improve)
+            }
         }
     }
     
@@ -41,13 +64,11 @@ final class PromprtLoadingViewController: BaseViewController {
         }
         
         loadingText.do {
-            $0.text = "작성하신 프롬프트를 진단하고 있어요..."
             $0.font = .title1_b
             $0.textColor = .gray800
         }
         
         loadingSubText.do {
-            $0.text = "진단 결과에 따라 빙하의 운명이 결정돼요!"
             $0.font = .title3_r
             $0.textColor = .gray500
         }
