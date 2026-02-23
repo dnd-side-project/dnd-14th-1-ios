@@ -114,16 +114,19 @@ class DiagnosisResultViewController: BaseViewController {
         promptEfficiencyLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(containerScrollView.contentLayoutGuide).offset(20)
+            $0.height.equalTo(31)
         }
         
         promptStatusLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(promptEfficiencyLabel.snp.bottom).offset(8)
+            $0.height.equalTo(24)
         }
         
         meltedGlacierAmountLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(promptStatusLabel.snp.bottom).offset(8)
+            $0.height.equalTo(32)
         }
         
         tokenUsageScrollView.snp.makeConstraints {
