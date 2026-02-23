@@ -25,6 +25,9 @@ final class TabBarCoordinator: Coordinator {
         let myEcoNavigationController = makeNavigationController(tab: .eco)
         let diagnosisNavigationController = makeNavigationController(tab: .diagnosis)
         let settingNavigationController = makeNavigationController(tab: .settings)
+        myEcoNavigationController.isNavigationBarHidden = false
+        diagnosisNavigationController.isNavigationBarHidden = false
+        settingNavigationController.isNavigationBarHidden = false
         
         // Coordinator 생성
         let myEcoCoordinator = MyEcoCoordinator(navigationController: myEcoNavigationController)

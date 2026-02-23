@@ -15,7 +15,7 @@ final class AppCoordinator: Coordinator {
     
     init(navigationController: UINavigationController, isLoggedIn: Bool) {
         self.navigationController = navigationController
-        self.isLoggedIn = isLoggedIn
+        self.isLoggedIn = isLoggedIn        
     }
     
     func start() {
