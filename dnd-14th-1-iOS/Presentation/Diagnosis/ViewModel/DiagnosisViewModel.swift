@@ -6,13 +6,15 @@
 //
 
 import Combine
+import FoundationModels
 
 final class DiagnosisViewModel: ViewModelType {
     
     // MARK: - Input
     
     enum Input {
-        case viewWillAppear
+        case viewDidAppear
+        case viewDidLoad
         case promptButtonTapped
         case promptSheetDismissed
     }
@@ -22,6 +24,7 @@ final class DiagnosisViewModel: ViewModelType {
     enum Output {
         case presentPromptSheet
         case isPromptSheetPresented(Bool)
+        case appleIntelligenceAuthorized(Bool)
     }
     
     // MARK: - Properties
@@ -29,8 +32,10 @@ final class DiagnosisViewModel: ViewModelType {
     private let outputSubject = PassthroughSubject<Output, Never>()
     private let savedGlacierAmount = CurrentValueSubject<Double, Never>(0.0)
     private let isPromptSheetPresented = CurrentValueSubject<Bool, Never>(false)
+    private let isAppleIntelligenceAvailable = CurrentValueSubject<Bool, Never>(false)
     
     private var subscriptions: Set<AnyCancellable> = []
+    private var model = SystemLanguageModel.default
     
     init() {
         bind()
@@ -40,7 +45,9 @@ final class DiagnosisViewModel: ViewModelType {
         input.sink { [weak self] input in
             guard let self else { return }
             switch input {
-            case .viewWillAppear:
+            case .viewDidAppear:
+                checkAppleIntelligencePermission()
+            case .viewDidLoad:
                 fetchSavedGlacierAmount()
             case .promptButtonTapped:
                 isPromptSheetPresented.send(true)
@@ -54,6 +61,16 @@ final class DiagnosisViewModel: ViewModelType {
     
     private func fetchSavedGlacierAmount() {
         self.savedGlacierAmount.send(0.0)
+    }
+    
+    private func checkAppleIntelligencePermission() {
+        switch model.availability {
+        case .available:
+            outputSubject.send(.appleIntelligenceAuthorized(false))
+        default:
+            outputSubject.send(.appleIntelligenceAuthorized(false))
+            
+        }
     }
     
     private func bind() {
