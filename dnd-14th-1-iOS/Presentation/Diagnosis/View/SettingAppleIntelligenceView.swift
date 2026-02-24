@@ -72,7 +72,7 @@ final class SettingAppleIntelligenceView: UIView {
             $0.font = .body2_r
             $0.numberOfLines = 0
             $0.textColor = .gray800
-            $0.asFont(targetString: "설정-Apple Intelligence 활성화를 통해", font: .body2_b)
+            $0.asFont(targetString: "설정-Apple Intelligence 활성화", font: .body2_b)
         }
         
         dismissButton.do {
