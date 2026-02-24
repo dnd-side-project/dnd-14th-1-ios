@@ -47,6 +47,7 @@ final class DiagnosisViewController: BaseViewController {
         super.viewDidLoad()
         bind()
         addTargets()
+        dismissKeyboardWhenTapAround()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -82,7 +83,7 @@ final class DiagnosisViewController: BaseViewController {
         bottomSheetPresenter.onDissmiss = {
             self.inputSubject.send(.promptSheetDismissed)
         }
-        
+
         bottomSheetPresenter.present(
             on: self,
             contentView: promptInputView,

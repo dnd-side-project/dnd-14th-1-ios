@@ -27,6 +27,7 @@ class PromptInputView: UIView {
         addSubView()
         setLayout()
         setStyle()
+        addTargets()
         setDelegate()
     }
     
@@ -39,12 +40,22 @@ class PromptInputView: UIView {
     }
     
     private func addSubView() {
-        containerView.addSubviews(textView, submitButton)
-        addSubviews(topIndicator, buttonStackView, containerView)
+        containerView
+            .addSubviews(
+                textView,
+                submitButton
+            )
+        addSubviews(
+            topIndicator,
+            buttonStackView,
+            containerView
+        )
         
-        [textInputButton, urlLinkButton].forEach {
-            buttonStackView.addArrangedSubview($0)
-        }
+        buttonStackView
+            .addArrangedSubviews(
+                textInputButton,
+                urlLinkButton
+            )
     }
     
     private func setLayout() {
@@ -72,6 +83,22 @@ class PromptInputView: UIView {
             $0.top.horizontalEdges.equalToSuperview().inset(24)
             $0.bottom.equalTo(submitButton.snp.top).offset(10)
         }
+    }
+    
+    private func addTargets() {
+        textInputButton.addTarget(self, action: #selector(promptTextButtonTapped), for: .touchUpInside)
+        urlLinkButton.addTarget(self, action: #selector(urlLinkButtonTapped), for: .touchUpInside)
+        submitButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func promptTextButtonTapped() {
+        textInputButton.isSelected = true
+        urlLinkButton.isSelected = false
+    }
+    
+    @objc private func urlLinkButtonTapped() {
+        textInputButton.isSelected = false
+        urlLinkButton.isSelected = true
     }
     
     private func setStyle() {
@@ -106,7 +133,11 @@ class PromptInputView: UIView {
         
         submitButton.do {
             $0.setImage(UIImage(resource: .button), for: .normal)
-            $0.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
+            $0.isEnabled = false
+        }
+        
+        textInputButton.do {
+            $0.isSelected = true
         }
     }
     

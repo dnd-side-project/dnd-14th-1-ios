@@ -32,12 +32,12 @@ final class DiagnosisCoordinator: Coordinator {
     private let navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+        self.navigationController = navigationController        
     }
     
     func start() {
         let diagnosisViewController = DiagnosisViewController(viewModel: DiagnosisViewModel())
-        diagnosisViewController.delegate = self
+        diagnosisViewController.delegate = self        
         navigationController.pushViewController(diagnosisViewController, animated: true)
     }
 }
@@ -51,6 +51,7 @@ extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
         )
         promptLoadingViewController.hidesBottomBarWhenPushed = true
         promptLoadingViewController.delegate = self
+        
         navigationController.pushViewController(promptLoadingViewController, animated: true)
     }
 }
@@ -65,6 +66,7 @@ extension DiagnosisCoordinator: PromptLoadingViewControllerDelegate {
             let promprtResultViewController = DiagnosisResultViewController()
             promprtResultViewController.delegate = self
             promprtResultViewController.hidesBottomBarWhenPushed = true
+            promprtResultViewController.backButtonColor = .commonWhite
             
             viewControllers.append(promprtResultViewController)
             navigationController.setViewControllers(viewControllers, animated: true)

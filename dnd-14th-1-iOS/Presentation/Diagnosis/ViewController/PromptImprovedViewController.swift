@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import Lottie
 
 class PromptImprovedViewController: BaseViewController {
     
@@ -19,7 +20,7 @@ class PromptImprovedViewController: BaseViewController {
     
     weak var delegate: PromptImprovedViewControllerDelegate?
     
-    private let imageView = UIImageView()
+    private let animationView = LottieAnimationView(name: "lottie_finisheditor")
     private let bubbleImageView = UIImageView()
     private let savedTokenLabel = UILabel()
     private let titleLabel = UILabel()
@@ -42,8 +43,8 @@ class PromptImprovedViewController: BaseViewController {
     override func setStyle() {
         view.backgroundColor = .white
         
-        imageView.do {
-            $0.image = UIImage(resource: .improveResult)
+        animationView.do {
+            $0.play()            
         }
         
         bubbleImageView.do {
@@ -140,7 +141,7 @@ class PromptImprovedViewController: BaseViewController {
         )
         
         view.addSubviews(
-            imageView,
+            animationView,
             bubbleImageView,
             titleLabel,
             subtitleLabel,
@@ -150,7 +151,7 @@ class PromptImprovedViewController: BaseViewController {
     }
     
     override func setLayout() {
-        imageView.snp.makeConstraints {
+        animationView.snp.makeConstraints {
             $0.top.centerX.equalTo(view.safeAreaLayoutGuide)
         }
         
@@ -160,13 +161,13 @@ class PromptImprovedViewController: BaseViewController {
         }
         
         bubbleImageView.snp.makeConstraints {
-            $0.top.equalTo(imageView)
-            $0.leading.equalTo(imageView.snp.trailing)
+            $0.top.equalTo(animationView)
+            $0.leading.equalTo(animationView.snp.trailing)
         }
         
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(imageView.snp.bottom)
+            $0.top.equalTo(animationView.snp.bottom)
         }
         
         subtitleLabel.snp.makeConstraints {
