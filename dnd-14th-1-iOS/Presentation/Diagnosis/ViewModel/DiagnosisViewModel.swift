@@ -14,7 +14,7 @@ final class DiagnosisViewModel: ViewModelType {
     
     enum DiagnosisState {
         case loading
-        case success
+        case success(PromptDiagnosis)
         case failure
     }
     
@@ -94,11 +94,16 @@ final class DiagnosisViewModel: ViewModelType {
             .store(in: &subscriptions)
     }
     
-    private func promptDiagnosis(with promptInput: PromptInput) {        
+    private func promptDiagnosis(with promptInput: PromptInput) {
         outputSubject.send(.diagnosisStateChanged(.loading))
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            self.outputSubject.send(.diagnosisStateChanged(.success))
+        Task {
+            do {
+                let result = try await promptDiagnosisUseCase.excute(promptInput: promptInput)
+                outputSubject.send(.diagnosisStateChanged(.success(result)))
+            } catch {
+                outputSubject.send(.diagnosisStateChanged(.failure))
+            }
         }
     }
 }

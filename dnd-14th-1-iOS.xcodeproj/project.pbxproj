@@ -178,6 +178,11 @@
 			path = Diagnosis;
 			sourceTree = "<group>";
 		};
+		00F794E42F4E0377005CCC92 /* Diagnosis */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Diagnosis;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,6 +450,7 @@
 		7C61D3092F210BBF005FAC3A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				00F794E42F4E0377005CCC92 /* Diagnosis */,
 				7C0107322F439E940005AC1D /* User */,
 				00113F172F43005300D4CC37 /* Onboarding */,
 			);
@@ -610,6 +616,7 @@
 				0027D9DD2F40546C000DE576 /* Coordinator */,
 				00D1E8222F3B880900D86F23 /* Eco */,
 				00D1E8232F3B881100D86F23 /* Diagnosis */,
+				00F794E42F4E0377005CCC92 /* Diagnosis */,
 			);
 			name = "dnd-14th-1-iOS";
 			packageProductDependencies = (
