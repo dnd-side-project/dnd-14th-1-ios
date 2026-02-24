@@ -11,6 +11,8 @@ class BaseViewController: UIViewController {
     
     // MARK: - Initilizing
     
+    var backButtonColor: UIColor = .black
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -25,6 +27,7 @@ class BaseViewController: UIViewController {
         setLayout()
         setDelegate()
         setStyle()
+        setNavigationBarStyle()
     }
     
     // addSubview
@@ -35,4 +38,14 @@ class BaseViewController: UIViewController {
     func setDelegate() {}
     // set style
     func setStyle() {}
+    
+    func setNavigationBarStyle() {
+        let backButton = UIImage(resource: .backButton).withAlignmentRectInsets(UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0))
+    
+        navigationController?.navigationBar.backIndicatorImage = backButton
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = backButton
+                
+        navigationItem.backButtonDisplayMode = .minimal
+        navigationController?.navigationBar.tintColor = backButtonColor
+    }
 }
