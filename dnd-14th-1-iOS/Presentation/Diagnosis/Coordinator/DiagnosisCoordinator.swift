@@ -17,7 +17,9 @@ final class DiagnosisCoordinator: Coordinator {
     }
     
     func start() {
-        let diagnosisViewController = DiagnosisViewController(viewModel: DiagnosisViewModel())
+        let promptDiagnosisUseCase = DefaultPromptDiagnosisUseCase()
+        let diagnosisViewModel = DiagnosisViewModel(promptDiagnosisUseCase: promptDiagnosisUseCase)
+        let diagnosisViewController = DiagnosisViewController(viewModel: diagnosisViewModel)
         diagnosisViewController.delegate = self
         navigationController.pushViewController(diagnosisViewController, animated: true)
     }

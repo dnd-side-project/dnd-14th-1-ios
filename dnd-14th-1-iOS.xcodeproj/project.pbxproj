@@ -31,6 +31,7 @@
 		0036FE1A2F4DBA0400200357 /* glacier3.json in Resources */ = {isa = PBXBuildFile; fileRef = 0036FE0F2F4DBA0400200357 /* glacier3.json */; };
 		0036FE1B2F4DBA0400200357 /* lottie_finisheditor.json in Resources */ = {isa = PBXBuildFile; fileRef = 0036FE142F4DBA0400200357 /* lottie_finisheditor.json */; };
 		0036FE1C2F4DBA0400200357 /* glacier2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0036FE0E2F4DBA0400200357 /* glacier2.json */; };
+		0036FEBD2F4DE7A800200357 /* PromptDiagnosisUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036FEBC2F4DE79900200357 /* PromptDiagnosisUseCase.swift */; };
 		00D1E81A2F3B85DF00D86F23 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D1E8192F3B85D700D86F23 /* TabBarItem.swift */; };
 		00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F47ED22F2DD155006FBD2A /* AppConfig.swift */; };
 		00F480182F2DD2DE006FBD2A /* Config-Prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 00F480172F2DD2DE006FBD2A /* Config-Prod.xcconfig */; };
@@ -108,6 +109,7 @@
 		0036FE122F4DBA0400200357 /* loadinganimat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = loadinganimat.json; sourceTree = "<group>"; };
 		0036FE132F4DBA0400200357 /* lottie_failerror.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lottie_failerror.json; sourceTree = "<group>"; };
 		0036FE142F4DBA0400200357 /* lottie_finisheditor.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lottie_finisheditor.json; sourceTree = "<group>"; };
+		0036FEBC2F4DE79900200357 /* PromptDiagnosisUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptDiagnosisUseCase.swift; sourceTree = "<group>"; };
 		00D1E8192F3B85D700D86F23 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		00F47E022F2DD0D3006FBD2A /* Config-Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Dev.xcconfig"; sourceTree = "<group>"; };
 		00F47ED22F2DD155006FBD2A /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
@@ -248,6 +250,14 @@
 				0036FE142F4DBA0400200357 /* lottie_finisheditor.json */,
 			);
 			path = Lottie;
+			sourceTree = "<group>";
+		};
+		0036FEBB2F4DE79000200357 /* Diagnosis */ = {
+			isa = PBXGroup;
+			children = (
+				0036FEBC2F4DE79900200357 /* PromptDiagnosisUseCase.swift */,
+			);
+			path = Diagnosis;
 			sourceTree = "<group>";
 		};
 		00F480192F2DD436006FBD2A /* Global */ = {
@@ -444,6 +454,7 @@
 		7C61D30A2F210BC5005FAC3A /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				0036FEBB2F4DE79000200357 /* Diagnosis */,
 				7C9582AC2F356601004F8523 /* User */,
 			);
 			path = UseCase;
@@ -725,6 +736,7 @@
 				7C2E31FC2F38DDA6006F08FE /* UIImage+.swift in Sources */,
 				00113F2F2F43012700D4CC37 /* OnboardingCoordinator.swift in Sources */,
 				7C8AABB42F437FBD0011E4CF /* UIViewController+.swift in Sources */,
+				0036FEBD2F4DE7A800200357 /* PromptDiagnosisUseCase.swift in Sources */,
 				7C01073D2F43B4C30005AC1D /* ChangeBadgeView.swift in Sources */,
 				7C01074F2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift in Sources */,
 				7C9582AE2F356608004F8523 /* CheckLoginUseCase.swift in Sources */,

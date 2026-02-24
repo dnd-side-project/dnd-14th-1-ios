@@ -47,7 +47,10 @@ final class DiagnosisViewModel: ViewModelType {
     private var subscriptions: Set<AnyCancellable> = []
     private var model = SystemLanguageModel.default
     
-    init() {
+    private let promptDiagnosisUseCase: PromptDiagnosisUseCase
+    
+    init (promptDiagnosisUseCase: PromptDiagnosisUseCase) {
+        self.promptDiagnosisUseCase = promptDiagnosisUseCase
         bind()
     }
     
@@ -91,7 +94,7 @@ final class DiagnosisViewModel: ViewModelType {
             .store(in: &subscriptions)
     }
     
-    private func promptDiagnosis(with promptInput: PromptInput) {
+    private func promptDiagnosis(with promptInput: PromptInput) {        
         outputSubject.send(.diagnosisStateChanged(.loading))
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
