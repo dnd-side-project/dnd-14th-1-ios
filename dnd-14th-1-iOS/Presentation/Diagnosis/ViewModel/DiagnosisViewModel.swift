@@ -66,7 +66,7 @@ final class DiagnosisViewModel: ViewModelType {
     private func checkAppleIntelligencePermission() {
         switch model.availability {
         case .available:
-            outputSubject.send(.appleIntelligenceAuthorized(false))
+            outputSubject.send(.appleIntelligenceAuthorized(true))
         default:
             outputSubject.send(.appleIntelligenceAuthorized(false))
             

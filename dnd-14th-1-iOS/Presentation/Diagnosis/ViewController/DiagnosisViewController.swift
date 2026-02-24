@@ -76,8 +76,9 @@ final class DiagnosisViewController: BaseViewController {
         let bottomSheetPresenter = BottomSheetPresenter()
         let promptInputView = PromptInputView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: sheetHeight))
         
-        promptInputView.buttonTapped = { [weak self] text in
+        promptInputView.onSubmit = { [weak self] (text, inputType) in
             self?.delegate?.didTapPromptButton()
+            bottomSheetPresenter.dismissSheet(animated: false)
         }
         
         bottomSheetPresenter.onDissmiss = {
