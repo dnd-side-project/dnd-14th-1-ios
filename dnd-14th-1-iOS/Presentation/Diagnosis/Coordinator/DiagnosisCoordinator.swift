@@ -7,40 +7,23 @@
 
 import UIKit
 
-// MARK: - ViewController Delegate
-
-protocol DiagnosisViewControllerDelegate: AnyObject {
-    func didTapPromptButton()
-}
-
-protocol PromptLoadingViewControllerDelegate: AnyObject {
-    func didCompleteLoading(_ loadingType: PromptLoadingViewController.PromptLoadingType)
-}
-
-protocol DiagnosisResultViewControllerDelegate: AnyObject {
-    func promptEditButtonTapped()
-    func homeButtonTapped()
-}
-
-protocol PromptImprovedViewControllerDelegate: AnyObject {
-    func promptHomeButtonTapped()
-}
-
 final class DiagnosisCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     
     private let navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
-        self.navigationController = navigationController        
+        self.navigationController = navigationController
     }
     
     func start() {
         let diagnosisViewController = DiagnosisViewController(viewModel: DiagnosisViewModel())
-        diagnosisViewController.delegate = self        
+        diagnosisViewController.delegate = self
         navigationController.pushViewController(diagnosisViewController, animated: true)
     }
 }
+
+// MARK: - DiagnosisDelegate
 
 extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
     func didTapPromptButton() {
@@ -54,7 +37,48 @@ extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
         
         navigationController.pushViewController(promptLoadingViewController, animated: true)
     }
+    
+    func failDiagnosis() {
+        var viewControllers = navigationController.viewControllers
+        viewControllers.removeLast()
+        
+        let errorViewController = ErrorViewController(
+            title: "진단하는 과정에서 오류가 발생했어요",
+            description: "프롬프트를 다시 한번 확인해 주시겠어요?"
+        )
+        
+        errorViewController.hidesBottomBarWhenPushed = true
+        viewControllers.append(errorViewController)
+        navigationController.setViewControllers(viewControllers, animated: true)
+    }
+    
+    func startDiagnosis() {
+        let promptLoadingViewController = PromptLoadingViewController(
+            title: "작성하신 프롬프트를 진단하고 있어요...",
+            description: "진단 결과에 따라 빙하의 운명이 결정돼요!",
+            loadingType: .diagnose
+        )
+        promptLoadingViewController.hidesBottomBarWhenPushed = true
+        promptLoadingViewController.delegate = self
+        
+        navigationController.pushViewController(promptLoadingViewController, animated: true)
+    }
+    
+    func completeDiagnosis() {
+        var viewControllers = navigationController.viewControllers
+        viewControllers.removeLast()
+        
+        let promprtResultViewController = DiagnosisResultViewController()
+        promprtResultViewController.delegate = self
+        promprtResultViewController.hidesBottomBarWhenPushed = true
+        promprtResultViewController.backButtonColor = .commonWhite
+        
+        viewControllers.append(promprtResultViewController)
+        navigationController.setViewControllers(viewControllers, animated: true)
+    }
 }
+
+// MARK: - DiagnosisLoadingDelegate
 
 extension DiagnosisCoordinator: PromptLoadingViewControllerDelegate {
     func didCompleteLoading(_ loadingType: PromptLoadingViewController.PromptLoadingType) {
@@ -79,6 +103,8 @@ extension DiagnosisCoordinator: PromptLoadingViewControllerDelegate {
         }
     }
 }
+
+// MARK: - DiagnosisResultDelegate
 
 extension DiagnosisCoordinator: DiagnosisResultViewControllerDelegate {
     func promptEditButtonTapped() {

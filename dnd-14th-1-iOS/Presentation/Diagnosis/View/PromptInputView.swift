@@ -16,6 +16,11 @@ enum PromptInputType {
     case url
 }
 
+struct PromptInput {
+    let type: PromptInputType
+    let value: String
+}
+
 class PromptInputView: UIView {
     private let topIndicator = UIView()
     private let textInputButton = AppChipButton(title: "텍스트 입력")
@@ -30,7 +35,7 @@ class PromptInputView: UIView {
     
     private var subscriptions: Set<AnyCancellable> = []
     
-    var onSubmit: ((String, PromptInputType) -> Void)?
+    var onSubmit: ((PromptInput) -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -186,8 +191,8 @@ class PromptInputView: UIView {
         }
     }
     
-    @objc private func submitButtonTapped() {
-        onSubmit?(textView.text, promptInputType.value)
+    @objc private func submitButtonTapped() {        
+        onSubmit?(.init(type: promptInputType.value, value: textView.text))
     }
 }
 

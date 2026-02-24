@@ -7,8 +7,16 @@
 
 import Combine
 import FoundationModels
+import Foundation
 
 final class DiagnosisViewModel: ViewModelType {
+    // MARK: - State
+    
+    enum DiagnosisState {
+        case loading
+        case success
+        case failure
+    }
     
     // MARK: - Input
     
@@ -17,6 +25,7 @@ final class DiagnosisViewModel: ViewModelType {
         case viewDidLoad
         case promptButtonTapped
         case promptSheetDismissed
+        case diagnosisButtonTapped(PromptInput)
     }
     
     // MARK: - Output
@@ -25,6 +34,7 @@ final class DiagnosisViewModel: ViewModelType {
         case presentPromptSheet
         case isPromptSheetPresented(Bool)
         case appleIntelligenceAuthorized(Bool)
+        case diagnosisStateChanged(DiagnosisState)
     }
     
     // MARK: - Properties
@@ -54,6 +64,8 @@ final class DiagnosisViewModel: ViewModelType {
                 outputSubject.send(.presentPromptSheet)
             case .promptSheetDismissed:
                 isPromptSheetPresented.send(false)
+            case let .diagnosisButtonTapped(promptInput):
+                promptDiagnosis(with: promptInput)
             }
         }.store(in: &subscriptions)
         return outputSubject.eraseToAnyPublisher()
@@ -69,7 +81,6 @@ final class DiagnosisViewModel: ViewModelType {
             outputSubject.send(.appleIntelligenceAuthorized(true))
         default:
             outputSubject.send(.appleIntelligenceAuthorized(false))
-            
         }
     }
     
@@ -78,5 +89,13 @@ final class DiagnosisViewModel: ViewModelType {
             .map { Output.isPromptSheetPresented($0) }
             .subscribe(outputSubject)
             .store(in: &subscriptions)
+    }
+    
+    private func promptDiagnosis(with promptInput: PromptInput) {
+        outputSubject.send(.diagnosisStateChanged(.loading))
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            self.outputSubject.send(.diagnosisStateChanged(.success))
+        }
     }
 }
