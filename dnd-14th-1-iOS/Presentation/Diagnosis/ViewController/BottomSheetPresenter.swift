@@ -97,11 +97,19 @@ class BottomSheetPresenter: UIViewController {
         }
     }
     
-    func dismissSheet() {
-        UIView.animate(withDuration: 0.3) {
-            self.view.frame.origin.y = self.parentHeight
+    func dismissSheet(animated: Bool = true) {
+        if animated {
+            UIView.animate(withDuration: 0.3, animations: { [weak self] in
+                guard let self else { return }
+                view.frame.origin.y = parentHeight
+            }, completion: { [weak self] _ in
+                guard let self else { return }
+                onDissmiss?()
+            })
+        } else {
+            view.frame.origin.y = parentHeight
+            onDissmiss?()
         }
-        onDissmiss?()
     }
 }
 
