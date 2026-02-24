@@ -11,78 +11,18 @@ import SnapKit
 
 final class LoginViewController: BaseViewController {
     
-    // MARK: - UI Components
+    // MARK: - Properties
     weak var delegate: LoginViewControllerDelegate?
     
+    // MARK: - UI Components
     private let contentWrapperViewLayoutGuide = UILayoutGuide()
-    
     private let contentWrapperView = UIView()
-    
     private let logoImageView = UIImageView(image: UIImage.logotype2)
-    
-    private let subtitleLabel = UILabel().then {
-        $0.attributedText = NSAttributedString(
-            string: "가벼운 프롬프트, 단단해지는 빙하",
-            attributes: [
-                .font : UIFont.body2_b,
-                .foregroundColor : UIColor.gray800
-            ]
-        )
-        $0.textAlignment = .center
-    }
-    
-    private let glacierLogoImageView = UIImageView().then {
-        $0.image = UIImage.glacierLogo
-    }
-    
-    private let googleLoginButton = UIButton().then {
-        var configuration = UIButton.Configuration.plain()
-        configuration.image = UIImage.google
-        configuration.attributedTitle = AttributedString("Google 계정으로 로그인", attributes: AttributeContainer([
-            .font : UIFont.label1_m,
-            .foregroundColor : UIColor.gray900
-        ]))
-        configuration.imagePadding = 8
-        configuration.imagePlacement = .leading
-        configuration.background.backgroundColor = UIColor.gray50
-        configuration.background.cornerRadius = 30
-        $0.configuration = configuration
-        $0.layer.cornerRadius = 30
-        $0.layer.borderColor = UIColor.gray400.cgColor
-        $0.layer.borderWidth = 1
-        $0.clipsToBounds = true
-    }
-    
-    private let appleLoginButton = UIButton().then {
-        var configuration = UIButton.Configuration.plain()
-        configuration.image = UIImage.apple
-        configuration.attributedTitle = AttributedString("Apple로 로그인", attributes: AttributeContainer([
-            .font : UIFont.label1_m,
-            .foregroundColor : UIColor.gray50
-        ]))
-        configuration.imagePadding = 8
-        configuration.imagePlacement = .leading
-        configuration.background.backgroundColor = UIColor.gray900
-        configuration.background.cornerRadius = 30
-        $0.configuration = configuration
-        $0.clipsToBounds = true
-    }
-    
-    private let agreementLabel = UILabel().then {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.5
-        paragraphStyle.alignment = .center
-        
-        $0.attributedText = NSAttributedString(
-            string: "로그인하면 서비스 이용약관과 개인정보 처리방침에\n동의한 것으로 간주됩니다",
-            attributes: [
-                .font : UIFont.font(.pretendardRegular, ofSize: 10),
-                .foregroundColor : UIColor.gray600,
-                .paragraphStyle : paragraphStyle
-            ])
-        
-        $0.numberOfLines = 2
-    }
+    private let subtitleLabel = UILabel()
+    private let glacierLogoImageView = UIImageView()
+    private let googleLoginButton = UIButton()
+    private let appleLoginButton = UIButton()
+    private let agreementLabel = UILabel()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -110,6 +50,72 @@ final class LoginViewController: BaseViewController {
         gradientLayer.mask = mask
         
         logoImageView.layer.addSublayer(gradientLayer)
+    }
+    
+    override func setStyle() {
+        subtitleLabel.do {
+            $0.attributedText = NSAttributedString(
+                string: "가벼운 프롬프트, 단단해지는 빙하",
+                attributes: [
+                    .font : UIFont.body2_b,
+                    .foregroundColor : UIColor.gray800
+                ]
+            )
+            $0.textAlignment = .center
+        }
+        
+        glacierLogoImageView.do {
+            $0.image = UIImage.glacierLogo
+        }
+        
+        googleLoginButton.do {
+            var configuration = UIButton.Configuration.plain()
+            configuration.image = UIImage.google
+            configuration.attributedTitle = AttributedString("Google 계정으로 로그인", attributes: AttributeContainer([
+                .font : UIFont.label1_m,
+                .foregroundColor : UIColor.gray900
+            ]))
+            configuration.imagePadding = 8
+            configuration.imagePlacement = .leading
+            configuration.background.backgroundColor = UIColor.gray50
+            configuration.background.cornerRadius = 30
+            $0.configuration = configuration
+            $0.layer.cornerRadius = 30
+            $0.layer.borderColor = UIColor.gray400.cgColor
+            $0.layer.borderWidth = 1
+            $0.clipsToBounds = true
+        }
+        
+        appleLoginButton.do {
+            var configuration = UIButton.Configuration.plain()
+            configuration.image = UIImage.apple
+            configuration.attributedTitle = AttributedString("Apple로 로그인", attributes: AttributeContainer([
+                .font : UIFont.label1_m,
+                .foregroundColor : UIColor.gray50
+            ]))
+            configuration.imagePadding = 8
+            configuration.imagePlacement = .leading
+            configuration.background.backgroundColor = UIColor.gray900
+            configuration.background.cornerRadius = 30
+            $0.configuration = configuration
+            $0.clipsToBounds = true
+        }
+        
+        agreementLabel.do {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineHeightMultiple = 1.5
+            paragraphStyle.alignment = .center
+            
+            $0.attributedText = NSAttributedString(
+                string: "로그인하면 서비스 이용약관과 개인정보 처리방침에\n동의한 것으로 간주됩니다",
+                attributes: [
+                    .font : UIFont.font(.pretendardRegular, ofSize: 10),
+                    .foregroundColor : UIColor.gray600,
+                    .paragraphStyle : paragraphStyle
+                ])
+            
+            $0.numberOfLines = 2
+        }
     }
     
     override func addSubview() {
