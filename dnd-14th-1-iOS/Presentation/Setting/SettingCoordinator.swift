@@ -17,7 +17,25 @@ final class SettingCoordinator: Coordinator {
     }
     
     func start() {
-        let settingViewController = SettingViewController()
+        let mockFetchUserProfileUseCase = MockFetchUserProfileUseCase()
+        let mockFetchBadgeListUseCase = MockFetchBadgeListUseCase()
+        let defaultLogoutUseCase = DefaultLogoutUseCase()
+        let settingViewModel = SettingViewModel(fetchUserProfileUseCase: mockFetchUserProfileUseCase, fetchBadgeListUseCase: mockFetchBadgeListUseCase, logoutUseCase: defaultLogoutUseCase)
+        let settingViewController = SettingViewController(viewModel: settingViewModel)
+        settingViewController.delegate = self
         navigationController.pushViewController(settingViewController, animated: true)
+    }
+}
+
+extension SettingCoordinator: SettingViewControllerDelegate {
+    
+    func navigateToTermsOfUse() {
+        let termsOfUseViewController = TermsOfUseViewController()
+        navigationController.pushViewController(termsOfUseViewController, animated: true)
+    }
+    
+    func navigateToPrivacyPolicy() {
+        let privacyPolicyViewController = PrivacyPolicyViewController()
+        navigationController.pushViewController(privacyPolicyViewController, animated: true)
     }
 }

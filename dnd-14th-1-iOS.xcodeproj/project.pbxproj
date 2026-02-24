@@ -24,6 +24,7 @@
 		0027D9E92F405700000DE576 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0027D9E72F4056FD000DE576 /* LoginCoordinator.swift */; };
 		0027D9F62F408E7C000DE576 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0027D9F52F408E79000DE576 /* TabBarView.swift */; };
 		00D1E81A2F3B85DF00D86F23 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D1E8192F3B85D700D86F23 /* TabBarItem.swift */; };
+		00D446F42F4C79D00046F53B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 00D446F32F4C79D00046F53B /* Lottie */; };
 		00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F47ED22F2DD155006FBD2A /* AppConfig.swift */; };
 		00F480182F2DD2DE006FBD2A /* Config-Prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 00F480172F2DD2DE006FBD2A /* Config-Prod.xcconfig */; };
 		00F480252F2DD48D006FBD2A /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00F480212F2DD48D006FBD2A /* Pretendard-Regular.otf */; };
@@ -42,6 +43,22 @@
 		00F482492F2DDC69006FBD2A /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F482482F2DDC66006FBD2A /* UIView+.swift */; };
 		00F4824C2F2DDCE2006FBD2A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F4824B2F2DDCD9006FBD2A /* BaseViewController.swift */; };
 		00F4824E2F2DDE0C006FBD2A /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F4824D2F2DDE09006FBD2A /* CALayer+.swift */; };
+		7C01072A2F439D3E0005AC1D /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107262F439D3E0005AC1D /* SettingCoordinator.swift */; };
+		7C01072B2F439D3E0005AC1D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107272F439D3E0005AC1D /* SettingViewController.swift */; };
+		7C01072C2F439D3E0005AC1D /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107282F439D3E0005AC1D /* SettingViewModel.swift */; };
+		7C0107312F439E800005AC1D /* FetchUserProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107302F439E800005AC1D /* FetchUserProfileUseCase.swift */; };
+		7C0107342F439E9A0005AC1D /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107332F439E9A0005AC1D /* UserProfile.swift */; };
+		7C0107372F43A92B0005AC1D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7C0107362F43A92B0005AC1D /* Kingfisher */; };
+		7C0107392F43A9B40005AC1D /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107382F43A9B40005AC1D /* UIImageView+.swift */; };
+		7C01073D2F43B4C30005AC1D /* ChangeBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C01073C2F43B4C30005AC1D /* ChangeBadgeView.swift */; };
+		7C01073F2F43B6870005AC1D /* ChangeBadgeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C01073E2F43B6870005AC1D /* ChangeBadgeCollectionView.swift */; };
+		7C0107422F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107412F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift */; };
+		7C0107462F43B6F80005AC1D /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107452F43B6F80005AC1D /* Badge.swift */; };
+		7C0107482F44D3EE0005AC1D /* FetchBadgeListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107472F44D3EE0005AC1D /* FetchBadgeListUseCase.swift */; };
+		7C01074A2F45FB5B0005AC1D /* CustomVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107492F45FB5B0005AC1D /* CustomVisualEffectView.swift */; };
+		7C01074D2F45FE3F0005AC1D /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C01074C2F45FE3F0005AC1D /* TermsOfUseViewController.swift */; };
+		7C01074F2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C01074E2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift */; };
+		7C0107512F46060B0005AC1D /* LogoutUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107502F46060B0005AC1D /* LogoutUseCase.swift */; };
 		7C2A3F102F38ACCB00D102EE /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A3F0F2F38ACCB00D102EE /* AppButton.swift */; };
 		7C2E31FC2F38DDA6006F08FE /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E31FB2F38DDA6006F08FE /* UIImage+.swift */; };
 		7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */; };
@@ -97,6 +114,21 @@
 		00F482482F2DDC66006FBD2A /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		00F4824B2F2DDCD9006FBD2A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		00F4824D2F2DDE09006FBD2A /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
+		7C0107262F439D3E0005AC1D /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
+		7C0107272F439D3E0005AC1D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		7C0107282F439D3E0005AC1D /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		7C0107302F439E800005AC1D /* FetchUserProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserProfileUseCase.swift; sourceTree = "<group>"; };
+		7C0107332F439E9A0005AC1D /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		7C0107382F43A9B40005AC1D /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		7C01073C2F43B4C30005AC1D /* ChangeBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBadgeView.swift; sourceTree = "<group>"; };
+		7C01073E2F43B6870005AC1D /* ChangeBadgeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBadgeCollectionView.swift; sourceTree = "<group>"; };
+		7C0107412F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBadgeCollectionViewCell.swift; sourceTree = "<group>"; };
+		7C0107452F43B6F80005AC1D /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		7C0107472F44D3EE0005AC1D /* FetchBadgeListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchBadgeListUseCase.swift; sourceTree = "<group>"; };
+		7C0107492F45FB5B0005AC1D /* CustomVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVisualEffectView.swift; sourceTree = "<group>"; };
+		7C01074C2F45FE3F0005AC1D /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
+		7C01074E2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		7C0107502F46060B0005AC1D /* LogoutUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUseCase.swift; sourceTree = "<group>"; };
 		7C2A3F0F2F38ACCB00D102EE /* AppButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
 		7C2E31FB2F38DDA6006F08FE /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		7C61D2C72F2109B3005FAC3A /* dnd-14th-1-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dnd-14th-1-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,9 +162,9 @@
 			path = Diagnosis;
 			sourceTree = "<group>";
 		};
-		00D1E8242F3B881D00D86F23 /* Setting */ = {
+		00D446F52F4C79FE0046F53B /* Lottie */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Setting;
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -142,6 +174,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00D446F42F4C79D00046F53B /* Lottie in Frameworks */,
+				7C0107372F43A92B0005AC1D /* Kingfisher in Frameworks */,
 				7CCB1E602F2DB2C900472669 /* SnapKit in Frameworks */,
 				7CCB1E3C2F29B09C00472669 /* Alamofire in Frameworks */,
 				7CCB1E5D2F2DB19600472669 /* Then in Frameworks */,
@@ -196,6 +230,7 @@
 		00F480192F2DD436006FBD2A /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				7C01074B2F45FB990005AC1D /* View */,
 				00113F7A2F430A0700D4CC37 /* Protocol */,
 				0027D9DD2F40546C000DE576 /* Coordinator */,
 				7C2A3F0E2F38AC9700D102EE /* DesignSystem */,
@@ -219,6 +254,7 @@
 				00F481712F2DD571006FBD2A /* UIFont+.swift */,
 				7C2E31FB2F38DDA6006F08FE /* UIImage+.swift */,
 				7C8AABB32F437FBD0011E4CF /* UIViewController+.swift */,
+				7C0107382F43A9B40005AC1D /* UIImageView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -247,6 +283,54 @@
 				00F4824B2F2DDCD9006FBD2A /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		7C0107292F439D3E0005AC1D /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				7C01072F2F439D4E0005AC1D /* Subviews */,
+				7C0107262F439D3E0005AC1D /* SettingCoordinator.swift */,
+				7C0107272F439D3E0005AC1D /* SettingViewController.swift */,
+				7C0107282F439D3E0005AC1D /* SettingViewModel.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		7C01072F2F439D4E0005AC1D /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				7C0107402F43B68B0005AC1D /* ChangeBagdeCollectionView */,
+				7C01073C2F43B4C30005AC1D /* ChangeBadgeView.swift */,
+				7C01074C2F45FE3F0005AC1D /* TermsOfUseViewController.swift */,
+				7C01074E2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		7C0107322F439E940005AC1D /* User */ = {
+			isa = PBXGroup;
+			children = (
+				7C0107332F439E9A0005AC1D /* UserProfile.swift */,
+				7C0107452F43B6F80005AC1D /* Badge.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		7C0107402F43B68B0005AC1D /* ChangeBagdeCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				7C01073E2F43B6870005AC1D /* ChangeBadgeCollectionView.swift */,
+				7C0107412F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift */,
+			);
+			path = ChangeBagdeCollectionView;
+			sourceTree = "<group>";
+		};
+		7C01074B2F45FB990005AC1D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7C0107492F45FB5B0005AC1D /* CustomVisualEffectView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		7C2A3F0E2F38AC9700D102EE /* DesignSystem */ = {
@@ -315,7 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				00113F1C2F43008C00D4CC37 /* Splash */,
-				00D1E8242F3B881D00D86F23 /* Setting */,
+				7C0107292F439D3E0005AC1D /* Setting */,
 				00D1E8232F3B881100D86F23 /* Diagnosis */,
 				00D1E8222F3B880900D86F23 /* Eco */,
 				7C9582A72F3562C7004F8523 /* Login */,
@@ -328,6 +412,7 @@
 		7C61D3092F210BBF005FAC3A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7C0107322F439E940005AC1D /* User */,
 				00113F172F43005300D4CC37 /* Onboarding */,
 			);
 			path = Model;
@@ -375,6 +460,7 @@
 		7C61D30F2F210C29005FAC3A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00D446F52F4C79FE0046F53B /* Lottie */,
 				00F480242F2DD48D006FBD2A /* Font */,
 				7C61D2F62F210AAC005FAC3A /* Assets.xcassets */,
 			);
@@ -394,8 +480,8 @@
 		7C9582A12F356147004F8523 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				00113F2E2F43012200D4CC37 /* OnboardingCoordinator.swift */,
 				00113F122F42FFFD00D4CC37 /* Subviews */,
+				00113F2E2F43012200D4CC37 /* OnboardingCoordinator.swift */,
 				7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */,
 			);
 			path = Onboarding;
@@ -424,6 +510,9 @@
 			isa = PBXGroup;
 			children = (
 				7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */,
+				7C0107302F439E800005AC1D /* FetchUserProfileUseCase.swift */,
+				7C0107472F44D3EE0005AC1D /* FetchBadgeListUseCase.swift */,
+				7C0107502F46060B0005AC1D /* LogoutUseCase.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -487,13 +576,15 @@
 				0027D9DD2F40546C000DE576 /* Coordinator */,
 				00D1E8222F3B880900D86F23 /* Eco */,
 				00D1E8232F3B881100D86F23 /* Diagnosis */,
-				00D1E8242F3B881D00D86F23 /* Setting */,
+				00D446F52F4C79FE0046F53B /* Lottie */,
 			);
 			name = "dnd-14th-1-iOS";
 			packageProductDependencies = (
 				7CCB1E3B2F29B09C00472669 /* Alamofire */,
 				7CCB1E5C2F2DB19600472669 /* Then */,
 				7CCB1E5F2F2DB2C900472669 /* SnapKit */,
+				7C0107362F43A92B0005AC1D /* Kingfisher */,
+				00D446F32F4C79D00046F53B /* Lottie */,
 			);
 			productName = "dnd-14th-1-iOS";
 			productReference = 7C61D2C72F2109B3005FAC3A /* dnd-14th-1-iOS.app */;
@@ -527,6 +618,8 @@
 				7CCB1E3A2F29B09C00472669 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				7CCB1E5B2F2DB19600472669 /* XCRemoteSwiftPackageReference "Then" */,
 				7CCB1E5E2F2DB2C900472669 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				7C0107352F43A92B0005AC1D /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				00D446F22F4C79D00046F53B /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7C61D2C82F2109B3005FAC3A /* Products */;
@@ -568,15 +661,19 @@
 			files = (
 				7C9582A92F3562D0004F8523 /* LoginViewController.swift in Sources */,
 				00113F182F43005300D4CC37 /* OnboardingItem.swift in Sources */,
+				7C01074A2F45FB5B0005AC1D /* CustomVisualEffectView.swift in Sources */,
+				7C0107342F439E9A0005AC1D /* UserProfile.swift in Sources */,
 				00113F1A2F43007200D4CC37 /* UICollectionViewCell+.swift in Sources */,
 				00113F7B2F430A0700D4CC37 /* ViewModelType.swift in Sources */,
 				0027D9E92F405700000DE576 /* LoginCoordinator.swift in Sources */,
 				00113F7D2F430A1400D4CC37 /* AppChipButton.swift in Sources */,
 				0027D9E32F4054B5000DE576 /* AppCoordinator.swift in Sources */,
+				7C01074D2F45FE3F0005AC1D /* TermsOfUseViewController.swift in Sources */,
 				7CCB1E412F29B5ED00472669 /* Router.swift in Sources */,
 				00113F1D2F43008C00D4CC37 /* SplashViewController.swift in Sources */,
 				7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */,
 				00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */,
+				7C0107312F439E800005AC1D /* FetchUserProfileUseCase.swift in Sources */,
 				00F481722F2DD574006FBD2A /* UIFont+.swift in Sources */,
 				00F482432F2DDBA1006FBD2A /* UITextField+.swift in Sources */,
 				7C2A3F102F38ACCB00D102EE /* AppButton.swift in Sources */,
@@ -584,22 +681,33 @@
 				00F4824C2F2DDCE2006FBD2A /* BaseViewController.swift in Sources */,
 				7C61D2FF2F210AAC005FAC3A /* SceneDelegate.swift in Sources */,
 				7C9582A42F3561DC004F8523 /* OnboardingViewController.swift in Sources */,
+				7C01072A2F439D3E0005AC1D /* SettingCoordinator.swift in Sources */,
+				7C0107482F44D3EE0005AC1D /* FetchBadgeListUseCase.swift in Sources */,
+				7C0107422F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift in Sources */,
+				7C01072B2F439D3E0005AC1D /* SettingViewController.swift in Sources */,
+				7C01072C2F439D3E0005AC1D /* SettingViewModel.swift in Sources */,
 				7CCB1E622F2DB56600472669 /* MockAPI.swift in Sources */,
 				0027D9F62F408E7C000DE576 /* TabBarView.swift in Sources */,
 				00113F132F42FFFD00D4CC37 /* OnboardingCollectionView.swift in Sources */,
+				7C0107512F46060B0005AC1D /* LogoutUseCase.swift in Sources */,
 				00113F142F42FFFD00D4CC37 /* OnBoardingPageControl.swift in Sources */,
 				00113F152F42FFFD00D4CC37 /* OnboardingCollectionViewCell.swift in Sources */,
 				7CCB1E672F2DB72A00472669 /* MockRequest.swift in Sources */,
 				7C2E31FC2F38DDA6006F08FE /* UIImage+.swift in Sources */,
 				00113F2F2F43012700D4CC37 /* OnboardingCoordinator.swift in Sources */,
 				7C8AABB42F437FBD0011E4CF /* UIViewController+.swift in Sources */,
+				7C01073D2F43B4C30005AC1D /* ChangeBadgeView.swift in Sources */,
+				7C01074F2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift in Sources */,
 				7C9582AE2F356608004F8523 /* CheckLoginUseCase.swift in Sources */,
 				00113F0D2F42FFA000D4CC37 /* UIColor+.swift in Sources */,
+				7C0107462F43B6F80005AC1D /* Badge.swift in Sources */,
 				0027D9E62F4055E7000DE576 /* TabBarCoordinator.swift in Sources */,
+				7C0107392F43A9B40005AC1D /* UIImageView+.swift in Sources */,
 				7CCB1E722F2DD20300472669 /* KeychainWorker.swift in Sources */,
 				00F482492F2DDC69006FBD2A /* UIView+.swift in Sources */,
 				00D1E81A2F3B85DF00D86F23 /* TabBarItem.swift in Sources */,
 				00F482472F2DDC4F006FBD2A /* UIStackView+.swift in Sources */,
+				7C01073F2F43B6870005AC1D /* ChangeBadgeCollectionView.swift in Sources */,
 				00F4824E2F2DDE0C006FBD2A /* CALayer+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -828,6 +936,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		00D446F22F4C79D00046F53B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.6.0;
+			};
+		};
+		7C0107352F43A92B0005AC1D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.2;
+			};
+		};
 		7CCB1E3A2F29B09C00472669 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -855,6 +979,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		00D446F32F4C79D00046F53B /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00D446F22F4C79D00046F53B /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		7C0107362F43A92B0005AC1D /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C0107352F43A92B0005AC1D /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		7CCB1E3B2F29B09C00472669 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7CCB1E3A2F29B09C00472669 /* XCRemoteSwiftPackageReference "Alamofire" */;

@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import Lottie
 
 final class PromptLoadingViewController: BaseViewController {
     
@@ -18,7 +19,7 @@ final class PromptLoadingViewController: BaseViewController {
     }
     
     private let loadingType: PromptLoadingType
-    private let loadingView = UIImageView()
+    private let animationView = LottieAnimationView(name: "loadinganimat")
     private let loadingText = UILabel()
     private let loadingSubText = UILabel()
     
@@ -53,14 +54,19 @@ final class PromptLoadingViewController: BaseViewController {
     }
     
     override func addSubview() {
-        view.addSubviews(loadingView, loadingText, loadingSubText)
+        view.addSubviews(
+            animationView,
+            loadingText,
+            loadingSubText
+        )
     }
     
     override func setStyle() {
         view.backgroundColor = .gray50
         
-        loadingView.do {
-            $0.image = UIImage(resource: .loading)
+        animationView.do {
+            $0.loopMode = .loop
+            $0.play()
         }
         
         loadingText.do {
@@ -75,14 +81,14 @@ final class PromptLoadingViewController: BaseViewController {
     }
     
     override func setLayout() {
-        loadingView.snp.makeConstraints {
+        animationView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(237)
         }
         
         loadingText.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(loadingView.snp.bottom).offset(24)
+            $0.top.equalTo(animationView.snp.bottom).offset(24)
         }
         
         loadingSubText.snp.makeConstraints {

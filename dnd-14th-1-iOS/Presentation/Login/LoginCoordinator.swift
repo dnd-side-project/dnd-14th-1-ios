@@ -28,7 +28,7 @@ final class LoginCoordinator: Coordinator {
     func start() {
         let loginViewController = LoginViewController()
         loginViewController.delegate = self
-        navigationController.pushViewController(loginViewController, animated: true)
+        navigationController.setViewControllers([loginViewController], animated: true)
     }
 }
 

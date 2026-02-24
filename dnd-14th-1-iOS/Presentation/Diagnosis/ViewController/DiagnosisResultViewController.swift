@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import Lottie
 
 class DiagnosisResultViewController: BaseViewController {
     
@@ -24,7 +25,7 @@ class DiagnosisResultViewController: BaseViewController {
     private let meltedGlacierUnitLabel = UILabel()
     private let tokenUsageScrollView = UIScrollView()
     private let tokenUsageStackView = UIStackView()
-    private let glacierImageView = UIImageView()
+    private let glacierView = LottieAnimationView(name: "glacier5")
     private let promptView = PromptView()
     private let buttonStackView = UIStackView()
     private let promptEditButton = AppButton(size: .large, title: "프롬프트 수정하기", image: UIImage(resource: .pencilSimpleLine))
@@ -33,6 +34,11 @@ class DiagnosisResultViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        glacierView.play()
     }
     
     override func setStyle() {
@@ -78,10 +84,6 @@ class DiagnosisResultViewController: BaseViewController {
             $0.axis = .horizontal
         }
         
-        glacierImageView.do {
-            $0.image = UIImage(resource: .glacier3)
-        }
-        
         meltedGlacierUnitLabel.do {
             $0.font = .hakgyoansimDunggeunmisoRegular_24
             $0.textColor = .negativeDarkbg
@@ -109,6 +111,7 @@ class DiagnosisResultViewController: BaseViewController {
         containerScrollView.snp.makeConstraints {
             $0.horizontalEdges.bottom.equalToSuperview()
             $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(view)
         }
         
         promptEfficiencyLabel.snp.makeConstraints {
@@ -140,15 +143,15 @@ class DiagnosisResultViewController: BaseViewController {
             $0.height.equalTo(tokenUsageScrollView)
         }
         
-        glacierImageView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.top.equalTo(tokenUsageScrollView.snp.bottom).offset(22)
+        glacierView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(tokenUsageScrollView.snp.bottom).offset(22)            
         }
         
         // contentLayoutGuide를 설정해야 ScrollView가 스크롤할 영역을 알수있음
         promptView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.top.equalTo(glacierImageView.snp.bottom).offset(17)
+            $0.top.equalTo(glacierView.snp.bottom).offset(17)
             $0.bottom.equalTo(containerScrollView.contentLayoutGuide)
             $0.width.equalTo(containerScrollView.frameLayoutGuide).offset(-40)
         }
@@ -209,7 +212,7 @@ class DiagnosisResultViewController: BaseViewController {
             meltedGlacierAmountLabel,
             meltedGlacierUnitLabel,
             tokenUsageScrollView,
-            glacierImageView,
+            glacierView,
             promptView
         )
     }

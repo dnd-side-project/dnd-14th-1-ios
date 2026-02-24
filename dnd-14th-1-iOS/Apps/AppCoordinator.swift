@@ -15,10 +15,13 @@ final class AppCoordinator: Coordinator {
     
     init(navigationController: UINavigationController, isLoggedIn: Bool) {
         self.navigationController = navigationController
-        self.isLoggedIn = isLoggedIn        
+        self.isLoggedIn = isLoggedIn
+        NotificationCenter.default.addObserver(self, selector: #selector(start), name: NSNotification.Name("DidLogout"), object: nil)
     }
     
-    func start() {
+    @objc func start() {
+        childCoordinators = []
+        
         if isLoggedIn {
             showTabBarCoordinator()
         } else {
