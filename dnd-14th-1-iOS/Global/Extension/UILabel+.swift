@@ -45,4 +45,12 @@ extension UILabel {
             self.attributedText = mutableAttrString
         }
     }
+    
+    func asFont(targetString: String, font: UIFont) {
+        let fullText = text ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+        let range = (fullText as NSString).range(of: targetString)
+        attributedString.addAttribute(.font, value: font, range: range)
+        attributedText = attributedString
+    }
 }
