@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import Combine
 
 import SnapKit
 import Then
+
+enum PromptInputType {
+    case text
+    case url
+}
 
 class PromptInputView: UIView {
     private let topIndicator = UIView()
@@ -19,8 +25,12 @@ class PromptInputView: UIView {
     private let textView = UITextView()
     private let submitButton = UIButton()
     private let placeholderText = "AI에게 묻고싶은 프롬프트 내용을 직접 타이핑하여 진단 결과를 확인해보세요."
+    private let placeholderUrl = "복사한 프롬프트 URL을 붙여넣어 진단 결과를 확인해보세요."
+    private let promptInputType = CurrentValueSubject<PromptInputType, Never>(.text)
     
-    var buttonTapped: ((String) -> Void)?
+    private var subscriptions: Set<AnyCancellable> = []
+    
+    var onSubmit: ((String, PromptInputType) -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,10 +39,25 @@ class PromptInputView: UIView {
         setStyle()
         addTargets()
         setDelegate()
+        bind()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func bind() {
+        promptInputType
+            .sink { [weak self] promptType in
+                switch promptType {
+                case .text:
+                    self?.setTextInputButton()
+                case .url:
+                    self?.setUrlLinkButton()
+                }
+                self?.setPlaceholder()
+            }
+            .store(in: &subscriptions)
     }
     
     private func setDelegate() {
@@ -91,14 +116,22 @@ class PromptInputView: UIView {
         submitButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
     }
     
-    @objc private func promptTextButtonTapped() {
+    private func setTextInputButton () {
         textInputButton.isSelected = true
         urlLinkButton.isSelected = false
     }
     
-    @objc private func urlLinkButtonTapped() {
+    private func setUrlLinkButton () {
         textInputButton.isSelected = false
         urlLinkButton.isSelected = true
+    }
+    
+    @objc private func promptTextButtonTapped() {
+        promptInputType.send(.text)
+    }
+    
+    @objc private func urlLinkButtonTapped() {
+        promptInputType.send(.url)
     }
     
     private func setStyle() {
@@ -141,21 +174,30 @@ class PromptInputView: UIView {
         }
     }
     
+    private func setPlaceholder() {
+        if textView.text == placeholderText || textView.text == placeholderUrl || textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            switch promptInputType.value {
+            case .text:
+                textView.text = placeholderText
+            case .url:
+                textView.text = placeholderUrl
+            }
+            textView.textColor = .gray200
+        }
+    }
+    
     @objc private func submitButtonTapped() {
-        buttonTapped?(textView.text)
+        onSubmit?(textView.text, promptInputType.value)
     }
 }
 
 extension PromptInputView: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            textView.text = placeholderText
-            textView.textColor = .gray200
-        }
+        setPlaceholder()
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == placeholderText {
+        if textView.text == placeholderText || textView.text == placeholderUrl {
             textView.text = nil
             textView.textColor = .gray600
         }
