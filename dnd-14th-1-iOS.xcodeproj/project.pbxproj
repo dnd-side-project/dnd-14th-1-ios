@@ -24,6 +24,13 @@
 		0027D9E92F405700000DE576 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0027D9E72F4056FD000DE576 /* LoginCoordinator.swift */; };
 		0027D9F62F408E7C000DE576 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0027D9F52F408E79000DE576 /* TabBarView.swift */; };
 		0036FDC92F4DB83A00200357 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0036FDC82F4DB83A00200357 /* Lottie */; };
+		0036FE162F4DBA0400200357 /* loadinganimat.json in Resources */ = {isa = PBXBuildFile; fileRef = 0036FE122F4DBA0400200357 /* loadinganimat.json */; };
+		0036FE172F4DBA0400200357 /* lottie_failerror.json in Resources */ = {isa = PBXBuildFile; fileRef = 0036FE132F4DBA0400200357 /* lottie_failerror.json */; };
+		0036FE182F4DBA0400200357 /* glacier4.json in Resources */ = {isa = PBXBuildFile; fileRef = 0036FE102F4DBA0400200357 /* glacier4.json */; };
+		0036FE192F4DBA0400200357 /* glacier5.json in Resources */ = {isa = PBXBuildFile; fileRef = 0036FE112F4DBA0400200357 /* glacier5.json */; };
+		0036FE1A2F4DBA0400200357 /* glacier3.json in Resources */ = {isa = PBXBuildFile; fileRef = 0036FE0F2F4DBA0400200357 /* glacier3.json */; };
+		0036FE1B2F4DBA0400200357 /* lottie_finisheditor.json in Resources */ = {isa = PBXBuildFile; fileRef = 0036FE142F4DBA0400200357 /* lottie_finisheditor.json */; };
+		0036FE1C2F4DBA0400200357 /* glacier2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0036FE0E2F4DBA0400200357 /* glacier2.json */; };
 		00D1E81A2F3B85DF00D86F23 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D1E8192F3B85D700D86F23 /* TabBarItem.swift */; };
 		00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F47ED22F2DD155006FBD2A /* AppConfig.swift */; };
 		00F480182F2DD2DE006FBD2A /* Config-Prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 00F480172F2DD2DE006FBD2A /* Config-Prod.xcconfig */; };
@@ -94,6 +101,13 @@
 		0027D9E42F4055DE000DE576 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		0027D9E72F4056FD000DE576 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		0027D9F52F408E79000DE576 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		0036FE0E2F4DBA0400200357 /* glacier2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = glacier2.json; sourceTree = "<group>"; };
+		0036FE0F2F4DBA0400200357 /* glacier3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = glacier3.json; sourceTree = "<group>"; };
+		0036FE102F4DBA0400200357 /* glacier4.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = glacier4.json; sourceTree = "<group>"; };
+		0036FE112F4DBA0400200357 /* glacier5.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = glacier5.json; sourceTree = "<group>"; };
+		0036FE122F4DBA0400200357 /* loadinganimat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = loadinganimat.json; sourceTree = "<group>"; };
+		0036FE132F4DBA0400200357 /* lottie_failerror.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lottie_failerror.json; sourceTree = "<group>"; };
+		0036FE142F4DBA0400200357 /* lottie_finisheditor.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lottie_finisheditor.json; sourceTree = "<group>"; };
 		00D1E8192F3B85D700D86F23 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		00F47E022F2DD0D3006FBD2A /* Config-Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Dev.xcconfig"; sourceTree = "<group>"; };
 		00F47ED22F2DD155006FBD2A /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
@@ -220,6 +234,20 @@
 				00113F792F430A0700D4CC37 /* ViewModelType.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		0036FE152F4DBA0400200357 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				0036FE0E2F4DBA0400200357 /* glacier2.json */,
+				0036FE0F2F4DBA0400200357 /* glacier3.json */,
+				0036FE102F4DBA0400200357 /* glacier4.json */,
+				0036FE112F4DBA0400200357 /* glacier5.json */,
+				0036FE122F4DBA0400200357 /* loadinganimat.json */,
+				0036FE132F4DBA0400200357 /* lottie_failerror.json */,
+				0036FE142F4DBA0400200357 /* lottie_finisheditor.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		00F480192F2DD436006FBD2A /* Global */ = {
@@ -457,6 +485,7 @@
 			children = (
 				00F480242F2DD48D006FBD2A /* Font */,
 				7C61D2F62F210AAC005FAC3A /* Assets.xcassets */,
+				0036FE152F4DBA0400200357 /* Lottie */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -642,6 +671,13 @@
 				00F4802C2F2DD48D006FBD2A /* Pretendard-Medium.otf in Resources */,
 				00F4802D2F2DD48D006FBD2A /* Pretendard-SemiBold.otf in Resources */,
 				00F480182F2DD2DE006FBD2A /* Config-Prod.xcconfig in Resources */,
+				0036FE162F4DBA0400200357 /* loadinganimat.json in Resources */,
+				0036FE172F4DBA0400200357 /* lottie_failerror.json in Resources */,
+				0036FE182F4DBA0400200357 /* glacier4.json in Resources */,
+				0036FE192F4DBA0400200357 /* glacier5.json in Resources */,
+				0036FE1A2F4DBA0400200357 /* glacier3.json in Resources */,
+				0036FE1B2F4DBA0400200357 /* lottie_finisheditor.json in Resources */,
+				0036FE1C2F4DBA0400200357 /* glacier2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
