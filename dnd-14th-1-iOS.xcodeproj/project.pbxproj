@@ -24,6 +24,7 @@
 		0027D9E92F405700000DE576 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0027D9E72F4056FD000DE576 /* LoginCoordinator.swift */; };
 		0027D9F62F408E7C000DE576 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0027D9F52F408E79000DE576 /* TabBarView.swift */; };
 		00D1E81A2F3B85DF00D86F23 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D1E8192F3B85D700D86F23 /* TabBarItem.swift */; };
+		00D446F42F4C79D00046F53B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 00D446F32F4C79D00046F53B /* Lottie */; };
 		00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F47ED22F2DD155006FBD2A /* AppConfig.swift */; };
 		00F480182F2DD2DE006FBD2A /* Config-Prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 00F480172F2DD2DE006FBD2A /* Config-Prod.xcconfig */; };
 		00F480252F2DD48D006FBD2A /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00F480212F2DD48D006FBD2A /* Pretendard-Regular.otf */; };
@@ -161,6 +162,11 @@
 			path = Diagnosis;
 			sourceTree = "<group>";
 		};
+		00D446F52F4C79FE0046F53B /* Lottie */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00D446F42F4C79D00046F53B /* Lottie in Frameworks */,
 				7C0107372F43A92B0005AC1D /* Kingfisher in Frameworks */,
 				7CCB1E602F2DB2C900472669 /* SnapKit in Frameworks */,
 				7CCB1E3C2F29B09C00472669 /* Alamofire in Frameworks */,
@@ -453,6 +460,7 @@
 		7C61D30F2F210C29005FAC3A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00D446F52F4C79FE0046F53B /* Lottie */,
 				00F480242F2DD48D006FBD2A /* Font */,
 				7C61D2F62F210AAC005FAC3A /* Assets.xcassets */,
 			);
@@ -568,6 +576,7 @@
 				0027D9DD2F40546C000DE576 /* Coordinator */,
 				00D1E8222F3B880900D86F23 /* Eco */,
 				00D1E8232F3B881100D86F23 /* Diagnosis */,
+				00D446F52F4C79FE0046F53B /* Lottie */,
 			);
 			name = "dnd-14th-1-iOS";
 			packageProductDependencies = (
@@ -575,6 +584,7 @@
 				7CCB1E5C2F2DB19600472669 /* Then */,
 				7CCB1E5F2F2DB2C900472669 /* SnapKit */,
 				7C0107362F43A92B0005AC1D /* Kingfisher */,
+				00D446F32F4C79D00046F53B /* Lottie */,
 			);
 			productName = "dnd-14th-1-iOS";
 			productReference = 7C61D2C72F2109B3005FAC3A /* dnd-14th-1-iOS.app */;
@@ -609,6 +619,7 @@
 				7CCB1E5B2F2DB19600472669 /* XCRemoteSwiftPackageReference "Then" */,
 				7CCB1E5E2F2DB2C900472669 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				7C0107352F43A92B0005AC1D /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				00D446F22F4C79D00046F53B /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7C61D2C82F2109B3005FAC3A /* Products */;
@@ -925,6 +936,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		00D446F22F4C79D00046F53B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.6.0;
+			};
+		};
 		7C0107352F43A92B0005AC1D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -960,6 +979,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		00D446F32F4C79D00046F53B /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00D446F22F4C79D00046F53B /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		7C0107362F43A92B0005AC1D /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7C0107352F43A92B0005AC1D /* XCRemoteSwiftPackageReference "Kingfisher" */;
