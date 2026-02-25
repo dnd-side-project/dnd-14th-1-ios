@@ -11,6 +11,7 @@ import Combine
 protocol UserService {
     func fetchLogin(request: LoginRequest) -> AnyPublisher<LoginResultDto, ErrorResponse>
     func fetchUserProfile() -> AnyPublisher<UserProfileDto, ErrorResponse>
+    func fetchMyBadges() -> AnyPublisher<MyBadgesDto, ErrorResponse>
 }
 
 final class DefaultUserService: UserService {
@@ -23,5 +24,9 @@ final class DefaultUserService: UserService {
     
     func fetchUserProfile() -> AnyPublisher<UserProfileDto, ErrorResponse> {
         networkService.request(api: UserAPI.fetchUserProfile)
+    }
+    
+    func fetchMyBadges() -> AnyPublisher<MyBadgesDto, ErrorResponse> {
+        networkService.request(api: UserAPI.fetchMyBadges)
     }
 }

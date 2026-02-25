@@ -11,6 +11,7 @@ import Alamofire
 enum UserAPI: Router {
     case fetchLogin(LoginRequest)
     case fetchUserProfile
+    case fetchMyBadges
 }
 
 extension UserAPI {
@@ -23,6 +24,7 @@ extension UserAPI {
         switch self {
         case .fetchLogin: "/open-api/v1/auth/apple"
         case .fetchUserProfile: "/api/v1/users/me"
+        case .fetchMyBadges: "/api/v1/badges/my"
         }
     }
     
@@ -30,14 +32,15 @@ extension UserAPI {
         switch self {
         case .fetchLogin: .post
         case .fetchUserProfile: .get
+        case .fetchMyBadges: .get
         }
     }
     
-    var headers: [String : String] { // MARK: - Access token은 이곳에서 넣지 않습니다!
+    var headers: [String : String] {
         switch self {
         case .fetchLogin:
             return [:]
-        case .fetchUserProfile:
+        case .fetchUserProfile, .fetchMyBadges:
             var baseDictionary: [String: String] = [:]
             if let accessToken = KeychainWorker.shared.read(key: .access) {
                 baseDictionary["Authorization"] = "Bearer \(accessToken)"
@@ -50,7 +53,7 @@ extension UserAPI {
         switch self {
         case .fetchLogin(let request):
             return request.toDictionary()
-        case .fetchUserProfile:
+        case .fetchUserProfile, .fetchMyBadges:
             return nil
         }
     }
@@ -59,7 +62,7 @@ extension UserAPI {
         switch self {
         case .fetchLogin:
             return JSONEncoding.default
-        case .fetchUserProfile:
+        case .fetchUserProfile, .fetchMyBadges:
             return nil
         }
     }

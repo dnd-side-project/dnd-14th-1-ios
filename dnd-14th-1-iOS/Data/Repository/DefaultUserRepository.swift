@@ -31,4 +31,12 @@ final class DefaultUserRepository: UserRepository {
             }
             .eraseToAnyPublisher()
     }
+    
+    func fetchMyBadges() -> AnyPublisher<MyBadges, ErrorResponse> {
+        service.fetchMyBadges()
+            .map { dto in
+                return dto.toDomain()
+            }
+            .eraseToAnyPublisher()
+    }
 }

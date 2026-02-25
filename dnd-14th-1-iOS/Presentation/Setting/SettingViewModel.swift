@@ -24,7 +24,7 @@ final class SettingViewModel: ViewModelType {
     
     // MARK: - Properties
     private let fetchUserProfileUseCase: FetchUserProfileUseCase
-    private let fetchBadgeListUseCase: FetchBadgeListUseCase
+    private let fetchMyBadgesUseCase: FetchMyBadgesUseCase
     private let logoutUseCase: LogoutUseCase
     
     private let outputSubject = PassthroughSubject<Output, Never>()
@@ -32,10 +32,10 @@ final class SettingViewModel: ViewModelType {
     
     // MARK: - Initializer
     init(fetchUserProfileUseCase: FetchUserProfileUseCase,
-         fetchBadgeListUseCase: FetchBadgeListUseCase,
+         fetchMyBadgesUseCase: FetchMyBadgesUseCase,
          logoutUseCase: LogoutUseCase) {
         self.fetchUserProfileUseCase = fetchUserProfileUseCase
-        self.fetchBadgeListUseCase = fetchBadgeListUseCase
+        self.fetchMyBadgesUseCase = fetchMyBadgesUseCase
         self.logoutUseCase = logoutUseCase
     }
     
@@ -73,12 +73,14 @@ extension SettingViewModel {
     }
     
     private func fetchBadgeList() {
-        fetchBadgeListUseCase.execute().sink(
-            receiveCompletion: { _ in
-                // TODO: 토스트 띄우기
+        fetchMyBadgesUseCase.execute().sink(
+            receiveCompletion: { [weak self] completion in
+                if case .failure(let error) = completion {
+                    self?.outputSubject.send(.showToast(message: error.message, type: .internalError))
+                }
             },
-            receiveValue: { [weak self] badges in
-                self?.outputSubject.send(.updateBadgeList(badges))
+            receiveValue: { [weak self] myBadges in
+                self?.outputSubject.send(.updateBadgeList(myBadges.data))
             }
         ).store(in: &subscriptions)
     }

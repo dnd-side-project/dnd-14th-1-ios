@@ -60,8 +60,8 @@
 		7C01073D2F43B4C30005AC1D /* ChangeBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C01073C2F43B4C30005AC1D /* ChangeBadgeView.swift */; };
 		7C01073F2F43B6870005AC1D /* ChangeBadgeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C01073E2F43B6870005AC1D /* ChangeBadgeCollectionView.swift */; };
 		7C0107422F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107412F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift */; };
-		7C0107462F43B6F80005AC1D /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107452F43B6F80005AC1D /* Badge.swift */; };
-		7C0107482F44D3EE0005AC1D /* FetchBadgeListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107472F44D3EE0005AC1D /* FetchBadgeListUseCase.swift */; };
+		7C0107462F43B6F80005AC1D /* MyBadges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107452F43B6F80005AC1D /* MyBadges.swift */; };
+		7C0107482F44D3EE0005AC1D /* FetchMyBadgesListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107472F44D3EE0005AC1D /* FetchMyBadgesListUseCase.swift */; };
 		7C01074A2F45FB5B0005AC1D /* CustomVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107492F45FB5B0005AC1D /* CustomVisualEffectView.swift */; };
 		7C01074D2F45FE3F0005AC1D /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C01074C2F45FE3F0005AC1D /* TermsOfUseViewController.swift */; };
 		7C01074F2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C01074E2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift */; };
@@ -84,6 +84,7 @@
 		7C9014902F4E8FE300933379 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C90148F2F4E8FE300933379 /* NetworkService.swift */; };
 		7C9014922F4E921E00933379 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9014912F4E921E00933379 /* UserService.swift */; };
 		7C9014DA2F4EDA6400933379 /* UserProfileDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9014D92F4EDA6400933379 /* UserProfileDto.swift */; };
+		7C9014DC2F4F007E00933379 /* MyBadgesDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9014DB2F4F007E00933379 /* MyBadgesDto.swift */; };
 		7C9582A42F3561DC004F8523 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */; };
 		7C9582A92F3562D0004F8523 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A82F3562D0004F8523 /* LoginViewController.swift */; };
 		7C9582AE2F356608004F8523 /* CheckLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */; };
@@ -148,8 +149,8 @@
 		7C01073C2F43B4C30005AC1D /* ChangeBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBadgeView.swift; sourceTree = "<group>"; };
 		7C01073E2F43B6870005AC1D /* ChangeBadgeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBadgeCollectionView.swift; sourceTree = "<group>"; };
 		7C0107412F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeBadgeCollectionViewCell.swift; sourceTree = "<group>"; };
-		7C0107452F43B6F80005AC1D /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
-		7C0107472F44D3EE0005AC1D /* FetchBadgeListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchBadgeListUseCase.swift; sourceTree = "<group>"; };
+		7C0107452F43B6F80005AC1D /* MyBadges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBadges.swift; sourceTree = "<group>"; };
+		7C0107472F44D3EE0005AC1D /* FetchMyBadgesListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMyBadgesListUseCase.swift; sourceTree = "<group>"; };
 		7C0107492F45FB5B0005AC1D /* CustomVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVisualEffectView.swift; sourceTree = "<group>"; };
 		7C01074C2F45FE3F0005AC1D /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
 		7C01074E2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +176,7 @@
 		7C90148F2F4E8FE300933379 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7C9014912F4E921E00933379 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		7C9014D92F4EDA6400933379 /* UserProfileDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileDto.swift; sourceTree = "<group>"; };
+		7C9014DB2F4F007E00933379 /* MyBadgesDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBadgesDto.swift; sourceTree = "<group>"; };
 		7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		7C9582A82F3562D0004F8523 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginUseCase.swift; sourceTree = "<group>"; };
@@ -357,7 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				7C0107332F439E9A0005AC1D /* UserProfile.swift */,
-				7C0107452F43B6F80005AC1D /* Badge.swift */,
+				7C0107452F43B6F80005AC1D /* MyBadges.swift */,
 				7C9014802F4E8A5000933379 /* LoginResult.swift */,
 			);
 			path = User;
@@ -540,6 +542,7 @@
 			children = (
 				7C90147A2F4E89C000933379 /* LoginResultDto.swift */,
 				7C9014D92F4EDA6400933379 /* UserProfileDto.swift */,
+				7C9014DB2F4F007E00933379 /* MyBadgesDto.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -579,7 +582,7 @@
 			children = (
 				7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */,
 				7C0107302F439E800005AC1D /* FetchUserProfileUseCase.swift */,
-				7C0107472F44D3EE0005AC1D /* FetchBadgeListUseCase.swift */,
+				7C0107472F44D3EE0005AC1D /* FetchMyBadgesListUseCase.swift */,
 				7C0107502F46060B0005AC1D /* LogoutUseCase.swift */,
 				7C9014702F4DCA9B00933379 /* LoginUseCase.swift */,
 			);
@@ -746,6 +749,7 @@
 				7C0107342F439E9A0005AC1D /* UserProfile.swift in Sources */,
 				00113F1A2F43007200D4CC37 /* UICollectionViewCell+.swift in Sources */,
 				00113F7B2F430A0700D4CC37 /* ViewModelType.swift in Sources */,
+				7C9014DC2F4F007E00933379 /* MyBadgesDto.swift in Sources */,
 				0027D9E92F405700000DE576 /* LoginCoordinator.swift in Sources */,
 				00113F7D2F430A1400D4CC37 /* AppChipButton.swift in Sources */,
 				0027D9E32F4054B5000DE576 /* AppCoordinator.swift in Sources */,
@@ -767,7 +771,7 @@
 				7C61D2FF2F210AAC005FAC3A /* SceneDelegate.swift in Sources */,
 				7C9582A42F3561DC004F8523 /* OnboardingViewController.swift in Sources */,
 				7C01072A2F439D3E0005AC1D /* SettingCoordinator.swift in Sources */,
-				7C0107482F44D3EE0005AC1D /* FetchBadgeListUseCase.swift in Sources */,
+				7C0107482F44D3EE0005AC1D /* FetchMyBadgesListUseCase.swift in Sources */,
 				7C0107422F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift in Sources */,
 				7C01072B2F439D3E0005AC1D /* SettingViewController.swift in Sources */,
 				7C01072C2F439D3E0005AC1D /* SettingViewModel.swift in Sources */,
@@ -789,7 +793,7 @@
 				7C01074F2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift in Sources */,
 				7C9582AE2F356608004F8523 /* CheckLoginUseCase.swift in Sources */,
 				00113F0D2F42FFA000D4CC37 /* UIColor+.swift in Sources */,
-				7C0107462F43B6F80005AC1D /* Badge.swift in Sources */,
+				7C0107462F43B6F80005AC1D /* MyBadges.swift in Sources */,
 				0027D9E62F4055E7000DE576 /* TabBarCoordinator.swift in Sources */,
 				7C0107392F43A9B40005AC1D /* UIImageView+.swift in Sources */,
 				7C9014732F4E88D700933379 /* UserRepository.swift in Sources */,
