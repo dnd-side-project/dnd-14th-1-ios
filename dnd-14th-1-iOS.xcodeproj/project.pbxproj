@@ -595,6 +595,7 @@
 			isa = PBXGroup;
 			children = (
 				7C90148D2F4E8C4C00933379 /* UserAPI.swift */,
+				7CCB1E402F29B5ED00472669 /* Router.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -605,7 +606,6 @@
 				7C9014912F4E921E00933379 /* UserService.swift */,
 				7C90148F2F4E8FE300933379 /* NetworkService.swift */,
 				7CCB1E3E2F29B5E200472669 /* API */,
-				7CCB1E402F29B5ED00472669 /* Router.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
