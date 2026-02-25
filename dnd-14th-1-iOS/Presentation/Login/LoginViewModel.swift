@@ -46,7 +46,7 @@ final class LoginViewModel {
 extension LoginViewModel {
     
     private func login(idToken: String) {
-        loginUseCase.exeucte(idToken: idToken).sink(
+        loginUseCase.execute(idToken: idToken).sink(
             receiveCompletion: { [weak self] completion in
                 if case .failure(let error) = completion {
                     self?.outputSubject.send(.showToast(message: error.message, type: .internalError))

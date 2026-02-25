@@ -17,9 +17,4 @@ struct LoginData {
     let accessToken: String
     let refreshToken: String
     let userID: String
-
-    enum CodingKeys: String, CodingKey {
-        case accessToken, refreshToken
-        case userID = "userId"
-    }
 }

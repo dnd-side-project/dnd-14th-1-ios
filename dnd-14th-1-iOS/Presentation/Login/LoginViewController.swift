@@ -219,7 +219,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: any Error) {
-        print("didCompleteWithError", error)
+        if let authError = error as? ASAuthorizationError, authError.code == .canceled {
+            return
+        }
         showToast(message: "로그인에 실패했습니다", type: .internalError)
     }
 }
