@@ -35,6 +35,7 @@ class DiagnosisResultViewController: BaseViewController {
     private let promptView = PromptView()
     private let buttonStackView = UIStackView()
     private let promptEditButton = AppButton(size: .large, title: "프롬프트 수정하기", image: UIImage(resource: .pencilSimpleLine))
+    private let completeDiagnosisButton = AppButton(size: .large, title: "진단 마치기", image: UIImage(resource: .check))
     private let homeButton = UIButton()
     private let inputTokenStatView = TokenStatView()
     private let outputTokenStatView = TokenStatView()
@@ -55,6 +56,7 @@ class DiagnosisResultViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addTargets()
         inputSubject.send(.viewDidLoad)
     }
     
@@ -81,12 +83,22 @@ class DiagnosisResultViewController: BaseViewController {
         promptEfficiencyLabel.text = isEfficiency ? "효율적인 프롬프트예요!" : "비효율적인 프롬프트예요!"
         meltedGlacierAmountLabel.text = String(format: "-%.2f", promptDiagnosis.meltedGlacierAmount)
         inputTokenStatView.value = "\(promptDiagnosis.inputToken)개"
-        outputTokenStatView.value = "\(promptDiagnosis.outputToken)개"        
+        outputTokenStatView.value = "\(promptDiagnosis.outputToken)개"
         costStatView.value = String(format: "- ₩%.2f", promptDiagnosis.estimatedLoss)
         promptView.content = promptDiagnosis.originalPrompt
         meltedGlacierAmountLabel.textColor = isEfficiency ? .positiveDarkbg : .negativeDarkbg
         meltedGlacierUnitLabel.textColor = isEfficiency ? .positiveDarkbg : .negativeDarkbg
-        usingModelLabel.text = "\(promptDiagnosis.usingModel) 모델을 사용한 결과예요"
+        usingModelLabel.text = "\(promptDiagnosis.usingModel.modelName) 모델을 사용한 결과예요"
+        setButtonState(promptDiagnosis.source)
+    }
+    
+    private func setButtonState(_ source: PromptSource) {
+        switch source {
+        case .singlePrompt:
+            completeDiagnosisButton.isHidden = true
+        case .url:
+            buttonStackView.isHidden = true
+        }
     }
     
     override func setStyle() {
@@ -164,12 +176,13 @@ class DiagnosisResultViewController: BaseViewController {
         
         homeButton.do {
             $0.setImage(UIImage(resource: .homeButton), for: .normal)
-            $0.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
         }
-        
-        promptEditButton.do {
-            $0.addTarget(self, action: #selector(promptEditButtonTapped), for: .touchUpInside)
-        }
+    }
+    
+    private func addTargets() {
+        homeButton.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
+        promptEditButton.addTarget(self, action: #selector(promptEditButtonTapped), for: .touchUpInside)
+        completeDiagnosisButton.addTarget(self, action: #selector(completeDiagnosisButtonTapped), for: .touchUpInside)
     }
     
     override func setLayout() {
@@ -240,6 +253,11 @@ class DiagnosisResultViewController: BaseViewController {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-5)
         }
         
+        completeDiagnosisButton.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-5)
+        }
+        
         homeButton.snp.makeConstraints {
             $0.width.equalTo(68)
             $0.height.equalTo(60)
@@ -251,7 +269,8 @@ class DiagnosisResultViewController: BaseViewController {
         view.addSubviews(
             backgroundView,
             containerScrollView,
-            buttonStackView
+            buttonStackView,
+            completeDiagnosisButton
         )
         
         // 토큰사용량 스택뷰에 서브뷰 추가
@@ -287,6 +306,10 @@ class DiagnosisResultViewController: BaseViewController {
     
     @objc private func promptEditButtonTapped() {
         delegate?.promptEditButtonTapped()
+    }
+    
+    @objc private func completeDiagnosisButtonTapped() {
+        delegate?.completeButtonTapped()
     }
     
     @objc private func homeButtonTapped() {
