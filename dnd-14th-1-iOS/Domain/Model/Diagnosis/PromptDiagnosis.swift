@@ -9,7 +9,9 @@ import FoundationModels
 
 struct PromptDiagnosis {
     let efficiency: EfficiencyType
-    let meltedGlacierAmount: Double
-    let tokenUsage: Int
+    let meltedGlacierAmount: Double    
+    let inputToken: Int
+    let outputToken: Int
     let estimatedLoss: Double
+    let originalPrompt: String
 }
