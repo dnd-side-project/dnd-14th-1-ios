@@ -8,6 +8,11 @@
 import FoundationModels
 import Foundation
 import Combine
+import Alamofire
+
+enum PromptDiagnosisError: Error {
+    case apiError
+}
 
 protocol PromptDiagnosisUseCase {
     func excute(promptInput: PromptInput) async throws -> PromptDiagnosis
@@ -15,21 +20,41 @@ protocol PromptDiagnosisUseCase {
 
 final class DefaultPromptDiagnosisUseCase: PromptDiagnosisUseCase {
     
+    private let claudeService: ClaudeService
+    
+    init(claudeService: ClaudeService) {
+        self.claudeService = claudeService
+    }
+    
     func excute(promptInput: PromptInput) async throws -> PromptDiagnosis  {
         do {
+            let prompt = promptInput.value
+            
+            guard let tokenUsage = try await claudeService.request(for: prompt).usage else {
+                throw PromptDiagnosisError.apiError
+            }
+            
             let instructions = """
                 Your task is to evaluate the prompt provided by the user.            
                 """
             
             let session = LanguageModelSession(instructions: instructions)
-            let prompt = promptInput.value
-            let response = try await session.respond(to: prompt, generating: PromptDiagnosis.self)
+            
+            let diagnosisResponse = try await session.respond(to: prompt, generating: EfficiencyType.self)
+            
+            let inputToken = tokenUsage.input_tokens ?? 0
+            let outputToken = tokenUsage.output_tokens ?? 0
+            let estimatedLoss = claudeService.calculateCost(
+                usingModel: .claude_haiku_4_5,
+                inputTokens: inputToken,
+                outputTokens: outputToken
+            )
             
             let result = PromptDiagnosis(
-                efficiency: response.content.efficiency,
-                meltedGlacierAmount: response.content.meltedGlacierAmount,
-                tokenUsage: response.content.tokenUsage,
-                estimatedLoss: response.content.estimatedLoss
+                efficiency: diagnosisResponse.content,
+                meltedGlacierAmount: -0.75,
+                tokenUsage: inputToken,
+                estimatedLoss: estimatedLoss * 1432.19
             )
             
             return result

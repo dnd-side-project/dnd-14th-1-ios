@@ -17,7 +17,8 @@ final class DiagnosisCoordinator: Coordinator {
     }
     
     func start() {
-        let promptDiagnosisUseCase = DefaultPromptDiagnosisUseCase()
+        let claudeService = DefaultClaudeService()
+        let promptDiagnosisUseCase = DefaultPromptDiagnosisUseCase(claudeService: claudeService)
         let diagnosisViewModel = DiagnosisViewModel(promptDiagnosisUseCase: promptDiagnosisUseCase)
         let diagnosisViewController = DiagnosisViewController(viewModel: diagnosisViewModel)
         diagnosisViewController.delegate = self
