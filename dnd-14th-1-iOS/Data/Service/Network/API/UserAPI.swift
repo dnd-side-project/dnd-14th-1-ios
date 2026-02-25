@@ -12,6 +12,7 @@ enum UserAPI: Router {
     case fetchLogin(LoginRequest)
     case fetchUserProfile
     case fetchMyBadges
+    case updateRepresentativeBadge(UpdateRepresentativeBadgeRequest)
 }
 
 extension UserAPI {
@@ -25,6 +26,7 @@ extension UserAPI {
         case .fetchLogin: "/open-api/v1/auth/apple"
         case .fetchUserProfile: "/api/v1/users/me"
         case .fetchMyBadges: "/api/v1/badges/my"
+        case .updateRepresentativeBadge: "/api/v1/badges/representative"
         }
     }
     
@@ -33,6 +35,7 @@ extension UserAPI {
         case .fetchLogin: .post
         case .fetchUserProfile: .get
         case .fetchMyBadges: .get
+        case .updateRepresentativeBadge: .put
         }
     }
     
@@ -40,7 +43,7 @@ extension UserAPI {
         switch self {
         case .fetchLogin:
             return [:]
-        case .fetchUserProfile, .fetchMyBadges:
+        case .fetchUserProfile, .fetchMyBadges, .updateRepresentativeBadge:
             var baseDictionary: [String: String] = [:]
             if let accessToken = KeychainWorker.shared.read(key: .access) {
                 baseDictionary["Authorization"] = "Bearer \(accessToken)"
@@ -55,6 +58,8 @@ extension UserAPI {
             return request.toDictionary()
         case .fetchUserProfile, .fetchMyBadges:
             return nil
+        case .updateRepresentativeBadge(let request):
+            return request.toDictionary()
         }
     }
     
@@ -64,6 +69,8 @@ extension UserAPI {
             return JSONEncoding.default
         case .fetchUserProfile, .fetchMyBadges:
             return nil
+        case .updateRepresentativeBadge:
+            return JSONEncoding.default
         }
     }
 }

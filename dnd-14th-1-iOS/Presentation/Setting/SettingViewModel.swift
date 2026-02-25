@@ -14,6 +14,7 @@ final class SettingViewModel: ViewModelType {
         case viewDidLoad
         case fetchBadgeList
         case handleLogout
+        case changeRepresentativeBadge(Int)
     }
     
     enum Output {
@@ -26,6 +27,7 @@ final class SettingViewModel: ViewModelType {
     private let fetchUserProfileUseCase: FetchUserProfileUseCase
     private let fetchMyBadgesUseCase: FetchMyBadgesUseCase
     private let logoutUseCase: LogoutUseCase
+    private let changeRepresentativeBadge: UpdateRepresentativeBadgeUseCase
     
     private let outputSubject = PassthroughSubject<Output, Never>()
     private var subscriptions: Set<AnyCancellable> = []
@@ -33,10 +35,12 @@ final class SettingViewModel: ViewModelType {
     // MARK: - Initializer
     init(fetchUserProfileUseCase: FetchUserProfileUseCase,
          fetchMyBadgesUseCase: FetchMyBadgesUseCase,
-         logoutUseCase: LogoutUseCase) {
+         logoutUseCase: LogoutUseCase,
+         changeRepresentativeBadge: UpdateRepresentativeBadgeUseCase) {
         self.fetchUserProfileUseCase = fetchUserProfileUseCase
         self.fetchMyBadgesUseCase = fetchMyBadgesUseCase
         self.logoutUseCase = logoutUseCase
+        self.changeRepresentativeBadge = changeRepresentativeBadge
     }
     
     // MARK: - Transform
@@ -50,6 +54,8 @@ final class SettingViewModel: ViewModelType {
                 fetchBadgeList()
             case .handleLogout:
                 handleLogout()
+            case .changeRepresentativeBadge(let selectedBadgeId):
+                changeRepresentativeBadge(selectedBadgeId)
             }
         }.store(in: &subscriptions)
         
@@ -87,5 +93,19 @@ extension SettingViewModel {
     
     private func handleLogout() {
         logoutUseCase.execute()
+    }
+    
+    private func changeRepresentativeBadge(_ selectedBadgeId: Int) {
+        changeRepresentativeBadge.execute(selectedBadgeId).sink(
+            receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .finished:
+                    self?.outputSubject.send(.showToast(message: "대표 배지를 변경했습니다", type: .networkError)) // FIXME: 성공했을 때 정해진 피드백이 없어서 임시로 토스트를 띄움
+                case .failure(let error):
+                    self?.outputSubject.send(.showToast(message: error.message, type: .internalError))
+                }
+            },
+            receiveValue: { _ in }
+        ).store(in: &subscriptions)
     }
 }

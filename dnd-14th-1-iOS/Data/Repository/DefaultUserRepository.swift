@@ -39,4 +39,10 @@ final class DefaultUserRepository: UserRepository {
             }
             .eraseToAnyPublisher()
     }
+    
+    func updateRepresentativeBadge(_ selectedBadgeId: Int) -> AnyPublisher<Void, ErrorResponse> {
+        let requestModel = UpdateRepresentativeBadgeRequest(badgeId: selectedBadgeId)
+        
+        return service.updateRepresentativeBadge(requestModel)
+    }
 }

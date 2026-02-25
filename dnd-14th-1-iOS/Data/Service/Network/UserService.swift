@@ -12,6 +12,7 @@ protocol UserService {
     func fetchLogin(request: LoginRequest) -> AnyPublisher<LoginResultDto, ErrorResponse>
     func fetchUserProfile() -> AnyPublisher<UserProfileDto, ErrorResponse>
     func fetchMyBadges() -> AnyPublisher<MyBadgesDto, ErrorResponse>
+    func updateRepresentativeBadge(_ requestModel: UpdateRepresentativeBadgeRequest) -> AnyPublisher<Void, ErrorResponse>
 }
 
 final class DefaultUserService: UserService {
@@ -28,5 +29,9 @@ final class DefaultUserService: UserService {
     
     func fetchMyBadges() -> AnyPublisher<MyBadgesDto, ErrorResponse> {
         networkService.request(api: UserAPI.fetchMyBadges)
+    }
+    
+    func updateRepresentativeBadge(_ requestModel: UpdateRepresentativeBadgeRequest) -> AnyPublisher<Void, ErrorResponse> {
+        networkService.request(api: UserAPI.updateRepresentativeBadge(requestModel))
     }
 }

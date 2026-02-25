@@ -22,10 +22,12 @@ final class SettingCoordinator: Coordinator {
         let fetchUserProfileUseCase = DefaultFetchUserProfileUseCase(repository: userRepository)
         let mockFetchBadgeListUseCase = DefaultFetchMyBadgesUseCase(repository: userRepository)
         let defaultLogoutUseCase = DefaultLogoutUseCase()
+        let changeRepresentativeBadgeUseCase = DefualtUpdateRepresentativeBadgeUseCase(repository: userRepository)
         let settingViewModel = SettingViewModel(
             fetchUserProfileUseCase: fetchUserProfileUseCase,
             fetchMyBadgesUseCase: mockFetchBadgeListUseCase,
-            logoutUseCase: defaultLogoutUseCase)
+            logoutUseCase: defaultLogoutUseCase,
+            changeRepresentativeBadge: changeRepresentativeBadgeUseCase)
         let settingViewController = SettingViewController(viewModel: settingViewModel)
         settingViewController.delegate = self
         navigationController.pushViewController(settingViewController, animated: true)
