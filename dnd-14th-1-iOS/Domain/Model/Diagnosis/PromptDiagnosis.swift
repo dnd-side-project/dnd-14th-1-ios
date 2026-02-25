@@ -14,4 +14,5 @@ struct PromptDiagnosis {
     let outputToken: Int
     let estimatedLoss: Double
     let originalPrompt: String
+    let usingModel: ClaudeModel
 }

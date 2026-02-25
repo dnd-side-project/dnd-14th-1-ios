@@ -17,7 +17,7 @@ final class DiagnosisCoordinator: Coordinator {
     }
     
     func start() {
-        let claudeService = DefaultClaudeService()
+        let claudeService = DefaultClaudeService(model: .claude_haiku_4_5)
         let promptDiagnosisUseCase = DefaultPromptDiagnosisUseCase(claudeService: claudeService)
         let diagnosisViewModel = DiagnosisViewModel(promptDiagnosisUseCase: promptDiagnosisUseCase)
         let diagnosisViewController = DiagnosisViewController(viewModel: diagnosisViewModel)

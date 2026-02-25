@@ -60,7 +60,8 @@ final class DefaultPromptDiagnosisUseCase: PromptDiagnosisUseCase {
                 inputToken: inputToken,
                 outputToken: outputToken,
                 estimatedLoss: estimatedLoss * 1432.19,
-                originalPrompt: prompt
+                originalPrompt: prompt,
+                usingModel: claudeService.model
             )
             
             return result

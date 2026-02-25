@@ -16,6 +16,8 @@ protocol ClaudeService {
         inputTokens: Int,
         outputTokens: Int
     ) -> Double
+    
+    var model: ClaudeModel { get }
 }
 
 enum ClaudeModel {
@@ -30,6 +32,16 @@ enum ClaudeModel {
         switch self {
         case .claude_haiku_4_5: 5 }
     }
+    
+    var modelName: String {
+        switch self {
+            case .claude_haiku_4_5: "Claude Haiku 4.5" }
+    }
+    
+    var modelApiId: String {
+        switch self {
+            case .claude_haiku_4_5: "claude-haiku-4-5" }
+    }
 }
 
 final class DefaultClaudeService: ClaudeService {
@@ -37,7 +49,8 @@ final class DefaultClaudeService: ClaudeService {
     // MARK: - Properties
     
     private let requestURL = "https://api.anthropic.com/v1/messages"
-    private let model = "claude-haiku-4-5"
+    
+    private(set) var model : ClaudeModel
     
     private var headers: HTTPHeaders {
         [
@@ -47,10 +60,14 @@ final class DefaultClaudeService: ClaudeService {
         ]
     }
     
+    init(model: ClaudeModel) {
+        self.model = model
+    }
+    
     func request(for prompt: String) async throws -> ClaudeMessageResponse {
         
         let parameters = ClaudeMessageRequest(
-            model: model,
+            model: model.modelApiId,
             max_tokens: 1000,
             messages: [
                 ClaudeMessage(
