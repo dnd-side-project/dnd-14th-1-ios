@@ -9,7 +9,7 @@
 protocol DiagnosisViewControllerDelegate: AnyObject {
     func didTapPromptButton()
     func startDiagnosis()
-    func completeDiagnosis()
+    func completeDiagnosis(_ promptDiagnosis: PromptDiagnosis)
     func failDiagnosis()
 }
 

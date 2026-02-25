@@ -67,11 +67,13 @@ extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
         navigationController.pushViewController(promptLoadingViewController, animated: true)
     }
     
-    func completeDiagnosis() {
+    func completeDiagnosis(_ promptDiagnosis: PromptDiagnosis) {
         var viewControllers = navigationController.viewControllers
         viewControllers.removeLast()
         
-        let promprtResultViewController = DiagnosisResultViewController()
+        let diagnosisResultViewModel = DiagnosisResultViewModel(promptDiagnosisResult: promptDiagnosis)
+        
+        let promprtResultViewController = DiagnosisResultViewController(viewModel: diagnosisResultViewModel)
         promprtResultViewController.delegate = self
         promprtResultViewController.hidesBottomBarWhenPushed = true
         promprtResultViewController.backButtonColor = .commonWhite
@@ -85,25 +87,25 @@ extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
 
 extension DiagnosisCoordinator: PromptLoadingViewControllerDelegate {
     func didCompleteLoading(_ loadingType: PromptLoadingViewController.PromptLoadingType) {
-        var viewControllers = navigationController.viewControllers
-        viewControllers.removeLast()
-        
-        switch loadingType {
-        case .diagnose:
-            let promprtResultViewController = DiagnosisResultViewController()
-            promprtResultViewController.delegate = self
-            promprtResultViewController.hidesBottomBarWhenPushed = true
-            promprtResultViewController.backButtonColor = .commonWhite
-            
-            viewControllers.append(promprtResultViewController)
-            navigationController.setViewControllers(viewControllers, animated: true)
-        case .improve:
-            let promptImproveViewController = PromptImprovedViewController()
-            promptImproveViewController.delegate = self
-            promptImproveViewController.hidesBottomBarWhenPushed = true
-            viewControllers.append(promptImproveViewController)
-            navigationController.setViewControllers(viewControllers, animated: true)
-        }
+//        var viewControllers = navigationController.viewControllers
+//        viewControllers.removeLast()
+//        
+//        switch loadingType {
+//        case .diagnose:
+//            let promprtResultViewController = DiagnosisResultViewController()
+//            promprtResultViewController.delegate = self
+//            promprtResultViewController.hidesBottomBarWhenPushed = true
+//            promprtResultViewController.backButtonColor = .commonWhite
+//            
+//            viewControllers.append(promprtResultViewController)
+//            navigationController.setViewControllers(viewControllers, animated: true)
+//        case .improve:
+//            let promptImproveViewController = PromptImprovedViewController()
+//            promptImproveViewController.delegate = self
+//            promptImproveViewController.hidesBottomBarWhenPushed = true
+//            viewControllers.append(promptImproveViewController)
+//            navigationController.setViewControllers(viewControllers, animated: true)
+//        }
     }
 }
 
