@@ -23,4 +23,12 @@ final class DefaultUserRepository: UserRepository {
             }
             .eraseToAnyPublisher()
     }
+    
+    func fetchUserProfile() -> AnyPublisher<UserProfile, ErrorResponse> {
+        service.fetchUserProfile()
+            .map { dto in
+                return dto.toDomain()
+            }
+            .eraseToAnyPublisher()
+    }
 }

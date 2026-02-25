@@ -351,6 +351,8 @@ extension SettingViewController {
                 updateUserProfile(userProfile)
             case let .updateBadgeList(badgeList):
                 updateBadgeList(badgeList)
+            case let .showToast(message, type):
+                showToast(message: message, type: type)
             }
         }.store(in: &subscriptions)
     }

@@ -10,7 +10,7 @@ import Alamofire
 
 enum UserAPI: Router {
     case fetchLogin(LoginRequest)
-    
+    case fetchUserProfile
 }
 
 extension UserAPI {
@@ -22,12 +22,14 @@ extension UserAPI {
     var path: String {
         switch self {
         case .fetchLogin: "/open-api/v1/auth/apple"
+        case .fetchUserProfile: "/api/v1/users/me"
         }
     }
     
     var method: HTTPMethod {
         switch self {
         case .fetchLogin: .post
+        case .fetchUserProfile: .get
         }
     }
     
@@ -35,6 +37,12 @@ extension UserAPI {
         switch self {
         case .fetchLogin:
             return [:]
+        case .fetchUserProfile:
+            var baseDictionary: [String: String] = [:]
+            if let accessToken = KeychainWorker.shared.read(key: .access) {
+                baseDictionary["Authorization"] = "Bearer \(accessToken)"
+            }
+            return baseDictionary
         }
     }
     
@@ -42,6 +50,8 @@ extension UserAPI {
         switch self {
         case .fetchLogin(let request):
             return request.toDictionary()
+        case .fetchUserProfile:
+            return nil
         }
     }
     
@@ -49,6 +59,8 @@ extension UserAPI {
         switch self {
         case .fetchLogin:
             return JSONEncoding.default
+        case .fetchUserProfile:
+            return nil
         }
     }
 }

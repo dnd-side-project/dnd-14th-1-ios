@@ -10,6 +10,7 @@ import Combine
 
 protocol UserService {
     func fetchLogin(request: LoginRequest) -> AnyPublisher<LoginResultDto, ErrorResponse>
+    func fetchUserProfile() -> AnyPublisher<UserProfileDto, ErrorResponse>
 }
 
 final class DefaultUserService: UserService {
@@ -18,5 +19,9 @@ final class DefaultUserService: UserService {
     
     func fetchLogin(request: LoginRequest) -> AnyPublisher<LoginResultDto, ErrorResponse> {
         networkService.request(api: UserAPI.fetchLogin(request))
+    }
+    
+    func fetchUserProfile() -> AnyPublisher<UserProfileDto, ErrorResponse> {
+        networkService.request(api: UserAPI.fetchUserProfile)
     }
 }

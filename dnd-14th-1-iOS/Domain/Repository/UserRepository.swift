@@ -10,4 +10,5 @@ import Combine
 
 protocol UserRepository {
     func fetchLogin(requestModel: LoginRequest) -> AnyPublisher<LoginResult, ErrorResponse>
+    func fetchUserProfile() -> AnyPublisher<UserProfile, ErrorResponse>
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 final class SettingViewModel: ViewModelType {
     enum Input {
@@ -18,6 +19,7 @@ final class SettingViewModel: ViewModelType {
     enum Output {
         case updateUserProfile(UserProfile)
         case updateBadgeList([Badge])
+        case showToast(message: String, type: UIViewController.ToastType)
     }
     
     // MARK: - Properties
@@ -59,8 +61,10 @@ extension SettingViewModel {
     
     private func fetchUserProfile() {
         fetchUserProfileUseCase.execute().sink(
-            receiveCompletion: { _ in
-                // TODO: 토스트 띄우기
+            receiveCompletion: { [weak self] completion in
+                if case .failure(let error) = completion {
+                    self?.outputSubject.send(.showToast(message: error.message, type: .internalError))
+                }
             },
             receiveValue: { [weak self] userProfile in
                 self?.outputSubject.send(.updateUserProfile(userProfile))
