@@ -9,14 +9,18 @@ import Foundation
 import Combine
 
 protocol CheckLoginUseCase {
-    func execute() -> AnyPublisher<Bool, Error>
+    func execute() -> AnyPublisher<Bool, Never>
 }
 
 final class MockCheckLoginUseCase: CheckLoginUseCase {
     
-    func execute() -> AnyPublisher<Bool, Error> {
-        return Just(true)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+    func execute() -> AnyPublisher<Bool, Never> {
+        if let _ = KeychainWorker.shared.read(key: .access) {
+            return Just(true)
+                .eraseToAnyPublisher()
+        } else {
+            return Just(false)
+                .eraseToAnyPublisher()
+        }
     }
 }
