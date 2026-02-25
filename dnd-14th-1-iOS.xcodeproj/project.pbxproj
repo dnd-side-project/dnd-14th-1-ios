@@ -72,6 +72,8 @@
 		7C61D2FF2F210AAC005FAC3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F92F210AAC005FAC3A /* SceneDelegate.swift */; };
 		7C61D3012F210AAC005FAC3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C61D2F62F210AAC005FAC3A /* Assets.xcassets */; };
 		7C8AABB42F437FBD0011E4CF /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8AABB32F437FBD0011E4CF /* UIViewController+.swift */; };
+		7C9014832F4E8B2200933379 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9014822F4E8B2200933379 /* ErrorResponse.swift */; };
+		7C9014902F4E8FE300933379 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C90148F2F4E8FE300933379 /* NetworkService.swift */; };
 		7C9582A42F3561DC004F8523 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */; };
 		7C9582A92F3562D0004F8523 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A82F3562D0004F8523 /* LoginViewController.swift */; };
 		7C9582AE2F356608004F8523 /* CheckLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */; };
@@ -145,12 +147,15 @@
 		7C0107502F46060B0005AC1D /* LogoutUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUseCase.swift; sourceTree = "<group>"; };
 		7C2A3F0F2F38ACCB00D102EE /* AppButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
 		7C2E31FB2F38DDA6006F08FE /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		7C606B982F4C9C8C00C1578D /* dnd-14th-1-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "dnd-14th-1-iOS.entitlements"; sourceTree = "<group>"; };
 		7C61D2C72F2109B3005FAC3A /* dnd-14th-1-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dnd-14th-1-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C61D2F62F210AAC005FAC3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C61D2F82F210AAC005FAC3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C61D2F92F210AAC005FAC3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7C8AABB32F437FBD0011E4CF /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		7C9014822F4E8B2200933379 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		7C90148F2F4E8FE300933379 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		7C9582A82F3562D0004F8523 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginUseCase.swift; sourceTree = "<group>"; };
@@ -560,6 +565,7 @@
 		7CCB1E3F2F29B5E200472669 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				7C90148F2F4E8FE300933379 /* NetworkService.swift */,
 				7CCB1E3E2F29B5E200472669 /* API */,
 				7CCB1E402F29B5ED00472669 /* Router.swift */,
 			);
@@ -569,6 +575,7 @@
 		7CCB1E642F2DB6A200472669 /* Decodable */ = {
 			isa = PBXGroup;
 			children = (
+				7C9014822F4E8B2200933379 /* ErrorResponse.swift */,
 			);
 			path = Decodable;
 			sourceTree = "<group>";
@@ -718,6 +725,7 @@
 				7C01072C2F439D3E0005AC1D /* SettingViewModel.swift in Sources */,
 				7CCB1E622F2DB56600472669 /* MockAPI.swift in Sources */,
 				0027D9F62F408E7C000DE576 /* TabBarView.swift in Sources */,
+				7C9014902F4E8FE300933379 /* NetworkService.swift in Sources */,
 				00113F132F42FFFD00D4CC37 /* OnboardingCollectionView.swift in Sources */,
 				7C0107512F46060B0005AC1D /* LogoutUseCase.swift in Sources */,
 				00113F142F42FFFD00D4CC37 /* OnBoardingPageControl.swift in Sources */,
@@ -738,6 +746,7 @@
 				00D1E81A2F3B85DF00D86F23 /* TabBarItem.swift in Sources */,
 				00F482472F2DDC4F006FBD2A /* UIStackView+.swift in Sources */,
 				7C01073F2F43B6870005AC1D /* ChangeBadgeCollectionView.swift in Sources */,
+				7C9014832F4E8B2200933379 /* ErrorResponse.swift in Sources */,
 				00F4824E2F2DDE0C006FBD2A /* CALayer+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
