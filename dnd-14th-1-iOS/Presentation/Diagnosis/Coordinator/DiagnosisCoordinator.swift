@@ -19,7 +19,13 @@ final class DiagnosisCoordinator: Coordinator {
     func start() {
         let claudeService = DefaultClaudeService(model: .claude_haiku_4_5)
         let promptDiagnosisUseCase = DefaultPromptDiagnosisUseCase(claudeService: claudeService)
-        let diagnosisViewModel = DiagnosisViewModel(promptDiagnosisUseCase: promptDiagnosisUseCase)
+        let conversationRepository = DefaultConversationRepository()
+        let conversationParsingUseCase = DefaultConversationParsingUseCase(conversationRepository: conversationRepository)
+        
+        let diagnosisViewModel = DiagnosisViewModel(
+            promptDiagnosisUseCase: promptDiagnosisUseCase,
+            conversationParsingUseCase: conversationParsingUseCase
+        )
         let diagnosisViewController = DiagnosisViewController(viewModel: diagnosisViewModel)
         diagnosisViewController.delegate = self
         navigationController.pushViewController(diagnosisViewController, animated: true)
@@ -121,6 +127,10 @@ extension DiagnosisCoordinator: DiagnosisResultViewControllerDelegate {
         promptLoadingViewController.hidesBottomBarWhenPushed = true
         promptLoadingViewController.delegate = self
         navigationController.pushViewController(promptLoadingViewController, animated: true)
+    }
+    
+    func completeButtonTapped() {
+        navigationController.popToRootViewController(animated: true)
     }
     
     func homeButtonTapped() {
