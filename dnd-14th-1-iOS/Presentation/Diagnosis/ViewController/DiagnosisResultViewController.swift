@@ -78,7 +78,7 @@ class DiagnosisResultViewController: BaseViewController {
         let isEfficiency = promptDiagnosis.efficiency == .efficiency
         backgroundView.image = isEfficiency ? .diagnosisResultBgSuccess : .diagnosisResultBgWarning
         promptEfficiencyLabel.text = isEfficiency ? "효율적인 프롬프트예요!" : "비효율적인 프롬프트예요!"
-        meltedGlacierAmountLabel.text = "-\(promptDiagnosis.meltedGlacierAmount)"
+        meltedGlacierAmountLabel.text = String(format: "-%.2f", promptDiagnosis.meltedGlacierAmount)
         inputTokenStatView.value = "\(promptDiagnosis.inputToken)개"
         outputTokenStatView.value = "\(promptDiagnosis.outputToken)개"        
         costStatView.value = String(format: "- ₩%.2f", promptDiagnosis.estimatedLoss)
