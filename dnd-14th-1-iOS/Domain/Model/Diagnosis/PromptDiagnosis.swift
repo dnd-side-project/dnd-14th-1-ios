@@ -7,6 +7,11 @@
 
 import FoundationModels
 
+enum PromptSource {
+    case singlePrompt
+    case url
+}
+
 struct PromptDiagnosis {
     let efficiency: EfficiencyType
     let meltedGlacierAmount: Double    
@@ -15,4 +20,5 @@ struct PromptDiagnosis {
     let estimatedLoss: Double
     let originalPrompt: String
     let usingModel: ClaudeModel
+    let source: PromptSource
 }
