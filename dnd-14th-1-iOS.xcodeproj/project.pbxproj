@@ -384,6 +384,7 @@
 		7C61D2FB2F210AAC005FAC3A /* dnd-14th-1-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				7C606B982F4C9C8C00C1578D /* dnd-14th-1-iOS.entitlements */,
 				00F480192F2DD436006FBD2A /* Global */,
 				00F47ED22F2DD155006FBD2A /* AppConfig.swift */,
 				7C61D2F82F210AAC005FAC3A /* Info.plist */,
@@ -750,6 +751,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "dnd-14th-1-iOS/dnd-14th-1-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7UL55F8A57;
@@ -788,6 +790,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "dnd-14th-1-iOS/dnd-14th-1-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7UL55F8A57;
