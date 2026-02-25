@@ -11,6 +11,11 @@ import SnapKit
 import Then
 
 class PromptView: UIView {
+    var content: String {
+        get { promptTextView.text ?? "" }
+        set { promptTextView.text = newValue }
+    }
+    
     private let titleLabel = UILabel()
     private let promptTextView = UITextView()
     private let dividerView = UIView()

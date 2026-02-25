@@ -168,6 +168,16 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		00CFFCFC2F4F314C00D1C0F4 /* Service */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Service;
+			sourceTree = "<group>";
+		};
+		00CFFD022F4F387000D1C0F4 /* Claude */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Claude;
+			sourceTree = "<group>";
+		};
 		00D1E8222F3B880900D86F23 /* Eco */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Eco;
@@ -268,6 +278,7 @@
 		00F480192F2DD436006FBD2A /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				00CFFCFC2F4F314C00D1C0F4 /* Service */,
 				7C01074B2F45FB990005AC1D /* View */,
 				00113F7A2F430A0700D4CC37 /* Protocol */,
 				0027D9DD2F40546C000DE576 /* Coordinator */,
@@ -453,6 +464,7 @@
 				00F794E42F4E0377005CCC92 /* Diagnosis */,
 				7C0107322F439E940005AC1D /* User */,
 				00113F172F43005300D4CC37 /* Onboarding */,
+				00CFFD022F4F387000D1C0F4 /* Claude */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -614,6 +626,8 @@
 			);
 			fileSystemSynchronizedGroups = (
 				0027D9DD2F40546C000DE576 /* Coordinator */,
+				00CFFCFC2F4F314C00D1C0F4 /* Service */,
+				00CFFD022F4F387000D1C0F4 /* Claude */,
 				00D1E8222F3B880900D86F23 /* Eco */,
 				00D1E8232F3B881100D86F23 /* Diagnosis */,
 				00F794E42F4E0377005CCC92 /* Diagnosis */,
@@ -793,7 +807,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
@@ -831,7 +845,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;

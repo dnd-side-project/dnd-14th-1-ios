@@ -23,16 +23,12 @@ enum ClaudeModel {
     
     var inputTokenPermillion: Double {
         switch self {
-        case .claude_haiku_4_5:
-            1
-        }
+        case .claude_haiku_4_5: 1 }
     }
     
     var outputTokenPermillion: Double {
         switch self {
-        case .claude_haiku_4_5:
-            5
-        }
+        case .claude_haiku_4_5: 5 }
     }
 }
 

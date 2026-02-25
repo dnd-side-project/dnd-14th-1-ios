@@ -71,8 +71,8 @@ final class DiagnosisViewController: BaseViewController {
                 switch diagnosisState {
                 case .loading:
                     delegate?.startDiagnosis()
-                case .success:
-                    delegate?.completeDiagnosis()
+                case let .success(diagnosisResult):                    
+                    delegate?.completeDiagnosis(diagnosisResult)
                 case .failure:
                     delegate?.failDiagnosis()
                 }

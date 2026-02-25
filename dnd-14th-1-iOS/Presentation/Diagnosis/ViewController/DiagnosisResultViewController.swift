@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 import SnapKit
 import Then
@@ -15,8 +16,13 @@ class DiagnosisResultViewController: BaseViewController {
     
     // MARK: - Properties
     
+    var viewModel: DiagnosisResultViewModel
+    
     weak var delegate: DiagnosisResultViewControllerDelegate?
     
+    private var subscriptions: Set<AnyCancellable> = []
+    
+    private let inputSubject = PassthroughSubject<DiagnosisResultViewModel.Input, Never>()
     private let backgroundView = UIImageView()
     private let containerScrollView = UIScrollView()
     private let promptEfficiencyLabel = UILabel()
@@ -30,10 +36,25 @@ class DiagnosisResultViewController: BaseViewController {
     private let buttonStackView = UIStackView()
     private let promptEditButton = AppButton(size: .large, title: "프롬프트 수정하기", image: UIImage(resource: .pencilSimpleLine))
     private let homeButton = UIButton()
-  
+    private let inputTokenStatView = TokenStatView()
+    private let outputTokenStatView = TokenStatView()
+    private let costStatView = TokenStatView()
+    
+    init(viewModel: DiagnosisResultViewModel) {
+        self.viewModel = viewModel
+        super.init()
+        bind()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        inputSubject.send(.viewDidLoad)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -41,9 +62,49 @@ class DiagnosisResultViewController: BaseViewController {
         glacierView.play()
     }
     
+    private func bind() {
+        let outputSubject = viewModel.transform(with: inputSubject.eraseToAnyPublisher())
+        
+        outputSubject.receive(on: DispatchQueue.main).sink { [weak self] output in
+            switch output {
+            case let .displayDiagnosisResult(promptDiagnosis):
+                self?.displayPromptDiagnosis(promptDiagnosis)
+            }
+        }
+        .store(in: &subscriptions)
+    }
+    
+    private func displayPromptDiagnosis(_ promptDiagnosis: PromptDiagnosis) {
+        let isEfficiency = promptDiagnosis.efficiency == .efficiency
+        backgroundView.image = isEfficiency ? .diagnosisResultBgSuccess : .diagnosisResultBgWarning
+        promptEfficiencyLabel.text = isEfficiency ? "효율적인 프롬프트예요!" : "비효율적인 프롬프트예요!"
+        meltedGlacierAmountLabel.text = String(promptDiagnosis.meltedGlacierAmount)
+        inputTokenStatView.value = "\(promptDiagnosis.inputToken)개"
+        outputTokenStatView.value = "\(promptDiagnosis.outputToken)개"        
+        costStatView.value = String(format: "- ₩%.2f", promptDiagnosis.estimatedLoss)
+        promptView.content = promptDiagnosis.originalPrompt
+        meltedGlacierAmountLabel.textColor = isEfficiency ? .positiveDarkbg : .negativeDarkbg
+        meltedGlacierUnitLabel.textColor = isEfficiency ? .positiveDarkbg : .negativeDarkbg
+    }
+    
     override func setStyle() {
         let window = UIApplication.shared.keyWindow
         let bottomPadding = (window?.safeAreaInsets.bottom ?? 0) + 60
+        
+        inputTokenStatView.do {
+            $0.title = "인풋 토큰 사용량"
+            $0.icon = .tokenUsage
+        }
+        
+        outputTokenStatView.do {
+            $0.title = "아웃풋 토큰 사용량"
+            $0.icon = .tokenUsage
+        }
+        
+        costStatView.do {
+            $0.title = "예상 발생 금액 ₩ / 회"
+            $0.icon = .costUsage
+        }
         
         containerScrollView.do {
             $0.showsVerticalScrollIndicator = false
@@ -183,16 +244,9 @@ class DiagnosisResultViewController: BaseViewController {
         // 토큰사용량 스택뷰에 서브뷰 추가
         
         tokenUsageStackView.addArrangedSubviews(
-            TokenStatView(
-                image: UIImage(resource: .tokenUsage),
-                title: "현재 토큰 사용량",
-                value: "142개"
-            ),
-            TokenStatView(
-                image: UIImage(resource: .costUsage),
-                title: "예상 손실 비용 ₩ / 회",
-                value: "-₩150"
-            ),
+            inputTokenStatView,
+            outputTokenStatView,
+            costStatView
         )
         
         // 토큰사용량 스크롤뷰에 스택뷰 추가

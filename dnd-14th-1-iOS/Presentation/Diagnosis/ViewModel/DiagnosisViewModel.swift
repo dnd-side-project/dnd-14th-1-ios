@@ -99,8 +99,8 @@ final class DiagnosisViewModel: ViewModelType {
         
         Task {
             do {
-                let result = try await promptDiagnosisUseCase.excute(promptInput: promptInput)
-                outputSubject.send(.diagnosisStateChanged(.success(result)))
+                let diagnosisResult = try await promptDiagnosisUseCase.excute(promptInput: promptInput)
+                outputSubject.send(.diagnosisStateChanged(.success(diagnosisResult)))
             } catch {
                 outputSubject.send(.diagnosisStateChanged(.failure))
             }
