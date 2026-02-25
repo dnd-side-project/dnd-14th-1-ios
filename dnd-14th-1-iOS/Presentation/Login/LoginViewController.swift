@@ -48,7 +48,9 @@ final class LoginViewController: BaseViewController {
     }
     
     private func bind() {
-        viewModel.transform(inputSubject.eraseToAnyPublisher()).sink { [weak self] output in
+        viewModel.transform(inputSubject.eraseToAnyPublisher())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] output in
                 guard let self else { return }
                 switch output {
                 case let .showToast(message, type):
