@@ -44,15 +44,17 @@ final class DefaultPromptDiagnosisUseCase: PromptDiagnosisUseCase {
             
             let inputToken = tokenUsage.input_tokens ?? 0
             let outputToken = tokenUsage.output_tokens ?? 0
+            let totalToken = inputToken + outputToken
             let estimatedLoss = claudeService.calculateCost(
                 usingModel: .claude_haiku_4_5,
                 inputTokens: inputToken,
                 outputTokens: outputToken
-            )            
+            )
+            let meltedGlacierAmount = calculateMeltedGlacierAmount(tokenUsage: totalToken)
             
             let result = PromptDiagnosis(
                 efficiency: diagnosisResponse.content,
-                meltedGlacierAmount: -0.75,
+                meltedGlacierAmount: meltedGlacierAmount,
                 inputToken: inputToken,
                 outputToken: outputToken,
                 estimatedLoss: estimatedLoss * 1432.19,
@@ -63,5 +65,9 @@ final class DefaultPromptDiagnosisUseCase: PromptDiagnosisUseCase {
         } catch {
             throw error
         }
+    }
+    
+    func calculateMeltedGlacierAmount(tokenUsage: Int) -> Double {
+        return (Double(tokenUsage) / 1000.0) * 0.02
     }
 }

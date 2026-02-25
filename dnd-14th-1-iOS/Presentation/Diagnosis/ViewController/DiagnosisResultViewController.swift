@@ -78,7 +78,7 @@ class DiagnosisResultViewController: BaseViewController {
         let isEfficiency = promptDiagnosis.efficiency == .efficiency
         backgroundView.image = isEfficiency ? .diagnosisResultBgSuccess : .diagnosisResultBgWarning
         promptEfficiencyLabel.text = isEfficiency ? "효율적인 프롬프트예요!" : "비효율적인 프롬프트예요!"
-        meltedGlacierAmountLabel.text = String(promptDiagnosis.meltedGlacierAmount)
+        meltedGlacierAmountLabel.text = "-\(promptDiagnosis.meltedGlacierAmount)"
         inputTokenStatView.value = "\(promptDiagnosis.inputToken)개"
         outputTokenStatView.value = "\(promptDiagnosis.outputToken)개"        
         costStatView.value = String(format: "- ₩%.2f", promptDiagnosis.estimatedLoss)
@@ -90,7 +90,7 @@ class DiagnosisResultViewController: BaseViewController {
     override func setStyle() {
         let window = UIApplication.shared.keyWindow
         let bottomPadding = (window?.safeAreaInsets.bottom ?? 0) + 60
-        
+                
         inputTokenStatView.do {
             $0.title = "인풋 토큰 사용량"
             $0.icon = .tokenUsage
@@ -206,7 +206,7 @@ class DiagnosisResultViewController: BaseViewController {
         
         glacierView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(tokenUsageScrollView.snp.bottom).offset(22)            
+            $0.top.equalTo(tokenUsageScrollView.snp.bottom).offset(22)
         }
         
         // contentLayoutGuide를 설정해야 ScrollView가 스크롤할 영역을 알수있음
