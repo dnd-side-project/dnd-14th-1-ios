@@ -48,9 +48,14 @@ final class DiagnosisViewModel: ViewModelType {
     private var model = SystemLanguageModel.default
     
     private let promptDiagnosisUseCase: PromptDiagnosisUseCase
+    private let conversationParsingUseCase: ConversationParsingUseCase
     
-    init (promptDiagnosisUseCase: PromptDiagnosisUseCase) {
+    init(
+        promptDiagnosisUseCase: PromptDiagnosisUseCase,
+        conversationParsingUseCase: ConversationParsingUseCase
+    ) {
         self.promptDiagnosisUseCase = promptDiagnosisUseCase
+        self.conversationParsingUseCase = conversationParsingUseCase
         bind()
     }
     
@@ -68,7 +73,13 @@ final class DiagnosisViewModel: ViewModelType {
             case .promptSheetDismissed:
                 isPromptSheetPresented.send(false)
             case let .diagnosisButtonTapped(promptInput):
-                promptDiagnosis(with: promptInput)
+                switch promptInput.type {
+                case .text:
+                    promptDiagnosis(with: promptInput)
+                case .url:
+                    promptDiagnosisWithUrl(with: promptInput)
+                }
+                
             }
         }.store(in: &subscriptions)
         return outputSubject.eraseToAnyPublisher()
@@ -100,6 +111,19 @@ final class DiagnosisViewModel: ViewModelType {
         Task {
             do {
                 let diagnosisResult = try await promptDiagnosisUseCase.excute(promptInput: promptInput)
+                outputSubject.send(.diagnosisStateChanged(.success(diagnosisResult)))
+            } catch {
+                outputSubject.send(.diagnosisStateChanged(.failure))
+            }
+        }
+    }
+    
+    private func promptDiagnosisWithUrl(with promptInput: PromptInput) {
+        outputSubject.send(.diagnosisStateChanged(.loading))
+        
+        Task {
+            do {
+                let diagnosisResult = try await conversationParsingUseCase.excute(promptInput: promptInput)
                 outputSubject.send(.diagnosisStateChanged(.success(diagnosisResult)))
             } catch {
                 outputSubject.send(.diagnosisStateChanged(.failure))
