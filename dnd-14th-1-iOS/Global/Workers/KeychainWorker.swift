@@ -12,7 +12,7 @@ final class KeychainWorker {
     enum TokenType: String {
         case access
         case refresh
-        case fcm
+        case userId
     }
     
     private let serviceIdentifier = Bundle.main.bundleIdentifier ?? "ac.dnd.dnd-14th-1-iOS"
