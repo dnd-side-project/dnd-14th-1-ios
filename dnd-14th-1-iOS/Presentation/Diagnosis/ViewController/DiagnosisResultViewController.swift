@@ -39,6 +39,7 @@ class DiagnosisResultViewController: BaseViewController {
     private let inputTokenStatView = TokenStatView()
     private let outputTokenStatView = TokenStatView()
     private let costStatView = TokenStatView()
+    private let usingModelLabel = UILabel()
     
     init(viewModel: DiagnosisResultViewModel) {
         self.viewModel = viewModel
@@ -85,11 +86,17 @@ class DiagnosisResultViewController: BaseViewController {
         promptView.content = promptDiagnosis.originalPrompt
         meltedGlacierAmountLabel.textColor = isEfficiency ? .positiveDarkbg : .negativeDarkbg
         meltedGlacierUnitLabel.textColor = isEfficiency ? .positiveDarkbg : .negativeDarkbg
+        usingModelLabel.text = "\(promptDiagnosis.usingModel) 모델을 사용한 결과예요"
     }
     
     override func setStyle() {
         let window = UIApplication.shared.keyWindow
         let bottomPadding = (window?.safeAreaInsets.bottom ?? 0) + 60
+        
+        usingModelLabel.do {
+            $0.font = .label2_m
+            $0.textColor = UIColor.init(hexCode: "#D4D4D4")
+        }
                 
         inputTokenStatView.do {
             $0.title = "인풋 토큰 사용량"
@@ -204,9 +211,15 @@ class DiagnosisResultViewController: BaseViewController {
             $0.height.equalTo(tokenUsageScrollView)
         }
         
+        usingModelLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(tokenUsageScrollView.snp.bottom).offset(12)
+            $0.height.equalTo(12)
+        }
+        
         glacierView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(tokenUsageScrollView.snp.bottom).offset(22)
+            $0.top.equalTo(usingModelLabel.snp.bottom).offset(22)
         }
         
         // contentLayoutGuide를 설정해야 ScrollView가 스크롤할 영역을 알수있음
@@ -267,7 +280,8 @@ class DiagnosisResultViewController: BaseViewController {
             meltedGlacierUnitLabel,
             tokenUsageScrollView,
             glacierView,
-            promptView
+            promptView,
+            usingModelLabel
         )
     }
     
