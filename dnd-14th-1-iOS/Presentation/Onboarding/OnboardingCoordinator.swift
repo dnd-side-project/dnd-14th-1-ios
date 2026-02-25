@@ -8,7 +8,7 @@
 import UIKit
 
 protocol OnboardingViewControllerDelegate: AnyObject {
-    func startButtonTapped()
+    func didCompleteOnBoarding()
 }
 
 final class OnboardingCoordinator: Coordinator {
