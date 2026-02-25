@@ -35,12 +35,14 @@ final class DefaultPromptDiagnosisUseCase: PromptDiagnosisUseCase {
             }
             
             let instructions = """
-                Your task is to evaluate the prompt provided by the user.            
-                """
+            당신은 프롬프트 품질을 진단하는 매우 엄격한 평가자입니다.
+            """
             
             let session = LanguageModelSession(instructions: instructions)
             
-            let diagnosisResponse = try await session.respond(to: prompt, generating: EfficiencyType.self)
+            let diagnosisResponse = try await session.respond(to: prompt, generating: PromptEvaluation.self)
+            
+            let efficiency = diagnosisResponse.content.efficiency
             
             let inputToken = tokenUsage.input_tokens ?? 0
             let outputToken = tokenUsage.output_tokens ?? 0
@@ -53,7 +55,7 @@ final class DefaultPromptDiagnosisUseCase: PromptDiagnosisUseCase {
             let meltedGlacierAmount = calculateMeltedGlacierAmount(tokenUsage: totalToken)
             
             let result = PromptDiagnosis(
-                efficiency: diagnosisResponse.content,
+                efficiency: efficiency,
                 meltedGlacierAmount: meltedGlacierAmount,
                 inputToken: inputToken,
                 outputToken: outputToken,
