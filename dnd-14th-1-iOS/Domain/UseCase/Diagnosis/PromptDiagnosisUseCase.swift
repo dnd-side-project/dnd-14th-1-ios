@@ -48,13 +48,15 @@ final class DefaultPromptDiagnosisUseCase: PromptDiagnosisUseCase {
                 usingModel: .claude_haiku_4_5,
                 inputTokens: inputToken,
                 outputTokens: outputToken
-            )
+            )            
             
             let result = PromptDiagnosis(
                 efficiency: diagnosisResponse.content,
                 meltedGlacierAmount: -0.75,
-                tokenUsage: inputToken,
-                estimatedLoss: estimatedLoss * 1432.19
+                inputToken: inputToken,
+                outputToken: outputToken,
+                estimatedLoss: estimatedLoss * 1432.19,
+                originalPrompt: prompt
             )
             
             return result
