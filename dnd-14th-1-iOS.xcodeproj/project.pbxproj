@@ -209,6 +209,11 @@
 			path = Decodable;
 			sourceTree = "<group>";
 		};
+		00B8F4B12F505B7300CFDA9F /* PromptImprovement */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = PromptImprovement;
+			sourceTree = "<group>";
+		};
 		00CFFCFC2F4F314C00D1C0F4 /* Service */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Service;
@@ -529,6 +534,7 @@
 		7C61D30A2F210BC5005FAC3A /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				00B8F4B12F505B7300CFDA9F /* PromptImprovement */,
 				007368382F4F673E00F750FD /* ConversationParsing */,
 				0036FEBB2F4DE79000200357 /* PromptDiagnosis */,
 				7C9582AC2F356601004F8523 /* User */,
@@ -681,6 +687,7 @@
 				0073683C2F4F6C5D00F750FD /* Repository */,
 				007368412F4F6CD200F750FD /* Repository */,
 				007368452F4F6D9300F750FD /* Decodable */,
+				00B8F4B12F505B7300CFDA9F /* PromptImprovement */,
 				00CFFCFC2F4F314C00D1C0F4 /* Service */,
 				00CFFD022F4F387000D1C0F4 /* Claude */,
 				00D1E8222F3B880900D86F23 /* Eco */,
