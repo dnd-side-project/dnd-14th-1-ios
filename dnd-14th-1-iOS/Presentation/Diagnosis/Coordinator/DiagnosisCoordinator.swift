@@ -76,8 +76,8 @@ extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
     func completeDiagnosis(_ promptDiagnosis: PromptDiagnosis) {
         var viewControllers = navigationController.viewControllers
         viewControllers.removeLast()
-        
-        let diagnosisResultViewModel = DiagnosisResultViewModel(promptDiagnosisResult: promptDiagnosis)
+        let promptImprovementUseCase = DefaultPromptImprovementUseCase()
+        let diagnosisResultViewModel = DiagnosisResultViewModel(promptDiagnosisResult: promptDiagnosis, promptImprovementUseCase: promptImprovementUseCase)
         
         let promprtResultViewController = DiagnosisResultViewController(viewModel: diagnosisResultViewModel)
         promprtResultViewController.delegate = self

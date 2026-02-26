@@ -29,13 +29,18 @@ final class DiagnosisResultViewModel: ViewModelType {
         case promptImproveStateChanged(PromptImproveState)
     }
     
+    private let promptImprovementUseCase: PromptImprovementUseCase
     private let outputSubject = PassthroughSubject<Output, Never>()
     private let promptDiagnosis: PromptDiagnosis
     
     private var subscriptions: Set<AnyCancellable> = []
     
-    init(promptDiagnosisResult: PromptDiagnosis) {
+    init(
+        promptDiagnosisResult: PromptDiagnosis,
+        promptImprovementUseCase: PromptImprovementUseCase
+    ) {
         self.promptDiagnosis = promptDiagnosisResult
+        self.promptImprovementUseCase = promptImprovementUseCase
     }
     
     func transform(with input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
@@ -60,6 +65,10 @@ final class DiagnosisResultViewModel: ViewModelType {
     func promptImprovement() {
         outputSubject.send(.promptImproveStateChanged(.loading))
         
-        
+        Task {
+            try await Task.sleep(for: .seconds(3))
+            await promptImprovementUseCase.execute()
+            outputSubject.send(.promptImproveStateChanged(.success))
+        }
     }
 }

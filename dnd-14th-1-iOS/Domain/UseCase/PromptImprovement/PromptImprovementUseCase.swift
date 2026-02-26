@@ -6,7 +6,7 @@
 //
 
 protocol PromptImprovementUseCase {
-    func execute()
+    func execute() async
 }
 
 final class DefaultPromptImprovementUseCase: PromptImprovementUseCase {
