@@ -55,7 +55,7 @@ final class DefaultClaudeService: ClaudeService {
     private var headers: HTTPHeaders {
         [
             "Content-Type": "application/json",
-            "x-api-key": AppConfig.caludeApiKey,
+            "x-api-key": AppConfig.claudeApiKey,
             "anthropic-version": "2023-06-01"
         ]
     }

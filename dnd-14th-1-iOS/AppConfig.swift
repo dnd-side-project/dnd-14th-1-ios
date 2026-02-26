@@ -15,7 +15,7 @@ struct AppConfig {
         return url
     }()
     
-    static let caludeApiKey: String = {
+    static let claudeApiKey: String = {
         guard let apiKey = Bundle.main.infoDictionary?["CLAUDE_API_KEY"] as? String, !apiKey.isEmpty else {
             fatalError("CLAUDE_API_KEY must be set in the Info.plist and cannot be empty.")
         }
