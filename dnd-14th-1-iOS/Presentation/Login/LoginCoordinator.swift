@@ -8,11 +8,11 @@
 import UIKit
 
 protocol LoginViewControllerDelegate: AnyObject {
-    func loginButtonTapped()
+    func didCompleteLogin()
 }
 
 protocol LoginCoordinatorDelegate: AnyObject {
-    func didCompleteLogin(_ coordinator: any Coordinator)
+    func didCompleteOnBoarding(_ coordinator: any Coordinator)
 }
 
 final class LoginCoordinator: Coordinator {
@@ -26,14 +26,18 @@ final class LoginCoordinator: Coordinator {
     }
     
     func start() {
-        let loginViewController = LoginViewController()
+        let userService = DefaultUserService()
+        let userRepository = DefaultUserRepository(service: userService)
+        let loginUseCase = DefaultLoginUseCase(repository: userRepository)
+        let viewModel = LoginViewModel(loginUseCase: loginUseCase)
+        let loginViewController = LoginViewController(viewModel: viewModel)
         loginViewController.delegate = self
         navigationController.setViewControllers([loginViewController], animated: true)
     }
 }
 
 extension LoginCoordinator: LoginViewControllerDelegate {
-    func loginButtonTapped() {
+    func didCompleteLogin() {
         let onboardingViewController = OnboardingViewController()
         onboardingViewController.delegate = self
         navigationController.pushViewController(onboardingViewController, animated: true)
@@ -41,7 +45,7 @@ extension LoginCoordinator: LoginViewControllerDelegate {
 }
 
 extension LoginCoordinator: OnboardingViewControllerDelegate {
-    func startButtonTapped() {
-        delegate?.didCompleteLogin(self)
+    func didCompleteOnBoarding() {
+        delegate?.didCompleteOnBoarding(self)
     }
 }

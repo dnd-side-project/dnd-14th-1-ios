@@ -44,7 +44,7 @@ final class AppCoordinator: Coordinator {
 }
 
 extension AppCoordinator: LoginCoordinatorDelegate {
-    func didCompleteLogin(_ coordinator: Coordinator) {
+    func didCompleteOnBoarding(_ coordinator: Coordinator) {
         childCoordinators = childCoordinators.filter { $0 !== coordinator }
         showTabBarCoordinator()
     }
