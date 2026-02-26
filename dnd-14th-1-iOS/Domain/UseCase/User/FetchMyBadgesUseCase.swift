@@ -1,5 +1,5 @@
 //
-//  FetchMyBadgesListUseCase.swift
+//  FetchMyBadgesUseCase.swift
 //  dnd-14th-1-iOS
 //
 //  Created by 홍기정 on 2/18/26.
@@ -14,7 +14,7 @@ protocol FetchMyBadgesUseCase {
 
 final class DefaultFetchMyBadgesUseCase: FetchMyBadgesUseCase {
     
-    let repository: UserRepository
+    private let repository: UserRepository
     
     init(repository: UserRepository) {
         self.repository = repository

@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let appCoordinator = AppCoordinator(
             navigationController: navigationController,
-            checkLoginUseCase: MockCheckLoginUseCase()
+            checkLoginUseCase: DefaultCheckLoginUseCase()
         )
         self.coordinator = appCoordinator
         coordinator?.start()

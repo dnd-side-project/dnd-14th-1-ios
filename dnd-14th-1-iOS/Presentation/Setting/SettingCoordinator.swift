@@ -20,13 +20,13 @@ final class SettingCoordinator: Coordinator {
         let userService = DefaultUserService()
         let userRepository = DefaultUserRepository(service: userService)
         let fetchUserProfileUseCase = DefaultFetchUserProfileUseCase(repository: userRepository)
-        let mockFetchBadgeListUseCase = DefaultFetchMyBadgesUseCase(repository: userRepository)
-        let defaultLogoutUseCase = DefaultLogoutUseCase()
-        let changeRepresentativeBadgeUseCase = DefualtUpdateRepresentativeBadgeUseCase(repository: userRepository)
+        let fetchBadgeListUseCase = DefaultFetchMyBadgesUseCase(repository: userRepository)
+        let logoutUseCase = DefaultLogoutUseCase()
+        let changeRepresentativeBadgeUseCase = DefaultUpdateRepresentativeBadgeUseCase(repository: userRepository)
         let settingViewModel = SettingViewModel(
             fetchUserProfileUseCase: fetchUserProfileUseCase,
-            fetchMyBadgesUseCase: mockFetchBadgeListUseCase,
-            logoutUseCase: defaultLogoutUseCase,
+            fetchMyBadgesUseCase: fetchBadgeListUseCase,
+            logoutUseCase: logoutUseCase,
             changeRepresentativeBadge: changeRepresentativeBadgeUseCase)
         let settingViewController = SettingViewController(viewModel: settingViewModel)
         settingViewController.delegate = self

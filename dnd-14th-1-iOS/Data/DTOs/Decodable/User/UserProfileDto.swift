@@ -14,7 +14,7 @@ struct UserProfileDto: Decodable {
     
     func toDomain() -> UserProfile {
         return UserProfile(
-            imageUrl: data.representativeBadge?.enableImageURL ?? "https://picsum.photos/id/237/200/300",
+            imageUrl: data.representativeBadge?.enableImageURL ?? "",
             nickname: data.name ?? "익명",
             domain: .apple,
             email: data.email)

@@ -12,7 +12,7 @@ protocol CheckLoginUseCase {
     func execute() -> AnyPublisher<Bool, Never>
 }
 
-final class MockCheckLoginUseCase: CheckLoginUseCase {
+final class DefaultCheckLoginUseCase: CheckLoginUseCase {
     
     func execute() -> AnyPublisher<Bool, Never> {
         if let _ = KeychainWorker.shared.read(key: .access) {

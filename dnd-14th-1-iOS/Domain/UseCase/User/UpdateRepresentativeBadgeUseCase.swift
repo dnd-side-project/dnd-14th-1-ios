@@ -12,7 +12,7 @@ protocol UpdateRepresentativeBadgeUseCase {
     func execute(_ selectedBadgeId: Int) -> AnyPublisher<Void, ErrorResponse>
 }
 
-final class DefualtUpdateRepresentativeBadgeUseCase: UpdateRepresentativeBadgeUseCase {
+final class DefaultUpdateRepresentativeBadgeUseCase: UpdateRepresentativeBadgeUseCase {
     
     private let repository: UserRepository
     
