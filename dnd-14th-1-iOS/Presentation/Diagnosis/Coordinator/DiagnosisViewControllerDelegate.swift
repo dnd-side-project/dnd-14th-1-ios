@@ -13,8 +13,7 @@ protocol DiagnosisViewControllerDelegate: AnyObject {
     func failDiagnosis()
 }
 
-protocol PromptLoadingViewControllerDelegate: AnyObject {
-    func didCompleteLoading(_ loadingType: PromptLoadingViewController.PromptLoadingType)
+protocol PromptLoadingViewControllerDelegate: AnyObject {    
 }
 
 protocol DiagnosisResultViewControllerDelegate: AnyObject {

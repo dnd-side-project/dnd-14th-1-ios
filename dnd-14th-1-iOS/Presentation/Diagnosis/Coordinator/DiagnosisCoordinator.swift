@@ -91,29 +91,7 @@ extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
 
 // MARK: - DiagnosisLoadingDelegate
 
-extension DiagnosisCoordinator: PromptLoadingViewControllerDelegate {
-    func didCompleteLoading(_ loadingType: PromptLoadingViewController.PromptLoadingType) {
-//        var viewControllers = navigationController.viewControllers
-//        viewControllers.removeLast()
-//        
-//        switch loadingType {
-//        case .diagnose:
-//            let promprtResultViewController = DiagnosisResultViewController()
-//            promprtResultViewController.delegate = self
-//            promprtResultViewController.hidesBottomBarWhenPushed = true
-//            promprtResultViewController.backButtonColor = .commonWhite
-//            
-//            viewControllers.append(promprtResultViewController)
-//            navigationController.setViewControllers(viewControllers, animated: true)
-//        case .improve:
-//            let promptImproveViewController = PromptImprovedViewController()
-//            promptImproveViewController.delegate = self
-//            promptImproveViewController.hidesBottomBarWhenPushed = true
-//            viewControllers.append(promptImproveViewController)
-//            navigationController.setViewControllers(viewControllers, animated: true)
-//        }
-    }
-}
+extension DiagnosisCoordinator: PromptLoadingViewControllerDelegate {}
 
 // MARK: - DiagnosisResultDelegate
 
