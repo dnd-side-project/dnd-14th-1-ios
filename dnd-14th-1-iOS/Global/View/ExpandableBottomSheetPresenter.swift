@@ -176,6 +176,7 @@ extension ExpandableBottomSheetPresenter {
             self.willMove(toParent: nil)
             self.removeFromParent()
         })
+        onDissmiss?()
     }
     
     private func animate(completion: (()->Void)? = nil) {
