@@ -7,8 +7,6 @@
 
 import Alamofire
 
-import Alamofire
-
 protocol ClaudeService {
     func request(for prompt: String) async throws -> ClaudeMessageResponse
     func calculateCost(
