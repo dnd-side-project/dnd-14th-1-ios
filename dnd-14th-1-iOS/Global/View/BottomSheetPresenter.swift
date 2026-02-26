@@ -14,7 +14,7 @@ class BottomSheetPresenter: UIViewController {
     private var parentHeight: CGFloat = 0
     private var sheetHeight: CGFloat = 0
     
-    var onDissmiss: (() -> Void)?
+    var onDismiss: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,7 +104,7 @@ class BottomSheetPresenter: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.view.frame.origin.y = self.parentHeight
         }
-        onDissmiss?()
+        onDismiss?()
     }
 }
 

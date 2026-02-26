@@ -100,7 +100,7 @@ final class DiagnosisViewController: BaseViewController {
             bottomSheetPresenter.dismissSheet()
         }
         
-        bottomSheetPresenter.onDissmiss = {
+        bottomSheetPresenter.onDismiss = {
             self.inputSubject.send(.promptSheetDismissed)
         }
 

@@ -13,7 +13,7 @@ class ExpandableBottomSheetPresenter: UIViewController {
     // MARK: - Properties
     private lazy var maxHeight = view.frame.height
     private var height: CGFloat = 0
-    var onDissmiss: (() -> Void)?
+    var onDismiss: (() -> Void)?
     
     // MARK: - UI Components
     private var contentView = UIView()
@@ -118,15 +118,15 @@ extension ExpandableBottomSheetPresenter {
                     $0.leading.trailing.equalToSuperview()
                     $0.height.equalTo(height)
                 }
-                animate()
             } else {
                 contentView.snp.remakeConstraints {
                     $0.height.equalTo(newHeight)
                     $0.leading.trailing.equalToSuperview()
                     $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
                 }
-                animate()
             }
+            view.setNeedsLayout()
+            view.layoutIfNeeded()
             gesture.setTranslation(.zero, in: view)
         case .ended:
             let dismissOffset = height * 0.7
@@ -176,7 +176,7 @@ extension ExpandableBottomSheetPresenter {
             self.willMove(toParent: nil)
             self.removeFromParent()
         })
-        onDissmiss?()
+        onDismiss?()
     }
     
     private func animate(completion: (()->Void)? = nil) {

@@ -309,7 +309,7 @@ extension SettingViewController {
             self?.bottomSheetPresenter.dismissSheet()
         }
         
-        bottomSheetPresenter.onDissmiss = hideBlurredBackgroundView
+        bottomSheetPresenter.onDismiss = hideBlurredBackgroundView
         
         bottomSheetPresenter.presentOnTop(
             contentView: changeBadgeView,
