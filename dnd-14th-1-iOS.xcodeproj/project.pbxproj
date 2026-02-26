@@ -82,6 +82,8 @@
 		7C9014922F4E921E00933379 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9014912F4E921E00933379 /* UserService.swift */; };
 		7C9015032F4F0BA800933379 /* UpdateRepresentativeBadgeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9015022F4F0BA800933379 /* UpdateRepresentativeBadgeUseCase.swift */; };
 		7C9015052F4F0C9500933379 /* UpdateRepresentativeBadgeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9015042F4F0C9500933379 /* UpdateRepresentativeBadgeRequest.swift */; };
+		7C9016812F502C5300933379 /* BottomSheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9016722F502C5300933379 /* BottomSheetPresenter.swift */; };
+		7C90168E2F502C7000933379 /* ExpandableBottomSheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C90168D2F502C7000933379 /* ExpandableBottomSheetPresenter.swift */; };
 		7C9582A42F3561DC004F8523 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */; };
 		7C9582A92F3562D0004F8523 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A82F3562D0004F8523 /* LoginViewController.swift */; };
 		7C9582AE2F356608004F8523 /* CheckLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */; };
@@ -176,6 +178,8 @@
 		7C9014DB2F4F007E00933379 /* MyBadgesDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBadgesDto.swift; sourceTree = "<group>"; };
 		7C9015022F4F0BA800933379 /* UpdateRepresentativeBadgeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRepresentativeBadgeUseCase.swift; sourceTree = "<group>"; };
 		7C9015042F4F0C9500933379 /* UpdateRepresentativeBadgeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRepresentativeBadgeRequest.swift; sourceTree = "<group>"; };
+		7C9016722F502C5300933379 /* BottomSheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresenter.swift; sourceTree = "<group>"; };
+		7C90168D2F502C7000933379 /* ExpandableBottomSheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableBottomSheetPresenter.swift; sourceTree = "<group>"; };
 		7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		7C9582A82F3562D0004F8523 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginUseCase.swift; sourceTree = "<group>"; };
@@ -433,6 +437,8 @@
 			isa = PBXGroup;
 			children = (
 				7C0107492F45FB5B0005AC1D /* CustomVisualEffectView.swift */,
+				7C9016722F502C5300933379 /* BottomSheetPresenter.swift */,
+				7C90168D2F502C7000933379 /* ExpandableBottomSheetPresenter.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -784,6 +790,7 @@
 				00113F7B2F430A0700D4CC37 /* ViewModelType.swift in Sources */,
 				0027D9E92F405700000DE576 /* LoginCoordinator.swift in Sources */,
 				00113F7D2F430A1400D4CC37 /* AppChipButton.swift in Sources */,
+				7C9016812F502C5300933379 /* BottomSheetPresenter.swift in Sources */,
 				0027D9E32F4054B5000DE576 /* AppCoordinator.swift in Sources */,
 				7C01074D2F45FE3F0005AC1D /* TermsOfUseViewController.swift in Sources */,
 				7CCB1E412F29B5ED00472669 /* Router.swift in Sources */,
@@ -806,6 +813,7 @@
 				7C0107422F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift in Sources */,
 				7C01072B2F439D3E0005AC1D /* SettingViewController.swift in Sources */,
 				7C01072C2F439D3E0005AC1D /* SettingViewModel.swift in Sources */,
+				7C90168E2F502C7000933379 /* ExpandableBottomSheetPresenter.swift in Sources */,
 				7C9014922F4E921E00933379 /* UserService.swift in Sources */,
 				0027D9F62F408E7C000DE576 /* TabBarView.swift in Sources */,
 				7C9014902F4E8FE300933379 /* NetworkService.swift in Sources */,
