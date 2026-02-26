@@ -72,6 +72,15 @@ class DiagnosisResultViewController: BaseViewController {
             switch output {
             case let .displayDiagnosisResult(promptDiagnosis):
                 self?.displayPromptDiagnosis(promptDiagnosis)
+            case let .promptImproveStateChanged(state):
+                switch state {
+                case .loading:
+                    self?.delegate?.startPromptImprovement()
+                case .success:
+                    self?.delegate?.completePromptImprovement()
+                case .failure:
+                    self?.delegate?.failPromptImprovement()
+                }
             }
         }
         .store(in: &subscriptions)
@@ -305,7 +314,7 @@ class DiagnosisResultViewController: BaseViewController {
     }
     
     @objc private func promptEditButtonTapped() {
-        delegate?.promptEditButtonTapped()
+        inputSubject.send(.promptImproveButtonTapped)
     }
     
     @objc private func completeDiagnosisButtonTapped() {

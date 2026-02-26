@@ -8,16 +8,25 @@
 import Combine
 
 final class DiagnosisResultViewModel: ViewModelType {
+    // MARK: - State
+    enum PromptImproveState {
+        case loading
+        case success
+        case failure
+    }
+    
     // MARK: - Input
     
     enum Input {
         case viewDidLoad
+        case promptImproveButtonTapped
     }
     
     // MARK: - Output
     
     enum Output {
         case displayDiagnosisResult(PromptDiagnosis)
+        case promptImproveStateChanged(PromptImproveState)
     }
     
     private let outputSubject = PassthroughSubject<Output, Never>()
@@ -35,6 +44,8 @@ final class DiagnosisResultViewModel: ViewModelType {
             switch input {
             case .viewDidLoad:
                 displayDiagnosisResult()
+            case .promptImproveButtonTapped:
+                promptImprovement()
             }
         }
         .store(in: &subscriptions)
@@ -44,5 +55,11 @@ final class DiagnosisResultViewModel: ViewModelType {
     
     func displayDiagnosisResult() {
         outputSubject.send(.displayDiagnosisResult(promptDiagnosis))
+    }
+    
+    func promptImprovement() {
+        outputSubject.send(.promptImproveStateChanged(.loading))
+        
+        
     }
 }

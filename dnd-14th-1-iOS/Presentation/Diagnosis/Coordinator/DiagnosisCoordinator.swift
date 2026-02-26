@@ -114,6 +114,33 @@ extension DiagnosisCoordinator: DiagnosisResultViewControllerDelegate {
     func homeButtonTapped() {
         navigationController.popToRootViewController(animated: true)
     }
+    
+    func startPromptImprovement() {
+        let promptLoadingViewController = PromptLoadingViewController(
+            title: "북극곰의 발판을 더 단단하게 다듬는 중...",
+            description: "문장을 수정하여 최적화된 프롬프트를 만들어요!",
+            loadingType: .improve
+        )
+        promptLoadingViewController.hidesBottomBarWhenPushed = true
+        promptLoadingViewController.delegate = self
+        navigationController.pushViewController(promptLoadingViewController, animated: true)
+    }
+    
+    func completePromptImprovement() {
+        var viewControllers = navigationController.viewControllers
+        viewControllers.removeLast()
+        
+        let promptImprovedViewController = PromptImprovedViewController()
+        promptImprovedViewController.hidesBottomBarWhenPushed = true
+        promptImprovedViewController.delegate = self
+        
+        viewControllers.append(promptImprovedViewController)
+        navigationController.setViewControllers(viewControllers, animated: true)
+    }
+    
+    func failPromptImprovement() {
+        
+    }
 }
 
 extension DiagnosisCoordinator: PromptImprovedViewControllerDelegate {
