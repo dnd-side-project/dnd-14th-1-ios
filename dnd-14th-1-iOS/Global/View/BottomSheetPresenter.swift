@@ -19,9 +19,6 @@ class BottomSheetPresenter: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setGesture()
-        view.layer.cornerRadius = 56
-        view.layer.cornerCurve = .continuous
-        view.clipsToBounds = true
     }
     
     private func setGesture() {
@@ -63,8 +60,8 @@ class BottomSheetPresenter: UIViewController {
         
         UIView.animate(withDuration: 0.5,
                        delay: 0,
-                       usingSpringWithDamping: 0.95,
-                       initialSpringVelocity: 0.7) {
+                       usingSpringWithDamping: 0.85,
+                       initialSpringVelocity: 0.8) {
             self.view.frame.origin.y = parent.view.frame.height - height
         }
     }
@@ -90,6 +87,15 @@ class BottomSheetPresenter: UIViewController {
             break
         }
     }
+    
+//    private func maximizeSheet() {
+//        UIView.animate(withDuration: 0.3,
+//                       delay: 0,
+//                       usingSpringWithDamping: 0.85,
+//                       initialSpringVelocity: 0.8) {
+//            self.view.frame.origin.y = self.maxY
+//        }
+//    }
     
     private func restoreSheet() {
         UIView.animate(withDuration: 0.3,

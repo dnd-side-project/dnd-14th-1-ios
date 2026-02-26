@@ -10,4 +10,7 @@ import Combine
 
 protocol UserRepository {
     func fetchLogin(requestModel: LoginRequest) -> AnyPublisher<LoginResult, ErrorResponse>
+    func fetchUserProfile() -> AnyPublisher<UserProfile, ErrorResponse>
+    func fetchMyBadges() -> AnyPublisher<MyBadges, ErrorResponse>
+    func updateRepresentativeBadge(_ selectedBadgeId: Int) -> AnyPublisher<Void, ErrorResponse>
 }

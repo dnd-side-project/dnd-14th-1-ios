@@ -10,7 +10,9 @@ import Alamofire
 
 enum UserAPI: Router {
     case fetchLogin(LoginRequest)
-    
+    case fetchUserProfile
+    case fetchMyBadges
+    case updateRepresentativeBadge(UpdateRepresentativeBadgeRequest)
 }
 
 extension UserAPI {
@@ -22,19 +24,31 @@ extension UserAPI {
     var path: String {
         switch self {
         case .fetchLogin: "/open-api/v1/auth/apple"
+        case .fetchUserProfile: "/api/v1/users/me"
+        case .fetchMyBadges: "/api/v1/badges/my"
+        case .updateRepresentativeBadge: "/api/v1/badges/representative"
         }
     }
     
     var method: HTTPMethod {
         switch self {
         case .fetchLogin: .post
+        case .fetchUserProfile: .get
+        case .fetchMyBadges: .get
+        case .updateRepresentativeBadge: .put
         }
     }
     
-    var headers: [String : String] { // MARK: - Access token은 이곳에서 넣지 않습니다!
+    var headers: [String : String] {
         switch self {
         case .fetchLogin:
             return [:]
+        case .fetchUserProfile, .fetchMyBadges, .updateRepresentativeBadge:
+            var baseDictionary: [String: String] = [:]
+            if let accessToken = KeychainWorker.shared.read(key: .access) {
+                baseDictionary["Authorization"] = "Bearer \(accessToken)"
+            }
+            return baseDictionary
         }
     }
     
@@ -42,12 +56,20 @@ extension UserAPI {
         switch self {
         case .fetchLogin(let request):
             return request.toDictionary()
+        case .fetchUserProfile, .fetchMyBadges:
+            return nil
+        case .updateRepresentativeBadge(let request):
+            return request.toDictionary()
         }
     }
     
     var encoding: ParameterEncoding? {
         switch self {
         case .fetchLogin:
+            return JSONEncoding.default
+        case .fetchUserProfile, .fetchMyBadges:
+            return nil
+        case .updateRepresentativeBadge:
             return JSONEncoding.default
         }
     }

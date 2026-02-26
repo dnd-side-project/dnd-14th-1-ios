@@ -305,7 +305,7 @@ extension SettingViewController {
         changeBadgeView = ChangeBadgeView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: sheetHeight))
         
         changeBadgeView.onChangeBadgeButtonTapped = { [weak self] selectedBadgeId in
-            print(selectedBadgeId) // TODO: ViewModel에 알리기
+            self?.inputSubject.send(.changeRepresentativeBadge(selectedBadgeId))
             self?.bottomSheetPresenter.dismissSheet()
         }
         
@@ -351,6 +351,8 @@ extension SettingViewController {
                 updateUserProfile(userProfile)
             case let .updateBadgeList(badgeList):
                 updateBadgeList(badgeList)
+            case let .showToast(message, type):
+                showToast(message: message, type: type)
             }
         }.store(in: &subscriptions)
     }

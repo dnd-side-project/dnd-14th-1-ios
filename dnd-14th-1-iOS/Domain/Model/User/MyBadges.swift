@@ -7,9 +7,15 @@
 
 import Foundation
 
+struct MyBadges {
+    let status: Int
+    let data: [Badge]
+    let message: String
+}
+
 struct Badge {
     let isCurrent: Bool
-    let date: Date
+    let date: String
     let name: String
     let description: String
     let id: Int

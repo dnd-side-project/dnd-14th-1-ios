@@ -23,4 +23,26 @@ final class DefaultUserRepository: UserRepository {
             }
             .eraseToAnyPublisher()
     }
+    
+    func fetchUserProfile() -> AnyPublisher<UserProfile, ErrorResponse> {
+        service.fetchUserProfile()
+            .map { dto in
+                return dto.toDomain()
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    func fetchMyBadges() -> AnyPublisher<MyBadges, ErrorResponse> {
+        service.fetchMyBadges()
+            .map { dto in
+                return dto.toDomain()
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    func updateRepresentativeBadge(_ selectedBadgeId: Int) -> AnyPublisher<Void, ErrorResponse> {
+        let requestModel = UpdateRepresentativeBadgeRequest(badgeId: selectedBadgeId)
+        
+        return service.updateRepresentativeBadge(requestModel)
+    }
 }
