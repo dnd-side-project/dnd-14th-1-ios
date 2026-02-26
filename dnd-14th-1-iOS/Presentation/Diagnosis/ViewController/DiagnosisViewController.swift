@@ -50,9 +50,19 @@ final class DiagnosisViewController: BaseViewController {
         dismissKeyboardWhenTapAround()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         inputSubject.send(.viewDidAppear)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     private func bind() {
@@ -72,8 +82,8 @@ final class DiagnosisViewController: BaseViewController {
     }
     
     private func showPromptSheet() {
-        let sheetHeight = UIScreen.main.bounds.height - promptSubTitle.frame.minY
-        let bottomSheetPresenter = BottomSheetPresenter()
+        let sheetHeight = view.frame.height - promptSubTitle.frame.minY - view.safeAreaInsets.bottom
+        let bottomSheetPresenter = ExpandableBottomSheetPresenter()
         let promptInputView = PromptInputView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: sheetHeight))
         
         promptInputView.buttonTapped = { [weak self] text in
