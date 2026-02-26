@@ -123,7 +123,7 @@ final class DiagnosisViewModel: ViewModelType {
         
         Task {
             do {
-                let diagnosisResult = try await conversationParsingUseCase.excute(promptInput: promptInput)
+                let diagnosisResult = try await conversationParsingUseCase.execute(promptInput: promptInput)
                 outputSubject.send(.diagnosisStateChanged(.success(diagnosisResult)))
             } catch {
                 outputSubject.send(.diagnosisStateChanged(.failure))
