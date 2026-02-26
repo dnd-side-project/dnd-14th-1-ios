@@ -31,6 +31,7 @@
 		0036FE1A2F4DBA0400200357 /* glacier3.json in Resources */ = {isa = PBXBuildFile; fileRef = 0036FE0F2F4DBA0400200357 /* glacier3.json */; };
 		0036FE1B2F4DBA0400200357 /* lottie_finisheditor.json in Resources */ = {isa = PBXBuildFile; fileRef = 0036FE142F4DBA0400200357 /* lottie_finisheditor.json */; };
 		0036FE1C2F4DBA0400200357 /* glacier2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0036FE0E2F4DBA0400200357 /* glacier2.json */; };
+		0036FEBD2F4DE7A800200357 /* PromptDiagnosisUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036FEBC2F4DE79900200357 /* PromptDiagnosisUseCase.swift */; };
 		00D1E81A2F3B85DF00D86F23 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D1E8192F3B85D700D86F23 /* TabBarItem.swift */; };
 		00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F47ED22F2DD155006FBD2A /* AppConfig.swift */; };
 		00F480182F2DD2DE006FBD2A /* Config-Prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 00F480172F2DD2DE006FBD2A /* Config-Prod.xcconfig */; };
@@ -74,17 +75,11 @@
 		7C8AABB42F437FBD0011E4CF /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8AABB32F437FBD0011E4CF /* UIViewController+.swift */; };
 		7C90146F2F4DCA8F00933379 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C90146E2F4DCA8F00933379 /* LoginViewModel.swift */; };
 		7C9014712F4DCA9B00933379 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9014702F4DCA9B00933379 /* LoginUseCase.swift */; };
-		7C9014732F4E88D700933379 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9014722F4E88D700933379 /* UserRepository.swift */; };
 		7C9014782F4E893300933379 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9014772F4E893300933379 /* LoginRequest.swift */; };
-		7C90147B2F4E89C000933379 /* LoginResultDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C90147A2F4E89C000933379 /* LoginResultDto.swift */; };
 		7C9014812F4E8A5000933379 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9014802F4E8A5000933379 /* LoginResult.swift */; };
-		7C9014832F4E8B2200933379 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9014822F4E8B2200933379 /* ErrorResponse.swift */; };
-		7C9014882F4E8BE000933379 /* DefaultUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9014872F4E8BE000933379 /* DefaultUserRepository.swift */; };
 		7C90148E2F4E8C4C00933379 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C90148D2F4E8C4C00933379 /* UserAPI.swift */; };
 		7C9014902F4E8FE300933379 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C90148F2F4E8FE300933379 /* NetworkService.swift */; };
 		7C9014922F4E921E00933379 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9014912F4E921E00933379 /* UserService.swift */; };
-		7C9014DA2F4EDA6400933379 /* UserProfileDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9014D92F4EDA6400933379 /* UserProfileDto.swift */; };
-		7C9014DC2F4F007E00933379 /* MyBadgesDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9014DB2F4F007E00933379 /* MyBadgesDto.swift */; };
 		7C9015032F4F0BA800933379 /* UpdateRepresentativeBadgeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9015022F4F0BA800933379 /* UpdateRepresentativeBadgeUseCase.swift */; };
 		7C9015052F4F0C9500933379 /* UpdateRepresentativeBadgeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9015042F4F0C9500933379 /* UpdateRepresentativeBadgeRequest.swift */; };
 		7C9582A42F3561DC004F8523 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */; };
@@ -121,6 +116,7 @@
 		0036FE122F4DBA0400200357 /* loadinganimat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = loadinganimat.json; sourceTree = "<group>"; };
 		0036FE132F4DBA0400200357 /* lottie_failerror.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lottie_failerror.json; sourceTree = "<group>"; };
 		0036FE142F4DBA0400200357 /* lottie_finisheditor.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lottie_finisheditor.json; sourceTree = "<group>"; };
+		0036FEBC2F4DE79900200357 /* PromptDiagnosisUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptDiagnosisUseCase.swift; sourceTree = "<group>"; };
 		00D1E8192F3B85D700D86F23 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		00F47E022F2DD0D3006FBD2A /* Config-Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Config-Dev.xcconfig"; sourceTree = "<group>"; };
 		00F47ED22F2DD155006FBD2A /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
@@ -193,12 +189,47 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		007368382F4F673E00F750FD /* ConversationParsing */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ConversationParsing;
+			sourceTree = "<group>";
+		};
+		0073683C2F4F6C5D00F750FD /* Repository */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		007368412F4F6CD200F750FD /* Repository */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		007368452F4F6D9300F750FD /* Decodable */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Decodable;
+			sourceTree = "<group>";
+		};
+		00CFFCFC2F4F314C00D1C0F4 /* Service */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Service;
+			sourceTree = "<group>";
+		};
+		00CFFD022F4F387000D1C0F4 /* Claude */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Claude;
+			sourceTree = "<group>";
+		};
 		00D1E8222F3B880900D86F23 /* Eco */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Eco;
 			sourceTree = "<group>";
 		};
 		00D1E8232F3B881100D86F23 /* Diagnosis */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Diagnosis;
+			sourceTree = "<group>";
+		};
+		00F794E42F4E0377005CCC92 /* Diagnosis */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Diagnosis;
 			sourceTree = "<group>";
@@ -277,9 +308,31 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
+		0036FEBB2F4DE79000200357 /* PromptDiagnosis */ = {
+			isa = PBXGroup;
+			children = (
+				0036FEBC2F4DE79900200357 /* PromptDiagnosisUseCase.swift */,
+			);
+			path = PromptDiagnosis;
+			sourceTree = "<group>";
+		};
+		00B8F44D2F504D7F00CFDA9F /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				7C90147A2F4E89C000933379 /* LoginResultDto.swift */,
+				7C9014DB2F4F007E00933379 /* MyBadgesDto.swift */,
+				7C9014872F4E8BE000933379 /* DefaultUserRepository.swift */,
+				7C9014D92F4EDA6400933379 /* UserProfileDto.swift */,
+				7C9014722F4E88D700933379 /* UserRepository.swift */,
+				7C9014822F4E8B2200933379 /* ErrorResponse.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		00F480192F2DD436006FBD2A /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				00CFFCFC2F4F314C00D1C0F4 /* Service */,
 				7C01074B2F45FB990005AC1D /* View */,
 				00113F7A2F430A0700D4CC37 /* Protocol */,
 				0027D9DD2F40546C000DE576 /* Coordinator */,
@@ -398,6 +451,7 @@
 			children = (
 				7C61D2FB2F210AAC005FAC3A /* dnd-14th-1-iOS */,
 				7C61D2C82F2109B3005FAC3A /* Products */,
+				00B8F44D2F504D7F00CFDA9F /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -430,9 +484,9 @@
 		7C61D3062F210B81005FAC3A /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				007368412F4F6CD200F750FD /* Repository */,
 				7C61D3092F210BBF005FAC3A /* Model */,
 				7C61D30A2F210BC5005FAC3A /* UseCase */,
-				7C61D30B2F210BD8005FAC3A /* Repository */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -440,9 +494,9 @@
 		7C61D3072F210B8B005FAC3A /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0073683C2F4F6C5D00F750FD /* Repository */,
 				7C61D30C2F210BEE005FAC3A /* DTOs */,
 				7C61D30D2F210BF4005FAC3A /* Service */,
-				7C61D30E2F210BFD005FAC3A /* Repository */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -464,8 +518,10 @@
 		7C61D3092F210BBF005FAC3A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				00F794E42F4E0377005CCC92 /* Diagnosis */,
 				7C0107322F439E940005AC1D /* User */,
 				00113F172F43005300D4CC37 /* Onboarding */,
+				00CFFD022F4F387000D1C0F4 /* Claude */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -473,23 +529,17 @@
 		7C61D30A2F210BC5005FAC3A /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				007368382F4F673E00F750FD /* ConversationParsing */,
+				0036FEBB2F4DE79000200357 /* PromptDiagnosis */,
 				7C9582AC2F356601004F8523 /* User */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
 		};
-		7C61D30B2F210BD8005FAC3A /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-				7C9014722F4E88D700933379 /* UserRepository.swift */,
-			);
-			path = Repository;
-			sourceTree = "<group>";
-		};
 		7C61D30C2F210BEE005FAC3A /* DTOs */ = {
 			isa = PBXGroup;
 			children = (
-				7CCB1E642F2DB6A200472669 /* Decodable */,
+				007368452F4F6D9300F750FD /* Decodable */,
 				7CCB1E652F2DB6A200472669 /* Encodable */,
 			);
 			path = DTOs;
@@ -501,14 +551,6 @@
 				7CCB1E3F2F29B5E200472669 /* Network */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		7C61D30E2F210BFD005FAC3A /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-				7C9014872F4E8BE000933379 /* DefaultUserRepository.swift */,
-			);
-			path = Repository;
 			sourceTree = "<group>";
 		};
 		7C61D30F2F210C29005FAC3A /* Resources */ = {
@@ -536,16 +578,6 @@
 			children = (
 				7C9014772F4E893300933379 /* LoginRequest.swift */,
 				7C9015042F4F0C9500933379 /* UpdateRepresentativeBadgeRequest.swift */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
-		7C9014792F4E89A600933379 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				7C90147A2F4E89C000933379 /* LoginResultDto.swift */,
-				7C9014D92F4EDA6400933379 /* UserProfileDto.swift */,
-				7C9014DB2F4F007E00933379 /* MyBadgesDto.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -620,15 +652,6 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		7CCB1E642F2DB6A200472669 /* Decodable */ = {
-			isa = PBXGroup;
-			children = (
-				7C9014792F4E89A600933379 /* User */,
-				7C9014822F4E8B2200933379 /* ErrorResponse.swift */,
-			);
-			path = Decodable;
-			sourceTree = "<group>";
-		};
 		7CCB1E652F2DB6A200472669 /* Encodable */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,8 +677,15 @@
 			);
 			fileSystemSynchronizedGroups = (
 				0027D9DD2F40546C000DE576 /* Coordinator */,
+				007368382F4F673E00F750FD /* ConversationParsing */,
+				0073683C2F4F6C5D00F750FD /* Repository */,
+				007368412F4F6CD200F750FD /* Repository */,
+				007368452F4F6D9300F750FD /* Decodable */,
+				00CFFCFC2F4F314C00D1C0F4 /* Service */,
+				00CFFD022F4F387000D1C0F4 /* Claude */,
 				00D1E8222F3B880900D86F23 /* Eco */,
 				00D1E8232F3B881100D86F23 /* Diagnosis */,
+				00F794E42F4E0377005CCC92 /* Diagnosis */,
 			);
 			name = "dnd-14th-1-iOS";
 			packageProductDependencies = (
@@ -747,13 +777,11 @@
 			files = (
 				7C9582A92F3562D0004F8523 /* LoginViewController.swift in Sources */,
 				7C9015052F4F0C9500933379 /* UpdateRepresentativeBadgeRequest.swift in Sources */,
-				7C90147B2F4E89C000933379 /* LoginResultDto.swift in Sources */,
 				00113F182F43005300D4CC37 /* OnboardingItem.swift in Sources */,
 				7C01074A2F45FB5B0005AC1D /* CustomVisualEffectView.swift in Sources */,
 				7C0107342F439E9A0005AC1D /* UserProfile.swift in Sources */,
 				00113F1A2F43007200D4CC37 /* UICollectionViewCell+.swift in Sources */,
 				00113F7B2F430A0700D4CC37 /* ViewModelType.swift in Sources */,
-				7C9014DC2F4F007E00933379 /* MyBadgesDto.swift in Sources */,
 				0027D9E92F405700000DE576 /* LoginCoordinator.swift in Sources */,
 				00113F7D2F430A1400D4CC37 /* AppChipButton.swift in Sources */,
 				0027D9E32F4054B5000DE576 /* AppCoordinator.swift in Sources */,
@@ -761,7 +789,6 @@
 				7CCB1E412F29B5ED00472669 /* Router.swift in Sources */,
 				00113F1D2F43008C00D4CC37 /* SplashViewController.swift in Sources */,
 				7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */,
-				7C9014882F4E8BE000933379 /* DefaultUserRepository.swift in Sources */,
 				00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */,
 				7C0107312F439E800005AC1D /* FetchUserProfileUseCase.swift in Sources */,
 				00F481722F2DD574006FBD2A /* UIFont+.swift in Sources */,
@@ -790,9 +817,9 @@
 				00113F152F42FFFD00D4CC37 /* OnboardingCollectionViewCell.swift in Sources */,
 				7C2E31FC2F38DDA6006F08FE /* UIImage+.swift in Sources */,
 				7C90146F2F4DCA8F00933379 /* LoginViewModel.swift in Sources */,
-				7C9014DA2F4EDA6400933379 /* UserProfileDto.swift in Sources */,
 				00113F2F2F43012700D4CC37 /* OnboardingCoordinator.swift in Sources */,
 				7C8AABB42F437FBD0011E4CF /* UIViewController+.swift in Sources */,
+				0036FEBD2F4DE7A800200357 /* PromptDiagnosisUseCase.swift in Sources */,
 				7C01073D2F43B4C30005AC1D /* ChangeBadgeView.swift in Sources */,
 				7C01074F2F45FE7A0005AC1D /* PrivacyPolicyViewController.swift in Sources */,
 				7C9582AE2F356608004F8523 /* CheckLoginUseCase.swift in Sources */,
@@ -800,13 +827,11 @@
 				7C0107462F43B6F80005AC1D /* MyBadges.swift in Sources */,
 				0027D9E62F4055E7000DE576 /* TabBarCoordinator.swift in Sources */,
 				7C0107392F43A9B40005AC1D /* UIImageView+.swift in Sources */,
-				7C9014732F4E88D700933379 /* UserRepository.swift in Sources */,
 				7CCB1E722F2DD20300472669 /* KeychainWorker.swift in Sources */,
 				00F482492F2DDC69006FBD2A /* UIView+.swift in Sources */,
 				00D1E81A2F3B85DF00D86F23 /* TabBarItem.swift in Sources */,
 				00F482472F2DDC4F006FBD2A /* UIStackView+.swift in Sources */,
 				7C01073F2F43B6870005AC1D /* ChangeBadgeCollectionView.swift in Sources */,
-				7C9014832F4E8B2200933379 /* ErrorResponse.swift in Sources */,
 				00F4824E2F2DDE0C006FBD2A /* CALayer+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -845,7 +870,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
@@ -884,7 +909,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;

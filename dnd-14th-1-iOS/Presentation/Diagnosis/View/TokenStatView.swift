@@ -12,16 +12,28 @@ import Then
 
 class TokenStatView: UIVisualEffectView {
     
+    var title: String {
+        get { titleLabel.text ?? "" }
+        set { titleLabel.text = newValue }
+    }
+    
+    var icon: UIImage {
+        get { imageView.image ?? UIImage() }
+        set { imageView.image = newValue }
+    }
+    
+    var value: String {
+        get { amountLabel.text ?? "" }
+        set { amountLabel.text = newValue }
+    }
+    
     private let imageView = UIImageView()
     private let titleLabel = UILabel()
     private let amountLabel = UILabel()
     
-    init(image: UIImage, title: String, value: String) {
+    init() {
         let blurEffect = UIBlurEffect(style: .light)
         super.init(effect: blurEffect)
-        imageView.image = image
-        titleLabel.text = title
-        amountLabel.text = value
         addSubView()
         setStyle()
         setLayout()
@@ -78,5 +90,9 @@ class TokenStatView: UIVisualEffectView {
             titleLabel,
             amountLabel
         )
+    }
+    
+    func setValue(_ value: String) {
+        amountLabel.text = value
     }
 }

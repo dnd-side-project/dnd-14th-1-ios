@@ -37,20 +37,7 @@ final class PromptLoadingViewController: BaseViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        startTask()
-    }
-    
-    private func startTask() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { [weak self] in
-            guard let self else { return }
-            switch loadingType {
-            case .diagnose:
-                delegate?.didCompleteLoading(.diagnose)
-            case .improve:
-                delegate?.didCompleteLoading(.improve)
-            }
-        }
+        super.viewDidLoad()        
     }
     
     override func addSubview() {

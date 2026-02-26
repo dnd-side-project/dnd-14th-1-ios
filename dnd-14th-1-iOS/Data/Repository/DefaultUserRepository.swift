@@ -19,7 +19,7 @@ final class DefaultUserRepository: UserRepository {
     func fetchLogin(requestModel: LoginRequest) -> AnyPublisher<LoginResult, ErrorResponse> {
         service.fetchLogin(request: requestModel)
             .map { dto in
-                dto.toDomain()
+                return dto.toDomain()
             }
             .eraseToAnyPublisher()
     }

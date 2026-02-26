@@ -67,6 +67,15 @@ final class DiagnosisViewController: BaseViewController {
                 updatePromptTitle(isPresented)
             case let .appleIntelligenceAuthorized(isGranted):
                 checkAppleIntelligence(isGranted)
+            case let .diagnosisStateChanged(diagnosisState):
+                switch diagnosisState {
+                case .loading:
+                    delegate?.startDiagnosis()
+                case let .success(diagnosisResult):                    
+                    delegate?.completeDiagnosis(diagnosisResult)
+                case .failure:
+                    delegate?.failDiagnosis()
+                }
             }
         }.store(in: &subscriptions)
     }
@@ -76,8 +85,9 @@ final class DiagnosisViewController: BaseViewController {
         let bottomSheetPresenter = BottomSheetPresenter()
         let promptInputView = PromptInputView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: sheetHeight))
         
-        promptInputView.buttonTapped = { [weak self] text in
-            self?.delegate?.didTapPromptButton()
+        promptInputView.onSubmit = { [weak self] promptInput in
+            self?.inputSubject.send(.diagnosisButtonTapped(promptInput))
+            bottomSheetPresenter.dismissSheet(animated: false)
         }
         
         bottomSheetPresenter.onDissmiss = {
