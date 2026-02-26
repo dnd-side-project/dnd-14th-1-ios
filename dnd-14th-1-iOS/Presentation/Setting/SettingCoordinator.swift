@@ -17,10 +17,17 @@ final class SettingCoordinator: Coordinator {
     }
     
     func start() {
-        let mockFetchUserProfileUseCase = MockFetchUserProfileUseCase()
-        let mockFetchBadgeListUseCase = MockFetchBadgeListUseCase()
-        let defaultLogoutUseCase = DefaultLogoutUseCase()
-        let settingViewModel = SettingViewModel(fetchUserProfileUseCase: mockFetchUserProfileUseCase, fetchBadgeListUseCase: mockFetchBadgeListUseCase, logoutUseCase: defaultLogoutUseCase)
+        let userService = DefaultUserService()
+        let userRepository = DefaultUserRepository(service: userService)
+        let fetchUserProfileUseCase = DefaultFetchUserProfileUseCase(repository: userRepository)
+        let fetchBadgeListUseCase = DefaultFetchMyBadgesUseCase(repository: userRepository)
+        let logoutUseCase = DefaultLogoutUseCase()
+        let changeRepresentativeBadgeUseCase = DefaultUpdateRepresentativeBadgeUseCase(repository: userRepository)
+        let settingViewModel = SettingViewModel(
+            fetchUserProfileUseCase: fetchUserProfileUseCase,
+            fetchMyBadgesUseCase: fetchBadgeListUseCase,
+            logoutUseCase: logoutUseCase,
+            changeRepresentativeBadge: changeRepresentativeBadgeUseCase)
         let settingViewController = SettingViewController(viewModel: settingViewModel)
         settingViewController.delegate = self
         navigationController.pushViewController(settingViewController, animated: true)

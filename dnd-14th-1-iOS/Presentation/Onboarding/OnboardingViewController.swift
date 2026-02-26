@@ -137,7 +137,7 @@ extension OnboardingViewController {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         
         if onboardingPageControl.currentPage == onboardingPageControl.numberOfPages - 1 {
-            delegate?.startButtonTapped()
+            delegate?.didCompleteOnBoarding()
             return
         }
         

@@ -9,20 +9,18 @@ import Foundation
 import Combine
 
 protocol FetchUserProfileUseCase {
-    func execute() -> AnyPublisher<UserProfile, Error>
+    func execute() -> AnyPublisher<UserProfile, ErrorResponse>
 }
 
-final class MockFetchUserProfileUseCase: FetchUserProfileUseCase {
+final class DefaultFetchUserProfileUseCase: FetchUserProfileUseCase {
     
-    func execute() -> AnyPublisher<UserProfile, Error> {
-        let mockUserProfile = UserProfile(
-            imageUrl: "https://picsum.photos/id/237/200/300",
-            nickname: "사용자",
-            domain: .apple,
-            email: "user@example.com"
-        )
-        return Just(mockUserProfile)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+    private let repository: UserRepository
+    
+    init(repository: UserRepository) {
+        self.repository = repository
+    }
+    
+    func execute() -> AnyPublisher<UserProfile, ErrorResponse> {
+        return repository.fetchUserProfile()
     }
 }

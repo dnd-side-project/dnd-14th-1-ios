@@ -6,27 +6,33 @@
 //
 
 import UIKit
+import Combine
 
 final class AppCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     
     private let navigationController: UINavigationController
-    private var isLoggedIn: Bool
+    private let checkLoginUseCase: CheckLoginUseCase
+    private var subscriptions: Set<AnyCancellable> = []
     
-    init(navigationController: UINavigationController, isLoggedIn: Bool) {
+    init(navigationController: UINavigationController,
+         checkLoginUseCase: CheckLoginUseCase) {
         self.navigationController = navigationController
-        self.isLoggedIn = isLoggedIn
+        self.checkLoginUseCase = checkLoginUseCase
         NotificationCenter.default.addObserver(self, selector: #selector(start), name: NSNotification.Name("DidLogout"), object: nil)
     }
     
     @objc func start() {
         childCoordinators = []
         
-        if isLoggedIn {
-            showTabBarCoordinator()
-        } else {
-            showLoginCoordinator()
-        }
+        checkLoginUseCase.execute().sink(receiveValue: { [weak self] isLoggedIn in
+            guard let self else { return }
+            if isLoggedIn {
+                showTabBarCoordinator()
+            } else {
+                showLoginCoordinator()
+            }
+        }).store(in: &subscriptions)
     }
     
     private func showTabBarCoordinator() {
@@ -44,7 +50,7 @@ final class AppCoordinator: Coordinator {
 }
 
 extension AppCoordinator: LoginCoordinatorDelegate {
-    func didCompleteLogin(_ coordinator: Coordinator) {
+    func didCompleteOnBoarding(_ coordinator: Coordinator) {
         childCoordinators = childCoordinators.filter { $0 !== coordinator }
         showTabBarCoordinator()
     }
