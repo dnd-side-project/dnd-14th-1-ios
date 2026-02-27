@@ -71,7 +71,7 @@ final class DiagnosisResultViewModel: ViewModelType {
                 let response = try await promptImprovementUseCase.execute(promptDiagnosis: promptDiagnosis)
                 outputSubject.send(.promptImproveStateChanged(.success(result: response)))
             } catch {
-                print(error.localizedDescription)
+                outputSubject.send(.promptImproveStateChanged(.failure))
             }
         }
     }

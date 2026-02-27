@@ -58,6 +58,10 @@ extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
         
         errorViewController.hidesBottomBarWhenPushed = true
         viewControllers.append(errorViewController)
+        
+        errorViewController.onRetry = { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        }
         navigationController.setViewControllers(viewControllers, animated: true)
     }
     
@@ -140,7 +144,20 @@ extension DiagnosisCoordinator: DiagnosisResultViewControllerDelegate {
     }
     
     func failPromptImprovement() {
+        var viewControllers = navigationController.viewControllers
+        viewControllers.removeLast()
         
+        let errorViewController = ErrorViewController(
+            title: "개선하는 과정에서 오류가 발생했어요",
+            description: "프롬프트를 다시 한번 확인해 주시겠어요?"
+        )
+        errorViewController.retryButtonText = "다시 시도하기"
+        errorViewController.hidesBottomBarWhenPushed = true
+        errorViewController.onRetry = { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        }
+        viewControllers.append(errorViewController)
+        navigationController.setViewControllers(viewControllers, animated: true)
     }
 }
 
