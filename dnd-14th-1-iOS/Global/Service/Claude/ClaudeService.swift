@@ -89,43 +89,47 @@ final class DefaultClaudeService: ClaudeService {
     }
     
     func splitPromptIntoSentences(_ prompt: String) async throws -> [String] {
-        let parameters = ClaudeMessageRequest(
-            model: model.modelApiId,
-            max_tokens: 1000,
-            messages: [
-                ClaudeMessage(
-                    role: "user",
-                    content: "\(ClaudeInstructions.splitPromptIntoSentences) 사용자 프롬프트: \(prompt)"
-                )
-            ],            
-            output_config: OutputConfig(
-                format: OutputFormat(
-                    type: "json_schema",
-                    schema: JSONSchema(
-                        type: "object",
-                        properties: ["sentences":SchemaProperty(type: "array", items: SchemaItems(type: "string"))],
-                        required: ["setences"],
-                        additionalProperties: false
+        do {
+            let parameters = ClaudeMessageRequest(
+                model: model.modelApiId,
+                max_tokens: 1000,
+                messages: [
+                    ClaudeMessage(
+                        role: "user",
+                        content: "\(ClaudeInstructions.splitPromptIntoSentences) 사용자 프롬프트: \(prompt)"
+                    )
+                ],
+                output_config: OutputConfig(
+                    format: OutputFormat(
+                        type: "json_schema",
+                        schema: JSONSchema(
+                            type: "object",
+                            properties: ["sentences":SchemaProperty(type: "array", items: SchemaItems(type: "string"))],
+                            required: ["setences"],
+                            additionalProperties: false
+                        )
                     )
                 )
             )
-        )
-        
-        let response = try await AF.request(
-            requestURL,
-            method: .post,
-            parameters: parameters,
-            encoder: JSONParameterEncoder.default,
-            headers: headers
-        )
-            .validate(statusCode: 200..<300)
-            .serializingDecodable(ClaudeResponse.self)
-            .value
-        
-        let jsonText = response.content[0].text ?? ""
-        let result = try JSONDecoder().decode(SplitResult.self, from: Data(jsonText.utf8))
             
-        return result.sentences
+            let response = try await AF.request(
+                requestURL,
+                method: .post,
+                parameters: parameters,
+                encoder: JSONParameterEncoder.default,
+                headers: headers
+            )
+                .validate(statusCode: 200..<300)
+                .serializingDecodable(ClaudeResponse.self)
+                .value
+            
+            let jsonText = response.content[0].text ?? ""
+            let result = try JSONDecoder().decode(SplitResult.self, from: Data(jsonText.utf8))
+                
+            return result.sentences
+        } catch {
+            throw error
+        }
     }
     
     func calculateCost(
