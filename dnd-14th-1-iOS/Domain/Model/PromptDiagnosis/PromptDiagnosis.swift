@@ -21,5 +21,5 @@ struct PromptDiagnosis {
     let originalPrompt: String
     let usingModel: ClaudeModel
     let source: PromptSource
-    let sentences: [Sentence]
+    let sentences: [String]
 }
