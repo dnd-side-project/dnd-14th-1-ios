@@ -52,7 +52,7 @@ final class DefaultPromptImprovementUseCase: PromptImprovementUseCase {
         let totalTokenUsage = try await claudeService.request(for: improvedPrompt).usage
         let improvedPromptTokenCount = (totalTokenUsage?.input_tokens ?? 0) + (totalTokenUsage?.output_tokens ?? 0)
         let originalPromptTokenCount = promptDiagnosis.inputToken + promptDiagnosis.outputToken
-        let savedToken = originalPromptTokenCount - improvedPromptTokenCount
+        let savedToken = max(0, originalPromptTokenCount - improvedPromptTokenCount)
         
         return PromptImproveResult(sentences: sentences, savedToken: savedToken)
     }
