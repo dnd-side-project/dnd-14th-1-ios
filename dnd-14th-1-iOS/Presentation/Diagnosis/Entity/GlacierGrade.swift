@@ -19,3 +19,22 @@ struct GlacierGrade {
         }
     }
 }
+
+struct GlacierGradeAnimation {
+    let currentGrade: Int
+    let isEfficiency: Bool
+    
+    var animationGrade: Int {
+        if currentGrade == 1 && !isEfficiency { return 5 }
+        if currentGrade == 5 && isEfficiency { return 2 }
+        return max(2, 6 - currentGrade)
+    }
+    
+    var isPlay: Bool {
+        !(currentGrade == 1 && !isEfficiency)
+    }
+    
+    var progress: (fromProgress: Double, toProgress: Double) {
+        isEfficiency ? (1.0, 0.0) : (0.0, 1.0)
+    }
+}

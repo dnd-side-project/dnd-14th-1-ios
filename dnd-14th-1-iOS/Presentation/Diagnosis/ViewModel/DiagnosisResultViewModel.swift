@@ -28,19 +28,23 @@ final class DiagnosisResultViewModel: ViewModelType {
     enum Output {
         case displayDiagnosisResult(PromptDiagnosisResult)
         case promptImproveStateChanged(PromptImproveState)
+        case animationGlacierGrade(GlacierGradeAnimation)
     }
     
     private let promptImprovementUseCase: PromptImprovementUseCase
     private let outputSubject = PassthroughSubject<Output, Never>()
     private let promptDiagnosis: PromptDiagnosisResult
+    private let glacierGrade: GlacierGrade
     
     private var subscriptions: Set<AnyCancellable> = []
     
     init(
         promptDiagnosisResult: PromptDiagnosisResult,
+        glacierGrade: GlacierGrade,
         promptImprovementUseCase: PromptImprovementUseCase
     ) {
         self.promptDiagnosis = promptDiagnosisResult
+        self.glacierGrade = glacierGrade
         self.promptImprovementUseCase = promptImprovementUseCase
     }
     
@@ -59,8 +63,10 @@ final class DiagnosisResultViewModel: ViewModelType {
         return outputSubject.eraseToAnyPublisher()
     }
     
-    func displayDiagnosisResult() {
+    func displayDiagnosisResult() {        
+        let isEfficiency = promptDiagnosis.efficiency == .efficiency
         outputSubject.send(.displayDiagnosisResult(promptDiagnosis))
+        outputSubject.send(.animationGlacierGrade(GlacierGradeAnimation(currentGrade: glacierGrade.grade, isEfficiency: isEfficiency)))
     }
     
     func promptImprovement() {

@@ -81,12 +81,16 @@ extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
         navigationController.pushViewController(promptLoadingViewController, animated: true)
     }
     
-    func completeDiagnosis(_ promptDiagnosis: PromptDiagnosisResult) {
+    func completeDiagnosis(_ promptDiagnosis: PromptDiagnosisResult, _ glacierGrade: GlacierGrade) {
         var viewControllers = navigationController.viewControllers
         viewControllers.removeLast()
         let claudeService = DefaultClaudeService(model: .claude_haiku_4_5)
         let promptImprovementUseCase = DefaultPromptImprovementUseCase(claudeService: claudeService)
-        let diagnosisResultViewModel = DiagnosisResultViewModel(promptDiagnosisResult: promptDiagnosis, promptImprovementUseCase: promptImprovementUseCase)
+        let diagnosisResultViewModel = DiagnosisResultViewModel(
+            promptDiagnosisResult: promptDiagnosis,
+            glacierGrade: glacierGrade,
+            promptImprovementUseCase: promptImprovementUseCase
+        )
         
         let promprtResultViewController = DiagnosisResultViewController(viewModel: diagnosisResultViewModel)
         promprtResultViewController.delegate = self

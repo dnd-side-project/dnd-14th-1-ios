@@ -14,7 +14,7 @@ final class DiagnosisViewModel: ViewModelType {
     
     enum DiagnosisState {
         case loading
-        case success(PromptDiagnosisResult)
+        case success(PromptDiagnosisResult, GlacierGrade)
         case failure
     }
     
@@ -45,6 +45,7 @@ final class DiagnosisViewModel: ViewModelType {
     private let savedGlacierAmount = CurrentValueSubject<Double, Never>(0.0)
     private let isPromptSheetPresented = CurrentValueSubject<Bool, Never>(false)
     private let isAppleIntelligenceAvailable = CurrentValueSubject<Bool, Never>(false)
+    private let glacierGrade = CurrentValueSubject<GlacierGrade?, Never>(nil)
     
     private var subscriptions: Set<AnyCancellable> = []
     private var model = SystemLanguageModel.default
@@ -101,7 +102,9 @@ final class DiagnosisViewModel: ViewModelType {
                     self?.outputSubject.send(.errorOccurred(error.localizedDescription))
                 }
             } receiveValue: {  [weak self] ecoTier in
-                self?.outputSubject.send(.displayGlacierGrade(GlacierGrade(grade: ecoTier.data.tier)))
+                let grade = GlacierGrade(grade: ecoTier.data.tier)
+                self?.glacierGrade.send(grade)
+                self?.outputSubject.send(.displayGlacierGrade(grade))
             }
             .store(in: &subscriptions)
     }
@@ -129,12 +132,16 @@ final class DiagnosisViewModel: ViewModelType {
     }
     
     private func promptDiagnosis(with promptInput: PromptInput) {
+        guard let glacierGrade = glacierGrade.value else {
+            outputSubject.send(.errorOccurred("등급 조회에 실패했습니다."))
+            return
+        }
         outputSubject.send(.diagnosisStateChanged(.loading))
         
-        Task {
+        Task { 
             do {
                 let diagnosisResult = try await promptDiagnosisUseCase.excute(prompt: promptInput.value)
-                outputSubject.send(.diagnosisStateChanged(.success(diagnosisResult)))
+                outputSubject.send(.diagnosisStateChanged(.success(diagnosisResult, glacierGrade)))
             } catch {
                 outputSubject.send(.diagnosisStateChanged(.failure))
             }
@@ -142,12 +149,17 @@ final class DiagnosisViewModel: ViewModelType {
     }
     
     private func promptDiagnosisWithUrl(with promptInput: PromptInput) {
+        guard let glacierGrade = glacierGrade.value else {
+            outputSubject.send(.errorOccurred("등급 조회에 실패했습니다."))
+            return
+        }
+        
         outputSubject.send(.diagnosisStateChanged(.loading))
         
         Task {
             do {
                 let diagnosisResult = try await conversationParsingUseCase.execute(promptInput: promptInput)
-                outputSubject.send(.diagnosisStateChanged(.success(diagnosisResult)))
+                outputSubject.send(.diagnosisStateChanged(.success(diagnosisResult, glacierGrade)))
             } catch {
                 outputSubject.send(.diagnosisStateChanged(.failure))
             }
