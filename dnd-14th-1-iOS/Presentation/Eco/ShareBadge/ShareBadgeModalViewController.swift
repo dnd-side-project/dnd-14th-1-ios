@@ -73,7 +73,7 @@ final class ShareBadgeModalViewController: BaseViewController {
         }
         closeButton.snp.makeConstraints {
             $0.size.equalTo(24)
-            $0.top.leading.equalTo(contentView).offset(28)
+            $0.top.trailing.equalTo(contentView).inset(28)
         }
         myBadgeLabel.snp.makeConstraints {
             $0.height.equalTo(20)
