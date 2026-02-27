@@ -28,6 +28,8 @@ struct ImprovedPromptList {
 }
 
 struct PromptImproveResult {
+    let originalPrompt: String
+    let improvedPrompt: String
     let sentences: [PromptSentence]
     let savedToken: Int
 }
