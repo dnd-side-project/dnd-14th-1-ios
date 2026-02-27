@@ -13,6 +13,9 @@ class ExpandableBottomSheetPresenter: UIViewController {
     // MARK: - Properties
     private lazy var maxHeight = view.frame.height
     private var height: CGFloat = 0
+    private var isDismissPermitted = true
+    var onMaximize: (() -> Void)?
+    var onRestore: (() -> Void)?
     var onDismiss: (() -> Void)?
     
     // MARK: - UI Components
@@ -47,9 +50,10 @@ class ExpandableBottomSheetPresenter: UIViewController {
         self.present(on: topViewController, contentView: contentView, height: height)
     }
     
-    func present(on parent: UIViewController, contentView: UIView, height: CGFloat) {
+    func present(on parent: UIViewController, contentView: UIView, height: CGFloat, isDismissPermitted: Bool = true) {
         self.contentView = contentView
         self.height = height
+        self.isDismissPermitted = isDismissPermitted
         
         parent.addChild(self)
         parent.view.addSubview(view)
@@ -108,7 +112,10 @@ extension ExpandableBottomSheetPresenter {
         dismissKeyboard()
         
         let translation = gesture.translation(in: view)
-        let newHeight = min(maxHeight, maxHeight - contentView.convert(.zero, to: view).minY - translation.y)
+        var newHeight = min(maxHeight, maxHeight - contentView.convert(.zero, to: view).minY - translation.y)
+        if !isDismissPermitted {
+            newHeight = max(newHeight, height)
+        }
         
         switch gesture.state {
         case .changed:
@@ -129,11 +136,12 @@ extension ExpandableBottomSheetPresenter {
             view.layoutIfNeeded()
             gesture.setTranslation(.zero, in: view)
         case .ended:
+            let maximizeOffset = (maxHeight + height) / 2
             let dismissOffset = height * 0.7
             
             if newHeight < dismissOffset {
                 dismissSheet()
-            } else if height < newHeight {
+            } else if maximizeOffset < newHeight {
                 maximizeSheet()
             } else {
                 restoreSheet()
@@ -154,6 +162,7 @@ extension ExpandableBottomSheetPresenter {
             $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
         }
         animate()
+        onMaximize?()
     }
     
     private func restoreSheet() {
@@ -163,9 +172,14 @@ extension ExpandableBottomSheetPresenter {
             $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
         }
         animate()
+        onRestore?()
     }
     
     func dismissSheet() {
+        if !isDismissPermitted {
+            restoreSheet()
+            return
+        }
         contentView.snp.remakeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             $0.leading.trailing.equalToSuperview()
