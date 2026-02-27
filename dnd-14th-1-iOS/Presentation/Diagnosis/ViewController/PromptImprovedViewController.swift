@@ -62,6 +62,8 @@ class PromptImprovedViewController: BaseViewController {
             case let .showPromptImprovement(result):
                 self?.configureSavedTokenLabel(result.savedToken)
                 self?.showImprovedPrompt(result)
+            case let .promptCopyCompleted(prompTextt):
+                self?.copyImprovedPrompt(prompTextt)
             }
         }
         .store(in: &subscriptions)
@@ -262,11 +264,18 @@ extension PromptImprovedViewController {
         
         present(bottomSheetViewController, animated: true)
     }
+    
+    private func copyImprovedPrompt(_ promptText: String) {
+        UIPasteboard.general.string = promptText
+        showToast(message: "프롬프트 복사가 완료되었어요!", type: .networkError)
+    }
 }
 
 
 extension PromptImprovedViewController {
-    @objc private func promptCopyButtonTapped() {}
+    @objc private func promptCopyButtonTapped() {
+        inputSubject.send(.promptCopyButtonTapped)
+    }
     
     @objc private func homeButtonTapped() {
         delegate?.promptHomeButtonTapped()

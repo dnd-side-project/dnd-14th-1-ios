@@ -13,12 +13,14 @@ final class PromptImproveViewModel: ViewModelType {
     
     enum Input {
         case viewDidLoad
+        case promptCopyButtonTapped
     }
     
     // MARK: - Output
     
     enum Output {
         case showPromptImprovement(PromptImproveResult)
+        case promptCopyCompleted(String)
     }
     
     private let outputSubject = PassthroughSubject<Output, Never>()
@@ -38,6 +40,8 @@ final class PromptImproveViewModel: ViewModelType {
                 switch input {
                 case .viewDidLoad:
                     outputSubject.send(.showPromptImprovement(promptImproveResult))
+                case .promptCopyButtonTapped:
+                    outputSubject.send(.promptCopyCompleted(promptImproveResult.improvedPrompt))
                 }
             }
             .store(in: &subscriptions)
