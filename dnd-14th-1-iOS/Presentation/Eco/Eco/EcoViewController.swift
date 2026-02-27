@@ -11,8 +11,8 @@ import SnapKit
 import Then
 
 protocol EcoViewControllerDelegate: AnyObject {
-    func shareBadge(badge: Badge)
-    func shareTier(tier: EcoTier)
+    func presentShareBadge(badge: Badge)
+    func presentShareTier(tier: EcoTier)
 }
 
 class EcoViewController: BaseViewController {
@@ -92,7 +92,7 @@ class EcoViewController: BaseViewController {
         }.store(in: &subscriptions)
         
         myBadgesView.didTapBadgePublisher.receive(on: DispatchQueue.main).sink { [weak self] badge in
-            self?.delegate?.shareBadge(badge: badge)
+            self?.delegate?.presentShareBadge(badge: badge)
         }.store(in: &subscriptions)
     }
     
@@ -213,7 +213,7 @@ extension EcoViewController {
 
     @objc private func shareTierButtonTapped() {
         if let ecoTier {
-            delegate?.shareTier(tier: ecoTier)
+            delegate?.presentShareTier(tier: ecoTier)
         }
     }
 }
