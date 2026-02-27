@@ -13,23 +13,32 @@ import Then
 final class ShareBadgeModalViewController: BaseViewController {
     
     // MARK: - Properties
+    private let kakaoShareUseCase: KakaoShareUseCase
+    private var subscriptions: Set<AnyCancellable> = []
     private let badge: Badge
     private var didLayoutSubviews = false
+    
     
     // MARK: - UI Components
     private let blurredBackgroundView = CustomVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark), intensity: 0.2)
     private let contentView = UIView()
     private let closeButton = UIButton()
+    private let shareButton = AppButton(size: .large, title: "SNS 공유", image: UIImage.shareNetwork)
+    
+    private let wrapperView = UIView()
     private let myBadgeLabel = UILabel()
     private let dateLabel = UILabel()
     private let badgeImageView = UIImageView()
     private let badgeTitleLabel = UILabel()
     private let badgeDescriptionLabel = UILabel()
-    private let shareButton = AppButton(size: .large, title: "SNS 공유", image: UIImage.shareNetwork)
     
     // MARK: - Initializer
-    init(badge: Badge) {
+    init(
+        badge: Badge,
+        kakaoShareUseCase: KakaoShareUseCase
+    ) {
         self.badge = badge
+        self.kakaoShareUseCase = kakaoShareUseCase
         super.init()
     }
     required init?(coder: NSCoder) {
@@ -53,7 +62,10 @@ final class ShareBadgeModalViewController: BaseViewController {
     // MARK: - Base
     
     override func addSubview() {
-        [closeButton, myBadgeLabel, dateLabel, badgeImageView, badgeTitleLabel, badgeDescriptionLabel, shareButton].forEach {
+        [myBadgeLabel, dateLabel, badgeImageView, badgeTitleLabel, badgeDescriptionLabel].forEach {
+            wrapperView.addSubview($0)
+        }
+        [wrapperView, closeButton, shareButton].forEach {
             contentView.addSubview($0)
         }
         [blurredBackgroundView, contentView].forEach {
@@ -75,32 +87,39 @@ final class ShareBadgeModalViewController: BaseViewController {
             $0.size.equalTo(24)
             $0.top.trailing.equalTo(contentView).inset(28)
         }
+        
+        wrapperView.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(contentView)
+        }
+        
         myBadgeLabel.snp.makeConstraints {
             $0.height.equalTo(20)
-            $0.top.equalTo(contentView).offset(40)
-            $0.centerX.equalTo(contentView)
+            $0.top.equalTo(wrapperView).offset(40)
+            $0.centerX.equalTo(wrapperView)
         }
         dateLabel.snp.makeConstraints {
             $0.height.equalTo(21)
             $0.top.equalTo(myBadgeLabel.snp.bottom).offset(8)
-            $0.centerX.equalTo(contentView)
+            $0.centerX.equalTo(wrapperView)
         }
         badgeImageView.snp.makeConstraints {
             $0.top.equalTo(dateLabel.snp.bottom).offset(22.5)
             $0.height.equalTo(195)
-            $0.centerX.equalTo(contentView)
+            $0.centerX.equalTo(wrapperView)
         }
         badgeTitleLabel.snp.makeConstraints {
             $0.height.equalTo(42)
             $0.top.equalTo(badgeImageView.snp.bottom).offset(8)
-            $0.centerX.equalTo(contentView)
+            $0.centerX.equalTo(wrapperView)
         }
         badgeDescriptionLabel.snp.makeConstraints {
             $0.top.equalTo(badgeTitleLabel.snp.bottom) // .offset(8)
-            $0.centerX.equalTo(contentView)
+            $0.centerX.equalTo(wrapperView)
+            $0.bottom.equalTo(wrapperView).offset(-15.5 - 10)
         }
+        
         shareButton.snp.makeConstraints {
-            $0.top.equalTo(badgeDescriptionLabel.snp.bottom).offset(15.5)
+            $0.top.equalTo(wrapperView.snp.bottom).offset(-10)
             $0.leading.trailing.equalTo(contentView).inset(24)
             $0.bottom.equalTo(contentView).offset(-36)
         }
@@ -159,7 +178,7 @@ extension ShareBadgeModalViewController {
         ]
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 0, y: 1)
-        contentView.layer.insertSublayer(gradientLayer, at: 0)
+        wrapperView.layer.insertSublayer(gradientLayer, at: 0)
     }
 }
 
@@ -173,7 +192,16 @@ extension ShareBadgeModalViewController {
     @objc private func closeButtonTapped() {
         dismiss(animated: true)
     }
-    @objc private func shareButtonTapped() {}
+    @objc private func shareButtonTapped() {
+        kakaoShareUseCase.execute(image: wrapperView.asImage(), template: .badge).receive(on: DispatchQueue.main).sink(
+            receiveCompletion: { [weak self] completion in
+                if case .failure(let error) = completion {
+                    self?.showToast(message: error.message, type: .internalError)
+                }
+            },
+            receiveValue: { _ in }
+        ).store(in: &subscriptions)
+    }
 }
 
 extension ShareBadgeModalViewController {

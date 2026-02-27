@@ -21,4 +21,11 @@ struct AppConfig {
         }
         return apiKey
     }()
+    
+    static let kakaoAppKey: String = {
+        guard let apiKey = Bundle.main.infoDictionary?["KAKAO_APP_KEY"] as? String, !apiKey.isEmpty else {
+            fatalError("KAKAO_APP_KEY must be set in the Info.plist and cannot be empty.")
+        }
+        return apiKey
+    }()
 }

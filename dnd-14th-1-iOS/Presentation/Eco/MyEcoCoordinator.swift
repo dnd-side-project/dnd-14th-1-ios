@@ -34,14 +34,22 @@ final class MyEcoCoordinator: Coordinator {
 extension MyEcoCoordinator: EcoViewControllerDelegate {
     
     func presentShareTier(tier: EcoTier) {
-        let shareTierModalViewController = ShareTierModalViewController(tier: tier)
+        let kakaoShareUseCase = DefaultKakaoShareUseCase()
+        let shareTierModalViewController = ShareTierModalViewController(
+            tier: tier,
+            kakaoShareUseCase: kakaoShareUseCase
+        )
         shareTierModalViewController.modalPresentationStyle = .overFullScreen
         shareTierModalViewController.modalTransitionStyle = .crossDissolve
         navigationController.present(shareTierModalViewController, animated: true)
     }
     
     func presentShareBadge(badge: Badge) {
-        let shareBadgeModalViewController = ShareBadgeModalViewController(badge: badge)
+        let kakaoShareUseCase = DefaultKakaoShareUseCase()
+        let shareBadgeModalViewController = ShareBadgeModalViewController(
+            badge: badge,
+            kakaoShareUseCase: kakaoShareUseCase
+        )
         shareBadgeModalViewController.modalPresentationStyle = .overFullScreen
         shareBadgeModalViewController.modalTransitionStyle = .crossDissolve
         navigationController.present(shareBadgeModalViewController, animated: true)
