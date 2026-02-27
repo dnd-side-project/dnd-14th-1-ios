@@ -77,6 +77,7 @@
 		7C3A7AC72F513E6800E25089 /* UserProfileDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AC12F513E6800E25089 /* UserProfileDto.swift */; };
 		7C3A7AC82F513E6800E25089 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AC32F513E6800E25089 /* ErrorResponse.swift */; };
 		7C3A7ACB2F513E7300E25089 /* EcoTierDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7ACA2F513E7300E25089 /* EcoTierDto.swift */; };
+		7C3A7AE22F516E0A00E25089 /* PassthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AE12F516E0A00E25089 /* PassthroughView.swift */; };
 		7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */; };
 		7C61D2FF2F210AAC005FAC3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F92F210AAC005FAC3A /* SceneDelegate.swift */; };
 		7C61D3012F210AAC005FAC3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C61D2F62F210AAC005FAC3A /* Assets.xcassets */; };
@@ -177,6 +178,7 @@
 		7C3A7AC12F513E6800E25089 /* UserProfileDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileDto.swift; sourceTree = "<group>"; };
 		7C3A7AC32F513E6800E25089 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		7C3A7ACA2F513E7300E25089 /* EcoTierDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoTierDto.swift; sourceTree = "<group>"; };
+		7C3A7AE12F516E0A00E25089 /* PassthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
 		7C606B982F4C9C8C00C1578D /* dnd-14th-1-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "dnd-14th-1-iOS.entitlements"; sourceTree = "<group>"; };
 		7C61D2C72F2109B3005FAC3A /* dnd-14th-1-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dnd-14th-1-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 				7C0107492F45FB5B0005AC1D /* CustomVisualEffectView.swift */,
 				7C9016722F502C5300933379 /* BottomSheetPresenter.swift */,
 				7C90168D2F502C7000933379 /* ExpandableBottomSheetPresenter.swift */,
+				7C3A7AE12F516E0A00E25089 /* PassthroughView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -888,6 +891,7 @@
 				7C3A7AB82F513B6700E25089 /* EcoViewModel.swift in Sources */,
 				00113F1D2F43008C00D4CC37 /* SplashViewController.swift in Sources */,
 				7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */,
+				7C3A7AE22F516E0A00E25089 /* PassthroughView.swift in Sources */,
 				00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */,
 				7C0107312F439E800005AC1D /* FetchUserProfileUseCase.swift in Sources */,
 				7C3A7AC52F513E6800E25089 /* LoginResultDto.swift in Sources */,
