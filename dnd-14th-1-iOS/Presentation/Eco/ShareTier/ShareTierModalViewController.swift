@@ -14,7 +14,9 @@ import Photos
 final class ShareTierModalViewController: BaseViewController {
     
     // MARK: - Properties
+    private let kakaoShareUseCase: KakaoShareUseCase
     private let tier: EcoTier
+    private var subscriptions: Set<AnyCancellable> = []
     
     // MARK: - UI Components
     private let blurredBackgroundView = CustomVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark), intensity: 0.2)
@@ -30,8 +32,12 @@ final class ShareTierModalViewController: BaseViewController {
     private let imageDownloadButton = UIButton()
     
     // MARK: - Initializer
-    init(tier: EcoTier) {
+    init(
+        tier: EcoTier,
+        kakaoShareUseCase: KakaoShareUseCase
+    ) {
         self.tier = tier
+        self.kakaoShareUseCase = kakaoShareUseCase
         super.init()
     }
     required init?(coder: NSCoder) {
@@ -49,7 +55,7 @@ final class ShareTierModalViewController: BaseViewController {
         [titleLabel, tierLabel, glacierImageView, descriptionLabel].forEach {
             wrapperView.addSubview($0)
         }
-        [closeButton, wrapperView, kakaoShareButton, imageDownloadButton].forEach {
+        [wrapperView, kakaoShareButton, imageDownloadButton, closeButton].forEach {
             contentView.addSubview($0)
         }
         [blurredBackgroundView, contentView].forEach {
@@ -93,12 +99,12 @@ final class ShareTierModalViewController: BaseViewController {
             $0.height.equalTo(24)
             $0.top.equalTo(glacierImageView.snp.bottom).offset(40)
             $0.centerX.equalTo(wrapperView)
-            $0.bottom.equalTo(wrapperView).offset(-24)
+            $0.bottom.equalTo(wrapperView).offset(-24 - 10)
         }
         
         kakaoShareButton.snp.makeConstraints {
             $0.height.equalTo(60)
-            $0.top.equalTo(wrapperView.snp.bottom)
+            $0.top.equalTo(wrapperView.snp.bottom).offset(-10)
             $0.leading.equalTo(contentView).offset(16)
             $0.trailing.equalTo(imageDownloadButton.snp.leading).offset(-8)
             $0.bottom.equalTo(contentView).offset(-32)
@@ -174,22 +180,38 @@ final class ShareTierModalViewController: BaseViewController {
             $0.layer.cornerRadius = 30
             $0.clipsToBounds = true
         }
+        
+        wrapperView.do {
+            $0.backgroundColor = UIColor(hexCode: "FAFAFA")
+        }
     }
 }
 
 extension ShareTierModalViewController {
     
     private func setAddTarget() {
-        
         closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         kakaoShareButton.addTarget(self, action: #selector(kakaoShareButtonTapped), for: .touchUpInside)
         imageDownloadButton.addTarget(self, action: #selector(imageDownloadButtonTapped), for: .touchUpInside)
     }
     
     @objc private func closeButtonTapped() {
-        dismiss(animated: true)
+        presentingViewController?.dismiss(animated: true)
     }
-    @objc private func kakaoShareButtonTapped() {}
+}
+
+extension ShareTierModalViewController {
+
+    @objc private func kakaoShareButtonTapped() {
+        kakaoShareUseCase.execute(image: wrapperView.asImage(), template: .tier).receive(on: DispatchQueue.main).sink(
+            receiveCompletion: { [weak self] completion in
+                if case .failure(let error) = completion {
+                    self?.showToast(message: error.message, type: .internalError)
+                }
+            },
+            receiveValue: { _ in }
+        ).store(in: &subscriptions)
+    }
 }
 
 extension ShareTierModalViewController {

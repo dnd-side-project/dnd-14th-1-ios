@@ -106,6 +106,7 @@
 		7C9582A92F3562D0004F8523 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A82F3562D0004F8523 /* LoginViewController.swift */; };
 		7C9582AE2F356608004F8523 /* CheckLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */; };
 		7CA03F032F51E64F0086CACB /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 7CA03F022F51E64F0086CACB /* KakaoSDK */; };
+		7CA041232F51FB440086CACB /* UploadImageToKakaoServerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA041222F51FB440086CACB /* UploadImageToKakaoServerUseCase.swift */; };
 		7CCB1E3C2F29B09C00472669 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7CCB1E3B2F29B09C00472669 /* Alamofire */; };
 		7CCB1E412F29B5ED00472669 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB1E402F29B5ED00472669 /* Router.swift */; };
 		7CCB1E5D2F2DB19600472669 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 7CCB1E5C2F2DB19600472669 /* Then */; };
@@ -220,6 +221,7 @@
 		7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		7C9582A82F3562D0004F8523 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginUseCase.swift; sourceTree = "<group>"; };
+		7CA041222F51FB440086CACB /* UploadImageToKakaoServerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageToKakaoServerUseCase.swift; sourceTree = "<group>"; };
 		7CCB1E402F29B5ED00472669 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		7CCB1E712F2DD20300472669 /* KeychainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWorker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -485,6 +487,7 @@
 			isa = PBXGroup;
 			children = (
 				7C3A7ABA2F513DE500E25089 /* FetchEcoTierUseCase.swift */,
+				7CA041222F51FB440086CACB /* UploadImageToKakaoServerUseCase.swift */,
 			);
 			path = Eco;
 			sourceTree = "<group>";
@@ -925,6 +928,7 @@
 				7C9016812F502C5300933379 /* BottomSheetPresenter.swift in Sources */,
 				0027D9E32F4054B5000DE576 /* AppCoordinator.swift in Sources */,
 				7C01074D2F45FE3F0005AC1D /* TermsOfUseViewController.swift in Sources */,
+				7CA041232F51FB440086CACB /* UploadImageToKakaoServerUseCase.swift in Sources */,
 				7C90189B2F50685900933379 /* MyBadgesCollectionViewCell.swift in Sources */,
 				7C90189C2F50685900933379 /* MyBadgesCollectionView.swift in Sources */,
 				7CCB1E412F29B5ED00472669 /* Router.swift in Sources */,
