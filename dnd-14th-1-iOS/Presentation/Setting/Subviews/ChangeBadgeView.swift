@@ -49,7 +49,7 @@ final class ChangeBadgeView: UIView {
 extension ChangeBadgeView {
     
     private func bind() {
-        changeBadgeCollectionView.didSelectBadgePublisher.sink { [weak self] in
+        changeBadgeCollectionView.didSelectBadgePublisher.receive(on: DispatchQueue.main).sink { [weak self] in
             guard let self else { return }
             changeBadgeButton.isEnabled = changeBadgeCollectionView.selectedBadgeId != currentBadgeId
         }.store(in: &subscriptions)
