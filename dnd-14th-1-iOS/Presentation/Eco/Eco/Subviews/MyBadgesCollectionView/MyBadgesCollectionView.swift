@@ -1,5 +1,5 @@
 //
-//  MyBagdesCollectionView.swift
+//  MyBadgesCollectionView.swift
 //  dnd-14th-1-iOS
 //
 //  Created by 홍기정 on 2/17/26.
@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import Then
 
-final class MyBagdesCollectionView: UICollectionView {
+final class MyBadgesCollectionView: UICollectionView {
     
     // MARK: - Properties
     let didTapBadgePublisher = PassthroughSubject<Badge, Never>()
@@ -41,7 +41,7 @@ final class MyBagdesCollectionView: UICollectionView {
     }
 }
     
-extension MyBagdesCollectionView {
+extension MyBadgesCollectionView {
     
     private func setDelegate() {
         dataSource = self
@@ -50,18 +50,18 @@ extension MyBagdesCollectionView {
     
     private func setCollectionView() {
         allowsSelection = true
-        register(MyBagdesCollectionViewCell.self, forCellWithReuseIdentifier: MyBagdesCollectionViewCell.identifier)
+        register(MyBadgesCollectionViewCell.self, forCellWithReuseIdentifier: MyBadgesCollectionViewCell.identifier)
     }
 }
 
-extension MyBagdesCollectionView: UICollectionViewDataSource {
+extension MyBadgesCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return badges.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBagdesCollectionViewCell.identifier, for: indexPath) as? MyBagdesCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyBadgesCollectionViewCell.identifier, for: indexPath) as? MyBadgesCollectionViewCell else {
             return UICollectionViewCell()
         }
         cell.configure(badge: badges[indexPath.row])
@@ -69,7 +69,7 @@ extension MyBagdesCollectionView: UICollectionViewDataSource {
     }
 }
 
-extension MyBagdesCollectionView: UICollectionViewDelegate {
+extension MyBadgesCollectionView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let badge = badges[indexPath.row]

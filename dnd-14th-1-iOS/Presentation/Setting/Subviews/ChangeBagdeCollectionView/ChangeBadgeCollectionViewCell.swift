@@ -8,6 +8,7 @@
 import UIKit
 import Then
 import SnapKit
+import Kingfisher
 
 final class ChangeBadgeCollectionViewCell: UICollectionViewCell {
     
@@ -38,6 +39,7 @@ final class ChangeBadgeCollectionViewCell: UICollectionViewCell {
     // MARK: - PrepareForReuse
     override func prepareForReuse() {
         super.prepareForReuse()
+        badgeImageView.kf.cancelDownloadTask()
         badgeImageView.image = nil
     }
 }

@@ -97,8 +97,8 @@
 		7C90168E2F502C7000933379 /* ExpandableBottomSheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C90168D2F502C7000933379 /* ExpandableBottomSheetPresenter.swift */; };
 		7C9018952F50684F00933379 /* EcoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9018922F50684F00933379 /* EcoViewController.swift */; };
 		7C9018962F50684F00933379 /* MyEcoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9018932F50684F00933379 /* MyEcoCoordinator.swift */; };
-		7C90189B2F50685900933379 /* MyBagdesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9018992F50685900933379 /* MyBagdesCollectionViewCell.swift */; };
-		7C90189C2F50685900933379 /* MyBagdesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9018982F50685900933379 /* MyBagdesCollectionView.swift */; };
+		7C90189B2F50685900933379 /* MyBadgesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9018992F50685900933379 /* MyBadgesCollectionViewCell.swift */; };
+		7C90189C2F50685900933379 /* MyBadgesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9018982F50685900933379 /* MyBadgesCollectionView.swift */; };
 		7C90189E2F50695B00933379 /* MyBadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C90189D2F50695B00933379 /* MyBadgesView.swift */; };
 		7C9582A42F3561DC004F8523 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */; };
 		7C9582A92F3562D0004F8523 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A82F3562D0004F8523 /* LoginViewController.swift */; };
@@ -209,8 +209,8 @@
 		7C90168D2F502C7000933379 /* ExpandableBottomSheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableBottomSheetPresenter.swift; sourceTree = "<group>"; };
 		7C9018922F50684F00933379 /* EcoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoViewController.swift; sourceTree = "<group>"; };
 		7C9018932F50684F00933379 /* MyEcoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEcoCoordinator.swift; sourceTree = "<group>"; };
-		7C9018982F50685900933379 /* MyBagdesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBagdesCollectionView.swift; sourceTree = "<group>"; };
-		7C9018992F50685900933379 /* MyBagdesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBagdesCollectionViewCell.swift; sourceTree = "<group>"; };
+		7C9018982F50685900933379 /* MyBadgesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBadgesCollectionView.swift; sourceTree = "<group>"; };
+		7C9018992F50685900933379 /* MyBadgesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBadgesCollectionViewCell.swift; sourceTree = "<group>"; };
 		7C90189D2F50695B00933379 /* MyBadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBadgesView.swift; sourceTree = "<group>"; };
 		7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		7C9582A82F3562D0004F8523 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -697,19 +697,19 @@
 		7C9018972F50685400933379 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				7C90189A2F50685900933379 /* MyBagdesCollectionView */,
+				7C90189A2F50685900933379 /* MyBadgesCollectionView */,
 				7C90189D2F50695B00933379 /* MyBadgesView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
 		};
-		7C90189A2F50685900933379 /* MyBagdesCollectionView */ = {
+		7C90189A2F50685900933379 /* MyBadgesCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				7C9018982F50685900933379 /* MyBagdesCollectionView.swift */,
-				7C9018992F50685900933379 /* MyBagdesCollectionViewCell.swift */,
+				7C9018982F50685900933379 /* MyBadgesCollectionView.swift */,
+				7C9018992F50685900933379 /* MyBadgesCollectionViewCell.swift */,
 			);
-			path = MyBagdesCollectionView;
+			path = MyBadgesCollectionView;
 			sourceTree = "<group>";
 		};
 		7C9582A12F356147004F8523 /* Onboarding */ = {
@@ -915,8 +915,8 @@
 				7C9016812F502C5300933379 /* BottomSheetPresenter.swift in Sources */,
 				0027D9E32F4054B5000DE576 /* AppCoordinator.swift in Sources */,
 				7C01074D2F45FE3F0005AC1D /* TermsOfUseViewController.swift in Sources */,
-				7C90189B2F50685900933379 /* MyBagdesCollectionViewCell.swift in Sources */,
-				7C90189C2F50685900933379 /* MyBagdesCollectionView.swift in Sources */,
+				7C90189B2F50685900933379 /* MyBadgesCollectionViewCell.swift in Sources */,
+				7C90189C2F50685900933379 /* MyBadgesCollectionView.swift in Sources */,
 				7CCB1E412F29B5ED00472669 /* Router.swift in Sources */,
 				7C3A7AB82F513B6700E25089 /* EcoViewModel.swift in Sources */,
 				00113F1D2F43008C00D4CC37 /* SplashViewController.swift in Sources */,

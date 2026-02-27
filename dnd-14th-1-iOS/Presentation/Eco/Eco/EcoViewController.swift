@@ -31,7 +31,7 @@ class EcoViewController: BaseViewController {
     private let badgeImageView = UIImageView()
     private let untilNextTierLabel = UILabel()
     private let tierProgressBackgroundView = UIView()
-    private let tierProgessBarView = UIView()
+    private let tierProgressBarView = UIView()
     private let tierLabel = UILabel()
     private let shareTierButton = AppButton(size: .medium, title: "티어 공유하기", image: UIImage.shareNetwork)
     
@@ -94,7 +94,7 @@ class EcoViewController: BaseViewController {
     
     // MARK: - Base
     override func addSubview() {
-        [titleLabel, badgeImageView, untilNextTierLabel, tierProgressBackgroundView, tierProgessBarView, tierLabel, shareTierButton].forEach {
+        [titleLabel, badgeImageView, untilNextTierLabel, tierProgressBackgroundView, tierProgressBarView, tierLabel, shareTierButton].forEach {
             view.addSubview($0)
         }
     }
@@ -128,7 +128,7 @@ class EcoViewController: BaseViewController {
             $0.top.equalTo(untilNextTierLabel.snp.bottom).offset(4)
         }
         
-        tierProgessBarView.snp.makeConstraints {
+        tierProgressBarView.snp.makeConstraints {
             $0.height.equalTo(16)
             $0.width.equalTo(100)
             $0.top.leading.equalTo(tierProgressBackgroundView)
@@ -166,7 +166,7 @@ class EcoViewController: BaseViewController {
             $0.layer.masksToBounds = false
         }
         
-        tierProgessBarView.do {
+        tierProgressBarView.do {
             $0.layer.applySketchShadow(color: UIColor(hexCode: "171717"), alpha: 0.15, x: 0, y: 0, blur: 4, spread: 0)
             $0.layer.masksToBounds = false
         }
@@ -185,7 +185,7 @@ class EcoViewController: BaseViewController {
     }
     
     private func setUpTierProgressBarGradientBackground() {
-        tierProgessBarView.do {
+        tierProgressBarView.do {
             let gradientLayer = CAGradientLayer()
             gradientLayer.frame = $0.bounds
             gradientLayer.colors = [

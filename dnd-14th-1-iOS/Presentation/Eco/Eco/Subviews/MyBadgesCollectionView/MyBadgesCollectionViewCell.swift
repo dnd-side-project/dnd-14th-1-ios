@@ -1,5 +1,5 @@
 //
-//  MyBagdesCollectionViewCell.swift
+//  MyBadgesCollectionViewCell.swift
 //  dnd-14th-1-iOS
 //
 //  Created by 홍기정 on 2/17/26.
@@ -8,8 +8,9 @@
 import UIKit
 import Then
 import SnapKit
+import Kingfisher
 
-final class MyBagdesCollectionViewCell: UICollectionViewCell {
+final class MyBadgesCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Components
     private let badgeImageView = UIImageView()
@@ -33,11 +34,12 @@ final class MyBagdesCollectionViewCell: UICollectionViewCell {
     // MARK: - PrepareForReuse
     override func prepareForReuse() {
         super.prepareForReuse()
+        badgeImageView.kf.cancelDownloadTask()
         badgeImageView.image = nil
     }
 }
 
-extension MyBagdesCollectionViewCell {
+extension MyBadgesCollectionViewCell {
     
     private func addSubview() {
         [badgeImageView].forEach {

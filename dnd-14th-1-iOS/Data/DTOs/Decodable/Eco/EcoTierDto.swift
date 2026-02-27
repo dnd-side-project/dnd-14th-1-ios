@@ -39,8 +39,8 @@ struct EcoTierDataDto: Decodable {
         return EcoTierData(
             totalXP: totalXP,
             tier: tier,
-            imageUrl: "https://picsum.photos/400/400",
-            description: "티어로 나누는 선한 영향력",
+            imageUrl: "",
+            description: "", // TODO: API 수정시 반영
             currentTierXP: currentTierXP,
             nextTierXP: nextTierXP
         )

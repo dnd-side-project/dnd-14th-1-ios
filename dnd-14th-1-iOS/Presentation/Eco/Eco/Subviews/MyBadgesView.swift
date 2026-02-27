@@ -20,7 +20,7 @@ final class MyBadgesView: UIView {
     private let topIndicator = UIView()
     private let titleLabel = UILabel()
     private let countLabel = UILabel()
-    private let myBadgesCollectionView = MyBagdesCollectionView()
+    private let myBadgesCollectionView = MyBadgesCollectionView()
     
     // MARK: - Initializer
     override init(frame: CGRect) {
@@ -42,7 +42,7 @@ final class MyBadgesView: UIView {
     
     // MARK: - Bind
     private func bind() {
-        myBadgesCollectionView.didTapBadgePublisher.sink { [weak self] badge in
+        myBadgesCollectionView.didTapBadgePublisher.receive(on: DispatchQueue.main).sink { [weak self] badge in
             self?.didTapBadgePublisher.send(badge)
         }.store(in: &subscriptions)
     }

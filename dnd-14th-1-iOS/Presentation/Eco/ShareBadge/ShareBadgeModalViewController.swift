@@ -14,6 +14,7 @@ final class ShareBadgeModalViewController: BaseViewController {
     
     // MARK: - Properties
     private let badge: Badge
+    private var didLayoutSubviews = false
     
     // MARK: - UI Components
     private let blurredBackgroundView = CustomVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark), intensity: 0.2)
@@ -43,7 +44,10 @@ final class ShareBadgeModalViewController: BaseViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setUpGradientBackground()
+        if !didLayoutSubviews {
+            setUpGradientBackground()
+            didLayoutSubviews = true
+        }
     }
     
     // MARK: - Base

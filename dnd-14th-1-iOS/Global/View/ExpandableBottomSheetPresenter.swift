@@ -180,10 +180,6 @@ extension ExpandableBottomSheetPresenter {
     }
     
     func dismissSheet() {
-        if !isDismissPermitted {
-            restoreSheet()
-            return
-        }
         contentView.snp.remakeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             $0.leading.trailing.equalToSuperview()

@@ -25,7 +25,7 @@ final class AppCoordinator: Coordinator {
     @objc func start() {
         childCoordinators = []
         
-        checkLoginUseCase.execute().sink(receiveValue: { [weak self] isLoggedIn in
+        checkLoginUseCase.execute().receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] isLoggedIn in
             guard let self else { return }
             if isLoggedIn {
                 showTabBarCoordinator()
