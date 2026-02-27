@@ -15,7 +15,7 @@ enum PromptDiagnosisError: Error {
 }
 
 protocol PromptDiagnosisUseCase {
-    func excute(prompt: String) async throws -> PromptDiagnosis
+    func excute(prompt: String) async throws -> PromptDiagnosisResult
 }
 
 final class DefaultPromptDiagnosisUseCase: PromptDiagnosisUseCase {
@@ -26,7 +26,7 @@ final class DefaultPromptDiagnosisUseCase: PromptDiagnosisUseCase {
         self.claudeService = claudeService
     }
     
-    func excute(prompt: String) async throws -> PromptDiagnosis  {
+    func excute(prompt: String) async throws -> PromptDiagnosisResult  {
         do {
             
             let tokenUsage = try await claudeService.request(for: prompt).usage
@@ -48,7 +48,7 @@ final class DefaultPromptDiagnosisUseCase: PromptDiagnosisUseCase {
             )
             let meltedGlacierAmount = calculateMeltedGlacierAmount(tokenUsage: totalToken)
             
-            let result = PromptDiagnosis(
+            let result = PromptDiagnosisResult(
                 efficiency: efficiency,
                 meltedGlacierAmount: meltedGlacierAmount,
                 inputToken: inputToken,
