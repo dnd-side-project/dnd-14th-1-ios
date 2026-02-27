@@ -9,7 +9,7 @@
 protocol DiagnosisViewControllerDelegate: AnyObject {
     func didTapPromptButton()
     func startDiagnosis()
-    func completeDiagnosis(_ promptDiagnosis: PromptDiagnosis)
+    func completeDiagnosis(_ promptDiagnosis: PromptDiagnosisResult)
     func failDiagnosis()
 }
 
@@ -21,7 +21,7 @@ protocol DiagnosisResultViewControllerDelegate: AnyObject {
     func completeButtonTapped()
     func homeButtonTapped()
     func startPromptImprovement()
-    func completePromptImprovement(promt: String, result: [ImprovePromptResult])
+    func completePromptImprovement(promt: String, result: PromptImproveResult)
     func failPromptImprovement()
 }
 

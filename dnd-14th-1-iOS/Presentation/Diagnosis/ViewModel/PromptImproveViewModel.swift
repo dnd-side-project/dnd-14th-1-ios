@@ -17,14 +17,14 @@ final class PromptImproveViewModel: ViewModelType {
     enum Output {}
     
     private let outputSubject = PassthroughSubject<Output, Never>()
-    private let promptImproveResult: [ImprovePromptResult]
+    private let promptImproveResult: PromptImproveResult
     private let originalPrompt: String
     
     private var subscriptions: Set<AnyCancellable> = []
     
-    init(promptImproveResult: [ImprovePromptResult], originalPrompt: String) {
+    init(promptImproveResult: PromptImproveResult, originalPrompt: String) {
         self.promptImproveResult = promptImproveResult
-        self.originalPrompt = originalPrompt
+        self.originalPrompt = originalPrompt        
     }
     
     func transform(with input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {

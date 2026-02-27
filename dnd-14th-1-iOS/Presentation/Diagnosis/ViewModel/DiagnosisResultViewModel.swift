@@ -11,7 +11,7 @@ final class DiagnosisResultViewModel: ViewModelType {
     // MARK: - State
     enum PromptImproveState {
         case loading
-        case success(prompt: String, result: [ImprovePromptResult])
+        case success(prompt: String, result: PromptImproveResult)
         case failure
     }
     
@@ -25,18 +25,18 @@ final class DiagnosisResultViewModel: ViewModelType {
     // MARK: - Output
     
     enum Output {
-        case displayDiagnosisResult(PromptDiagnosis)
+        case displayDiagnosisResult(PromptDiagnosisResult)
         case promptImproveStateChanged(PromptImproveState)
     }
     
     private let promptImprovementUseCase: PromptImprovementUseCase
     private let outputSubject = PassthroughSubject<Output, Never>()
-    private let promptDiagnosis: PromptDiagnosis
+    private let promptDiagnosis: PromptDiagnosisResult
     
     private var subscriptions: Set<AnyCancellable> = []
     
     init(
-        promptDiagnosisResult: PromptDiagnosis,
+        promptDiagnosisResult: PromptDiagnosisResult,
         promptImprovementUseCase: PromptImprovementUseCase
     ) {
         self.promptDiagnosis = promptDiagnosisResult

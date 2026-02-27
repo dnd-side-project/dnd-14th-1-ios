@@ -14,7 +14,7 @@ final class DiagnosisViewModel: ViewModelType {
     
     enum DiagnosisState {
         case loading
-        case success(PromptDiagnosis)
+        case success(PromptDiagnosisResult)
         case failure
     }
     
