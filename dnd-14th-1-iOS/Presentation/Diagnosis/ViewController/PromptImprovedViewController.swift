@@ -77,6 +77,7 @@ class PromptImprovedViewController: BaseViewController {
         
         animationView.do {
             $0.play()
+            $0.loopMode = .loop
         }
         
         bubbleImageView.do {
