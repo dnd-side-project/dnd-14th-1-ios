@@ -17,7 +17,13 @@ final class MyEcoCoordinator: Coordinator {
     }
     
     func start() {
-        let ecoViewController = EcoViewController()        
+        let fetchEcoTierUseCase = MockFetchEcoTierUseCase()
+        let fetchMyBadgesUseCase = MockFetchMyBadgesUseCase()
+        let ecoViewModel = EcoViewModel(
+            fetchEcoTierUseCase: fetchEcoTierUseCase,
+            fetchMyBadgesUseCase: fetchMyBadgesUseCase
+        )
+        let ecoViewController = EcoViewController(viewModel: ecoViewModel)
         navigationController.pushViewController(ecoViewController, animated: true)
     }
 }
