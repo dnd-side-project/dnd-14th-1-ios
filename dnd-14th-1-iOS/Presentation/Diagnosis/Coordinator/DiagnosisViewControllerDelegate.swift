@@ -21,7 +21,7 @@ protocol DiagnosisResultViewControllerDelegate: AnyObject {
     func completeButtonTapped()
     func homeButtonTapped()
     func startPromptImprovement()
-    func completePromptImprovement()
+    func completePromptImprovement(promt: String, result: [ImprovePromptResult])
     func failPromptImprovement()
 }
 

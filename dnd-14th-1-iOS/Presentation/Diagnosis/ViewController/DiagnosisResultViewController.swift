@@ -76,8 +76,8 @@ class DiagnosisResultViewController: BaseViewController {
                 switch state {
                 case .loading:
                     self?.delegate?.startPromptImprovement()
-                case .success:
-                    self?.delegate?.completePromptImprovement()
+                case let .success(prompt, result):
+                    self?.delegate?.completePromptImprovement(promt: prompt, result: result)
                 case .failure:
                     self?.delegate?.failPromptImprovement()
                 }
