@@ -73,7 +73,7 @@ final class ShareBadgeModalViewController: BaseViewController {
         }
         closeButton.snp.makeConstraints {
             $0.size.equalTo(24)
-            $0.top.leading.equalTo(contentView).offset(28)
+            $0.top.trailing.equalTo(contentView).inset(28)
         }
         myBadgeLabel.snp.makeConstraints {
             $0.height.equalTo(20)
@@ -120,7 +120,7 @@ final class ShareBadgeModalViewController: BaseViewController {
             $0.textColor = UIColor.primary900
         }
         dateLabel.do {
-            $0.text = badge.date
+            $0.text = dateParser(dateString: badge.date)
             $0.font = UIFont.body2_r
             $0.textColor = UIColor.primary700
         }
@@ -174,4 +174,22 @@ extension ShareBadgeModalViewController {
         dismiss(animated: true)
     }
     @objc private func shareButtonTapped() {}
+}
+
+extension ShareBadgeModalViewController {
+    
+    private func dateParser(dateString: String) -> String? {
+        let serverFormatter = DateFormatter()
+        serverFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSS"
+        serverFormatter.locale = Locale(identifier: "en_US_POSIX")
+        serverFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        guard let date = serverFormatter.date(from: dateString) else {
+            return nil
+        }
+        
+        let displayFormatter = DateFormatter()
+        displayFormatter.dateFormat = "yyyy년 MM월 dd일"
+        displayFormatter.timeZone = TimeZone.current
+        return displayFormatter.string(from: date)
+    }
 }

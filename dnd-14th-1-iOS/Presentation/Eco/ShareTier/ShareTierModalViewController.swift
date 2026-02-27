@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import SnapKit
 import Then
+import Photos
 
 final class ShareTierModalViewController: BaseViewController {
     
@@ -19,6 +20,7 @@ final class ShareTierModalViewController: BaseViewController {
     private let blurredBackgroundView = CustomVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark), intensity: 0.2)
     private let contentView = UIView()
     
+    private let wrapperView = UIView()
     private let closeButton = UIButton()
     private let titleLabel = UILabel()
     private let tierLabel = UILabel()
@@ -44,7 +46,10 @@ final class ShareTierModalViewController: BaseViewController {
     
     // MARK: - Base
     override func addSubview() {
-        [closeButton, titleLabel, tierLabel, glacierImageView, descriptionLabel, kakaoShareButton, imageDownloadButton].forEach {
+        [titleLabel, tierLabel, glacierImageView, descriptionLabel].forEach {
+            wrapperView.addSubview($0)
+        }
+        [closeButton, wrapperView, kakaoShareButton, imageDownloadButton].forEach {
             contentView.addSubview($0)
         }
         [blurredBackgroundView, contentView].forEach {
@@ -65,29 +70,35 @@ final class ShareTierModalViewController: BaseViewController {
             $0.top.equalTo(contentView).offset(24)
             $0.trailing.equalTo(contentView).offset(-24)
         }
+        
+        wrapperView.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(contentView)
+        }
         titleLabel.snp.makeConstraints {
             $0.height.equalTo(31)
-            $0.top.equalTo(contentView).offset(48)
-            $0.centerX.equalTo(contentView)
+            $0.top.equalTo(wrapperView).offset(48)
+            $0.centerX.equalTo(wrapperView)
         }
         tierLabel.snp.makeConstraints {
             $0.height.equalTo(44)
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
-            $0.centerX.equalTo(contentView)
+            $0.centerX.equalTo(wrapperView)
         }
         glacierImageView.snp.makeConstraints {
             $0.height.equalTo(243)
             $0.top.equalTo(tierLabel.snp.bottom).offset(40)
-            $0.leading.trailing.equalTo(contentView)
+            $0.leading.trailing.equalTo(wrapperView)
         }
         descriptionLabel.snp.makeConstraints {
             $0.height.equalTo(24)
             $0.top.equalTo(glacierImageView.snp.bottom).offset(40)
-            $0.centerX.equalTo(contentView)
+            $0.centerX.equalTo(wrapperView)
+            $0.bottom.equalTo(wrapperView).offset(-24)
         }
+        
         kakaoShareButton.snp.makeConstraints {
             $0.height.equalTo(60)
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(24)
+            $0.top.equalTo(wrapperView.snp.bottom)
             $0.leading.equalTo(contentView).offset(16)
             $0.trailing.equalTo(imageDownloadButton.snp.leading).offset(-8)
             $0.bottom.equalTo(contentView).offset(-32)
@@ -179,5 +190,45 @@ extension ShareTierModalViewController {
         dismiss(animated: true)
     }
     @objc private func kakaoShareButtonTapped() {}
-    @objc private func imageDownloadButtonTapped() {}
+}
+
+extension ShareTierModalViewController {
+    
+    @objc private func imageDownloadButtonTapped() {
+        let status = PHPhotoLibrary.authorizationStatus(for: .addOnly)
+        
+        switch status {
+        case .authorized, .limited:
+            saveImage()
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization(for: .addOnly) { newStatus in
+                DispatchQueue.main.async { [weak self] in
+                    if newStatus == .authorized {
+                        self?.saveImage()
+                    } else {
+                        self?.showToast(message: "설정에서 사진 접근을 허용해주세요", type: .internalError)
+                    }
+                }
+            }
+        default:
+            showToast(message: "설정에서 사진 접근을 허용해주세요", type: .internalError)
+        }
+    }
+    
+    private func saveImage() {
+        UIImageWriteToSavedPhotosAlbum(
+            wrapperView.asImage(),
+            self,
+            #selector(saveImageCompletion(image:didFinishSavingWithError:contextInfo:)),
+            nil
+        )
+    }
+    
+    @objc private func saveImageCompletion(image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let _ = error {
+            showToast(message: "나의 에코를 저장하지 못했어요", type: .internalError)
+        } else {
+            showToast(message: "나의 에코를 저장했어요", type: .networkError)
+        }
+    }
 }

@@ -13,4 +13,10 @@ extension UIView {
         views.forEach { self.addSubview($0) }
     }
 
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
+    }
 }
