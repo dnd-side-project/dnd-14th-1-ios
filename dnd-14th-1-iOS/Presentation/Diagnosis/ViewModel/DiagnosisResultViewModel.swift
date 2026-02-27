@@ -5,28 +5,43 @@
 //  Created by a on 2/25/26.
 //
 
+import Foundation
 import Combine
 
 final class DiagnosisResultViewModel: ViewModelType {
+    // MARK: - State
+    enum PromptImproveState {
+        case loading
+        case success(result: PromptImproveResult)
+        case failure
+    }
+    
     // MARK: - Input
     
     enum Input {
         case viewDidLoad
+        case promptImproveButtonTapped
     }
     
     // MARK: - Output
     
     enum Output {
-        case displayDiagnosisResult(PromptDiagnosis)
+        case displayDiagnosisResult(PromptDiagnosisResult)
+        case promptImproveStateChanged(PromptImproveState)
     }
     
+    private let promptImprovementUseCase: PromptImprovementUseCase
     private let outputSubject = PassthroughSubject<Output, Never>()
-    private let promptDiagnosis: PromptDiagnosis
+    private let promptDiagnosis: PromptDiagnosisResult
     
     private var subscriptions: Set<AnyCancellable> = []
     
-    init(promptDiagnosisResult: PromptDiagnosis) {
+    init(
+        promptDiagnosisResult: PromptDiagnosisResult,
+        promptImprovementUseCase: PromptImprovementUseCase
+    ) {
         self.promptDiagnosis = promptDiagnosisResult
+        self.promptImprovementUseCase = promptImprovementUseCase
     }
     
     func transform(with input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
@@ -35,6 +50,8 @@ final class DiagnosisResultViewModel: ViewModelType {
             switch input {
             case .viewDidLoad:
                 displayDiagnosisResult()
+            case .promptImproveButtonTapped:
+                promptImprovement()
             }
         }
         .store(in: &subscriptions)
@@ -44,5 +61,18 @@ final class DiagnosisResultViewModel: ViewModelType {
     
     func displayDiagnosisResult() {
         outputSubject.send(.displayDiagnosisResult(promptDiagnosis))
+    }
+    
+    func promptImprovement() {
+        outputSubject.send(.promptImproveStateChanged(.loading))
+        
+        Task {
+            do {
+                let response = try await promptImprovementUseCase.execute(promptDiagnosis: promptDiagnosis)
+                outputSubject.send(.promptImproveStateChanged(.success(result: response)))
+            } catch {
+                outputSubject.send(.promptImproveStateChanged(.failure))
+            }
+        }
     }
 }

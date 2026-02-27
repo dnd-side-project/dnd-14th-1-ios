@@ -26,3 +26,10 @@ struct Usage: Decodable {
     let input_tokens: Int?
     let output_tokens: Int?
 }
+
+struct ClaudeResponse: Decodable {
+    let content: [ClaudeContent]
+}
+
+
+

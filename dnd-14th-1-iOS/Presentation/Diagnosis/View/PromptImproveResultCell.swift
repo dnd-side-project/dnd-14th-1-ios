@@ -12,15 +12,19 @@ import Then
 
 struct PromptResult {
     let isImprove: Bool
-    let result: String
+    let text: String
+    let sentences: [PromptSentence]
 }
 
 final class PromptImproveResultCell: UICollectionViewCell {
+    
+    var action: ((PromptSentence) -> Void)?
     
     private let titleLabel = UILabel()
     private let divider = UIView()
     private let scrollView = UIScrollView()
     private let resultTextView = UITextView()
+    private var promptResult = PromptResult(isImprove: false, text: "", sentences: [])
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,12 +54,10 @@ final class PromptImproveResultCell: UICollectionViewCell {
         resultTextView.do {
             $0.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
             $0.showsVerticalScrollIndicator = false
-            $0.text = """
-            export default function GeneratedLayout() { return ( <div className="min-h-screen bg-gray-50 flex items-center justify-center p-8"> {/* Main Container (Object 1) - Inferred: Main Card / Hero Section Wrapper - Style: White background, border, rounded corners - Layout: Flex column to manage vertical spacing naturally */} <div className="w-full max-w-[700px] min-h-[500px] bg-white border border-gray-200 rounded-xl shadow-sm flex flex-col justify-end p-10 relative overflow-hidden"> {/* Visual Placeholder for Top Area - Since the content (Gray Box) is at the bottom (y=320), the top area (y=50 to y=320) is likely an image or empty space. */} <div className="absolute top-0 left-0 w-full h-[55%] bg-gradient-to-b from-white to-gray-50 flex items-center justify-center text-gray-300"> <span className="text-sm font-medium">이미지 영역 (Placeholder)</span> </div> {/* Content Group (Object 4) - Inferred: Hero Content / Call to Action Box - Logic: Contains the Title and Button. - Restructuring: Converted absolute positioning to a relative Flex container. - Alignment: Centered horizontally (mx-auto) for better aesthetics than the raw coordinates. */} <div className="relative z-10 w-full max-w-[470px] bg-gray-100 rounded-xl p-8 flex flex-col items-center text-center gap-6 mx-auto shadow-sm"> {/* Hero Title (Object 2) - Inferred: Main Heading - Style: Bold, Large text */} <h2 className="text-3xl font-bold text-gray-900 leading-tight"> 새로운 가능성을 발견하세요 </h2> {/* Action Button (Object 3) - Inferred: Primary CTA
-            """
             $0.backgroundColor = .gray100
             $0.font = .body1_r
             $0.textColor = .gray500
+            $0.linkTextAttributes = [.foregroundColor: UIColor.gray500]
         }
     }
     
@@ -88,8 +90,57 @@ final class PromptImproveResultCell: UICollectionViewCell {
         contentView.addSubviews(titleLabel, divider, scrollView)
     }
     
-    func configure(with result: PromptResult) {
+    func configure(with prompt: PromptResult) {
+        self.promptResult = prompt
+        resultTextView.text = promptResult.text
+        if promptResult.isImprove {
+            contentView.backgroundColor = .primary100
+            resultTextView.backgroundColor = .primary100
+            resultTextView.textColor = .gray800
+            titleLabel.text = "이렇게 수정했어요"
+            titleLabel.textColor = .primary500
+            divider.backgroundColor = .primary300
+        }
         
+        let text = prompt.text
+        let attributed = NSMutableAttributedString(
+            attributedString: resultTextView.attributedText ?? NSAttributedString(string: text)
+        )
+        
+        for (index, sentence) in prompt.sentences.enumerated() {
+            let nsRange = NSRange(sentence.improvementRange, in: text)
+            
+            attributed.addAttribute(
+                .backgroundColor,
+                value: UIColor(hexCode: "#EEB1B0").withAlphaComponent(0.7),
+                range: nsRange
+            )
+            
+            attributed.addAttribute(
+                .link,
+                value: "action://sentence/\(index)",
+                range: nsRange
+            )
+        }
+        
+        resultTextView.attributedText = attributed
+        resultTextView.isEditable = false
+        resultTextView.delegate = self
+    }
+}
+
+extension PromptImproveResultCell: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        guard URL.scheme == "action",
+              URL.host == "sentence",
+              let indexString = URL.pathComponents.last,
+              let index = Int(indexString),
+              promptResult.sentences.indices.contains(index)
+        else { return false }
+        
+        let sentence = promptResult.sentences[index]
+        action?(sentence)
+        return false
     }
 }
 

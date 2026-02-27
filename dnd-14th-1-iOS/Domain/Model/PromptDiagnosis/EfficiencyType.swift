@@ -13,7 +13,6 @@ enum EfficiencyType {
     case efficiency
 }
 
-
 @Generable(description: """
 당신은 매우 엄격한 프롬프트 품질 평가사입니다.
 
@@ -51,6 +50,15 @@ struct PromptEvaluation {
     let reason: String
 }
 
+struct Sentence {
+    @Guide(description: "사용자가 입력한 문장")
+    let sentence: String
+    let clarity: Int
+    let specificity: Int
+    let context: Int
+    let goalOrientation: Int
+}
+
 extension PromptEvaluation {
     var totalScore: Int {
         clarity + specificity + context + goalOrientation
@@ -60,3 +68,4 @@ extension PromptEvaluation {
         totalScore >= 3 ? .efficiency : .inefficiency
     }
 }
+

@@ -12,6 +12,11 @@ import Then
 import Lottie
 
 final class ErrorViewController: BaseViewController {
+    
+    var retryButtonText: String {
+        get { retryButton.currentTitle ?? "" }
+        set { retryButton.setTitle(newValue, for: .normal)}
+    }
         
     private let animationView = LottieAnimationView(name: "lottie_failerror")
     private let errorText = UILabel()
@@ -37,6 +42,8 @@ final class ErrorViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         animationView.play()
+        animationView.loopMode = .loop
+        addTargets()
     }
     
     override func addSubview() {

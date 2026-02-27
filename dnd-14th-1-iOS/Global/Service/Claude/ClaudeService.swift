@@ -6,6 +6,7 @@
 //
 
 import Alamofire
+import Foundation
 
 protocol ClaudeService {
     func request(for prompt: String) async throws -> ClaudeMessageResponse
@@ -14,7 +15,7 @@ protocol ClaudeService {
         inputTokens: Int,
         outputTokens: Int
     ) -> Double
-    
+    func splitPromptIntoSentences(_ prompt: String) async throws -> [String]
     var model: ClaudeModel { get }
 }
 
@@ -23,12 +24,12 @@ enum ClaudeModel {
     
     var inputTokenPermillion: Double {
         switch self {
-        case .claude_haiku_4_5: 1 }
+            case .claude_haiku_4_5: 1 }
     }
     
     var outputTokenPermillion: Double {
         switch self {
-        case .claude_haiku_4_5: 5 }
+            case .claude_haiku_4_5: 5 }
     }
     
     var modelName: String {
@@ -87,6 +88,50 @@ final class DefaultClaudeService: ClaudeService {
         .value
     }
     
+    func splitPromptIntoSentences(_ prompt: String) async throws -> [String] {
+        do {
+            let parameters = ClaudeMessageRequest(
+                model: model.modelApiId,
+                max_tokens: 1000,
+                messages: [
+                    ClaudeMessage(
+                        role: "user",
+                        content: "\(ClaudeInstructions.splitPromptIntoSentences) 사용자 프롬프트: \(prompt)"
+                    )
+                ],
+                output_config: OutputConfig(
+                    format: OutputFormat(
+                        type: "json_schema",
+                        schema: JSONSchema(
+                            type: "object",
+                            properties: ["sentences":SchemaProperty(type: "array", items: SchemaItems(type: "string"))],
+                            required: ["setences"],
+                            additionalProperties: false
+                        )
+                    )
+                )
+            )
+            
+            let response = try await AF.request(
+                requestURL,
+                method: .post,
+                parameters: parameters,
+                encoder: JSONParameterEncoder.default,
+                headers: headers
+            )
+                .validate(statusCode: 200..<300)
+                .serializingDecodable(ClaudeResponse.self)
+                .value
+            
+            let jsonText = response.content[0].text ?? ""
+            let result = try JSONDecoder().decode(SplitResult.self, from: Data(jsonText.utf8))
+                
+            return result.sentences
+        } catch {
+            throw error
+        }
+    }
+    
     func calculateCost(
         usingModel: ClaudeModel,
         inputTokens: Int,
@@ -102,4 +147,8 @@ final class DefaultClaudeService: ClaudeService {
         }
         return inputCost + outputCost
     }
+}
+
+struct SplitResult: Decodable {
+    let sentences: [String]
 }

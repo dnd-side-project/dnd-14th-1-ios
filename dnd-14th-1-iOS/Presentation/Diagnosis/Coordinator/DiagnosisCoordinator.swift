@@ -58,6 +58,10 @@ extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
         
         errorViewController.hidesBottomBarWhenPushed = true
         viewControllers.append(errorViewController)
+        
+        errorViewController.onRetry = { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        }
         navigationController.setViewControllers(viewControllers, animated: true)
     }
     
@@ -73,11 +77,12 @@ extension DiagnosisCoordinator: DiagnosisViewControllerDelegate {
         navigationController.pushViewController(promptLoadingViewController, animated: true)
     }
     
-    func completeDiagnosis(_ promptDiagnosis: PromptDiagnosis) {
+    func completeDiagnosis(_ promptDiagnosis: PromptDiagnosisResult) {
         var viewControllers = navigationController.viewControllers
         viewControllers.removeLast()
-        
-        let diagnosisResultViewModel = DiagnosisResultViewModel(promptDiagnosisResult: promptDiagnosis)
+        let claudeService = DefaultClaudeService(model: .claude_haiku_4_5)
+        let promptImprovementUseCase = DefaultPromptImprovementUseCase(claudeService: claudeService)
+        let diagnosisResultViewModel = DiagnosisResultViewModel(promptDiagnosisResult: promptDiagnosis, promptImprovementUseCase: promptImprovementUseCase)
         
         let promprtResultViewController = DiagnosisResultViewController(viewModel: diagnosisResultViewModel)
         promprtResultViewController.delegate = self
@@ -113,6 +118,46 @@ extension DiagnosisCoordinator: DiagnosisResultViewControllerDelegate {
     
     func homeButtonTapped() {
         navigationController.popToRootViewController(animated: true)
+    }
+    
+    func startPromptImprovement() {
+        let promptLoadingViewController = PromptLoadingViewController(
+            title: "북극곰의 발판을 더 단단하게 다듬는 중...",
+            description: "문장을 수정하여 최적화된 프롬프트를 만들어요!",
+            loadingType: .improve
+        )
+        promptLoadingViewController.hidesBottomBarWhenPushed = true
+        promptLoadingViewController.delegate = self
+        navigationController.pushViewController(promptLoadingViewController, animated: true)
+    }
+    
+    func completePromptImprovement(result: PromptImproveResult) {
+        var viewControllers = navigationController.viewControllers
+        viewControllers.removeLast()
+        let promptImproveViewModel = PromptImproveViewModel(promptImproveResult: result)
+        let promptImprovedViewController = PromptImprovedViewController(viewModel: promptImproveViewModel)
+        promptImprovedViewController.hidesBottomBarWhenPushed = true
+        promptImprovedViewController.delegate = self
+        
+        viewControllers.append(promptImprovedViewController)
+        navigationController.setViewControllers(viewControllers, animated: true)
+    }
+    
+    func failPromptImprovement() {
+        var viewControllers = navigationController.viewControllers
+        viewControllers.removeLast()
+        
+        let errorViewController = ErrorViewController(
+            title: "개선하는 과정에서 오류가 발생했어요",
+            description: "프롬프트를 다시 한번 확인해 주시겠어요?"
+        )
+        errorViewController.retryButtonText = "다시 시도하기"
+        errorViewController.hidesBottomBarWhenPushed = true
+        errorViewController.onRetry = { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        }
+        viewControllers.append(errorViewController)
+        navigationController.setViewControllers(viewControllers, animated: true)
     }
 }
 

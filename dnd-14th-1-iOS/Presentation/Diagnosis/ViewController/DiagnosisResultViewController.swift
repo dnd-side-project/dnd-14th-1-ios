@@ -72,12 +72,21 @@ class DiagnosisResultViewController: BaseViewController {
             switch output {
             case let .displayDiagnosisResult(promptDiagnosis):
                 self?.displayPromptDiagnosis(promptDiagnosis)
+            case let .promptImproveStateChanged(state):
+                switch state {
+                case .loading:
+                    self?.delegate?.startPromptImprovement()
+                case let .success(result):
+                    self?.delegate?.completePromptImprovement(result: result)
+                case .failure:
+                    self?.delegate?.failPromptImprovement()
+                }
             }
         }
         .store(in: &subscriptions)
     }
     
-    private func displayPromptDiagnosis(_ promptDiagnosis: PromptDiagnosis) {
+    private func displayPromptDiagnosis(_ promptDiagnosis: PromptDiagnosisResult) {
         let isEfficiency = promptDiagnosis.efficiency == .efficiency
         backgroundView.image = isEfficiency ? .diagnosisResultBgSuccess : .diagnosisResultBgWarning
         promptEfficiencyLabel.text = isEfficiency ? "효율적인 프롬프트예요!" : "비효율적인 프롬프트예요!"
@@ -305,7 +314,7 @@ class DiagnosisResultViewController: BaseViewController {
     }
     
     @objc private func promptEditButtonTapped() {
-        delegate?.promptEditButtonTapped()
+        inputSubject.send(.promptImproveButtonTapped)
     }
     
     @objc private func completeDiagnosisButtonTapped() {

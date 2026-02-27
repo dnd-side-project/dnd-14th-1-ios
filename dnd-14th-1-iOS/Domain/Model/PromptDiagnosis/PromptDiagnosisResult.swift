@@ -12,7 +12,7 @@ enum PromptSource {
     case url
 }
 
-struct PromptDiagnosis {
+struct PromptDiagnosisResult {
     let efficiency: EfficiencyType
     let meltedGlacierAmount: Double    
     let inputToken: Int
@@ -21,4 +21,5 @@ struct PromptDiagnosis {
     let originalPrompt: String
     let usingModel: ClaudeModel
     let source: PromptSource
+    let sentences: [String]
 }
