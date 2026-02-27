@@ -105,6 +105,7 @@
 		7C9582A42F3561DC004F8523 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */; };
 		7C9582A92F3562D0004F8523 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A82F3562D0004F8523 /* LoginViewController.swift */; };
 		7C9582AE2F356608004F8523 /* CheckLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */; };
+		7CA03F032F51E64F0086CACB /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 7CA03F022F51E64F0086CACB /* KakaoSDK */; };
 		7CCB1E3C2F29B09C00472669 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7CCB1E3B2F29B09C00472669 /* Alamofire */; };
 		7CCB1E412F29B5ED00472669 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCB1E402F29B5ED00472669 /* Router.swift */; };
 		7CCB1E5D2F2DB19600472669 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 7CCB1E5C2F2DB19600472669 /* Then */; };
@@ -276,6 +277,7 @@
 				7CCB1E602F2DB2C900472669 /* SnapKit in Frameworks */,
 				7CCB1E3C2F29B09C00472669 /* Alamofire in Frameworks */,
 				7CCB1E5D2F2DB19600472669 /* Then in Frameworks */,
+				7CA03F032F51E64F0086CACB /* KakaoSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,6 +830,7 @@
 				7CCB1E5F2F2DB2C900472669 /* SnapKit */,
 				7C0107362F43A92B0005AC1D /* Kingfisher */,
 				0036FDC82F4DB83A00200357 /* Lottie */,
+				7CA03F022F51E64F0086CACB /* KakaoSDK */,
 			);
 			productName = "dnd-14th-1-iOS";
 			productReference = 7C61D2C72F2109B3005FAC3A /* dnd-14th-1-iOS.app */;
@@ -863,6 +866,7 @@
 				7CCB1E5E2F2DB2C900472669 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				7C0107352F43A92B0005AC1D /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				0036FDC72F4DB83A00200357 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				7CA03F012F51E64F0086CACB /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7C61D2C82F2109B3005FAC3A /* Products */;
@@ -1234,6 +1238,14 @@
 				minimumVersion = 8.6.2;
 			};
 		};
+		7CA03F012F51E64F0086CACB /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		7CCB1E3A2F29B09C00472669 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -1270,6 +1282,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7C0107352F43A92B0005AC1D /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		7CA03F022F51E64F0086CACB /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7CA03F012F51E64F0086CACB /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
 		};
 		7CCB1E3B2F29B09C00472669 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
