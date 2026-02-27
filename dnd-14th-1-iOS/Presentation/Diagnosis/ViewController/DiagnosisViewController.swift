@@ -71,12 +71,16 @@ final class DiagnosisViewController: BaseViewController {
         outputSubject.receive(on: DispatchQueue.main).sink { [weak self] output in
             guard let self else { return }
             switch output {
+            case let .errorOccurred(errorMessage):
+                showToast(message: errorMessage, type: .internalError)
             case .presentPromptSheet:
                 showPromptSheet()
             case let .isPromptSheetPresented(isPresented):
                 updatePromptTitle(isPresented)
             case let .appleIntelligenceAuthorized(isGranted):
                 checkAppleIntelligence(isGranted)
+            case let .displayGlacierGrade(glacierGrade):
+                updateGlacierGrade(glacierGrade)
             case let .diagnosisStateChanged(diagnosisState):
                 switch diagnosisState {
                 case .loading:
@@ -88,6 +92,22 @@ final class DiagnosisViewController: BaseViewController {
                 }
             }
         }.store(in: &subscriptions)
+    }
+    
+    private func updateGlacierGrade(_ glacierGrade: GlacierGrade) {
+        glacierImageView.alpha = 0.5
+        glacierImageView.transform = CGAffineTransform(translationX: 0, y: 5)
+        glacierImageView.image = UIImage(named: glacierGrade.imageName)
+
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            options: [.curveEaseOut],
+            animations: {
+                self.glacierImageView.alpha = 1
+                self.glacierImageView.transform = .identity
+            }
+        )
     }
     
     private func showPromptSheet() {
@@ -275,8 +295,7 @@ extension DiagnosisViewController {
         )
     }
     
-    private func checkAppleIntelligence(_ isGranted: Bool) {
-        glacierImageView.image = isGranted ? .glacier5 : .glacierUnavailable
+    private func checkAppleIntelligence(_ isGranted: Bool) {        
         if isGranted {
             promptButton.isHidden = false
             appleIntelligenceButton.isHidden = true
@@ -285,6 +304,7 @@ extension DiagnosisViewController {
             promptButton.isHidden = true
             appleIntelligenceButton.isHidden = false
             errorLabel.isHidden = false
+            glacierImageView.image = .glacierUnavailable
         }
     }
 }

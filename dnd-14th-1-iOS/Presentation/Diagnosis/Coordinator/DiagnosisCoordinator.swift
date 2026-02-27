@@ -18,13 +18,17 @@ final class DiagnosisCoordinator: Coordinator {
     
     func start() {
         let claudeService = DefaultClaudeService(model: .claude_haiku_4_5)
+        let ecoService = DefaultEcoService()
+        
+        let ecoRepository = DefaultEcoRepository(service: ecoService)
         let promptDiagnosisUseCase = DefaultPromptDiagnosisUseCase(claudeService: claudeService)
         let conversationRepository = DefaultConversationRepository()
         let conversationParsingUseCase = DefaultConversationParsingUseCase(conversationRepository: conversationRepository)
-        
+        let fetchEcoTierUseCase = DefaultFetchEcoTierUseCase(ecoRepository: ecoRepository)
         let diagnosisViewModel = DiagnosisViewModel(
             promptDiagnosisUseCase: promptDiagnosisUseCase,
-            conversationParsingUseCase: conversationParsingUseCase
+            conversationParsingUseCase: conversationParsingUseCase,
+            fetchEcoTierUseCsse: fetchEcoTierUseCase
         )
         let diagnosisViewController = DiagnosisViewController(viewModel: diagnosisViewModel)
         diagnosisViewController.delegate = self

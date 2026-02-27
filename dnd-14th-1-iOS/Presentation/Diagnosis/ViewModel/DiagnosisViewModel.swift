@@ -35,6 +35,8 @@ final class DiagnosisViewModel: ViewModelType {
         case isPromptSheetPresented(Bool)
         case appleIntelligenceAuthorized(Bool)
         case diagnosisStateChanged(DiagnosisState)
+        case displayGlacierGrade(GlacierGrade)
+        case errorOccurred(String)
     }
     
     // MARK: - Properties
@@ -49,13 +51,16 @@ final class DiagnosisViewModel: ViewModelType {
     
     private let promptDiagnosisUseCase: PromptDiagnosisUseCase
     private let conversationParsingUseCase: ConversationParsingUseCase
+    private let fetchEcoTierUseCsse: FetchEcoTierUseCase
     
     init(
         promptDiagnosisUseCase: PromptDiagnosisUseCase,
-        conversationParsingUseCase: ConversationParsingUseCase
+        conversationParsingUseCase: ConversationParsingUseCase,
+        fetchEcoTierUseCsse: FetchEcoTierUseCase
     ) {
         self.promptDiagnosisUseCase = promptDiagnosisUseCase
         self.conversationParsingUseCase = conversationParsingUseCase
+        self.fetchEcoTierUseCsse = fetchEcoTierUseCsse
         bind()
     }
     
@@ -85,14 +90,32 @@ final class DiagnosisViewModel: ViewModelType {
         return outputSubject.eraseToAnyPublisher()
     }
     
+    private func fetchEcoTier() {
+        fetchEcoTierUseCsse.execute()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] result in
+                switch result {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self?.outputSubject.send(.errorOccurred(error.localizedDescription))
+                }
+            } receiveValue: {  [weak self] ecoTier in
+                self?.outputSubject.send(.displayGlacierGrade(GlacierGrade(grade: ecoTier.data.tier)))
+            }
+            .store(in: &subscriptions)
+    }
+    
     private func fetchSavedGlacierAmount() {
         self.savedGlacierAmount.send(0.0)
     }
     
+    // Apple Intelligence 가용성 체크 후 ecoTier 업데이트
     private func checkAppleIntelligencePermission() {
         switch model.availability {
         case .available:
             outputSubject.send(.appleIntelligenceAuthorized(true))
+            fetchEcoTier()
         default:
             outputSubject.send(.appleIntelligenceAuthorized(false))
         }
