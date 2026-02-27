@@ -28,8 +28,7 @@ final class LoginCoordinator: Coordinator {
     func start() {
         let userService = DefaultUserService()
         let userRepository = DefaultUserRepository(service: userService)
-//        let loginUseCase = DefaultLoginUseCase(repository: userRepository)
-        let loginUseCase = MockLoginUseCase()
+        let loginUseCase = DefaultLoginUseCase(repository: userRepository)
         let viewModel = LoginViewModel(loginUseCase: loginUseCase)
         let loginViewController = LoginViewController(viewModel: viewModel)
         loginViewController.delegate = self

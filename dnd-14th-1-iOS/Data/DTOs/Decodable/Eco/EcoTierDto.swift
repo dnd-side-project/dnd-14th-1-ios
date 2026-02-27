@@ -21,28 +21,47 @@ struct EcoTierDto: Decodable {
     }
 }
 
-// MARK: - DataClass
 struct EcoTierDataDto: Decodable {
-    let totalXP: Int
-    let tier: Int
-    let currentTierXP: Int
-    let nextTierXP: Int
+    let totalXP, tier, currentTierXP, nextTierXP: Int
+    let badgeProgress: [BadgeProgressDto]
 
     enum CodingKeys: String, CodingKey {
         case totalXP = "totalXp"
         case tier
         case currentTierXP = "currentTierXp"
         case nextTierXP = "nextTierXp"
+        case badgeProgress
     }
     
     func toDomain() -> EcoTierData {
+        let badge = badgeProgress.first(where: { $0.currentBadgeEnableImageURL != nil && $0.currentBadgeDescription != nil })
+        
         return EcoTierData(
             totalXP: totalXP,
             tier: tier,
-            imageUrl: "",
-            description: "", // TODO: API 수정시 반영
+            imageUrl: badge?.currentBadgeEnableImageURL ?? "",
+            description: badge?.currentBadgeDescription ?? "",
             currentTierXP: currentTierXP,
             nextTierXP: nextTierXP
         )
+    }
+}
+
+struct BadgeProgressDto: Decodable {
+    let triggerType: String?
+    let currentValue: Int?
+    let currentBadgeTier: String?
+    let currentBadgeDescription: String?
+    let currentBadgeEnableImageURL: String?
+    let nextBadgeTriggerCondition: Int?
+    let nextBadgeTier: String?
+    let nextBadgeDescription: String?
+    let nextBadgeEnableImageURL: String?
+
+    enum CodingKeys: String, CodingKey {
+        case triggerType, currentValue, currentBadgeTier, currentBadgeDescription
+        case currentBadgeEnableImageURL = "currentBadgeEnableImageUrl"
+        case nextBadgeTriggerCondition, nextBadgeTier, nextBadgeDescription
+        case nextBadgeEnableImageURL = "nextBadgeEnableImageUrl"
     }
 }

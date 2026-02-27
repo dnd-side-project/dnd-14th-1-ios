@@ -80,6 +80,8 @@
 		7C3A7AE02F5165FC00E25089 /* ShareTierModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7ADF2F5165FC00E25089 /* ShareTierModalViewController.swift */; };
 		7C3A7AE22F516E0A00E25089 /* PassthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AE12F516E0A00E25089 /* PassthroughView.swift */; };
 		7C3A7AE52F5172A200E25089 /* ShareBadgeModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AE42F5172A200E25089 /* ShareBadgeModalViewController.swift */; };
+		7C3A7AEB2F51A83D00E25089 /* EcoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AEA2F51A83D00E25089 /* EcoService.swift */; };
+		7C3A7AEF2F51A89100E25089 /* EcoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AEE2F51A89100E25089 /* EcoAPI.swift */; };
 		7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */; };
 		7C61D2FF2F210AAC005FAC3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F92F210AAC005FAC3A /* SceneDelegate.swift */; };
 		7C61D3012F210AAC005FAC3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C61D2F62F210AAC005FAC3A /* Assets.xcassets */; };
@@ -183,6 +185,8 @@
 		7C3A7ADF2F5165FC00E25089 /* ShareTierModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTierModalViewController.swift; sourceTree = "<group>"; };
 		7C3A7AE12F516E0A00E25089 /* PassthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
 		7C3A7AE42F5172A200E25089 /* ShareBadgeModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBadgeModalViewController.swift; sourceTree = "<group>"; };
+		7C3A7AEA2F51A83D00E25089 /* EcoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoService.swift; sourceTree = "<group>"; };
+		7C3A7AEE2F51A89100E25089 /* EcoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoAPI.swift; sourceTree = "<group>"; };
 		7C606B982F4C9C8C00C1578D /* dnd-14th-1-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "dnd-14th-1-iOS.entitlements"; sourceTree = "<group>"; };
 		7C61D2C72F2109B3005FAC3A /* dnd-14th-1-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dnd-14th-1-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -767,6 +771,7 @@
 			isa = PBXGroup;
 			children = (
 				7C90148D2F4E8C4C00933379 /* UserAPI.swift */,
+				7C3A7AEE2F51A89100E25089 /* EcoAPI.swift */,
 				7CCB1E402F29B5ED00472669 /* Router.swift */,
 			);
 			path = API;
@@ -777,6 +782,7 @@
 			children = (
 				7C9014912F4E921E00933379 /* UserService.swift */,
 				7C90148F2F4E8FE300933379 /* NetworkService.swift */,
+				7C3A7AEA2F51A83D00E25089 /* EcoService.swift */,
 				7CCB1E3E2F29B5E200472669 /* API */,
 			);
 			path = Network;
@@ -948,6 +954,7 @@
 				7C0107482F44D3EE0005AC1D /* FetchMyBadgesUseCase.swift in Sources */,
 				7C3A7ABB2F513DE500E25089 /* FetchEcoTierUseCase.swift in Sources */,
 				7C0107422F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift in Sources */,
+				7C3A7AEF2F51A89100E25089 /* EcoAPI.swift in Sources */,
 				7C01072B2F439D3E0005AC1D /* SettingViewController.swift in Sources */,
 				7C01072C2F439D3E0005AC1D /* SettingViewModel.swift in Sources */,
 				7C90168E2F502C7000933379 /* ExpandableBottomSheetPresenter.swift in Sources */,
@@ -975,6 +982,7 @@
 				7C0107392F43A9B40005AC1D /* UIImageView+.swift in Sources */,
 				7CCB1E722F2DD20300472669 /* KeychainWorker.swift in Sources */,
 				00F482492F2DDC69006FBD2A /* UIView+.swift in Sources */,
+				7C3A7AEB2F51A83D00E25089 /* EcoService.swift in Sources */,
 				00D1E81A2F3B85DF00D86F23 /* TabBarItem.swift in Sources */,
 				00F482472F2DDC4F006FBD2A /* UIStackView+.swift in Sources */,
 				7C01073F2F43B6870005AC1D /* ChangeBadgeCollectionView.swift in Sources */,

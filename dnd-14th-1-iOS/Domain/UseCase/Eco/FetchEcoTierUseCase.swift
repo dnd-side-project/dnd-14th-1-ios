@@ -33,3 +33,16 @@ final class MockFetchEcoTierUseCase: FetchEcoTierUseCase {
             .eraseToAnyPublisher()
     }
 }
+
+final class DefaultFetchEcoTierUseCase: FetchEcoTierUseCase {
+    
+    private let ecoRepository: EcoRepository
+    
+    init(ecoRepository: EcoRepository) {
+        self.ecoRepository = ecoRepository
+    }
+    
+    func execute() -> AnyPublisher<EcoTier, ErrorResponse> {
+        return ecoRepository.fetchEcoTier()
+    }
+}
