@@ -27,7 +27,13 @@ struct ImprovedPromptList {
     var items: [ImprovedPrompt]
 }
 
-struct ImprovePromptResult {
+struct PromptImproveResult {
+    let sentences: [PromptSentence]
+    let savedToken: Int
+}
+
+struct PromptSentence {
+    let improvementRange: Range<String.Index>
     let originalPrompt: String
     let improvedPrompt: String
     let reason: String
