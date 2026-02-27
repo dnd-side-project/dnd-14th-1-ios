@@ -17,8 +17,10 @@ final class MyEcoCoordinator: Coordinator {
     }
     
     func start() {
-        let fetchEcoTierUseCase = MockFetchEcoTierUseCase()
-        let fetchMyBadgesUseCase = MockFetchMyBadgesUseCase()
+        let ecoRepository = DefaultEcoRepository(service: DefaultEcoService())
+        let userRepository = DefaultUserRepository(service: DefaultUserService())
+        let fetchEcoTierUseCase = DefaultFetchEcoTierUseCase(ecoRepository: ecoRepository)
+        let fetchMyBadgesUseCase = DefaultFetchMyBadgesUseCase(repository: userRepository)
         let ecoViewModel = EcoViewModel(
             fetchEcoTierUseCase: fetchEcoTierUseCase,
             fetchMyBadgesUseCase: fetchMyBadgesUseCase
