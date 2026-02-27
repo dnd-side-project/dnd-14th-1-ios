@@ -86,7 +86,7 @@ class DiagnosisResultViewController: BaseViewController {
         .store(in: &subscriptions)
     }
     
-    private func displayPromptDiagnosis(_ promptDiagnosis: PromptDiagnosis) {
+    private func displayPromptDiagnosis(_ promptDiagnosis: PromptDiagnosisResult) {
         let isEfficiency = promptDiagnosis.efficiency == .efficiency
         backgroundView.image = isEfficiency ? .diagnosisResultBgSuccess : .diagnosisResultBgWarning
         promptEfficiencyLabel.text = isEfficiency ? "효율적인 프롬프트예요!" : "비효율적인 프롬프트예요!"

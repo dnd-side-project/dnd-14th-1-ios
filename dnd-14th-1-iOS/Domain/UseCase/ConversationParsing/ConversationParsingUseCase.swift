@@ -6,7 +6,7 @@
 //
 
 protocol ConversationParsingUseCase {
-    func execute(promptInput: PromptInput) async throws -> PromptDiagnosis
+    func execute(promptInput: PromptInput) async throws -> PromptDiagnosisResult
 }
 
 final class DefaultConversationParsingUseCase: ConversationParsingUseCase {
@@ -17,7 +17,7 @@ final class DefaultConversationParsingUseCase: ConversationParsingUseCase {
         self.conversationRepository = conversationRepository
     }
     
-    func execute(promptInput: PromptInput) async throws -> PromptDiagnosis {
+    func execute(promptInput: PromptInput) async throws -> PromptDiagnosisResult {
         try await conversationRepository.fetchConversations()
         return .init(
             efficiency: .efficiency,
