@@ -54,7 +54,12 @@ final class DefaultPromptImprovementUseCase: PromptImprovementUseCase {
         let originalPromptTokenCount = promptDiagnosis.inputToken + promptDiagnosis.outputToken
         let savedToken = max(0, originalPromptTokenCount - improvedPromptTokenCount)
         
-        return PromptImproveResult(sentences: sentences, savedToken: savedToken)
+        return PromptImproveResult(
+            originalPrompt: originalPrompt,
+            improvedPrompt: improvedPrompt,
+            sentences: sentences,
+            savedToken: savedToken
+        )
     }
 }
 

@@ -6,28 +6,41 @@
 //
 
 import Combine
+import Foundation
 
 final class PromptImproveViewModel: ViewModelType {
     // MARK: - Input
     
-    enum Input {}
+    enum Input {
+        case viewDidLoad
+    }
     
     // MARK: - Output
     
-    enum Output {}
+    enum Output {
+        case showPromptImprovement(PromptImproveResult)
+    }
     
     private let outputSubject = PassthroughSubject<Output, Never>()
     private let promptImproveResult: PromptImproveResult
-    private let originalPrompt: String
     
     private var subscriptions: Set<AnyCancellable> = []
     
-    init(promptImproveResult: PromptImproveResult, originalPrompt: String) {
+    init(promptImproveResult: PromptImproveResult) {
         self.promptImproveResult = promptImproveResult
-        self.originalPrompt = originalPrompt        
     }
     
     func transform(with input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
+        input
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] input in
+                guard let self else { return }
+                switch input {
+                case .viewDidLoad:
+                    outputSubject.send(.showPromptImprovement(promptImproveResult))
+                }
+            }
+            .store(in: &subscriptions)
         return outputSubject.eraseToAnyPublisher()
     }
 }

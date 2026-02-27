@@ -127,10 +127,10 @@ extension DiagnosisCoordinator: DiagnosisResultViewControllerDelegate {
         navigationController.pushViewController(promptLoadingViewController, animated: true)
     }
     
-    func completePromptImprovement(promt: String, result: PromptImproveResult) {
+    func completePromptImprovement(result: PromptImproveResult) {
         var viewControllers = navigationController.viewControllers
         viewControllers.removeLast()
-        let promptImproveViewModel = PromptImproveViewModel(promptImproveResult: result, originalPrompt: promt)
+        let promptImproveViewModel = PromptImproveViewModel(promptImproveResult: result)
         let promptImprovedViewController = PromptImprovedViewController(viewModel: promptImproveViewModel)
         promptImprovedViewController.hidesBottomBarWhenPushed = true
         promptImprovedViewController.delegate = self
