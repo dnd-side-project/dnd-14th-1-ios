@@ -5,13 +5,14 @@
 //  Created by a on 2/25/26.
 //
 
+import Foundation
 import Combine
 
 final class DiagnosisResultViewModel: ViewModelType {
     // MARK: - State
     enum PromptImproveState {
         case loading
-        case success(prompt: String, result: PromptImproveResult)
+        case success(result: PromptImproveResult)
         case failure
     }
     
@@ -66,8 +67,12 @@ final class DiagnosisResultViewModel: ViewModelType {
         outputSubject.send(.promptImproveStateChanged(.loading))
         
         Task {
-            let response = try await promptImprovementUseCase.execute(promptDiagnosis: promptDiagnosis)
-            outputSubject.send(.promptImproveStateChanged(.success(prompt: promptDiagnosis.originalPrompt, result: response)))
+            do {
+                let response = try await promptImprovementUseCase.execute(promptDiagnosis: promptDiagnosis)
+                outputSubject.send(.promptImproveStateChanged(.success(result: response)))
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 }

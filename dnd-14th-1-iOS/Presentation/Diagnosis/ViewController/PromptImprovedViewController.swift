@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 import SnapKit
 import Then
@@ -20,8 +21,7 @@ class PromptImprovedViewController: BaseViewController {
     
     let viewModel: PromptImproveViewModel
     
-    weak var delegate: PromptImprovedViewControllerDelegate?
-    
+    private let inputSubject = PassthroughSubject<PromptImproveViewModel.Input, Never>()
     private let animationView = LottieAnimationView(name: "lottie_finisheditor")
     private let bubbleImageView = UIImageView()
     private let savedTokenLabel = UILabel()
@@ -36,26 +36,47 @@ class PromptImprovedViewController: BaseViewController {
         $0.minimumLineSpacing = 16
         $0.minimumInteritemSpacing = 0
     }
+    
+    weak var delegate: PromptImprovedViewControllerDelegate?
+    
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
+    
+    private var subscriptions: Set<AnyCancellable> = []
+    private var prompts: [PromptResult] = []
     
     init(viewModel: PromptImproveViewModel) {
         self.viewModel = viewModel
         super.init()
+        bind()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func bind() {
+        let outputSubject = viewModel.transform(with: inputSubject.eraseToAnyPublisher())
+        
+        outputSubject.receive(on: DispatchQueue.main).sink { [weak self] output in
+            switch output {
+            case let .showPromptImprovement(result):
+                self?.configureSavedTokenLabel(result.savedToken)
+                self?.showImprovedPrompt(result)
+            }
+        }
+        .store(in: &subscriptions)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        inputSubject.send(.viewDidLoad)
     }
     
     override func setStyle() {
         view.backgroundColor = .white
         
         animationView.do {
-            $0.play()            
+            $0.play()
         }
         
         bubbleImageView.do {
@@ -103,15 +124,13 @@ class PromptImprovedViewController: BaseViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         }
-        
-        configureSavedTokenLabel()
     }
     
-    private func configureSavedTokenLabel() {
+    private func configureSavedTokenLabel(_ savedToken: Int) {
         let attributedString = NSMutableAttributedString()
         
         attributedString.append(NSAttributedString(
-            string: "79",
+            string: "\(savedToken)",
             attributes: [
                 .font: UIFont.hakgyoansimDunggeunmisoBold_16,
                 .foregroundColor: UIColor.positiveDarkbg
@@ -200,7 +219,43 @@ class PromptImprovedViewController: BaseViewController {
         homeButton.snp.makeConstraints {
             $0.width.equalTo(68)
             $0.height.equalTo(60)
-        }                
+        }
+    }
+}
+
+// MARK: - Helper
+
+extension PromptImprovedViewController {
+    private func showImprovedPrompt(_ prompt: PromptImproveResult) {
+        self.prompts = [
+            PromptResult(isImprove: false, text: prompt.originalPrompt, sentences: prompt.sentences),
+            PromptResult(isImprove: true, text: prompt.improvedPrompt, sentences: [])
+        ]
+        collectionView.reloadData()
+    }
+    
+    private func presentImprovedPromptSheet(_ prompt: PromptSentence) {
+        let bottomSheetViewController = UIViewController()
+        let promptImproveSheetView = PromptImproveSheetView(prompt: prompt)
+        bottomSheetViewController.view = promptImproveSheetView
+        
+        if let sheet = bottomSheetViewController.sheetPresentationController {
+            sheet.detents = [
+                .medium(),
+                .custom(resolver: { context in
+                    return context.maximumDetentValue - 1
+                })
+            ]
+            sheet.prefersGrabberVisible = true
+            sheet.largestUndimmedDetentIdentifier = .large
+            sheet.preferredCornerRadius = 56
+        }
+        
+        promptImproveSheetView.onDismiss = { [weak self] in
+            self?.dismiss(animated: true)
+        }
+        
+        present(bottomSheetViewController, animated: true)
     }
 }
 
@@ -226,14 +281,14 @@ extension PromptImprovedViewController: UICollectionViewDelegateFlowLayout {
         let index = round(offsetX / itemWidth)
         
         let maxIndex = CGFloat(collectionView.numberOfItems(inSection: 0) - 1)
-        let clampedIndex = max(0, min(index, maxIndex))        
+        let clampedIndex = max(0, min(index, maxIndex))
         targetContentOffset.pointee.x = clampedIndex * itemWidth - scrollView.contentInset.left
     }
 }
 
 extension PromptImprovedViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        prompts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -243,7 +298,13 @@ extension PromptImprovedViewController: UICollectionViewDataSource {
         ) as? PromptImproveResultCell else {
             return UICollectionViewCell()
         }
-        
+        let index = indexPath.row
+        let isImprove = index > 0
+        let prompt = PromptResult(isImprove: isImprove, text: prompts[index].text, sentences: prompts[index].sentences)
+        cell.configure(with: prompt)
+        cell.action = presentImprovedPromptSheet
         return cell
     }
 }
+
+
