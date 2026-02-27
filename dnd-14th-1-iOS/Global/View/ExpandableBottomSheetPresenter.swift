@@ -35,6 +35,10 @@ class ExpandableBottomSheetPresenter: UIViewController {
     }
     
     // MARK: - Life Cycle
+    override func loadView() {
+        applyPassthroughView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setGesture()

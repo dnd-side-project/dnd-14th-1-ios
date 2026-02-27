@@ -21,6 +21,7 @@ final class MockFetchEcoTierUseCase: FetchEcoTierUseCase {
                 totalXP: 0,
                 tier: 5,
                 imageUrl: "https://picsum.photos/id/237/200/300",
+                description: "설명",
                 currentTierXP: 58,
                 nextTierXP: 83
             ),

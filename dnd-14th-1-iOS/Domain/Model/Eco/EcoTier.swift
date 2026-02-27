@@ -17,6 +17,7 @@ struct EcoTierData {
     let totalXP: Int
     let tier: Int
     let imageUrl: String
+    let description: String
     let currentTierXP: Int
     let nextTierXP: Int
 }

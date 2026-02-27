@@ -24,6 +24,21 @@ final class MyEcoCoordinator: Coordinator {
             fetchMyBadgesUseCase: fetchMyBadgesUseCase
         )
         let ecoViewController = EcoViewController(viewModel: ecoViewModel)
+        ecoViewController.delegate = self
         navigationController.pushViewController(ecoViewController, animated: true)
     }
 }
+
+extension MyEcoCoordinator: EcoViewControllerDelegate {
+    
+    func presentShareTier(tier: EcoTier) {
+        let shareTierModalViewController = ShareTierModalViewController(tier: tier)
+        shareTierModalViewController.modalPresentationStyle = .overFullScreen
+        shareTierModalViewController.modalTransitionStyle = .crossDissolve
+        navigationController.present(shareTierModalViewController, animated: true)
+    }
+    
+    func presentShareBadge(badge: Badge) {}
+    
+}
+
