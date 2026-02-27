@@ -17,7 +17,7 @@ struct ImprovedSentences {
 struct ImprovedPrompt {
     @Guide(description: "개선된 프롬프트 문장")
     var improvedPrompt: String
-    @Guide(description: "프롬프트 수정한 이유를 상세하게 설명합니다.")
+    @Guide(description: "사용자의 프롬프트 수정한 이유를 상세하게 설명합니다.")
     var reason: String
 }
 

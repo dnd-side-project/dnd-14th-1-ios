@@ -57,6 +57,7 @@ final class PromptImproveResultCell: UICollectionViewCell {
             $0.backgroundColor = .gray100
             $0.font = .body1_r
             $0.textColor = .gray500
+            $0.linkTextAttributes = [.foregroundColor: UIColor.gray500]
         }
     }
     
