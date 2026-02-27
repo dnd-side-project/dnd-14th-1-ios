@@ -127,6 +127,10 @@ class PromptImprovedViewController: BaseViewController {
     }
     
     private func configureSavedTokenLabel(_ savedToken: Int) {
+        if savedToken <= 0 {
+            bubbleImageView.isHidden = true
+            return
+        }
         let attributedString = NSMutableAttributedString()
         
         attributedString.append(NSAttributedString(
