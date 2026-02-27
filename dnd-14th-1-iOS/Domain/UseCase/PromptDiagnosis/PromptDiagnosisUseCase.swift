@@ -61,8 +61,7 @@ final class DefaultPromptDiagnosisUseCase: PromptDiagnosisUseCase {
             )
             
             return result
-        } catch {
-            print(error)
+        } catch {            
             throw error
         }
     }

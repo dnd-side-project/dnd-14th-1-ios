@@ -214,6 +214,11 @@
 			path = PromptImprovement;
 			sourceTree = "<group>";
 		};
+		00B8F4B52F505DC300CFDA9F /* PromptImprovement */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = PromptImprovement;
+			sourceTree = "<group>";
+		};
 		00CFFCFC2F4F314C00D1C0F4 /* Service */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Service;
@@ -234,9 +239,9 @@
 			path = Diagnosis;
 			sourceTree = "<group>";
 		};
-		00F794E42F4E0377005CCC92 /* Diagnosis */ = {
+		00F794E42F4E0377005CCC92 /* PromptDiagnosis */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Diagnosis;
+			path = PromptDiagnosis;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -523,7 +528,8 @@
 		7C61D3092F210BBF005FAC3A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				00F794E42F4E0377005CCC92 /* Diagnosis */,
+				00B8F4B52F505DC300CFDA9F /* PromptImprovement */,
+				00F794E42F4E0377005CCC92 /* PromptDiagnosis */,
 				7C0107322F439E940005AC1D /* User */,
 				00113F172F43005300D4CC37 /* Onboarding */,
 				00CFFD022F4F387000D1C0F4 /* Claude */,
@@ -688,11 +694,12 @@
 				007368412F4F6CD200F750FD /* Repository */,
 				007368452F4F6D9300F750FD /* Decodable */,
 				00B8F4B12F505B7300CFDA9F /* PromptImprovement */,
+				00B8F4B52F505DC300CFDA9F /* PromptImprovement */,
 				00CFFCFC2F4F314C00D1C0F4 /* Service */,
 				00CFFD022F4F387000D1C0F4 /* Claude */,
 				00D1E8222F3B880900D86F23 /* Eco */,
 				00D1E8232F3B881100D86F23 /* Diagnosis */,
-				00F794E42F4E0377005CCC92 /* Diagnosis */,
+				00F794E42F4E0377005CCC92 /* PromptDiagnosis */,
 			);
 			name = "dnd-14th-1-iOS";
 			packageProductDependencies = (

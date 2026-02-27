@@ -11,7 +11,7 @@ final class DiagnosisResultViewModel: ViewModelType {
     // MARK: - State
     enum PromptImproveState {
         case loading
-        case success
+        case success(prompt: String, result: [ImprovePromptResult])
         case failure
     }
     
@@ -66,9 +66,8 @@ final class DiagnosisResultViewModel: ViewModelType {
         outputSubject.send(.promptImproveStateChanged(.loading))
         
         Task {
-            try await Task.sleep(for: .seconds(3))
-            await promptImprovementUseCase.execute()
-            outputSubject.send(.promptImproveStateChanged(.success))
+            let response = try await promptImprovementUseCase.execute(promptDiagnosis: promptDiagnosis)
+            outputSubject.send(.promptImproveStateChanged(.success(prompt: promptDiagnosis.originalPrompt, result: response)))
         }
     }
 }

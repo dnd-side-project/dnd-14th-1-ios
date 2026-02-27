@@ -18,6 +18,8 @@ class PromptImprovedViewController: BaseViewController {
         static let itemSpacing = 12
     }
     
+    let viewModel: PromptImproveViewModel
+    
     weak var delegate: PromptImprovedViewControllerDelegate?
     
     private let animationView = LottieAnimationView(name: "lottie_finisheditor")
@@ -35,6 +37,15 @@ class PromptImprovedViewController: BaseViewController {
         $0.minimumInteritemSpacing = 0
     }
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
+    
+    init(viewModel: PromptImproveViewModel) {
+        self.viewModel = viewModel
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
