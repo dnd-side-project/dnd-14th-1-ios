@@ -13,6 +13,7 @@ final class KeychainWorker {
         case access
         case refresh
         case userId
+        case savedGlacier
     }
     
     private let serviceIdentifier = Bundle.main.bundleIdentifier ?? "ac.dnd.dnd-14th-1-iOS"

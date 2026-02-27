@@ -31,7 +31,7 @@ class DiagnosisResultViewController: BaseViewController {
     private let meltedGlacierUnitLabel = UILabel()
     private let tokenUsageScrollView = UIScrollView()
     private let tokenUsageStackView = UIStackView()
-    private let glacierView = LottieAnimationView(name: "glacier5")
+    private let glacierView = LottieAnimationView()
     private let promptView = PromptView()
     private let buttonStackView = UIStackView()
     private let promptEditButton = AppButton(size: .large, title: "프롬프트 수정하기", image: UIImage(resource: .pencilSimpleLine))
@@ -62,7 +62,6 @@ class DiagnosisResultViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        glacierView.play()
     }
     
     private func bind() {
@@ -70,6 +69,8 @@ class DiagnosisResultViewController: BaseViewController {
         
         outputSubject.receive(on: DispatchQueue.main).sink { [weak self] output in
             switch output {
+            case let .animationGlacierGrade(animation):
+                self?.animationGlacerGrade(animation)
             case let .displayDiagnosisResult(promptDiagnosis):
                 self?.displayPromptDiagnosis(promptDiagnosis)
             case let .promptImproveStateChanged(state):
@@ -84,6 +85,16 @@ class DiagnosisResultViewController: BaseViewController {
             }
         }
         .store(in: &subscriptions)
+    }
+    
+    private func animationGlacerGrade(_ animation: GlacierGradeAnimation) {
+        glacierView.animation = LottieAnimation.named("glacier\(animation.animationGrade)")
+        
+        if animation.isPlay {
+            glacierView.play(fromProgress: animation.progress.fromProgress, toProgress: animation.progress.toProgress)
+        } else {
+            glacierView.currentProgress = 1.0
+        }
     }
     
     private func displayPromptDiagnosis(_ promptDiagnosis: PromptDiagnosisResult) {
@@ -241,7 +252,7 @@ class DiagnosisResultViewController: BaseViewController {
         
         glacierView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(usingModelLabel.snp.bottom).offset(22)
+            $0.top.equalTo(usingModelLabel.snp.bottom).offset(77)
         }
         
         // contentLayoutGuide를 설정해야 ScrollView가 스크롤할 영역을 알수있음

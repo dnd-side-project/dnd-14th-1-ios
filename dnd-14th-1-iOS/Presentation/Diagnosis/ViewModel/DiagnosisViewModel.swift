@@ -14,7 +14,7 @@ final class DiagnosisViewModel: ViewModelType {
     
     enum DiagnosisState {
         case loading
-        case success(PromptDiagnosisResult)
+        case success(PromptDiagnosisResult, GlacierGrade)
         case failure
     }
     
@@ -35,6 +35,9 @@ final class DiagnosisViewModel: ViewModelType {
         case isPromptSheetPresented(Bool)
         case appleIntelligenceAuthorized(Bool)
         case diagnosisStateChanged(DiagnosisState)
+        case displayGlacierGrade(GlacierGrade)
+        case displaySavedGlacier(Double)
+        case errorOccurred(String)
     }
     
     // MARK: - Properties
@@ -43,19 +46,23 @@ final class DiagnosisViewModel: ViewModelType {
     private let savedGlacierAmount = CurrentValueSubject<Double, Never>(0.0)
     private let isPromptSheetPresented = CurrentValueSubject<Bool, Never>(false)
     private let isAppleIntelligenceAvailable = CurrentValueSubject<Bool, Never>(false)
+    private let glacierGrade = CurrentValueSubject<GlacierGrade?, Never>(nil)
     
     private var subscriptions: Set<AnyCancellable> = []
     private var model = SystemLanguageModel.default
     
     private let promptDiagnosisUseCase: PromptDiagnosisUseCase
     private let conversationParsingUseCase: ConversationParsingUseCase
+    private let fetchEcoTierUseCsse: FetchEcoTierUseCase
     
     init(
         promptDiagnosisUseCase: PromptDiagnosisUseCase,
-        conversationParsingUseCase: ConversationParsingUseCase
+        conversationParsingUseCase: ConversationParsingUseCase,
+        fetchEcoTierUseCsse: FetchEcoTierUseCase
     ) {
         self.promptDiagnosisUseCase = promptDiagnosisUseCase
         self.conversationParsingUseCase = conversationParsingUseCase
+        self.fetchEcoTierUseCsse = fetchEcoTierUseCsse
         bind()
     }
     
@@ -65,6 +72,7 @@ final class DiagnosisViewModel: ViewModelType {
             switch input {
             case .viewDidAppear:
                 checkAppleIntelligencePermission()
+                getSavedGlacier()
             case .viewDidLoad:
                 fetchSavedGlacierAmount()
             case .promptButtonTapped:
@@ -85,14 +93,40 @@ final class DiagnosisViewModel: ViewModelType {
         return outputSubject.eraseToAnyPublisher()
     }
     
+    private func getSavedGlacier() {
+        if let savedGlacier = Double(KeychainWorker.shared.read(key: .savedGlacier) ?? "0.0") {
+            outputSubject.send(.displaySavedGlacier(savedGlacier))
+        }
+    }
+    
+    private func fetchEcoTier() {
+        fetchEcoTierUseCsse.execute()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] result in
+                switch result {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self?.outputSubject.send(.errorOccurred(error.localizedDescription))
+                }
+            } receiveValue: {  [weak self] ecoTier in
+                let grade = GlacierGrade(grade: ecoTier.data.tier)
+                self?.glacierGrade.send(grade)
+                self?.outputSubject.send(.displayGlacierGrade(grade))
+            }
+            .store(in: &subscriptions)
+    }
+    
     private func fetchSavedGlacierAmount() {
         self.savedGlacierAmount.send(0.0)
     }
     
+    // Apple Intelligence 가용성 체크 후 ecoTier 업데이트
     private func checkAppleIntelligencePermission() {
         switch model.availability {
         case .available:
             outputSubject.send(.appleIntelligenceAuthorized(true))
+            fetchEcoTier()
         default:
             outputSubject.send(.appleIntelligenceAuthorized(false))
         }
@@ -106,12 +140,16 @@ final class DiagnosisViewModel: ViewModelType {
     }
     
     private func promptDiagnosis(with promptInput: PromptInput) {
+        guard let glacierGrade = glacierGrade.value else {
+            outputSubject.send(.errorOccurred("등급 조회에 실패했습니다."))
+            return
+        }
         outputSubject.send(.diagnosisStateChanged(.loading))
         
-        Task {
+        Task { 
             do {
                 let diagnosisResult = try await promptDiagnosisUseCase.excute(prompt: promptInput.value)
-                outputSubject.send(.diagnosisStateChanged(.success(diagnosisResult)))
+                outputSubject.send(.diagnosisStateChanged(.success(diagnosisResult, glacierGrade)))
             } catch {
                 outputSubject.send(.diagnosisStateChanged(.failure))
             }
@@ -119,12 +157,17 @@ final class DiagnosisViewModel: ViewModelType {
     }
     
     private func promptDiagnosisWithUrl(with promptInput: PromptInput) {
+        guard let glacierGrade = glacierGrade.value else {
+            outputSubject.send(.errorOccurred("등급 조회에 실패했습니다."))
+            return
+        }
+        
         outputSubject.send(.diagnosisStateChanged(.loading))
         
         Task {
             do {
                 let diagnosisResult = try await conversationParsingUseCase.execute(promptInput: promptInput)
-                outputSubject.send(.diagnosisStateChanged(.success(diagnosisResult)))
+                outputSubject.send(.diagnosisStateChanged(.success(diagnosisResult, glacierGrade)))
             } catch {
                 outputSubject.send(.diagnosisStateChanged(.failure))
             }

@@ -370,6 +370,7 @@
 				7C9014D92F4EDA6400933379 /* UserProfileDto.swift */,
 				7C9014722F4E88D700933379 /* UserRepository.swift */,
 				7C9014822F4E8B2200933379 /* ErrorResponse.swift */,
+				007368452F4F6D9300F750FD /* Decodable */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
