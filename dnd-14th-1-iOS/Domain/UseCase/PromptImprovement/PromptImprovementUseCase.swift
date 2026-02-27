@@ -53,6 +53,9 @@ final class DefaultPromptImprovementUseCase: PromptImprovementUseCase {
         let improvedPromptTokenCount = (totalTokenUsage?.input_tokens ?? 0) + (totalTokenUsage?.output_tokens ?? 0)
         let originalPromptTokenCount = promptDiagnosis.inputToken + promptDiagnosis.outputToken
         let savedToken = max(0, originalPromptTokenCount - improvedPromptTokenCount)
+        let savedGlacier = calculateSavedGlacier(toeknUsage: savedToken)
+        
+        KeychainWorker.shared.create(key: .savedGlacier, value: "\(savedGlacier)")
         
         return PromptImproveResult(
             originalPrompt: originalPrompt,
@@ -60,6 +63,10 @@ final class DefaultPromptImprovementUseCase: PromptImprovementUseCase {
             sentences: sentences,
             savedToken: savedToken
         )
+    }
+    
+    private func calculateSavedGlacier(toeknUsage: Int) -> Double {
+        return Double(toeknUsage) * 0.02
     }
 }
 

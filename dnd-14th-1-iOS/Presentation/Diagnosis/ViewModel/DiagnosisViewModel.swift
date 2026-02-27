@@ -36,6 +36,7 @@ final class DiagnosisViewModel: ViewModelType {
         case appleIntelligenceAuthorized(Bool)
         case diagnosisStateChanged(DiagnosisState)
         case displayGlacierGrade(GlacierGrade)
+        case displaySavedGlacier(Double)
         case errorOccurred(String)
     }
     
@@ -71,6 +72,7 @@ final class DiagnosisViewModel: ViewModelType {
             switch input {
             case .viewDidAppear:
                 checkAppleIntelligencePermission()
+                getSavedGlacier()
             case .viewDidLoad:
                 fetchSavedGlacierAmount()
             case .promptButtonTapped:
@@ -89,6 +91,12 @@ final class DiagnosisViewModel: ViewModelType {
             }
         }.store(in: &subscriptions)
         return outputSubject.eraseToAnyPublisher()
+    }
+    
+    private func getSavedGlacier() {
+        if let savedGlacier = Double(KeychainWorker.shared.read(key: .savedGlacier) ?? "0.0") {
+            outputSubject.send(.displaySavedGlacier(savedGlacier))
+        }
     }
     
     private func fetchEcoTier() {

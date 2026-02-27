@@ -71,6 +71,8 @@ final class DiagnosisViewController: BaseViewController {
         outputSubject.receive(on: DispatchQueue.main).sink { [weak self] output in
             guard let self else { return }
             switch output {
+            case let .displaySavedGlacier(savedGlacier):
+                updateSavedGlacier(savedGlacier)
             case let .errorOccurred(errorMessage):
                 showToast(message: errorMessage, type: .internalError)
             case .presentPromptSheet:
@@ -91,14 +93,18 @@ final class DiagnosisViewController: BaseViewController {
                     delegate?.failDiagnosis()
                 }
             }
-        }.store(in: &subscriptions)
+        }.store(in: &subscriptions)        
+    }
+    
+    private func updateSavedGlacier(_ savedGlacier: Double) {
+        savedGlacierAmount.text = String(format: "%.1f", savedGlacier)
     }
     
     private func updateGlacierGrade(_ glacierGrade: GlacierGrade) {
         glacierImageView.alpha = 0.5
         glacierImageView.transform = CGAffineTransform(translationX: 0, y: 5)
         glacierImageView.image = UIImage(named: glacierGrade.imageName)
-
+        
         UIView.animate(
             withDuration: 0.5,
             delay: 0,
@@ -123,7 +129,7 @@ final class DiagnosisViewController: BaseViewController {
         bottomSheetPresenter.onDismiss = {
             self.inputSubject.send(.promptSheetDismissed)
         }
-
+        
         bottomSheetPresenter.present(
             on: self,
             contentView: promptInputView,
@@ -295,7 +301,7 @@ extension DiagnosisViewController {
         )
     }
     
-    private func checkAppleIntelligence(_ isGranted: Bool) {        
+    private func checkAppleIntelligence(_ isGranted: Bool) {
         if isGranted {
             promptButton.isHidden = false
             appleIntelligenceButton.isHidden = true

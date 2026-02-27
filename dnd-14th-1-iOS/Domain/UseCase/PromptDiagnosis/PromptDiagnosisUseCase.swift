@@ -67,6 +67,6 @@ final class DefaultPromptDiagnosisUseCase: PromptDiagnosisUseCase {
     }
     
     func calculateMeltedGlacierAmount(tokenUsage: Int) -> Double {
-        return (Double(tokenUsage) / 1000.0) * 0.02
+        return (Double(tokenUsage) / 100.0) * 0.02
     }
 }
