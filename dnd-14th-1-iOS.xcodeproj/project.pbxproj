@@ -1006,7 +1006,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "dnd-14th-1-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = saving;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "\"에코 티어를 저장하기 위해서는 접근 권한이 필요합니다\"";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "에코 티어를 저장하기 위해서는 접근 권한이 필요합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
@@ -1046,7 +1046,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "dnd-14th-1-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = saving;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "\"에코 티어를 저장하기 위해서는 접근 권한이 필요합니다\"";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "에코 티어를 저장하기 위해서는 접근 권한이 필요합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";

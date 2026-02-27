@@ -195,28 +195,24 @@ extension ShareTierModalViewController {
 extension ShareTierModalViewController {
     
     @objc private func imageDownloadButtonTapped() {
-        if checkPhotoPermission() {
-            saveImage()
-        } else {
-            showToast(message: "설정에서 사진 접근을 허용해주세요", type: .internalError)
-        }
-    }
-
-    private func checkPhotoPermission() -> Bool {
-        var status: PHAuthorizationStatus = .notDetermined
-        status = PHPhotoLibrary.authorizationStatus(for: .addOnly)
+        let status = PHPhotoLibrary.authorizationStatus(for: .addOnly)
         
         switch status {
+        case .authorized, .limited:
+            saveImage()
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization(for: .addOnly) { newStatus in
-                status = newStatus
+                DispatchQueue.main.async { [weak self] in
+                    if newStatus == .authorized {
+                        self?.saveImage()
+                    } else {
+                        self?.showToast(message: "설정에서 사진 접근을 허용해주세요", type: .internalError)
+                    }
+                }
             }
-        case .authorized:
-            status = .authorized
         default:
-            break
+            showToast(message: "설정에서 사진 접근을 허용해주세요", type: .internalError)
         }
-        return status == .authorized
     }
     
     private func saveImage() {
