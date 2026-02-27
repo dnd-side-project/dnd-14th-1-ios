@@ -49,7 +49,7 @@ extension MyBagdesCollectionView {
     }
     
     private func setCollectionView() {
-        allowsSelection = false
+        allowsSelection = true
         register(MyBagdesCollectionViewCell.self, forCellWithReuseIdentifier: MyBagdesCollectionViewCell.identifier)
     }
 }

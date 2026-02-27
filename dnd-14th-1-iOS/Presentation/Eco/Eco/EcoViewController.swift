@@ -90,10 +90,6 @@ class EcoViewController: BaseViewController {
                 updateEcoTier(ecoTier)
             }
         }.store(in: &subscriptions)
-        
-        myBadgesView.didTapBadgePublisher.receive(on: DispatchQueue.main).sink { [weak self] badge in
-            self?.delegate?.presentShareBadge(badge: badge)
-        }.store(in: &subscriptions)
     }
     
     // MARK: - Base
@@ -223,6 +219,9 @@ extension EcoViewController {
     private func showBottomSheet() {
         let sheetHeight: CGFloat = view.frame.height - (badgeImageView.frame.maxY + 32.5) - view.safeAreaInsets.bottom
         myBadgesView =  MyBadgesView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: sheetHeight))
+        myBadgesView.didTapBadgePublisher.receive(on: DispatchQueue.main).sink { [weak self] badge in
+            self?.delegate?.presentShareBadge(badge: badge)
+        }.store(in: &subscriptions)
         
         bottomSheetPresenter.onMaximize = { [weak self] in
             UIView.animate(
@@ -262,7 +261,6 @@ extension EcoViewController {
         self.ecoTier = ecoTier
         
         badgeImageView.do {
-            print(ecoTier.data.imageUrl)
             $0.setImage(url: ecoTier.data.imageUrl)
         }
         

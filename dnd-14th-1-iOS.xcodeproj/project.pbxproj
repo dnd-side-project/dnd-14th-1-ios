@@ -79,6 +79,7 @@
 		7C3A7ACB2F513E7300E25089 /* EcoTierDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7ACA2F513E7300E25089 /* EcoTierDto.swift */; };
 		7C3A7AE02F5165FC00E25089 /* ShareTierModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7ADF2F5165FC00E25089 /* ShareTierModalViewController.swift */; };
 		7C3A7AE22F516E0A00E25089 /* PassthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AE12F516E0A00E25089 /* PassthroughView.swift */; };
+		7C3A7AE52F5172A200E25089 /* ShareBadgeModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AE42F5172A200E25089 /* ShareBadgeModalViewController.swift */; };
 		7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */; };
 		7C61D2FF2F210AAC005FAC3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F92F210AAC005FAC3A /* SceneDelegate.swift */; };
 		7C61D3012F210AAC005FAC3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C61D2F62F210AAC005FAC3A /* Assets.xcassets */; };
@@ -181,6 +182,7 @@
 		7C3A7ACA2F513E7300E25089 /* EcoTierDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoTierDto.swift; sourceTree = "<group>"; };
 		7C3A7ADF2F5165FC00E25089 /* ShareTierModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTierModalViewController.swift; sourceTree = "<group>"; };
 		7C3A7AE12F516E0A00E25089 /* PassthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
+		7C3A7AE42F5172A200E25089 /* ShareBadgeModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBadgeModalViewController.swift; sourceTree = "<group>"; };
 		7C606B982F4C9C8C00C1578D /* dnd-14th-1-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "dnd-14th-1-iOS.entitlements"; sourceTree = "<group>"; };
 		7C61D2C72F2109B3005FAC3A /* dnd-14th-1-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dnd-14th-1-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -535,6 +537,14 @@
 			path = ShareTier;
 			sourceTree = "<group>";
 		};
+		7C3A7AE32F51728D00E25089 /* ShareBadge */ = {
+			isa = PBXGroup;
+			children = (
+				7C3A7AE42F5172A200E25089 /* ShareBadgeModalViewController.swift */,
+			);
+			path = ShareBadge;
+			sourceTree = "<group>";
+		};
 		7C61D2BE2F2109B3005FAC3A = {
 			isa = PBXGroup;
 			children = (
@@ -678,6 +688,7 @@
 			children = (
 				7C3A7ADB2F51616C00E25089 /* Eco */,
 				7C3A7ADD2F51618200E25089 /* ShareTier */,
+				7C3A7AE32F51728D00E25089 /* ShareBadge */,
 				7C9018932F50684F00933379 /* MyEcoCoordinator.swift */,
 			);
 			path = Eco;
@@ -911,6 +922,7 @@
 				00113F1D2F43008C00D4CC37 /* SplashViewController.swift in Sources */,
 				7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */,
 				7C3A7AE22F516E0A00E25089 /* PassthroughView.swift in Sources */,
+				7C3A7AE52F5172A200E25089 /* ShareBadgeModalViewController.swift in Sources */,
 				00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */,
 				7C0107312F439E800005AC1D /* FetchUserProfileUseCase.swift in Sources */,
 				7C3A7AC52F513E6800E25089 /* LoginResultDto.swift in Sources */,

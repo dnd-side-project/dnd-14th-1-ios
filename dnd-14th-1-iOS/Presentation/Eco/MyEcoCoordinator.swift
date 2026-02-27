@@ -38,7 +38,11 @@ extension MyEcoCoordinator: EcoViewControllerDelegate {
         navigationController.present(shareTierModalViewController, animated: true)
     }
     
-    func presentShareBadge(badge: Badge) {}
-    
+    func presentShareBadge(badge: Badge) {
+        let shareBadgeModalViewController = ShareBadgeModalViewController(badge: badge)
+        shareBadgeModalViewController.modalPresentationStyle = .overFullScreen
+        shareBadgeModalViewController.modalTransitionStyle = .crossDissolve
+        navigationController.present(shareBadgeModalViewController, animated: true)
+    }    
 }
 
