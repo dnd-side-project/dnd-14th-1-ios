@@ -27,7 +27,8 @@ final class DefaultConversationParsingUseCase: ConversationParsingUseCase {
             estimatedLoss: 0,
             originalPrompt: promptInput.value,
             usingModel: .claude_haiku_4_5,
-            source: .url
+            source: .url,
+            sentences: []
         )
     }
 }

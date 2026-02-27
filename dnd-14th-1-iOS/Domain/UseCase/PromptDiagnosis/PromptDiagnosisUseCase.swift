@@ -15,7 +15,7 @@ enum PromptDiagnosisError: Error {
 }
 
 protocol PromptDiagnosisUseCase {
-    func excute(promptInput: PromptInput) async throws -> PromptDiagnosis
+    func excute(prompt: String) async throws -> PromptDiagnosis
 }
 
 final class DefaultPromptDiagnosisUseCase: PromptDiagnosisUseCase {
@@ -26,26 +26,20 @@ final class DefaultPromptDiagnosisUseCase: PromptDiagnosisUseCase {
         self.claudeService = claudeService
     }
     
-    func excute(promptInput: PromptInput) async throws -> PromptDiagnosis  {
+    func excute(prompt: String) async throws -> PromptDiagnosis  {
         do {
-            let prompt = promptInput.value
             
-            guard let tokenUsage = try await claudeService.request(for: prompt).usage else {
-                throw PromptDiagnosisError.apiError
-            }
+            let tokenUsage = try await claudeService.request(for: prompt).usage
+            let sentences = try await claudeService.splitPromptIntoSentences(prompt)
             
-            let instructions = """
-            당신은 프롬프트 품질을 진단하는 매우 엄격한 평가자입니다.
-            """
-            
+            let instructions = "당신은 프롬프트 품질을 진단하는 매우 엄격한 평가자입니다."
             let session = LanguageModelSession(instructions: instructions)
             
             let diagnosisResponse = try await session.respond(to: prompt, generating: PromptEvaluation.self)
-            
             let efficiency = diagnosisResponse.content.efficiency
             
-            let inputToken = tokenUsage.input_tokens ?? 0
-            let outputToken = tokenUsage.output_tokens ?? 0
+            let inputToken = tokenUsage?.input_tokens ?? 0
+            let outputToken = tokenUsage?.output_tokens ?? 0
             let totalToken = inputToken + outputToken
             let estimatedLoss = claudeService.calculateCost(
                 usingModel: .claude_haiku_4_5,
@@ -62,11 +56,13 @@ final class DefaultPromptDiagnosisUseCase: PromptDiagnosisUseCase {
                 estimatedLoss: estimatedLoss * 1432.19,
                 originalPrompt: prompt,
                 usingModel: claudeService.model,
-                source: .singlePrompt
+                source: .singlePrompt,
+                sentences: sentences
             )
             
             return result
         } catch {
+            print(error)
             throw error
         }
     }
