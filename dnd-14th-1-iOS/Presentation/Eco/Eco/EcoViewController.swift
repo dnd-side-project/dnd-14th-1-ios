@@ -180,7 +180,7 @@ class EcoViewController: BaseViewController {
         ]
         gradientBackgroundLayer.startPoint = CGPoint(x: 0, y: 0.2)
         gradientBackgroundLayer.endPoint = CGPoint(x: 1, y: 0)
-        view.layer.insertSublayer(gradientBackgroundLayer, at: 0)
+        view.layer.addSublayer(gradientBackgroundLayer)
         gradientBackgroundLayer.opacity = 0
     }
     
