@@ -16,22 +16,25 @@ extension UIImageView {
         case bothMemoryAndDisk
     }
     
-    func setImage(url: String, _ cacheOption: CacheOption = .bothMemoryAndDisk) {
+    func setImage(url: String) {
         
         guard let url = URL(string: url) else {
             return
         }
         
-        var options: KingfisherOptionsInfo = [.transition(.fade(0.2))]
-        
-        switch cacheOption {
-        case .none:
-            break
-        case .memoryOnly:
-            options.append(.cacheMemoryOnly)
-        case .bothMemoryAndDisk:
-            options.append(.cacheOriginalImage)
+        let accessToken = KeychainWorker.shared.read(key: .access) ?? ""
+        let modifier = AnyModifier { request in
+            var modifiedRequest = request
+            modifiedRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+            return modifiedRequest
         }
+        
+        let options: KingfisherOptionsInfo = [
+            .requestModifier(modifier),
+            .transition(.fade(0.2)),
+            .forceTransition,
+            .cacheOriginalImage
+        ]
         
         self.kf.setImage(with: url, options: options)
     }

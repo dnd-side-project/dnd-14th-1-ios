@@ -52,17 +52,16 @@ class PromptInputView: UIView {
     }
     
     private func bind() {
-        promptInputType
-            .sink { [weak self] promptType in
-                switch promptType {
-                case .text:
-                    self?.setTextInputButton()
-                case .url:
-                    self?.setUrlLinkButton()
-                }
-                self?.setPlaceholder()
+        promptInputType.receive(on: DispatchQueue.main).sink { [weak self] promptType in
+            switch promptType {
+            case .text:
+                self?.setTextInputButton()
+            case .url:
+                self?.setUrlLinkButton()
             }
-            .store(in: &subscriptions)
+            self?.setPlaceholder()
+        }
+        .store(in: &subscriptions)
     }
     
     private func setDelegate() {
@@ -104,8 +103,9 @@ class PromptInputView: UIView {
         containerView.snp.makeConstraints {
             $0.top.equalTo(buttonStackView.snp.bottom).offset(16)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.height.equalTo(426)
+            $0.bottom.equalToSuperview().offset(-19)
         }
+        
         submitButton.snp.makeConstraints {
             $0.trailing.bottom.equalToSuperview().inset(16)
         }
@@ -141,7 +141,10 @@ class PromptInputView: UIView {
     
     private func setStyle() {
         backgroundColor = .primary400
+        layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         layer.cornerRadius = 56
+        layer.cornerCurve = .continuous
+        clipsToBounds = true
         
         textView.do {
             $0.font = .body1_m

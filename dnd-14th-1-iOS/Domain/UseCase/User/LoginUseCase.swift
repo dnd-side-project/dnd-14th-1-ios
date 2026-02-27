@@ -13,6 +13,25 @@ protocol LoginUseCase {
     func execute(idToken: String) -> AnyPublisher<LoginResult, ErrorResponse>
 }
 
+final class MockLoginUseCase: LoginUseCase {
+    
+    func execute(idToken: String) -> AnyPublisher<LoginResult, ErrorResponse> {
+        
+        let loginResult = LoginResult(
+            status: 200,
+            data: LoginData(
+                accessToken: "some accessToken",
+                refreshToken: "some refreshToken",
+                userID: "some userId"
+            ),
+            message: "MockLoginUseCase"
+        )
+        return Just(loginResult)
+            .setFailureType(to: ErrorResponse.self)
+            .eraseToAnyPublisher()
+    }
+}
+
 final class DefaultLoginUseCase: LoginUseCase {
     
     private let repository: UserRepository

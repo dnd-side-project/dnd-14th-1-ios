@@ -1,5 +1,5 @@
 //
-//  ChangeBadgeCollectionViewCell.swift
+//  MyBadgesCollectionViewCell.swift
 //  dnd-14th-1-iOS
 //
 //  Created by 홍기정 on 2/17/26.
@@ -10,12 +10,9 @@ import Then
 import SnapKit
 import Kingfisher
 
-final class ChangeBadgeCollectionViewCell: UICollectionViewCell {
+final class MyBadgesCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Components
-    private let currentBackgroundCircleView = UIView(frame: CGRect(x: 0, y: 0, width: 90, height: 90))
-    private let selectedBackgroundCircleView = UIView(frame: CGRect(x: 0, y: 0, width: 90, height: 90))
-    
     private let badgeImageView = UIImageView()
     
     // MARK: - Initializer
@@ -24,7 +21,6 @@ final class ChangeBadgeCollectionViewCell: UICollectionViewCell {
         addSubview()
         setLayout()
         setStyle()
-        self.selectedBackgroundView = selectedBackgroundCircleView
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -33,7 +29,6 @@ final class ChangeBadgeCollectionViewCell: UICollectionViewCell {
     // MARK: - Configure
     func configure(badge: Badge) {
         badgeImageView.setImage(url: badge.imageUrl)
-        currentBackgroundCircleView.isHidden = !badge.isCurrent
     }
     
     // MARK: - PrepareForReuse
@@ -44,35 +39,21 @@ final class ChangeBadgeCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension ChangeBadgeCollectionViewCell {
+extension MyBadgesCollectionViewCell {
     
     private func addSubview() {
-        [currentBackgroundCircleView, badgeImageView].forEach {
+        [badgeImageView].forEach {
             contentView.addSubview($0)
         }
     }
     
     private func setLayout() {
         badgeImageView.snp.makeConstraints {
-            $0.edges.equalTo(contentView).inset(17)
+            $0.edges.equalTo(contentView)
         }
     }
     
     private func setStyle() {
-        currentBackgroundCircleView.do {
-            $0.backgroundColor = UIColor(hexCode: "EDEDED")
-            $0.layer.cornerRadius = 45
-            $0.clipsToBounds = true
-        }
-        
-        selectedBackgroundCircleView.do {
-            $0.backgroundColor = UIColor(hexCode: "ECF8FF")
-            $0.layer.borderWidth = 1
-            $0.layer.borderColor = UIColor.primary500.cgColor
-            $0.layer.cornerRadius = 45
-            $0.clipsToBounds = true
-        }
-        
         badgeImageView.do {
             $0.contentMode = .scaleAspectFit
         }

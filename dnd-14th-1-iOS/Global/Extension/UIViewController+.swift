@@ -109,3 +109,11 @@ extension UIViewController {
         )
     }
 }
+
+extension UIViewController {
+    
+    // MARK: - override func loadView() 내부에서 호출
+    func applyPassthroughView() {
+        self.view = PassThroughView()
+    }
+}

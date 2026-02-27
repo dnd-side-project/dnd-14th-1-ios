@@ -53,7 +53,7 @@ final class TabBarCoordinator: Coordinator {
             ],
             animated: false
         )
-        
+        navigationController.navigationBar.isHidden = true
         navigationController.setViewControllers([tabBarController], animated: false)
     }
     

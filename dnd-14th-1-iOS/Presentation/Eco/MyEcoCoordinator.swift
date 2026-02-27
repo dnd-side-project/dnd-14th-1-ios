@@ -17,7 +17,34 @@ final class MyEcoCoordinator: Coordinator {
     }
     
     func start() {
-        let ecoViewController = EcoViewController()        
+        let ecoRepository = DefaultEcoRepository(service: DefaultEcoService())
+        let userRepository = DefaultUserRepository(service: DefaultUserService())
+        let fetchEcoTierUseCase = DefaultFetchEcoTierUseCase(ecoRepository: ecoRepository)
+        let fetchMyBadgesUseCase = DefaultFetchMyBadgesUseCase(repository: userRepository)
+        let ecoViewModel = EcoViewModel(
+            fetchEcoTierUseCase: fetchEcoTierUseCase,
+            fetchMyBadgesUseCase: fetchMyBadgesUseCase
+        )
+        let ecoViewController = EcoViewController(viewModel: ecoViewModel)
+        ecoViewController.delegate = self
         navigationController.pushViewController(ecoViewController, animated: true)
     }
 }
+
+extension MyEcoCoordinator: EcoViewControllerDelegate {
+    
+    func presentShareTier(tier: EcoTier) {
+        let shareTierModalViewController = ShareTierModalViewController(tier: tier)
+        shareTierModalViewController.modalPresentationStyle = .overFullScreen
+        shareTierModalViewController.modalTransitionStyle = .crossDissolve
+        navigationController.present(shareTierModalViewController, animated: true)
+    }
+    
+    func presentShareBadge(badge: Badge) {
+        let shareBadgeModalViewController = ShareBadgeModalViewController(badge: badge)
+        shareBadgeModalViewController.modalPresentationStyle = .overFullScreen
+        shareBadgeModalViewController.modalTransitionStyle = .crossDissolve
+        navigationController.present(shareBadgeModalViewController, animated: true)
+    }    
+}
+

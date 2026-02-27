@@ -69,6 +69,19 @@
 		7C0107512F46060B0005AC1D /* LogoutUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0107502F46060B0005AC1D /* LogoutUseCase.swift */; };
 		7C2A3F102F38ACCB00D102EE /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A3F0F2F38ACCB00D102EE /* AppButton.swift */; };
 		7C2E31FC2F38DDA6006F08FE /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E31FB2F38DDA6006F08FE /* UIImage+.swift */; };
+		7C3A7AB82F513B6700E25089 /* EcoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AB72F513B6700E25089 /* EcoViewModel.swift */; };
+		7C3A7ABB2F513DE500E25089 /* FetchEcoTierUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7ABA2F513DE500E25089 /* FetchEcoTierUseCase.swift */; };
+		7C3A7ABE2F513E2100E25089 /* EcoTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7ABD2F513E2100E25089 /* EcoTier.swift */; };
+		7C3A7AC52F513E6800E25089 /* LoginResultDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7ABF2F513E6800E25089 /* LoginResultDto.swift */; };
+		7C3A7AC62F513E6800E25089 /* MyBadgesDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AC02F513E6800E25089 /* MyBadgesDto.swift */; };
+		7C3A7AC72F513E6800E25089 /* UserProfileDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AC12F513E6800E25089 /* UserProfileDto.swift */; };
+		7C3A7AC82F513E6800E25089 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AC32F513E6800E25089 /* ErrorResponse.swift */; };
+		7C3A7ACB2F513E7300E25089 /* EcoTierDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7ACA2F513E7300E25089 /* EcoTierDto.swift */; };
+		7C3A7AE02F5165FC00E25089 /* ShareTierModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7ADF2F5165FC00E25089 /* ShareTierModalViewController.swift */; };
+		7C3A7AE22F516E0A00E25089 /* PassthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AE12F516E0A00E25089 /* PassthroughView.swift */; };
+		7C3A7AE52F5172A200E25089 /* ShareBadgeModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AE42F5172A200E25089 /* ShareBadgeModalViewController.swift */; };
+		7C3A7AEB2F51A83D00E25089 /* EcoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AEA2F51A83D00E25089 /* EcoService.swift */; };
+		7C3A7AEF2F51A89100E25089 /* EcoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3A7AEE2F51A89100E25089 /* EcoAPI.swift */; };
 		7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */; };
 		7C61D2FF2F210AAC005FAC3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61D2F92F210AAC005FAC3A /* SceneDelegate.swift */; };
 		7C61D3012F210AAC005FAC3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C61D2F62F210AAC005FAC3A /* Assets.xcassets */; };
@@ -82,6 +95,13 @@
 		7C9014922F4E921E00933379 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9014912F4E921E00933379 /* UserService.swift */; };
 		7C9015032F4F0BA800933379 /* UpdateRepresentativeBadgeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9015022F4F0BA800933379 /* UpdateRepresentativeBadgeUseCase.swift */; };
 		7C9015052F4F0C9500933379 /* UpdateRepresentativeBadgeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9015042F4F0C9500933379 /* UpdateRepresentativeBadgeRequest.swift */; };
+		7C9016812F502C5300933379 /* BottomSheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9016722F502C5300933379 /* BottomSheetPresenter.swift */; };
+		7C90168E2F502C7000933379 /* ExpandableBottomSheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C90168D2F502C7000933379 /* ExpandableBottomSheetPresenter.swift */; };
+		7C9018952F50684F00933379 /* EcoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9018922F50684F00933379 /* EcoViewController.swift */; };
+		7C9018962F50684F00933379 /* MyEcoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9018932F50684F00933379 /* MyEcoCoordinator.swift */; };
+		7C90189B2F50685900933379 /* MyBadgesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9018992F50685900933379 /* MyBadgesCollectionViewCell.swift */; };
+		7C90189C2F50685900933379 /* MyBadgesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9018982F50685900933379 /* MyBadgesCollectionView.swift */; };
+		7C90189E2F50695B00933379 /* MyBadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C90189D2F50695B00933379 /* MyBadgesView.swift */; };
 		7C9582A42F3561DC004F8523 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */; };
 		7C9582A92F3562D0004F8523 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582A82F3562D0004F8523 /* LoginViewController.swift */; };
 		7C9582AE2F356608004F8523 /* CheckLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */; };
@@ -154,6 +174,19 @@
 		7C0107502F46060B0005AC1D /* LogoutUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUseCase.swift; sourceTree = "<group>"; };
 		7C2A3F0F2F38ACCB00D102EE /* AppButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
 		7C2E31FB2F38DDA6006F08FE /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		7C3A7AB72F513B6700E25089 /* EcoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoViewModel.swift; sourceTree = "<group>"; };
+		7C3A7ABA2F513DE500E25089 /* FetchEcoTierUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchEcoTierUseCase.swift; sourceTree = "<group>"; };
+		7C3A7ABD2F513E2100E25089 /* EcoTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoTier.swift; sourceTree = "<group>"; };
+		7C3A7ABF2F513E6800E25089 /* LoginResultDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResultDto.swift; sourceTree = "<group>"; };
+		7C3A7AC02F513E6800E25089 /* MyBadgesDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBadgesDto.swift; sourceTree = "<group>"; };
+		7C3A7AC12F513E6800E25089 /* UserProfileDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileDto.swift; sourceTree = "<group>"; };
+		7C3A7AC32F513E6800E25089 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		7C3A7ACA2F513E7300E25089 /* EcoTierDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoTierDto.swift; sourceTree = "<group>"; };
+		7C3A7ADF2F5165FC00E25089 /* ShareTierModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTierModalViewController.swift; sourceTree = "<group>"; };
+		7C3A7AE12F516E0A00E25089 /* PassthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
+		7C3A7AE42F5172A200E25089 /* ShareBadgeModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBadgeModalViewController.swift; sourceTree = "<group>"; };
+		7C3A7AEA2F51A83D00E25089 /* EcoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoService.swift; sourceTree = "<group>"; };
+		7C3A7AEE2F51A89100E25089 /* EcoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoAPI.swift; sourceTree = "<group>"; };
 		7C606B982F4C9C8C00C1578D /* dnd-14th-1-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "dnd-14th-1-iOS.entitlements"; sourceTree = "<group>"; };
 		7C61D2C72F2109B3005FAC3A /* dnd-14th-1-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dnd-14th-1-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C61D2F52F210AAC005FAC3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +209,13 @@
 		7C9014DB2F4F007E00933379 /* MyBadgesDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBadgesDto.swift; sourceTree = "<group>"; };
 		7C9015022F4F0BA800933379 /* UpdateRepresentativeBadgeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRepresentativeBadgeUseCase.swift; sourceTree = "<group>"; };
 		7C9015042F4F0C9500933379 /* UpdateRepresentativeBadgeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRepresentativeBadgeRequest.swift; sourceTree = "<group>"; };
+		7C9016722F502C5300933379 /* BottomSheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPresenter.swift; sourceTree = "<group>"; };
+		7C90168D2F502C7000933379 /* ExpandableBottomSheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableBottomSheetPresenter.swift; sourceTree = "<group>"; };
+		7C9018922F50684F00933379 /* EcoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoViewController.swift; sourceTree = "<group>"; };
+		7C9018932F50684F00933379 /* MyEcoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEcoCoordinator.swift; sourceTree = "<group>"; };
+		7C9018982F50685900933379 /* MyBadgesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBadgesCollectionView.swift; sourceTree = "<group>"; };
+		7C9018992F50685900933379 /* MyBadgesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBadgesCollectionViewCell.swift; sourceTree = "<group>"; };
+		7C90189D2F50695B00933379 /* MyBadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBadgesView.swift; sourceTree = "<group>"; };
 		7C9582A32F3561DC004F8523 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		7C9582A82F3562D0004F8523 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7C9582AD2F356608004F8523 /* CheckLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginUseCase.swift; sourceTree = "<group>"; };
@@ -227,11 +267,6 @@
 		00CFFD022F4F387000D1C0F4 /* Claude */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Claude;
-			sourceTree = "<group>";
-		};
-		00D1E8222F3B880900D86F23 /* Eco */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Eco;
 			sourceTree = "<group>";
 		};
 		00D1E8232F3B881100D86F23 /* Diagnosis */ = {
@@ -443,6 +478,9 @@
 			isa = PBXGroup;
 			children = (
 				7C0107492F45FB5B0005AC1D /* CustomVisualEffectView.swift */,
+				7C9016722F502C5300933379 /* BottomSheetPresenter.swift */,
+				7C90168D2F502C7000933379 /* ExpandableBottomSheetPresenter.swift */,
+				7C3A7AE12F516E0A00E25089 /* PassthroughView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -454,6 +492,76 @@
 				7C2A3F0F2F38ACCB00D102EE /* AppButton.swift */,
 			);
 			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		7C3A7AB92F513DE000E25089 /* Eco */ = {
+			isa = PBXGroup;
+			children = (
+				7C3A7ABA2F513DE500E25089 /* FetchEcoTierUseCase.swift */,
+			);
+			path = Eco;
+			sourceTree = "<group>";
+		};
+		7C3A7ABC2F513E1B00E25089 /* Eco */ = {
+			isa = PBXGroup;
+			children = (
+				7C3A7ABD2F513E2100E25089 /* EcoTier.swift */,
+			);
+			path = Eco;
+			sourceTree = "<group>";
+		};
+		7C3A7AC22F513E6800E25089 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				7C3A7ABF2F513E6800E25089 /* LoginResultDto.swift */,
+				7C3A7AC02F513E6800E25089 /* MyBadgesDto.swift */,
+				7C3A7AC12F513E6800E25089 /* UserProfileDto.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		7C3A7AC42F513E6800E25089 /* Decodable */ = {
+			isa = PBXGroup;
+			children = (
+				7C3A7AC92F513E6C00E25089 /* Eco */,
+				7C3A7AC22F513E6800E25089 /* User */,
+				7C3A7AC32F513E6800E25089 /* ErrorResponse.swift */,
+			);
+			path = Decodable;
+			sourceTree = "<group>";
+		};
+		7C3A7AC92F513E6C00E25089 /* Eco */ = {
+			isa = PBXGroup;
+			children = (
+				7C3A7ACA2F513E7300E25089 /* EcoTierDto.swift */,
+			);
+			path = Eco;
+			sourceTree = "<group>";
+		};
+		7C3A7ADB2F51616C00E25089 /* Eco */ = {
+			isa = PBXGroup;
+			children = (
+				7C9018972F50685400933379 /* Subviews */,
+				7C9018922F50684F00933379 /* EcoViewController.swift */,
+				7C3A7AB72F513B6700E25089 /* EcoViewModel.swift */,
+			);
+			path = Eco;
+			sourceTree = "<group>";
+		};
+		7C3A7ADD2F51618200E25089 /* ShareTier */ = {
+			isa = PBXGroup;
+			children = (
+				7C3A7ADF2F5165FC00E25089 /* ShareTierModalViewController.swift */,
+			);
+			path = ShareTier;
+			sourceTree = "<group>";
+		};
+		7C3A7AE32F51728D00E25089 /* ShareBadge */ = {
+			isa = PBXGroup;
+			children = (
+				7C3A7AE42F5172A200E25089 /* ShareBadgeModalViewController.swift */,
+			);
+			path = ShareBadge;
 			sourceTree = "<group>";
 		};
 		7C61D2BE2F2109B3005FAC3A = {
@@ -517,7 +625,7 @@
 				00113F1C2F43008C00D4CC37 /* Splash */,
 				7C0107292F439D3E0005AC1D /* Setting */,
 				00D1E8232F3B881100D86F23 /* Diagnosis */,
-				00D1E8222F3B880900D86F23 /* Eco */,
+				7C9018942F50684F00933379 /* Eco */,
 				7C9582A72F3562C7004F8523 /* Login */,
 				7C9582A12F356147004F8523 /* Onboarding */,
 				7C9582A22F356153004F8523 /* TabBar */,
@@ -529,6 +637,7 @@
 			isa = PBXGroup;
 			children = (
 				00B8F4B52F505DC300CFDA9F /* PromptImprovement */,
+				7C3A7ABC2F513E1B00E25089 /* Eco */,
 				00F794E42F4E0377005CCC92 /* PromptDiagnosis */,
 				7C0107322F439E940005AC1D /* User */,
 				00113F172F43005300D4CC37 /* Onboarding */,
@@ -541,6 +650,7 @@
 			isa = PBXGroup;
 			children = (
 				00B8F4B12F505B7300CFDA9F /* PromptImprovement */,
+				7C3A7AB92F513DE000E25089 /* Eco */,
 				007368382F4F673E00F750FD /* ConversationParsing */,
 				0036FEBB2F4DE79000200357 /* PromptDiagnosis */,
 				7C9582AC2F356601004F8523 /* User */,
@@ -551,7 +661,7 @@
 		7C61D30C2F210BEE005FAC3A /* DTOs */ = {
 			isa = PBXGroup;
 			children = (
-				007368452F4F6D9300F750FD /* Decodable */,
+				7C3A7AC42F513E6800E25089 /* Decodable */,
 				7CCB1E652F2DB6A200472669 /* Encodable */,
 			);
 			path = DTOs;
@@ -592,6 +702,35 @@
 				7C9015042F4F0C9500933379 /* UpdateRepresentativeBadgeRequest.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		7C9018942F50684F00933379 /* Eco */ = {
+			isa = PBXGroup;
+			children = (
+				7C3A7ADB2F51616C00E25089 /* Eco */,
+				7C3A7ADD2F51618200E25089 /* ShareTier */,
+				7C3A7AE32F51728D00E25089 /* ShareBadge */,
+				7C9018932F50684F00933379 /* MyEcoCoordinator.swift */,
+			);
+			path = Eco;
+			sourceTree = "<group>";
+		};
+		7C9018972F50685400933379 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				7C90189A2F50685900933379 /* MyBadgesCollectionView */,
+				7C90189D2F50695B00933379 /* MyBadgesView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		7C90189A2F50685900933379 /* MyBadgesCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				7C9018982F50685900933379 /* MyBadgesCollectionView.swift */,
+				7C9018992F50685900933379 /* MyBadgesCollectionViewCell.swift */,
+			);
+			path = MyBadgesCollectionView;
 			sourceTree = "<group>";
 		};
 		7C9582A12F356147004F8523 /* Onboarding */ = {
@@ -649,6 +788,7 @@
 			isa = PBXGroup;
 			children = (
 				7C90148D2F4E8C4C00933379 /* UserAPI.swift */,
+				7C3A7AEE2F51A89100E25089 /* EcoAPI.swift */,
 				7CCB1E402F29B5ED00472669 /* Router.swift */,
 			);
 			path = API;
@@ -659,6 +799,7 @@
 			children = (
 				7C9014912F4E921E00933379 /* UserService.swift */,
 				7C90148F2F4E8FE300933379 /* NetworkService.swift */,
+				7C3A7AEA2F51A83D00E25089 /* EcoService.swift */,
 				7CCB1E3E2F29B5E200472669 /* API */,
 			);
 			path = Network;
@@ -697,7 +838,6 @@
 				00B8F4B52F505DC300CFDA9F /* PromptImprovement */,
 				00CFFCFC2F4F314C00D1C0F4 /* Service */,
 				00CFFD022F4F387000D1C0F4 /* Claude */,
-				00D1E8222F3B880900D86F23 /* Eco */,
 				00D1E8232F3B881100D86F23 /* Diagnosis */,
 				00F794E42F4E0377005CCC92 /* PromptDiagnosis */,
 			);
@@ -798,13 +938,24 @@
 				00113F7B2F430A0700D4CC37 /* ViewModelType.swift in Sources */,
 				0027D9E92F405700000DE576 /* LoginCoordinator.swift in Sources */,
 				00113F7D2F430A1400D4CC37 /* AppChipButton.swift in Sources */,
+				7C9016812F502C5300933379 /* BottomSheetPresenter.swift in Sources */,
 				0027D9E32F4054B5000DE576 /* AppCoordinator.swift in Sources */,
 				7C01074D2F45FE3F0005AC1D /* TermsOfUseViewController.swift in Sources */,
+				7C90189B2F50685900933379 /* MyBadgesCollectionViewCell.swift in Sources */,
+				7C90189C2F50685900933379 /* MyBadgesCollectionView.swift in Sources */,
 				7CCB1E412F29B5ED00472669 /* Router.swift in Sources */,
+				7C3A7AB82F513B6700E25089 /* EcoViewModel.swift in Sources */,
 				00113F1D2F43008C00D4CC37 /* SplashViewController.swift in Sources */,
 				7C61D2FE2F210AAC005FAC3A /* AppDelegate.swift in Sources */,
+				7C3A7AE22F516E0A00E25089 /* PassthroughView.swift in Sources */,
+				7C3A7AE52F5172A200E25089 /* ShareBadgeModalViewController.swift in Sources */,
 				00F47ED32F2DD1A5006FBD2A /* AppConfig.swift in Sources */,
 				7C0107312F439E800005AC1D /* FetchUserProfileUseCase.swift in Sources */,
+				7C3A7AC52F513E6800E25089 /* LoginResultDto.swift in Sources */,
+				7C3A7AC62F513E6800E25089 /* MyBadgesDto.swift in Sources */,
+				7C3A7AE02F5165FC00E25089 /* ShareTierModalViewController.swift in Sources */,
+				7C3A7AC72F513E6800E25089 /* UserProfileDto.swift in Sources */,
+				7C3A7AC82F513E6800E25089 /* ErrorResponse.swift in Sources */,
 				00F481722F2DD574006FBD2A /* UIFont+.swift in Sources */,
 				00F482432F2DDBA1006FBD2A /* UITextField+.swift in Sources */,
 				7C2A3F102F38ACCB00D102EE /* AppButton.swift in Sources */,
@@ -814,12 +965,19 @@
 				7C90148E2F4E8C4C00933379 /* UserAPI.swift in Sources */,
 				00F4824C2F2DDCE2006FBD2A /* BaseViewController.swift in Sources */,
 				7C61D2FF2F210AAC005FAC3A /* SceneDelegate.swift in Sources */,
+				7C90189E2F50695B00933379 /* MyBadgesView.swift in Sources */,
+				7C3A7ABE2F513E2100E25089 /* EcoTier.swift in Sources */,
+				7C9018952F50684F00933379 /* EcoViewController.swift in Sources */,
+				7C9018962F50684F00933379 /* MyEcoCoordinator.swift in Sources */,
 				7C9582A42F3561DC004F8523 /* OnboardingViewController.swift in Sources */,
 				7C01072A2F439D3E0005AC1D /* SettingCoordinator.swift in Sources */,
 				7C0107482F44D3EE0005AC1D /* FetchMyBadgesUseCase.swift in Sources */,
+				7C3A7ABB2F513DE500E25089 /* FetchEcoTierUseCase.swift in Sources */,
 				7C0107422F43B6930005AC1D /* ChangeBadgeCollectionViewCell.swift in Sources */,
+				7C3A7AEF2F51A89100E25089 /* EcoAPI.swift in Sources */,
 				7C01072B2F439D3E0005AC1D /* SettingViewController.swift in Sources */,
 				7C01072C2F439D3E0005AC1D /* SettingViewModel.swift in Sources */,
+				7C90168E2F502C7000933379 /* ExpandableBottomSheetPresenter.swift in Sources */,
 				7C9014922F4E921E00933379 /* UserService.swift in Sources */,
 				0027D9F62F408E7C000DE576 /* TabBarView.swift in Sources */,
 				7C9014902F4E8FE300933379 /* NetworkService.swift in Sources */,
@@ -832,6 +990,7 @@
 				7C2E31FC2F38DDA6006F08FE /* UIImage+.swift in Sources */,
 				7C90146F2F4DCA8F00933379 /* LoginViewModel.swift in Sources */,
 				00113F2F2F43012700D4CC37 /* OnboardingCoordinator.swift in Sources */,
+				7C3A7ACB2F513E7300E25089 /* EcoTierDto.swift in Sources */,
 				7C8AABB42F437FBD0011E4CF /* UIViewController+.swift in Sources */,
 				0036FEBD2F4DE7A800200357 /* PromptDiagnosisUseCase.swift in Sources */,
 				7C01073D2F43B4C30005AC1D /* ChangeBadgeView.swift in Sources */,
@@ -843,6 +1002,7 @@
 				7C0107392F43A9B40005AC1D /* UIImageView+.swift in Sources */,
 				7CCB1E722F2DD20300472669 /* KeychainWorker.swift in Sources */,
 				00F482492F2DDC69006FBD2A /* UIView+.swift in Sources */,
+				7C3A7AEB2F51A83D00E25089 /* EcoService.swift in Sources */,
 				00D1E81A2F3B85DF00D86F23 /* TabBarItem.swift in Sources */,
 				00F482472F2DDC4F006FBD2A /* UIStackView+.swift in Sources */,
 				7C01073F2F43B6870005AC1D /* ChangeBadgeCollectionView.swift in Sources */,
@@ -866,6 +1026,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "dnd-14th-1-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = saving;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "에코 티어를 저장하기 위해서는 접근 권한이 필요합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
@@ -905,6 +1066,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "dnd-14th-1-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = saving;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "에코 티어를 저장하기 위해서는 접근 권한이 필요합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
