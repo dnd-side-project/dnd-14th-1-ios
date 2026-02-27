@@ -121,11 +121,11 @@ final class OnboardingViewController: BaseViewController {
 extension OnboardingViewController {
     
     func bind() {
-        onboardingCollectionView.pageChangedPublisher.receive(on: DispatchQueue.main).sink { [weak self] page in
+        onboardingCollectionView.pageChangedPublisher.sink { [weak self] page in
             self?.onboardingPageControl.currentPage = page
         }.store(in: &subscriptions)
         
-        onboardingPageControl.lastPagePublisher.receive(on: DispatchQueue.main).sink { [weak self] isLast in
+        onboardingPageControl.lastPagePublisher.sink { [weak self] isLast in
             self?.nextButton.setTitle(isLast ? "시작하기" : "다음", for: .normal)
         }.store(in: &subscriptions)
     }

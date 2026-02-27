@@ -52,16 +52,17 @@ class PromptInputView: UIView {
     }
     
     private func bind() {
-        promptInputType.receive(on: DispatchQueue.main).sink { [weak self] promptType in
-            switch promptType {
-            case .text:
-                self?.setTextInputButton()
-            case .url:
-                self?.setUrlLinkButton()
+        promptInputType
+            .sink { [weak self] promptType in
+                switch promptType {
+                case .text:
+                    self?.setTextInputButton()
+                case .url:
+                    self?.setUrlLinkButton()
+                }
+                self?.setPlaceholder()
             }
-            self?.setPlaceholder()
-        }
-        .store(in: &subscriptions)
+            .store(in: &subscriptions)
     }
     
     private func setDelegate() {
