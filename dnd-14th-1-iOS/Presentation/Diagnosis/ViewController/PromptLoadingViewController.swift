@@ -18,10 +18,12 @@ final class PromptLoadingViewController: BaseViewController {
         case improve
     }
     
+    private let layoutGuide = UILayoutGuide()
     private let loadingType: PromptLoadingType
     private let animationView = LottieAnimationView(name: "loadinganimat")
     private let loadingText = UILabel()
     private let loadingSubText = UILabel()
+    private let dummyView = UIView()
     
     weak var delegate: PromptLoadingViewControllerDelegate?
     
@@ -44,8 +46,10 @@ final class PromptLoadingViewController: BaseViewController {
         view.addSubviews(
             animationView,
             loadingText,
-            loadingSubText
+            loadingSubText,
+            dummyView
         )
+        view.addLayoutGuide(layoutGuide)
     }
     
     override func setStyle() {
@@ -65,12 +69,21 @@ final class PromptLoadingViewController: BaseViewController {
             $0.font = .title3_r
             $0.textColor = .gray500
         }
+        
+        dummyView.do {
+            $0.backgroundColor = .gray50
+        }
     }
     
     override func setLayout() {
+        layoutGuide.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+        }
+        
         animationView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(237)
+            $0.top.equalTo(layoutGuide)
         }
         
         loadingText.snp.makeConstraints {
@@ -81,6 +94,13 @@ final class PromptLoadingViewController: BaseViewController {
         loadingSubText.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(loadingText.snp.bottom).offset(12)
+            $0.bottom.equalTo(layoutGuide)
+        }
+        
+        dummyView.snp.makeConstraints {
+            $0.trailing.bottom.equalTo(animationView)
+            $0.height.equalTo(40)
+            $0.width.equalTo(80)
         }
     }
 }

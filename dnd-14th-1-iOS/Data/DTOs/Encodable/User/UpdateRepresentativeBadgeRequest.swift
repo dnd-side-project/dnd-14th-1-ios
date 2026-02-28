@@ -8,7 +8,7 @@
 import Foundation
 
 struct UpdateRepresentativeBadgeRequest: Encodable {
-    let badgeId: Int
+    let badgeId: String
 
     enum CodingKeys: String, CodingKey {
         case badgeId = "badgeId"

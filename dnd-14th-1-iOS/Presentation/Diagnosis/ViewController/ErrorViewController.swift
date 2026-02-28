@@ -18,10 +18,12 @@ final class ErrorViewController: BaseViewController {
         set { retryButton.setTitle(newValue, for: .normal)}
     }
         
+    private let layoutGuide = UILayoutGuide()
     private let animationView = LottieAnimationView(name: "lottie_failerror")
     private let errorText = UILabel()
     private let errorSubText = UILabel()
     private let retryButton = AppButton(size: .large, title: "다시 입력하기", image: nil)
+    private let dummyView = UIView()
     
     var onRetry: (() -> Void)?
     
@@ -51,8 +53,10 @@ final class ErrorViewController: BaseViewController {
             animationView,
             errorText,
             errorSubText,
-            retryButton
+            retryButton,
+            dummyView
         )
+        view.addLayoutGuide(layoutGuide)
     }
     
     override func setStyle() {
@@ -67,12 +71,22 @@ final class ErrorViewController: BaseViewController {
             $0.font = .title3_r
             $0.textColor = .gray500
         }
+        
+        dummyView.do {
+            $0.backgroundColor = .gray50
+        }
     }
     
     override func setLayout() {
+        
+        layoutGuide.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+        }
+        
         animationView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(237)
+            $0.top.equalTo(layoutGuide)
         }
         
         errorText.snp.makeConstraints {
@@ -83,12 +97,19 @@ final class ErrorViewController: BaseViewController {
         errorSubText.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(errorText.snp.bottom).offset(12)
+            $0.bottom.equalTo(layoutGuide)
         }
         
         retryButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        dummyView.snp.makeConstraints {
+            $0.trailing.bottom.equalTo(animationView)
+            $0.height.equalTo(40)
+            $0.width.equalTo(90)
         }
     }
     

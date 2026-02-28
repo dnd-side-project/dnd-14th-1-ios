@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol UpdateRepresentativeBadgeUseCase {
-    func execute(_ selectedBadgeId: Int) -> AnyPublisher<Void, ErrorResponse>
+    func execute(_ selectedBadgeId: String) -> AnyPublisher<Void, ErrorResponse>
 }
 
 final class DefaultUpdateRepresentativeBadgeUseCase: UpdateRepresentativeBadgeUseCase {
@@ -20,7 +20,7 @@ final class DefaultUpdateRepresentativeBadgeUseCase: UpdateRepresentativeBadgeUs
         self.repository = repository
     }
     
-    func execute(_ selectedBadgeId: Int) -> AnyPublisher<Void, ErrorResponse> {
+    func execute(_ selectedBadgeId: String) -> AnyPublisher<Void, ErrorResponse> {
         repository.updateRepresentativeBadge(selectedBadgeId)
     }
 }
