@@ -14,7 +14,7 @@ final class SettingViewModel: ViewModelType {
         case viewDidLoad
         case fetchBadgeList
         case handleLogout
-        case changeRepresentativeBadge(Int)
+        case changeRepresentativeBadge(String)
     }
     
     enum Output {
@@ -95,12 +95,13 @@ extension SettingViewModel {
         logoutUseCase.execute()
     }
     
-    private func changeRepresentativeBadge(_ selectedBadgeId: Int) {
+    private func changeRepresentativeBadge(_ selectedBadgeId: String) {
         changeRepresentativeBadge.execute(selectedBadgeId).sink(
             receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .finished:
-                    self?.outputSubject.send(.showToast(message: "대표 배지를 변경했습니다", type: .networkError)) // FIXME: 성공했을 때 정해진 피드백이 없어서 임시로 토스트를 띄움
+                    self?.outputSubject.send(.showToast(message: "대표 배지를 변경했습니다", type: .networkError))
+                    self?.fetchUserProfile()
                 case .failure(let error):
                     self?.outputSubject.send(.showToast(message: error.message, type: .internalError))
                 }

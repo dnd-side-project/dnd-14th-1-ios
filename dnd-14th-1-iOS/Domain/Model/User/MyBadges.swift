@@ -18,6 +18,6 @@ struct Badge {
     let date: String
     let name: String
     let description: String
-    let id: Int
+    let id: String
     let imageUrl: String
 }

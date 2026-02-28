@@ -14,7 +14,7 @@ final class ChangeBadgeCollectionView: UICollectionView {
     // MARK: - Properties
     let didSelectBadgePublisher = PassthroughSubject<Void, Never>()
     private var badges: [Badge] = []
-    var selectedBadgeId: Int? {
+    var selectedBadgeId: String? {
         if let selectedIndexPath = indexPathsForSelectedItems?.first {
             return badges[selectedIndexPath.row].id
         }

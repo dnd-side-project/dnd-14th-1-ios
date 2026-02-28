@@ -13,8 +13,8 @@ import Then
 final class ChangeBadgeView: UIView {
     
     // MARK: - Properties
-    var onChangeBadgeButtonTapped: ((Int)->Void)?
-    private var currentBadgeId: Int?
+    var onChangeBadgeButtonTapped: ((String)->Void)?
+    private var currentBadgeId: String?
     private var subscriptions: Set<AnyCancellable> = []
     
     // MARK: - UI Components

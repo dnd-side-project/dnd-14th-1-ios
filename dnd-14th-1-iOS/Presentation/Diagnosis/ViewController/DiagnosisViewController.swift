@@ -126,8 +126,46 @@ final class DiagnosisViewController: BaseViewController {
             bottomSheetPresenter.dismissSheet()
         }
         
-        bottomSheetPresenter.onDismiss = {
-            self.inputSubject.send(.promptSheetDismissed)
+        bottomSheetPresenter.onDismiss = { [weak self] in
+            guard let self else { return }
+            inputSubject.send(.promptSheetDismissed)
+            
+            [promptSubTitle, savedGlacierAmountLabel, savedGlacierAmount, savedGlacierUnitLabel].forEach { view in
+                
+                UIView.transition(
+                    with: view,
+                    duration: 0.25,
+                    options: .transitionCrossDissolve,
+                    animations: {
+                        view.isHidden = false
+                    }
+                )
+            }
+        }
+        
+        bottomSheetPresenter.onRestore = { [weak self] in
+            guard let self else { return }
+            [promptSubTitle, savedGlacierAmountLabel, savedGlacierAmount, savedGlacierUnitLabel].forEach { view in
+                UIView.transition(
+                    with: view,
+                    duration: 0.25,
+                    options: .transitionCrossDissolve,
+                    animations: {
+                        view.isHidden = true
+                    }
+                )
+            }
+        }
+        
+        [promptSubTitle, savedGlacierAmountLabel, savedGlacierAmount, savedGlacierUnitLabel].forEach { view in
+            UIView.transition(
+                with: view,
+                duration: 0.25,
+                options: .transitionCrossDissolve,
+                animations: {
+                    view.isHidden = true
+                }
+            )
         }
         
         bottomSheetPresenter.present(

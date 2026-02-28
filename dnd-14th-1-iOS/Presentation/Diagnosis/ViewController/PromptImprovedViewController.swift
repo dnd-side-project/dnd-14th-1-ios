@@ -14,10 +14,9 @@ import Lottie
 
 class PromptImprovedViewController: BaseViewController {
     
-    private enum Const {
-        static let itemSize = CGSize(width: UIScreen.main.bounds.width - 40, height: 400)
-        static let itemSpacing = 12
-    }
+    private var itemSize = CGSize.zero
+    private var itemSpacing: CGFloat = 12
+    private var minimumLineSpacing: CGFloat = 16
     
     let viewModel: PromptImproveViewModel
     
@@ -30,16 +29,12 @@ class PromptImprovedViewController: BaseViewController {
     private let buttonStackView = UIStackView()
     private let promptCopyButton = AppButton(size: .large, title: "프롬프트 복사하기", image: UIImage(resource: .copySimple))
     private let homeButton = UIButton()
-    private let collectionViewFlowLayout = UICollectionViewFlowLayout().then {
-        $0.scrollDirection = .horizontal
-        $0.itemSize = Const.itemSize
-        $0.minimumLineSpacing = 16
-        $0.minimumInteritemSpacing = 0
-    }
+    
+    private let dummyView = UIView()
     
     weak var delegate: PromptImprovedViewControllerDelegate?
     
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     private var subscriptions: Set<AnyCancellable> = []
     private var prompts: [PromptResult] = []
@@ -72,6 +67,18 @@ class PromptImprovedViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         inputSubject.send(.viewDidLoad)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if let flowlayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowlayout.scrollDirection = .horizontal
+            flowlayout.itemSize = CGSize(width: collectionView.frame.width - 58, height: collectionView.frame.height)
+            itemSize = CGSize(width: collectionView.frame.width - 58, height: collectionView.frame.height)
+            flowlayout.minimumLineSpacing = minimumLineSpacing
+            flowlayout.minimumInteritemSpacing = 0
+            flowlayout.invalidateLayout()
+        }
     }
     
     override func setStyle() {
@@ -126,6 +133,10 @@ class PromptImprovedViewController: BaseViewController {
             $0.decelerationRate = .fast
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        }
+        
+        dummyView.do {
+            $0.backgroundColor = .white
         }
     }
     
@@ -183,13 +194,15 @@ class PromptImprovedViewController: BaseViewController {
             titleLabel,
             subtitleLabel,
             collectionView,
-            buttonStackView
+            buttonStackView,
+            dummyView
         )
     }
     
     override func setLayout() {
         animationView.snp.makeConstraints {
-            $0.top.centerX.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.equalTo(view.snp.centerX).offset(-80)
         }
         
         savedTokenLabel.snp.makeConstraints {
@@ -199,7 +212,7 @@ class PromptImprovedViewController: BaseViewController {
         
         bubbleImageView.snp.makeConstraints {
             $0.top.equalTo(animationView)
-            $0.leading.equalTo(animationView.snp.trailing)
+            $0.leading.equalTo(view.snp.centerX).offset(64)
         }
         
         titleLabel.snp.makeConstraints {
@@ -214,7 +227,7 @@ class PromptImprovedViewController: BaseViewController {
         
         collectionView.snp.makeConstraints {
             $0.top.equalTo(subtitleLabel.snp.bottom).offset(22)
-            $0.height.equalTo(440)
+            $0.bottom.equalTo(buttonStackView.snp.top).offset(-30)
             $0.horizontalEdges.equalToSuperview()
         }
         
@@ -226,6 +239,12 @@ class PromptImprovedViewController: BaseViewController {
         homeButton.snp.makeConstraints {
             $0.width.equalTo(68)
             $0.height.equalTo(60)
+        }
+        
+        dummyView.snp.makeConstraints {
+            $0.trailing.bottom.equalTo(animationView)
+            $0.height.equalTo(20)
+            $0.width.equalTo(60)
         }
     }
 }
@@ -289,7 +308,7 @@ extension PromptImprovedViewController: UICollectionViewDelegateFlowLayout {
         withVelocity velocity: CGPoint,
         targetContentOffset: UnsafeMutablePointer<CGPoint>
     ) {
-        let itemWidth = Const.itemSize.width + collectionViewFlowLayout.minimumLineSpacing
+        let itemWidth = itemSize.width + minimumLineSpacing
         
         let offsetX = targetContentOffset.pointee.x + scrollView.contentInset.left
         let index = round(offsetX / itemWidth)

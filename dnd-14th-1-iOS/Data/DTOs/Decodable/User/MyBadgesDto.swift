@@ -49,7 +49,7 @@ struct BadgeDto: Decodable {
             date: earnedAt,
             name: name,
             description: description,
-            id: Int(badgeID) ?? 0,
+            id: badgeID,
             imageUrl: enableImageURL
         )
     }
